@@ -1,0 +1,31 @@
+/**
+ * Product badges styles
+ */
+.products {
+	.woocommerce-loop-product__link {
+		position: relative;
+		display: block;
+	}
+}
+
+.onsale {
+	display: inline-block;
+	font-size: $wc-badges-fz;
+	line-height: $wc-badges-lh;
+	color: $wc-badges-color;
+	background-color: $wc-badge-sale-bg;
+	padding: 2px 5px;
+	border-radius: 0;
+	
+	// loop products badge style
+	.products &{
+			position: absolute;
+			top: 0;
+			left: 0;
+	}
+	
+	// single product badge style
+	.single-product .summary & {
+		margin-bottom: 8px;
+	}
+}

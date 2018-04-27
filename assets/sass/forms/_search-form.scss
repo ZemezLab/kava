@@ -1,0 +1,15 @@
+.search-form {
+	display: flex;
+	align-items: center;
+	label {
+		width: 100%;
+	}
+	&__field[type='search'] {
+		box-sizing: border-box;
+	}
+	&__submit.btn {
+		padding: 11px;
+		margin-left: 10px;
+		@include font-size(13/16);
+	}
+}

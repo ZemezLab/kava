@@ -1,0 +1,322 @@
+/* Single product */
+.woocommerce table.variations .reset_variations,
+.woocommerce-review-link{
+	font-weight: $h4_font_weight;
+}
+
+.product_meta,
+.woocommerce-tabs .tabs li a,
+.single-product .quantity label,
+.woocommerce table.variations .label{
+	font-weight: $h6_font_weight;
+}
+
+.woocommerce table.variations select{
+	color: $secondary_text_color;
+}
+
+.product_meta .sku_wrapper span,
+.product_meta .posted_in a,
+.product_meta .tagged_as a{
+	font-weight: $h5_font_weight;
+}
+
+.woocommerce-tabs .tabs li a{
+	color: $primary_text_color;
+}
+
+.woocommerce-tabs .tabs li a:hover{
+	color: $accent_color;
+}
+
+/* #Button Appearance Styles (regular scheme) */
+.elementor-widget-wp-widget-woocommerce_product_search button,
+.widget_product_search button,
+.added_to_cart.wc-forward,
+.woocommerce .button {
+	font-style: $button_font_style;
+	font-weight: $button_font_weight;
+	font-size: $button_font_size{px};
+	line-height: $button_line_height;
+	font-family: @font_family( $button_font_family );
+	letter-spacing: $button_letter_spacing{px};
+
+	color: $invert_text_color;
+	background-color: $accent_color;
+}
+
+.elementor-widget-wp-widget-woocommerce_product_search button:hover,
+.widget_product_search button:hover,
+.added_to_cart.wc-forward:hover,
+.button:hover{
+	color: $invert_text_color;
+	background-color: @lighten($accent_color, 15%);
+}
+
+.widget_recently_viewed_products .amount,
+.widget_products .amount,
+.widget_top_rated_products .amount,
+.price,
+table.woocommerce-grouped-product-list tr td.woocommerce-grouped-product-list-item__price{
+	font-weight: $h4_font_weight;
+}
+
+/*     Reviews       */
+ol.commentlist li .meta strong{
+	font-weight: $body_font_weight;
+}
+
+ol.commentlist li .meta{
+	color: $secondary_text_color;
+}
+
+/*     Single Product Thumbnails       */
+.woocommerce-product-gallery__trigger{
+	background-color: $invert_text_color;
+	color: $primary_text_color;
+}
+
+.woocommerce-product-gallery__trigger:hover{
+	background-color: $primary_text_color;
+	color:$invert_text_color;
+}
+/*     WooCommerce cart page       */
+.woocommerce-cart table tr td.product-remove a{
+	color: $secondary_text_color;
+}
+
+.woocommerce-cart table tr td.product-name a{
+	color: $primary_text_color;
+}
+
+.woocommerce-cart table tr td.product-price ,
+.woocommerce-cart table tr td.product-subtotal,
+.woocommerce-cart .cart-collaterals table tr.cart-subtotal .amount,
+.woocommerce-cart .cart-collaterals table tr.order-total .amount {
+	font-weight: $h1_font_weight;
+	color: $h1_color;
+}
+
+.woocommerce-cart table tr td.product-quantity input{
+	color:  $secondary_text_color;
+}
+
+.woocommerce-cart table tr th,
+.woocommerce-account .woocommerce .woocommerce-MyAccount-content label,
+.woocommerce-cart table tr td.actions label{
+	font-weight: $h6_font_weight;
+}
+
+.woocommerce-cart table tr td.actions > .button,
+.woocommerce-cart .cart-collaterals table tr.order-total .amount{
+	color: $accent_color;
+}
+
+.woocommerce-cart table tr td.actions > .button:hover{
+	color: $primary_text_color;
+}
+
+.woocommerce-cart table tr td.product-remove a:hover,
+.woocommerce-cart table tr td.product-name a:hover {
+	color: $accent_color;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered{
+	color:  $secondary_text_color;
+}
+
+.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout a:hover{
+	background-color:  $accent_color;
+}
+
+.woocommerce-cart table tr td.actions{
+	background-color: @alpha($accent_color, 5%);
+}
+
+/*     WooCommerce checkout       */
+.woocommerce-checkout label,
+.woocommerce-account .woocommerce label:not(.woocommerce-form__label-for-checkbox),
+.lost_password a,
+.comment-form label,
+.woocommerce-checkout .woocommerce-checkout-review-order table .amount,
+.woocommerce-checkout .woocommerce-checkout-review-order table tr th,
+.woocommerce-checkout .woocommerce-checkout-review-order table tbody tr td .product-quantity{
+	font-weight: $h6_font_weight;
+}
+
+.woocommerce-checkout .woocommerce-checkout-review-order table tbody tr td .product-quantity{
+	color:  $accent_color;
+}
+
+.woocommerce-checkout .woocommerce-checkout-review-order table tfoot,
+.wc_payment_methods li .payment_box{
+	background-color: @alpha($accent_color, 5%);
+}
+
+.woocommerce-checkout .woocommerce-message,
+.woocommerce-checkout .woocommerce-error,
+.woocommerce-checkout .woocommerce-info{
+	font-weight: $h3_font_weight;
+}
+
+label.checkbox input[type="checkbox"] + span::after,
+label.inline input[type="checkbox"] + span::after {
+	color: $accent_color;
+}
+
+label.checkbox.woocommerce-form__label, 
+label.inline.woocommerce-form__label{
+	color:  $secondary_text_color;
+	font-weight: $body_font_weight;
+}
+
+.woocommerce-checkout .place-order .button:hover{
+	background-color:  $accent_color;
+}
+
+/*     WooCommerce my-account       */
+.woocommerce-account .woocommerce .woocommerce-MyAccount-navigation ul li{
+	font-weight: $button_font_weight;
+}
+
+.woocommerce-account .woocommerce .woocommerce-MyAccount-navigation ul li a:hover,
+.woocommerce-account .woocommerce .woocommerce-MyAccount-navigation ul li.is-active a{
+	color: $invert_text_color;
+	background-color: $accent_color;
+	border-color: $accent_color;
+}
+
+.woocommerce-account .woocommerce .woocommerce-MyAccount-content table.woocommerce-orders-table tr td:first-child,
+.woocommerce-account .woocommerce .woocommerce-MyAccount-content table.woocommerce-orders-table tr th,
+.woocommerce-order-received .woocommerce .woocommerce-order table.shop_table.order_details tr td:first-child,
+.woocommerce-order-received .woocommerce .woocommerce-order table.shop_table.order_details tr th,
+.woocommerce-account .woocommerce .woocommerce-MyAccount-content table.shop_table.order_details tr td:first-child,
+.woocommerce-account .woocommerce .woocommerce-MyAccount-content table.shop_table.order_details tr th{
+	font-weight: $h6_font_weight;
+}
+
+.woocommerce-order-received .woocommerce .woocommerce-order table.shop_table.order_details tr td a:not(.button),
+.woocommerce-account .woocommerce .woocommerce-MyAccount-content table.woocommerce-orders-table tr td a,
+.woocommerce-account .woocommerce .woocommerce-MyAccount-content table.shop_table.order_details tr td a{
+	color: $primary_text_color;
+	font-weight:$h5_font_weight;
+}
+
+.woocommerce-order-received .woocommerce .woocommerce-order table.shop_table.order_details tr td a:not(.button):hover,
+.woocommerce-account .woocommerce .woocommerce-MyAccount-content table.woocommerce-orders-table tr td a:hover,
+.woocommerce-account .woocommerce .woocommerce-MyAccount-content table.shop_table.order_details tr td a:hover{
+	color: $accent_color;
+}
+
+.woocommerce-order-received .woocommerce .woocommerce-order table.shop_table.order_details tr td.woocommerce-table__product-name .product-quantity,
+.woocommerce-account .woocommerce .woocommerce-MyAccount-content table.woocommerce-orders-table tr td.woocommerce-table__product-name .product-quantity,
+.woocommerce-account .woocommerce .woocommerce-MyAccount-content table.shop_table.order_details tr td.woocommerce-table__product-name .product-quantity{
+	color: $secondary_text_color;
+}
+
+ul.woocommerce-order-overview li strong{
+	font-weight: $h6_font_weight;
+}
+
+.woocommerce-order-received .woocommerce .woocommerce-order table.shop_table.order_details tr td.woocommerce-table__product-name .product-quantity{
+	font-weight:$h5_font_weight;
+}
+
+.woocommerce-account .woocommerce .woocommerce-MyAccount-content legend{
+	font-weight: $h2_font_weight;
+}
+
+.woocommerce-account .woocommerce .woocommerce-MyAccount-content table.woocommerce-orders-table tr td.woocommerce-orders-table__cell-order-actions .button,
+.woocommerce .woocommerce-MyAccount-content table.shop_table.order_details tr td.download-file .button,
+table.woocommerce-table--order-downloads.shop_table tbody tr td.download-file .button{
+	font-style: $body_font_style;
+	font-weight: $body_font_weight;
+	font-size: $body_font_size{px};
+	line-height: $body_line_height;
+	font-family: @font_family( $body_font_family );
+	letter-spacing: $body_letter_spacing{px};
+	text-align: $body_text_align;
+	color: $accent_color;
+}
+
+.woocommerce-account .woocommerce .woocommerce-MyAccount-content mark{
+	color: $accent_color;
+}
+
+.woocommerce-account .woocommerce .woocommerce-MyAccount-content table.woocommerce-orders-table tr td.woocommerce-orders-table__cell-order-actions .button:hover,
+.woocommerce .woocommerce-MyAccount-content table.shop_table.order_details tr td.download-file .button:hover,
+table.woocommerce-table--order-downloads.shop_table tbody tr td.download-file .button:hover {
+	color: $primary_text_color;
+}
+/*     WooCommerce widgets       */
+.widget_price_filter .ui-slider-handle,
+.widget_price_filter .ui-slider-range{
+	background-color: $accent_color;
+}
+
+.widget_shopping_cart .quantity{
+	color: $secondary_text_color;
+}
+
+.widget_shopping_cart,
+.widget_shopping_cart a:not(.button),
+.widget_recently_viewed_products a,
+.widget_products a,
+.widget_top_rated_products a,
+.widget_recent_reviews a{
+	color: $primary_text_color;
+}
+
+.widget_shopping_cart a:not(.button):hover,
+.widget_recently_viewed_products a:hover,
+.widget_products a:hover,
+.widget_top_rated_products a:hover,
+.widget_recent_reviews a:hover{
+	color: $link_color;
+}
+
+.widget_rating_filter li.chosen:before,
+.widget_product_categories li.current-cat:before{
+	background-color: $accent_color;
+	border-color: $accent_color;
+}
+
+.widget_rating_filter li:after,
+.widget_product_categories li:after{
+	color: $invert_text_color;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered{
+	color: $primary_text_color;
+}
+
+.widget_shopping_cart .woocommerce-mini-cart__total > strong,
+.widget_shopping_cart .quantity .amount{
+	font-weight: $h6_font_weight;
+}
+
+.widget_shopping_cart .woocommerce-mini-cart__total .amount{
+	font-weight: $h4_font_weight;
+}
+
+.widget_shopping_cart .woocommerce-mini-cart__buttons .wc-forward:not(.checkout){
+	color: $accent_color;
+	font-weight: $h4_font_weight;
+}
+.widget_shopping_cart .woocommerce-mini-cart__buttons .wc-forward:not(.checkout):hover{
+	color: $primary_text_color;
+}
+
+.header-cart__link{
+	color: $secondary_text_color;
+}
+
+.header-cart__link:hover{
+	color: $accent_color;
+}
+
+.widget_shopping_cart .woocommerce-mini-cart__total > strong,
+.widget_shopping_cart .quantity .amount,
+.header-cart .amount{
+	color: $primary_text_color;
+}

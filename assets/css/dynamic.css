@@ -1,0 +1,101 @@
+/* #Typography */
+body {
+	font-style: $body_font_style;
+	font-weight: $body_font_weight;
+	font-size: $body_font_size{px};
+	line-height: $body_line_height;
+	font-family: @font_family( $body_font_family );
+	letter-spacing: $body_letter_spacing{px};
+	text-align: $body_text_align;
+	color: $primary_text_color;
+}
+h1,
+.h1-style {
+	font-style: $h1_font_style;
+	font-weight: $h1_font_weight;
+	font-size: @font_size($h1_font_size, multiple, ceil, 0.6)px;
+	line-height: $h1_line_height;
+	font-family: @font_family( $h1_font_family );
+	letter-spacing: $h1_letter_spacing{px};
+	text-align: $h1_text_align;
+	color: $h1_color;
+}
+h2,
+.h2-style {
+	font-style: $h2_font_style;
+	font-weight: $h2_font_weight;
+	font-size: @font_size($h2_font_size, multiple, ceil, 0.6)px;
+	line-height: $h2_line_height;
+	font-family: @font_family( $h2_font_family );
+	letter-spacing: $h2_letter_spacing{px};
+	text-align: $h2_text_align;
+	color: $h2_color;
+}
+h3,
+.h3-style {
+	font-style: $h3_font_style;
+	font-weight: $h3_font_weight;
+	font-size: @font_size($h3_font_size, multiple, ceil, 0.75)px;
+	line-height: $h3_line_height;
+	font-family: @font_family( $h3_font_family );
+	letter-spacing: $h3_letter_spacing{px};
+	text-align: $h3_text_align;
+	color: $h3_color;
+}
+h4,
+.h4-style {
+	font-style: $h4_font_style;
+	font-weight: $h4_font_weight;
+	font-size: $h4_font_size{px};
+	line-height: $h4_line_height;
+	font-family: @font_family( $h4_font_family );
+	letter-spacing: $h4_letter_spacing{px};
+	text-align: $h4_text_align;
+	color: $h4_color;
+}
+h5,
+.h5-style {
+	font-style: $h5_font_style;
+	font-weight: $h5_font_weight;
+	font-size: $h5_font_size{px};
+	line-height: $h5_line_height;
+	font-family: @font_family( $h5_font_family );
+	letter-spacing: $h5_letter_spacing{px};
+	text-align: $h5_text_align;
+	color: $h5_color;
+}
+h6,
+.h6-style {
+	font-style: $h6_font_style;
+	font-weight: $h6_font_weight;
+	font-size: $h6_font_size{px};
+	line-height: $h6_line_height;
+	font-family: @font_family( $h6_font_family );
+	letter-spacing: $h6_letter_spacing{px};
+	text-align: $h6_text_align;
+	color: $h6_color;
+}
+
+@media (min-width: 1200px) {
+	h1,
+	.h1-style { font-size: $h1_font_size{px}; }
+
+	h2,
+	.h2-style { font-size: $h2_font_size{px}; }
+
+	h3,
+	.h3-style { font-size: $h3_font_size{px}; }
+}
+
+a,
+h1 a:hover,
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+h5 a:hover,
+h6 a:hover { color: $link_color; }
+a:hover { color: $link_hover_color; }
+
+blockquote {
+	color: $accent_color;
+}

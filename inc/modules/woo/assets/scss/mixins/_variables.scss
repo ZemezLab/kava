@@ -1,0 +1,313 @@
+$wc-max-columns: 6;
+
+$wc-white-color: #ffffff;
+$wc-gray-color: #ebeced;
+$wc-green-color: #27d18b;
+$wc-yellow-color: #fdbc32;
+$wc-red-color: #fd6d75;
+$wc-blue-color: #398ffc;
+$wc-border-color: $wc-gray-color;
+$wc-border-radius: 3px;
+$wc-border: 1px solid $wc-border-color;
+
+// icons
+$wc-list-widget-current-item-icon: '\f00c';
+$wc-list-widget-remove-item-icon: '\f00d';
+
+$wc-widget-cart-view-cart-button-icon: '\f06e';
+$wc-widget-cart-checkout-button-icon: '\f07a';
+$wc-widget-cart-header-icon: '\f07a';
+
+$wc-single-product-gallery-trigger-icon: '\f002';
+
+$wc-widget-price-slider-button-icon: '\f0b0';
+
+$wc-tabs-icon: '\f067';
+$wc-tabs-active-icon: '\f068';
+
+$wc-my-account-navigation-icons: (
+		dashboard:'\f007',
+		orders:'\f03b',
+		downloads:'\f019',
+		edit-address:'\f02d',
+		edit-account:'\f085',
+		customer-logout:'\f08b'
+);
+
+$wc-cart-page-table-remove-icon: '\f00d';
+$wc-cart-page-table-actions-button-icon: '\f01e';
+$wc-cart-page-calculate-shipping-button-icon: '\f0cb';
+
+$wc-proceed-to-checkout-button-icon: '\f00c';
+
+$wc-add-to-cart-sample-icon: '\f07a';
+$wc-add-to-cart-variable-icon: '\f0ad';
+$wc-add-to-cart-loading-icon: '\f110';
+$wc-add-to-cart-added-icon: '\f00c';
+
+$wc-pagination-icon-prev: '\f060';
+$wc-pagination-icon-next: '\f061';
+
+$wc-checkbox-active-icon: '\f00c';
+
+$wc-rating-icon: '\f005';
+
+$wc-messages-icon-default: '\f05a';
+$wc-messages-icon-error: '\f071';
+$wc-messages-icon-info: '\f06a';
+
+
+// Product badges
+$wc-badges-fz: 11px;
+$wc-badges-lh: 11px;
+$wc-badges-color: #ffffff;
+$wc-badge-sale-bg: $wc-red-color;
+
+// Labels
+$wc-label-fz: 14px;
+$wc-label-lh: inherit;
+$wc-label-offset: 0 0 4px;
+
+// Prices
+$wc-grid-price-fz: 20px;
+$wc-grid-price-lh: 1;
+$wc-grid-ins-price-fz: $wc-grid-price-fz;
+$wc-grid-del-price-fz: $wc-grid-price-fz;
+$wc-grid-price-offset: 6px 0 16px 0;
+
+$wc-list-price-fz: $wc-grid-price-fz;
+$wc-list-price-lh: $wc-grid-price-lh;
+$wc-list-ins-price-fz: $wc-list-price-fz;
+$wc-list-del-price-fz: $wc-list-price-fz;
+$wc-list-price-offset: 10px 0;
+
+$wc-single-price-fz: 28px;
+$wc-single-price-lh: 1;
+$wc-single-ins-price-fz: $wc-single-price-fz;
+$wc-single-del-price-fz: $wc-single-price-fz;
+$wc-single-price-offset: 6px 0 25px 0;
+
+$wc-sale-price-color: $wc-red-color;
+
+// Widgets
+$wc-widget-select-height: 37px;
+$wc-widgets-title-fz: 20px;
+$wc-widgets-title-lh: 1.2;
+$wc-widgets-title-offset: 0 0 23px 0;
+
+$wc-product-list-widget-items-offset: 15px;
+$wc-product-list-widget-price-fz: 20px;
+$wc-product-list-widget-img-width: 60px;
+
+$wc-list-widget-space-between-items: 4px;
+
+$wc-list-widget-remove-item-icon-color: $wc-red-color;
+
+$wc-widget-price-slider-height: 8px;
+$wc-widget-price-slider-border-radius: 50px;
+$wc-widget-price-slider-handle-height: 8px;
+$wc-widget-price-slider-handle-width: 8px;
+
+
+$wc-widget-cart-header-box-shadow-color: rgba(48, 63, 100, 0.13);
+$wc-widget-cart-header-bg-color: $wc-white-color;
+
+// Single product
+$wc-single-product-gallery-trigger-fz: 16px;
+$wc-single-product-gallery-trigger-b: none;
+
+// Single add to cart
+$wc-variations-select-offset: 10px;
+$wc-variations-clear-btn-fz: inherit;
+$wc-variations-clear-btn-lh: inherit;
+
+// WooCommerce tabs
+$wc-tabs-offset: 75px 0 30px 0;
+$wc-tabs-inset: 40px 0;
+$wc-tabs-border: $wc-border;
+
+$wc-tabs-fz: 20px;
+$wc-tabs-lh: 30px;
+$wc-tabs-b: $wc-border;
+
+$wc-tabs-description-fz: 18px;
+$wc-tabs-description-lh: inherit;
+
+// WooCommerce reviews
+$wc-reviews-meta-fz: inherit;
+$wc-reviews-meta-lh: inherit;
+
+// Product
+$wc-product-inset: 30px;
+$wc-product-offset: 0 0 30px 0;
+$wc-product-border: $wc-border;
+$wc-product-border-radius: $wc-border-radius;
+
+$wc-category-inset: 30px;
+$wc-category-offset: 0 0 30px 0;
+$wc-category-border: $wc-border;
+$wc-category-border-radius: $wc-border-radius;
+
+$wc-category-title-fz: 14px;
+$wc-category-title-lh: 1.6;
+$wc-category-title-offset: 8px 0;
+
+// Cart page (pages)
+$wc-cart-page-inline-layout: true;
+$wc-cart-page-table-inset: 30px 10px;
+
+$wc-cart-page-table-thead-inset: 10px;
+$wc-cart-page-table-thead-fz: 14px;
+
+$wc-cart-page-table-remove-fz: 12px;
+$wc-cart-page-table-remove-lh: 18px;
+$wc-cart-page-table-remove-inset: 23px 20px 17px;
+
+$wc-cart-page-table-thumbnail-width: 120px;
+
+$wc-cart-page-table-actions-coupon-w: 168px;
+$wc-cart-page-table-actions-coupon-fz: 14px;
+$wc-cart-page-table-actions-coupon-inset: 7px 10px;
+
+// Checkout page (pages)
+$wc-proceed-to-checkout-button-fz: 15px;
+$wc-proceed-to-checkout-button-inset: 15px 5px 21px;
+
+$wc-checkout-page-inline-layout: false;
+
+$wc-checkout-page-sub-title-fz: 20px;
+$wc-checkout-page-sub-title-lh: 32px;
+$wc-checkout-page-sub-title-link-fz: 14px;
+
+$wc-checkout-place-order-button-icon: $wc-proceed-to-checkout-button-icon;
+$wc-checkout-place-order-button-fz: $wc-proceed-to-checkout-button-fz;
+$wc-checkout-place-order-button-inset: $wc-proceed-to-checkout-button-inset;
+
+// Buttons (components)
+$wc-button-indents: 12px 20px;
+$wc-button-border: none;
+$wc-button-border-radius: $wc-border-radius;
+
+$wc-add-to-cart-added-color: $wc-green-color;
+
+$wc-add-to-cart-with-icon: true;
+
+$wc-add-to-cart-icon-fz: 12px;
+$wc-add-to-cart-icon-lh: 12px;
+
+// Checkbox (components)
+$wc-checkbox-width: 20px;
+$wc-checkbox-height: $wc-checkbox-width;
+$wc-checkbox-br: $wc-border-radius;
+$wc-checkbox-active-icon-fz: 14px;
+
+// Archive panel (components)
+$wc-page-title-fz: 40px;
+$wc-page-title-lh: 54px;
+
+$wc-archive-panel-border: $wc-border;
+
+// Meta (components)
+$wc-product-meta-fz: 14px;
+
+$wc-pagination-number-fz: 14px;
+$wc-pagination-number-lh: 33px;
+$wc-pagination-number-ta: center;
+$wc-pagination-number-inset: 0;
+$wc-pagination-number-offset: 10px;
+$wc-pagination-number-height: 33px;
+$wc-pagination-number-width: 33px;
+$wc-pagination-number-border: $wc-border;
+$wc-pagination-number-border-radius: $wc-border-radius;
+$wc-pagination-text-offset: 10px;
+
+$wc-pagination-icon-fz: 12px;
+
+// Rating (components)
+$wc-rating-width: 6.5em;
+$wc-rating-height: 12px;
+$wc-rating-fz: 12px;
+$wc-rating-ls: 4px;
+$wc-rating-color: #e7e8e8;
+$wc-rating-rated-color: $wc-yellow-color;
+
+// Select (components)
+$wc-select-fz: inherit;
+$wc-select-lh: inherit;
+$wc-select-inset: 8px 12px;
+$wc-select-border: $wc-border;
+$wc-select-border-radius: $wc-border-radius;
+
+// Tables (components)
+$wc-table-fz: 18px;
+$wc-table-lh: 24px;
+$wc-table-inset: 5px 0;
+$wc-table-border: $wc-border-radius;
+
+$wc-thead-table-fz: $wc-table-fz;
+$wc-thead-table-lh: $wc-table-lh;
+
+$wc-table-with-inner-border: false;
+$wc-table-with-inner-bottom-border: false;
+$wc-table-with-inner-thead-border: false;
+$wc-table-with-outer-border: false;
+$wc-table-border-color: $wc-border-color;
+
+$wc-product-title-default-fz: 14px;
+$wc-product-title-default-lh: 22px;
+$wc-product-title-default-ta: left;
+$wc-product-title-default-tt: none;
+$wc-product-title-default-offset: 8px 0 5px 0;
+
+$wc-product-list-title-fz: $wc-product-title-default-fz;
+$wc-product-list-title-lh: $wc-product-title-default-lh;
+$wc-product-list-title-ta: $wc-product-title-default-ta;
+$wc-product-list-title-tt: $wc-product-title-default-tt;
+$wc-product-list-title-offset: $wc-product-title-default-ta;
+
+$wc-single-product-title-fz: 28px;
+$wc-single-product-title-lh: 40px;
+$wc-single-product-title-ta: $wc-product-title-default-ta;
+$wc-single-product-title-offset: 0;
+$wc-single-product-title-tt: $wc-product-title-default-tt;
+
+$wc-single-tabs-title-fz: 24px;
+$wc-single-tabs-title-lh: 32px;
+$wc-single-tabs-title-ta: $wc-product-title-default-ta;
+$wc-single-tabs-title-tt: $wc-product-title-default-tt;
+$wc-single-tabs-title-offset: 0;
+
+$wc-single-related-title-fz: 20px;
+$wc-single-related-title-lh: 32px;
+$wc-single-related-title-ta: $wc-product-title-default-ta;
+$wc-single-related-title-tt: $wc-product-title-default-tt;
+$wc-single-related-title-offset: 52px 0 25px;
+
+$wc-shopping-cart-title-fz: 40px;
+$wc-shopping-cart-title-lh: 58px;
+$wc-shopping-cart-title-ta: center;
+$wc-shopping-cart-title-tt: $wc-product-title-default-tt;
+$wc-shopping-cart-title-offset: 8px 0 52px 0;
+
+$wc-checkout-cart-title-fz: $wc-shopping-cart-title-fz;
+$wc-checkout-cart-title-lh: $wc-shopping-cart-title-lh;
+$wc-checkout-cart-title-ta: $wc-shopping-cart-title-ta;
+$wc-checkout-cart-title-tt: $wc-product-title-default-tt;
+$wc-checkout-cart-title-offset: $wc-shopping-cart-title-offset;
+
+$wc-my-account-title-fz: $wc-shopping-cart-title-fz;
+$wc-my-account-title-lh: $wc-shopping-cart-title-lh;
+$wc-my-account-title-ta: $wc-shopping-cart-title-ta;
+$wc-my-account-title-tt: $wc-product-title-default-tt;
+$wc-my-account-title-offset: $wc-shopping-cart-title-offset;
+
+// Messages (components)
+
+$wc-messages-icon-default-color: $wc-white-color;
+$wc-messages-icon-default-bg: $wc-blue-color;
+
+$wc-messages-icon-info-color: $wc-white-color;
+$wc-messages-icon-info-bg: $wc-yellow-color;
+
+$wc-messages-icon-error-color: $wc-white-color;
+$wc-messages-icon-error-bg: $wc-red-color;

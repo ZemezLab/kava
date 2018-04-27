@@ -1,0 +1,216 @@
+/* #Entry Meta */
+.posted-on,
+.cat-links,
+.byline,
+.tags-links {
+	color: $secondary_text_color;
+}
+
+.comments-button {
+	color: $secondary_text_color;
+}
+.comments-button:hover {
+	color: $invert_text_color;
+	background-color: $accent_color;
+}
+
+.btn-style .post-categories a {
+	color: $invert_text_color;
+	background-color: $accent_color;
+}
+.btn-style .post-categories a:hover {
+	color: $invert_text_color;
+	background-color: @lighten($accent_color, 15%);
+}
+
+.sticky-label {
+	color: $invert_text_color;
+	background-color: $accent_color;
+}
+
+/* Posts List Item Invert */
+.invert-hover.has-post-thumbnail:hover,
+.invert-hover.has-post-thumbnail:hover .posted-on,
+.invert-hover.has-post-thumbnail:hover .cat-links,
+.invert-hover.has-post-thumbnail:hover .byline,
+.invert-hover.has-post-thumbnail:hover .tags-links,
+.invert-hover.has-post-thumbnail:hover .entry-meta,
+.invert-hover.has-post-thumbnail:hover a,
+.invert-hover.has-post-thumbnail:hover .btn-icon,
+.invert-item.has-post-thumbnail,
+.invert-item.has-post-thumbnail .posted-on,
+.invert-item.has-post-thumbnail .cat-links,
+.invert-item.has-post-thumbnail .byline,
+.invert-item.has-post-thumbnail .tags-links,
+.invert-item.has-post-thumbnail .entry-meta,
+.invert-item.has-post-thumbnail a,
+.invert-item.has-post-thumbnail .btn:hover,
+.invert-item.has-post-thumbnail .btn-style .post-categories a:hover,
+.invert,
+.invert .entry-title,
+.invert a,
+.invert .byline,
+.invert .posted-on,
+.invert .cat-links,
+.invert .tags-links {
+	color: $invert_text_color;
+}
+
+.invert-hover.has-post-thumbnail:hover a:hover,
+.invert-hover.has-post-thumbnail:hover .btn-icon:hover,
+.invert-item.has-post-thumbnail a:hover,
+.invert a:hover {
+	color: $link_color;
+}
+
+.invert-hover.has-post-thumbnail .btn,
+.invert-item.has-post-thumbnail .comments-button {
+	color: $invert_text_color;
+	background-color: $accent_color;
+}
+.invert-hover.has-post-thumbnail .btn:hover,
+.invert-item.has-post-thumbnail .comments-button:hover {
+	color: $link_color;
+	background-color: $invert_text_color;
+}
+
+
+/* Default Posts List */
+.list-style-v8 .comments-link {
+	color: $secondary_text_color;
+}
+.list-style-v8 .comments-link:hover {
+	color: $link_hover_color;
+}
+
+/* Creative Posts List */
+.creative-item .entry-title a:hover {
+	color: $link_color;
+}
+.list-style-default .creative-item a,
+.creative-item .btn-icon {
+	color: $secondary_text_color;
+}
+.list-style-default .creative-item a:hover,
+.creative-item .btn-icon:hover {
+	color: $link_color;
+}
+.list-style-default .creative-item .btn,
+.list-style-default .creative-item .btn:hover,
+.list-style-default .creative-item .comments-button:hover {
+	color: $invert_text_color;
+}
+
+.creative-item__title-first-letter {
+	font-style: $h1_font_style;
+	font-weight: $h1_font_weight;
+	font-family: @font_family( $h1_font_family );
+	color: $h1_color;
+}
+
+.posts-list--creative.list-style-v10 .creative-item:before {
+	background-color: $accent_color;
+	box-shadow: 0px 0px 0px 8px @alpha($accent_color, 25%);
+}
+.posts-list--creative.list-style-v10 .creative-item__post-date {
+	font-style: $h4_font_style;
+	font-weight: $h4_font_weight;
+	font-size: $h4_font_size{px};
+	line-height: $h4_line_height;
+	font-family: @font_family( $h4_font_family );
+	letter-spacing: $h4_letter_spacing{px};
+	color: $link_color;
+}
+.posts-list--creative.list-style-v10 .creative-item__post-date a {
+	color: $link_color;
+}
+.posts-list--creative.list-style-v10 .creative-item__post-date a:hover {
+	color: $link_hover_color;
+}
+
+/* Creative Posts List style-v2 */
+.list-style-v2 .creative-item .entry-title,
+.list-style-v9 .creative-item .entry-title {
+	font-style: $h4_font_style;
+	font-weight: $h4_font_weight;
+	font-size: $h4_font_size{px};
+	line-height: $h4_line_height;
+	font-family: @font_family( $h4_font_family );
+	letter-spacing: $h4_letter_spacing{px};
+}
+
+/* Image Post Format */
+.post_format-post-format-image .post-thumbnail__link:before {
+	color: $invert_text_color;
+	background-color: $accent_color;
+}
+
+/* Gallery Post Format */
+.post_format-post-format-gallery .swiper-button-prev,
+.post_format-post-format-gallery .swiper-button-next {
+	color: $secondary_text_color;
+}
+.post_format-post-format-gallery .swiper-button-prev:hover,
+.post_format-post-format-gallery .swiper-button-next:hover {
+	color: $link_hover_color;
+}
+
+/* Link Post Format */
+.post_format-post-format-quote .post-format-quote {
+	color: $invert_text_color;
+	background-color: $accent_color;
+}
+.post_format-post-format-quote .post-format-quote:before {
+	color: $accent_color;
+	background-color: $invert_text_color;
+}
+
+/* Post Author */
+.post-author__title a {
+	color: $link_color;
+}
+.post-author__title a:hover {
+	color: $link_hover_color;
+}
+.invert .post-author__title a {
+	color: $invert_text_color; 
+}
+.invert .post-author__title a:hover {
+	color: $link_color; 
+}
+
+/* Single Post */
+.single-post blockquote {
+	border-color: $accent_color;
+}
+.single-post:not(.post-template-single-layout-4):not(.post-template-single-layout-7) .tags-links a:hover {
+	color: $invert_text_color;
+	border-color: $accent_color;
+	background-color: $accent_color;
+}
+.single-header-3 .post-author .byline,
+.single-header-4 .post-author .byline,
+.single-header-5 .post-author .byline {
+	font-style: $h4_font_style;
+	font-weight: $h4_font_weight;
+	font-size: $h4_font_size{px};
+	line-height: $h4_line_height;
+	font-family: @font_family( $h4_font_family );
+	letter-spacing: $h4_letter_spacing{px};
+}
+.single-header-8,
+.single-header-10 .entry-header {
+	background-color: $accent_color;
+}
+.single-header-8.invert a:hover,
+.single-header-10.invert a:hover {
+	color: @alpha($invert_text_color, 50%);
+}
+
+.single-header-10 a.comments-button {
+	border: 1px solid $invert_text_color;
+}
+.single-header-10 a.comments-button:hover {
+	color: $link_color; 
+	background-color: $invert_text_color;
+}

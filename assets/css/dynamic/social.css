@@ -1,0 +1,8 @@
+/* #Social */
+.social-list a {
+	color: $secondary_text_color;
+}
+
+.social-list a:hover {
+	color: $accent_color;
+}

@@ -1,0 +1,61 @@
+/**
+ * Product categories widget
+ */
+.widget_product_categories{
+	
+	select{
+		width: 100%;
+	}
+	
+	.product-categories{
+		list-style: none;
+		margin: 0;
+		
+		ul{
+			list-style: none;
+			margin-left: 0;
+		}
+		
+		li{
+			position: relative;
+			padding-left: 25px;
+			
+			+ li{
+				margin-top: $wc-list-widget-space-between-items;
+			}
+
+			.children{
+				margin-top: 4px;
+			}
+			
+			&:before{
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 2px;
+				width: 16px;
+				height: 16px;
+				display: block;
+				border: 1px solid $wc-border-color;
+				border-radius: 4px;
+			}
+			
+			&.current-cat{
+				&:after{
+					content: $wc-list-widget-current-item-icon;
+					position: absolute;
+					display: block;
+					font-size: 10px;
+					left: 3px;
+					top: 6px;
+					
+					@extend %icon-font-default;
+				}
+			}
+			
+			.count{
+				float: right;
+			}
+		}
+	}
+}

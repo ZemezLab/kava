@@ -1,0 +1,40 @@
+button,
+input[type='button'],
+input[type='reset'],
+input[type='submit'] {
+	@include btn;
+}
+
+// Button styles
+.btn {
+	text-decoration: none;
+	@include btn;
+
+	&.invert-button {
+		border: 1px solid $color__white;
+		background: none;
+	}
+}
+
+// Button icon styles
+.btn-icon {
+	&:before {
+		@include font-awesome-icon;
+		@include font-size(35/16);
+		content: '\f178';
+	}
+}
+
+// Button text-icon styles
+.btn-text-icon {
+	@include font-size(14/16);
+	text-transform: uppercase;
+	font-weight: 500;
+	&:after {
+		transform:translateY(-1px);
+		@include font-awesome-icon;
+		@include font-size(12/16);
+		content: '\f061';
+		margin-left: 6px;
+	}
+}

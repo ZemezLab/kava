@@ -1,0 +1,49 @@
+/* #Breadcrumbs */
+.breadcrumbs_item {
+	font-style: $breadcrumbs_font_style;
+	font-weight: $breadcrumbs_font_weight;
+	font-size: $breadcrumbs_font_size{px};
+	line-height: $breadcrumbs_line_height;
+	font-family: @font_family( $breadcrumbs_font_family );
+	letter-spacing: $breadcrumbs_letter_spacing{px};
+}
+
+.breadcrumbs_item_sep,
+.breadcrumbs_item_link {
+	color: $secondary_text_color;
+}
+
+.breadcrumbs_item_link:hover {
+	color: $accent_color;
+}
+
+/* #Post navigation */
+.post-navigation i {
+	color: $secondary_text_color;
+}
+.post-navigation .nav-links a:hover .post-title,
+.post-navigation .nav-links a:hover .nav-text {
+	color: $link_color;
+}
+
+.post-navigation .nav-links a:hover i {
+	color: $link_hover_color;
+}
+
+/* #Pagination */
+.pagination .page-numbers {
+	color: $secondary_text_color;
+}
+.pagination a.page-numbers:hover,
+.pagination .page-numbers.current {
+	color: $link_hover_color;
+}
+
+.pagination .next,
+.pagination .prev {
+	color: $link_color;
+}
+.pagination .next:hover,
+.pagination .prev:hover {
+	color: $link_hover_color;
+}

@@ -1,0 +1,47 @@
+/**
+ * Single product reviews
+ */
+ol.commentlist {
+	list-style: none;
+	margin: 0;
+
+	img {
+		float: left;
+		margin: 0 15px 5px 0;
+	}
+
+	li {
+
+		.star-rating {
+			margin-bottom: 15px;
+		}
+
+		.meta {
+			margin-bottom: 0;
+			font-size: $wc-reviews-meta-fz;
+			line-height: $wc-reviews-meta-lh;
+		}
+
+		& + li {
+			margin-top: 50px;
+		}
+	}
+}
+
+/*     single product comment form       */
+.comment-form {
+	.comment-form-rating {
+		margin-bottom: 18px;
+
+		label {
+			display: inline-block;
+		}
+	}
+
+	label {
+		display: block;
+		font-size: $wc-label-fz;
+		line-height: $wc-label-lh;
+		margin: $wc-label-offset;
+	}
+}

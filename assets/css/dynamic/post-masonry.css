@@ -1,0 +1,53 @@
+/* masonry Posts List */
+
+.posts-list.list-style-v3 .comments-link {
+	border-color: $link_color;
+}
+
+.posts-list.list-style-v4 .comments-link {
+	color: $secondary_text_color;
+}
+.posts-list.list-style-v4 .posts-list__item.masonry-item .masonry-item-wrap .comments-link:hover {
+	color: $invert_text_color;
+	background-color: $link_color;
+}
+
+/* Posts List masonry Item Invert */
+.masonry-item-wrap.invert,
+.masonry-item-wrap.invert .posted-on,
+.masonry-item-wrap.invert .cat-links,
+.masonry-item-wrap.invert .byline,
+.masonry-item-wrap.invert .tags-links,
+.masonry-item-wrap.invert .entry-meta,
+.masonry-item-wrap.invert a,
+.masonry-item-wrap.invert .btn-icon,
+.masonry-item-wrap.invert .comments-button {
+	color: $invert_text_color;
+}
+
+/* Posts List masonry-5 Item Invert */
+.list-style-v5 .masonry-item-wrap.invert .posted-on,
+.list-style-v5 .masonry-item-wrap.invert .cat-links,
+.list-style-v5 .masonry-item-wrap.invert .byline,
+.list-style-v5 .masonry-item-wrap.invert .tags-links,
+.list-style-v5 .masonry-item-wrap.invert .posted-on a,
+.list-style-v5 .masonry-item-wrap.invert .cat-links a,
+.list-style-v5 .masonry-item-wrap.invert .tags-links a,
+.list-style-v5 .masonry-item-wrap.invert .byline a,
+.list-style-v5 .masonry-item-wrap.invert .comments-link,
+.list-style-v5 .masonry-item-wrap.invert .entry-title a:hover {
+	color: $accent_color;
+}
+.list-style-v5 .masonry-item-wrap.invert .posted-on a:hover,
+.list-style-v5 .masonry-item-wrap.invert .cat-links a:hover,
+.list-style-v5 .masonry-item-wrap.invert .tags-links a:hover,
+.list-style-v5 .masonry-item-wrap.invert .byline a:hover,
+.list-style-v5 .masonry-item-wrap.invert .comments-link:hover {
+	color: $invert_text_color;
+}
+.posts-list.list-style-v10 .masonry-item-inner .space-between-content .comments-link {
+	color: $secondary_text_color;
+}
+.posts-list.list-style-v10 .masonry-item-inner .space-between-content .comments-link:hover {
+	color: $accent_color;
+}

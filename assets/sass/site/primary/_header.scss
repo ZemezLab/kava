@@ -1,0 +1,28 @@
+.header-container {
+	padding-top: 18px;
+	padding-bottom: 36px;
+	@include media-breakpoint-up(md) {
+		&.isStick {
+			position: fixed;
+			z-index: 1000;
+			right: 0;
+			left: 0;
+		}
+	}
+	.space-between-content {
+		align-items: center;
+	}
+}
+
+.site-branding {
+	.custom-logo {
+		display: block;
+	}
+}
+
+.pseudoStickyBlock {
+	display: none;
+	@include media-breakpoint-up(md) {
+		display: block;
+	}
+}

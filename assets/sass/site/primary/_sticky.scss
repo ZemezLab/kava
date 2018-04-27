@@ -1,0 +1,37 @@
+.sticky-label {
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-right: 10px;
+	padding: 3px 7px 1px;
+	text-align: center;
+	font-size: 12px;
+	line-height: 1.6;
+	@include border-radius;
+
+	@include media-breakpoint-up(xl) {
+		font-size: 14px;
+		padding: 6px 10px 3px;
+	}
+
+	.posts-list--default.list-style-v6 &,
+	.posts-list--default.list-style-v8 &,
+	.posts-list--creative.list-style-v2 &,
+	.posts-list--creative.list-style-v9 &,
+	.posts-list--grid &,
+	.posts-list--masonry &,
+	.posts-list--vertical-justify:not(.list-style-v10) & {
+		padding: 4px 8px 1px;
+		@include media-breakpoint-up(xl) {
+			margin-top: 1px;
+			margin-bottom: 1px;
+		}
+	}
+
+	&.type-both {
+		i {
+			margin-right: 8px;
+		}
+	}
+}

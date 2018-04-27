@@ -1,0 +1,25 @@
+/* Page preloader */
+.page-preloader {
+	border-top-color: $accent_color;
+	border-right-color: $accent_color;
+}
+
+/* Logo */
+.site-logo__link,
+.site-logo__link:hover {
+	color: $accent_color;
+}
+
+/* Page title */
+.page-title {
+	font-style: $h2_font_style;
+	font-weight: $h2_font_weight;
+	font-size: @font_size($h2_font_size, multiple, ceil, 0.6)px;
+	line-height: $h2_line_height;
+	font-family: @font_family( $h2_font_family );
+	letter-spacing: $h2_letter_spacing{px};
+	color: $h2_color;
+}
+@media (min-width: 1200px) {
+	.page-title { font-size: $h2_font_size{px}; }
+}

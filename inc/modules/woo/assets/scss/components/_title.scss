@@ -1,0 +1,74 @@
+/**
+ * Titles
+ */
+
+// Main(grid) product
+.woocommerce-loop-product__title {
+	font-size: $wc-product-title-default-fz;
+	line-height: $wc-product-title-default-lh;
+	text-align: $wc-product-title-default-ta;
+	margin: $wc-product-title-default-offset;
+	text-transform: $wc-product-title-default-tt;
+}
+
+// Single product
+.single-product .product_title {
+	font-size: $wc-single-product-title-fz;
+	line-height: $wc-single-product-title-lh;
+	text-align: $wc-single-product-title-ta;
+	margin: $wc-single-product-title-offset;
+	text-transform: $wc-single-product-title-tt;
+}
+
+.product-list .woocommerce-loop-product__title {
+	font-size: $wc-product-list-title-fz;
+	line-height: $wc-product-list-title-lh;
+	text-align: $wc-product-list-title-ta;
+	margin: $wc-product-list-title-offset;
+	text-transform: $wc-product-list-title-tt;
+}
+
+// Single product tabs
+.panel h2 {
+	font-size: $wc-single-tabs-title-fz;
+	line-height: $wc-single-tabs-title-lh;
+	text-align: $wc-single-tabs-title-ta;
+	margin: $wc-single-tabs-title-offset;
+	text-transform: $wc-single-tabs-title-tt;
+}
+
+// Single product raleted & upsels
+.related > h2,
+.upsells > h2 {
+	font-size: $wc-single-related-title-fz;
+	line-height: $wc-single-related-title-lh;
+	text-align: $wc-single-related-title-ta;
+	margin: $wc-single-related-title-offset;
+	text-transform: $wc-single-related-title-tt;
+}
+
+/*     Shopping cart title       */
+.woocommerce-cart .entry-header > .entry-title {
+	font-size: $wc-shopping-cart-title-fz;
+	line-height: $wc-shopping-cart-title-lh;
+	text-align: $wc-shopping-cart-title-ta;
+	margin: $wc-shopping-cart-title-offset;
+	text-transform: $wc-shopping-cart-title-tt;
+}
+
+// Checkout cart
+.woocommerce-checkout .entry-header > .entry-title {
+	font-size: $wc-checkout-cart-title-fz;
+	line-height: $wc-checkout-cart-title-lh;
+	text-align: $wc-checkout-cart-title-ta;
+	margin: $wc-checkout-cart-title-offset;
+	text-transform: $wc-checkout-cart-title-tt;
+}
+// My account
+.woocommerce-account .entry-header > .entry-title {
+	font-size: $wc-my-account-title-fz;
+	line-height: $wc-my-account-title-lh;
+	text-align: $wc-my-account-title-ta;
+	margin: 0 0 30px;
+	text-transform: $wc-my-account-title-tt;
+}

@@ -1,0 +1,67 @@
+.main-navigation.mobile-menu {
+	position: fixed;
+	top: 0;
+	right: -70%;
+	width: 70%;
+	height: 100vh;
+	margin: 0;
+	background-color: $color__light;
+	z-index: 998;
+	transition: all .3s cubic-bezier(.35, .19, .45, .91);
+	&.mobile-menu-open {
+		right: 0;
+	}
+	.main-navigation-inner {
+		overflow-y: scroll;
+		height: 100%;
+	}
+	.menu {
+		margin: 20px;
+		body.admin-bar & {
+			margin-top: 66px;
+		}
+		li {
+			display: block;
+			margin: 5px 15px;
+			padding: 0;
+		}
+	}
+	.sub-menu {
+		position: initial;
+		padding: 0;
+		background: none;
+		box-shadow: none;
+		li a {
+			width: auto;
+		}
+	}
+	.menu-item-has-children:before {
+		content: none;
+	}
+}
+
+/* Toogle button styles */
+
+.mobile-menu-toggle-button {
+	position: absolute;
+	width: 35px;
+	height: 35px;
+	left: -45px;
+	top: 10px;
+	padding: 0;
+	box-shadow: -2px 2px 7px rgba(0, 0, 0, 0.3);
+	body.admin-bar & {
+		top: 56px;
+	}
+}
+
+body.admin-bar {
+	.mobile-menu-toggle-button {
+		top: 56px;
+	}
+	.mobile-menu {
+		.menu {
+			margin-top: 46px;
+		}
+	}
+}

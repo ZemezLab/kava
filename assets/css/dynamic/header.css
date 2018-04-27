@@ -1,0 +1,14 @@
+/* #Header */
+.header-container {
+	background-color: $header_bg_color;
+	background-repeat: $header_bg_repeat;
+	background-position: $header_bg_position_x top;
+	background-attachment: $header_bg_attachment;
+	@background_url( $header_bg_image );
+}
+
+/* ##Top Panel */
+.top-panel {
+	color: $secondary_text_color;
+	background-color: $top_panel_bg;
+}

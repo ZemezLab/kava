@@ -1,0 +1,111 @@
+/**
+ * Rating
+ */
+.star-rating {
+	width: $wc-rating-width;
+	height: $wc-rating-height;
+	font-size: $wc-rating-fz;
+	color: $wc-rating-rated-color;
+	margin:  10px 0;
+	position: relative;
+	display: block;
+	overflow: hidden;
+
+	&::before {
+		content: $wc-rating-icon + $wc-rating-icon + $wc-rating-icon + $wc-rating-icon + $wc-rating-icon;
+		letter-spacing: $wc-rating-ls;
+		color: $wc-rating-color;
+		float: left;
+		top: 0;
+		left: 0;
+		position: absolute;
+		@extend %icon-font-default;
+	}
+
+	span {
+		padding-top: 1.5em;
+		overflow: hidden;
+		float: left;
+		top: 0;
+		left: 0;
+		position: absolute;
+
+		&::before {
+			letter-spacing: $wc-rating-ls;
+			content: $wc-rating-icon + $wc-rating-icon + $wc-rating-icon + $wc-rating-icon + $wc-rating-icon;
+			top: 0;
+			position: absolute;
+			left: 0;
+			@extend %icon-font-default;
+		}
+	}
+
+	// Single product rating
+	.single-product .summary & {
+		display: inline-block;
+		margin: 0;
+	}
+}
+
+// Single Product Reviews rating
+.stars {
+	display: inline-block;
+	width: calc(#{$wc-rating-width} + 1em);
+	height: $wc-rating-height;
+	font-size: $wc-rating-fz;
+	overflow: hidden;
+	margin-bottom: 0;
+	padding-left: 15px;
+
+	span {
+		line-height: 2;
+	}
+
+	a {
+		position: relative;
+		height: 1em;
+		width: 1em;
+		text-indent: -999em;
+		display: inline-block;
+		text-decoration: none;
+		color: $wc-rating-color;
+
+		&:hover,
+		&.active,
+		&:not(.active) {
+			color: $wc-rating-rated-color;
+		}
+
+		&.active ~ a {
+			color: $wc-rating-color;
+		}
+
+		& + a {
+			margin-left: 3px;
+		}
+
+		&::before {
+			letter-spacing: $wc-rating-ls;
+			content: $wc-rating-icon + $wc-rating-icon + $wc-rating-icon + $wc-rating-icon + $wc-rating-icon;
+			top: 0;
+			position: absolute;
+			left: 0;
+			@extend %icon-font-default;
+			display: block;
+			width: 1em;
+			height: 1em;
+			line-height: 1;
+			text-indent: 0;
+		}
+	}
+}
+
+.single-product{
+	.woocommerce-product-rating{
+		margin-bottom: 20px;
+	}
+}
+
+.woocommerce-review-link{
+	margin-left: 15px;
+}

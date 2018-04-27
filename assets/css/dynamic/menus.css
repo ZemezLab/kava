@@ -1,0 +1,28 @@
+/* #Main Menu */
+.main-navigation {
+	font-style: $menu_font_style;
+	font-weight: $menu_font_weight;
+	font-size: $menu_font_size{px};
+	line-height: $menu_line_height;
+	font-family: @font_family( $menu_font_family );
+	letter-spacing: $menu_letter_spacing{px};
+}
+
+.main-navigation a,
+.menu-item-has-children:before {
+	color: $secondary_text_color;
+}
+
+.main-navigation a:hover,
+.main-navigation .current_page_item>a,
+.main-navigation .current-menu-item>a,
+.main-navigation .current_page_ancestor>a,
+.main-navigation .current-menu-ancestor>a {
+	color: $link_hover_color;
+}
+
+/* #Mobile Menu */
+.mobile-menu-toggle-button {
+	color: $invert_text_color;
+	background-color: $accent_color;
+}

@@ -1,0 +1,59 @@
+/**
+ * Price filter widget
+ */
+.widget_price_filter{
+	.price_slider_wrapper{
+		position: relative;
+		padding-top: 25px;
+		
+		.price_label{
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+	}
+	
+	.price_slider{
+		position: relative;
+		display: block;
+		width: 100%;
+		height: $wc-widget-price-slider-height;
+		border-radius: $wc-widget-price-slider-border-radius;
+		background-color: $wc-gray-color;
+	}
+	
+	.ui-slider-range{
+		position: absolute;
+		height: $wc-widget-price-slider-height;
+		border-radius: $wc-widget-price-slider-border-radius;
+	}
+	
+	.ui-slider-handle{
+		position: absolute;
+		top: 50%;
+		display: block;
+		margin-top: -$wc-widget-price-slider-handle-height/2;
+		width: $wc-widget-price-slider-handle-width;
+		height: $wc-widget-price-slider-handle-height;
+		border-radius: 50%;
+		outline: none;
+		
+		
+		&:last-child{
+			margin-left: -$wc-widget-price-slider-handle-width;
+		}
+	}
+	
+	.button{
+		width: 100%;
+		margin-top: 20px;
+		
+		&:before{
+			content: $wc-widget-price-slider-button-icon ;
+			font-size: 12px;
+			margin-right: 4px;
+			
+			@extend %icon-font-default;
+		}
+	}
+}

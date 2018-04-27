@@ -1,0 +1,19 @@
+/**
+ * Tag cloud widget
+ */
+.widget_product_tag_cloud {
+	.tagcloud {
+		a {
+			display: inline-block;
+			font-size: 14px!important;
+			padding: 5px 12px;
+			margin-bottom: 5px;
+			border:  1px solid $wc-border-color;
+			border-radius: 4px;
+			
+			&:hover{
+				background-color: $wc-border-color;
+			}
+		}
+	}
+}

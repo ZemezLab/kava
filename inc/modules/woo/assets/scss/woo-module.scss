@@ -1,0 +1,58 @@
+/*
+Theme Name: kava
+
+WooCommerce styles override
+*/
+
+/*         Variables        */
+@import "mixins/variables";
+@import "../../../../../assets/sass/grid/variables";   //main theme variables
+@import "../../../../../assets/sass/grid/breakpoints";   //main theme breakpoints
+@import "../../../../../assets/sass/mixins/mixins-master";  //main theme mixins
+@import "mixins/mixins";
+
+/*        Components        */
+@import "components/badge";
+@import "components/button";
+@import "components/description";
+@import "components/archive-panel";
+@import "components/messages";
+@import "components/navigation";
+@import "components/price";
+@import "components/rating";
+@import "components/select";
+@import "components/tables";
+@import "components/meta";
+@import "components/title";
+@import "components/checkbox";
+
+/*        Layouts        */
+@import "layouts/grid";
+@import "layouts/list";
+
+/*        Pages        */
+@import "pages/cart";
+@import "pages/checkout";
+@import "pages/compare";
+@import "pages/my-account";
+@import "pages/order";
+@import "pages/wishlist";
+
+/*        Product        */
+@import "product/product";
+@import "product/product-list";
+@import "product/product-grid";
+
+/*        Product        */
+@import "category/category";
+@import "category/category-list";
+@import "category/category-grid";
+
+/*       Single Product        */
+@import "single-product/add-to-cart";
+@import "single-product/reviews";
+@import "single-product/tabs";
+@import "single-product/thumbnails";
+
+/*       Widgets        */
+@import "widgets/widgets";

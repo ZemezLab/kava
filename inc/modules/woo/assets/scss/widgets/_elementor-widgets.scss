@@ -1,0 +1,38 @@
+/**
+ * Elementor widgets
+ */
+.elementor-widget-wp-widget-woocommerce_top_rated_products{
+	@extend .widget_top_rated_products;
+}
+
+.elementor-widget-wp-widget-woocommerce_product_tag_cloud{
+	@extend .widget_product_tag_cloud;
+}
+
+.elementor-widget-wp-widget-woocommerce_product_categories{
+	@extend .widget_product_categories;
+	
+	.product-categories li:before{
+		width: 10px;
+		height: 10px;
+		left: 6px;
+		top: 6px;
+		border-radius: 50%;
+	}
+}
+
+.elementor-widget-wp-widget-woocommerce_product_search{
+	@extend .widget_product_search;
+}
+
+.elementor-widget-wp-widget-woocommerce_products{
+	@extend .widget_products;
+}
+
+.elementor-widget-wp-widget-woocommerce_recent_reviews{
+	@extend .widget_recent_reviews;
+}
+
+.elementor-widget-wp-widget-woocommerce_recently_viewed_products{
+	@extend .widget_recently_viewed_products;
+}

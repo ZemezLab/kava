@@ -1,0 +1,131 @@
+/* Image Post Format */
+
+.post_format-post-format-image {
+	.post-thumbnail {
+		margin-bottom: 26px;
+		&__link {
+			position: relative;
+			display: block;
+			&:before {
+				@include font-awesome-icon;
+				content: '\f00e';
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				width: 70px;
+				height: 70px;
+				margin: -35px 0 0 -35px;
+				font-size: 35px;
+				line-height: 70px;
+				text-align: center;
+				border-radius: 50%;
+				box-shadow: 0px 0px 35px 0px rgba($color__dark, .7);
+				transition: opacity 0.2s ease, transform 0.2s ease;
+				transform: scale(.35);
+				opacity: 0;
+			}
+			&:hover {
+				&:before {
+					transform: scale(1);
+					opacity: 1;
+				}
+			}
+		}
+	}
+}
+
+/* Gallery Post Format */
+
+.post_format-post-format-gallery {
+	.post-thumbnail {
+		display: block;
+		margin-bottom: 26px;
+		&__link {
+			display: block;
+		}
+	}
+	.swiper-button-prev,
+	.swiper-button-next {
+		width: 45px;
+		height: 45px;
+		margin-top: -35px;
+		text-align: center;
+		@include font-awesome-icon;
+		@include font-size(18/16);
+		border-radius: 50%;
+		background-image: none;
+		background-color: $color__white;
+		box-shadow: 0px 0px 20px 0px rgba(59, 61, 66, 0.1);
+		&:before {
+			line-height: 45px;
+		}
+	}
+	.swiper-button-prev:before {
+		content: '\f104';
+	}
+	.swiper-button-next:before {
+		content: '\f105';
+	}
+}
+
+/* Link Post Format */
+
+.post_format-post-format-link {
+	.post-format-link {
+		@include font-size(20/16);
+		font-weight: 400;
+		&:before {
+			transform: translateY(1px);
+			content: '\f0c1';
+			margin-right: 8px;
+			@include font-awesome-icon;
+		}
+		&-wrapper {
+			margin-bottom: 24px;
+			padding: 35px 40px;
+			@include border-radius;
+			background-color: $color__light;
+		}
+	}
+}
+
+/* Link Post Format */
+
+.post_format-post-format-quote {
+	.post-format-quote {
+		padding: 50px 8%;
+		@include border-radius;
+		text-align: center;
+		&:before {
+			position: static;
+			margin: 0 auto 17px;
+			display: block;
+			text-align: center;
+			width: 62px;
+			height: 62px;
+			line-height: 62px;
+			border-radius: 28px;
+		}
+		cite {
+			margin-top: 15px;
+		}
+	}
+}
+
+/* Link Post Format */
+
+.post_format-post-format-audio {
+	.mejs-audio {
+		margin-bottom: 24px;
+	}
+}
+
+/* Link Post Format */
+
+.post_format-post-format-video {
+	.wp-video {
+		margin-bottom: 24px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}

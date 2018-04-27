@@ -1,0 +1,294 @@
+/*--------------------------------------------------------------
+### Masonry Posts List
+--------------------------------------------------------------*/
+@mixin transition($transition...) {
+	transition: $transition;
+}
+$color__nothumb: #383838;
+
+.posts-list.posts-list--masonry {
+	/*-----------------------
+	### masonry layouts styles
+	------------------------*/
+	/* 4grids */
+	display: block;
+	> .post {
+		display: inline-block;
+		width: 100%;
+		.post-thumbnail {
+			line-height: 0;
+		}
+	}
+	&.list-style-v4,
+	&.list-style-v9 {
+		column-gap: $grid-gutter-width;
+		column-count: 1;
+		column-fill: auto;
+		@include media-breakpoint-up(sm) {
+			column-count: 2;
+		}
+		@include media-breakpoint-up(md) {
+			column-count: 3;
+		}
+		@include media-breakpoint-up(lg) {
+			column-count: 4;
+		}
+
+	}
+	/* 3grids */
+	&.list-style-default, 
+	&.list-style-V3, 
+	&.list-style-v2 {
+		column-gap: $grid-gutter-width;
+		column-count: 1;
+		@include media-breakpoint-up(sm) {
+			column-count: 2;
+		}
+		@include media-breakpoint-up(md) {
+			column-count: 3;
+		}
+	}
+	/* 2grids */
+	&.list-style-v3,
+	&.list-style-v5,
+	&.list-style-v6,
+	&.list-style-v7, 
+	&.list-style-v8,
+	&.list-style-v10 {
+		column-gap: $grid-gutter-width;
+		column-count: 1;
+		@include media-breakpoint-up(md) {
+			column-count: 2;
+		}
+	}
+
+	/*------------------ layouts Styles -------------------*/
+	.masonry-item {
+		.comments-link {
+			padding: 10px 12px 9px;
+			@include border-radius();
+			@include font-size(11/16);
+			background-color: $color__light;
+			.list-style-v3 & {
+				background-color: transparent;
+				border: 1px solid;
+			}
+			&:before {
+				@include font-awesome-icon;
+				@include font-size(14/16);
+				content: '\f075';
+				margin-right: 4px;
+			}
+		}
+
+		.entry {
+			&-header {
+				.entry-meta {
+					display: flex;
+					flex-wrap: wrap;
+					margin-bottom: 2px;
+					.posted-on {
+						flex: 0 1 100%;
+					}
+				}
+			}
+			&-title {
+				margin: 0 0 10px;
+			}
+			&-meta {
+				@include font-size(14/16);
+			}
+			&-content {
+				margin-bottom: 5px;
+				p {
+					margin: 0 0 0.43em;
+				}
+			}
+		}	
+	}
+	/*-------------------
+	### V1 Styles
+	---------------------*/
+	&.list-style-default, &.list-style-v3 {
+		.posts-list__item.masonry-item {
+			margin-bottom: $grid-gutter-width;
+			.post-thumbnail {
+				margin-bottom: 20px; 
+			}
+		}
+	}
+
+	/*-------------------
+	### V2 Styles
+	---------------------*/
+	&.list-style-v2, &.list-style-v6 {
+		.posts-list__item.masonry-item {
+			margin-bottom: $grid-gutter-width;
+			.post-thumbnail {
+				img {
+					width: 100%;
+					border-radius: ( $button__border-radius $button__border-radius 0 0);
+				}
+				margin-bottom: 0;
+			}
+			&:not(.has-post-thumbnail) .masonry-item-wrap {
+				border-top: 1px solid $color__background-hr;
+				border-radius: $border__radius $border__radius;
+			}
+			.masonry-item-wrap {
+				border: 1px solid $color__background-hr;
+				border-top: none;
+				border-radius: ( 0 0 $border__radius $border__radius);
+				padding: 25px;
+				@include media-breakpoint-up(lg) {
+					padding: 36px 38px 38px;
+				}
+			}
+		}
+	}
+	/*-------------------
+	### V4 Styles
+	---------------------*/
+	&.list-style-v4, &.list-style-v5 {
+		margin-left: $grid-gutter-width;
+		margin-right: $grid-gutter-width;
+		.posts-list__item.masonry-item {
+			margin-bottom: $grid-gutter-width;
+			.post-thumbnail {
+				img {
+					border-radius: ( $button__border-radius $button__border-radius 0 0);
+				}
+				margin-bottom: 0;
+			}
+			&:not(.has-post-thumbnail) .masonry-item-wrap {
+				border-radius: $border__radius $border__radius;
+			}
+			.masonry-item-wrap {
+				border-radius: ( 0 0 $border__radius $border__radius);
+				padding: 25px;
+				background-color: $color__lightblue;
+				@include media-breakpoint-up(lg) {
+					padding: 36px 38px 38px;
+				}
+				.comments-link {
+					background-color: $color__white;
+				}
+			}
+		}
+	}
+	&.list-style-v5 {
+		margin-left: auto;
+		margin-right: auto;
+	}
+	/*-------------------
+	### V7, V8, V9 Styles
+	---------------------*/
+	&.list-style-v8, &.list-style-v7, &.list-style-v9 {
+		.posts-list__item.masonry-item {
+			margin-bottom: $grid-gutter-width;
+			.post-thumbnail {
+				margin-right: 0;
+				margin-bottom: 0;
+				img {
+					border-radius: 0;
+				}
+			}
+			.masonry-item-wrap {
+				border: 1px solid $color__background-hr;
+				border-radius: $border__radius;
+				padding: 25px;
+				display: flex;
+				flex-direction: column;
+				flex-wrap: wrap;
+				justify-content: space-between;
+				align-content: stretch;
+				align-items: flex-start;
+				> *, .entry-meta > * {
+					order: 0;
+					flex: 0 1 100%;
+					align-self: center;
+				}
+				&__content {
+					display: flex;
+					flex-direction: column;
+					flex-wrap: nowrap;
+					justify-content: space-between;
+					align-content: stretch;
+					align-items: center;
+					margin-top: 20px;
+					text-align: center;
+				}
+				@include media-breakpoint-up(lg) {
+					padding: 36px 38px 38px;
+				}
+				.space-between-content {
+					@include media-breakpoint-down(lg) {
+						flex-direction: column;
+						flex-wrap: wrap;
+						align-content: stretch;
+						align-items: center;
+						.comments-link {
+							margin-top: 10px;
+						}
+					}
+				}
+
+			}
+		}
+	}
+	&.list-style-v9 {
+		margin-left: $grid-gutter-width;
+		margin-right: $grid-gutter-width;
+		@include media-breakpoint-down(sm) {
+			margin-left: $grid-gutter-width/2;
+			margin-right: $grid-gutter-width/2;
+		}
+	}
+	/*-------------------
+	### V10Styles
+	---------------------*/
+	&.list-style-v10 {
+		.masonry-item {
+			margin-bottom: 34px;
+			.post-thumbnail {
+				margin-bottom: 0;
+			}
+			&:not(.has-post-thumbnail) .masonry-item-inner {
+				margin: 0;
+				padding: 0;
+			}
+			&-inner {
+				position: relative;
+				margin: -30px 20px 0 20px;
+				background-color: $color__white;
+				padding: 20px;
+				@include media-breakpoint-up(sm) {
+					margin: -40px 0 0 40px;
+					padding: 25px 25px 25px 30px;
+				}
+				@include media-breakpoint-up(lg) {
+					margin: -49px 0 0 62px;
+					padding: 35px 25px 25px 38px;
+				}
+				.entry-header {
+					.entry-meta {
+						margin-bottom: 23px;
+					}
+					.entry-title {
+						margin: 0 0 24px;
+					}
+				}
+				.entry-content {
+					margin-bottom: 27px;
+				}
+				.space-between-content {
+					justify-content: flex-start;
+					.comments-link {
+						padding: 10px 5px 9px;
+						background-color: transparent;
+					}
+				}
+			}
+		}
+	}
+}

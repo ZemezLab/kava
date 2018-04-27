@@ -1,0 +1,68 @@
+/**
+ * Messages
+ */
+.woocommerce-message,
+.woocommerce-info,
+.woocommerce-error{
+	position: relative;
+	list-style: none;
+	margin: 0 0 50px 0;
+	border: 1px solid $wc-border-color;
+	border-radius: $wc-border-radius;
+	width: 100%;
+	padding: 20px 30px 20px 90px;
+	overflow: hidden;
+	
+	&:before{
+		position: absolute;
+		left: -1px;
+		top: -1px;
+		bottom: -1px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 20px;
+		width: 72px;
+		height: calc(100% + 2px);
+		line-height: 1;
+		margin: 0 20px 0 0;
+		text-align: center;
+		border-top-left-radius: $wc-border-radius;
+		border-bottom-left-radius: $wc-border-radius;
+		@extend %icon-font-default;
+	}
+	
+	> *{
+		display: inline-block;
+		vertical-align: middle;
+	}
+	
+	.button{
+		float: right;
+	}
+	
+}
+
+.woocommerce-message{
+	&:before{
+		content: $wc-messages-icon-default;
+		color: $wc-messages-icon-default-color;
+		background-color: $wc-messages-icon-default-bg;
+	}
+}
+
+.woocommerce-error{
+	&:before{
+		content: $wc-messages-icon-error;
+		color: $wc-messages-icon-error-color;
+		background-color: $wc-messages-icon-error-bg;
+	}
+}
+
+.woocommerce-info{
+	&:before{
+		content: $wc-messages-icon-info;
+		color: $wc-messages-icon-info-color;
+		background-color: $wc-messages-icon-info-bg;
+	}
+}

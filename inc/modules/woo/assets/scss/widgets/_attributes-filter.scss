@@ -1,0 +1,66 @@
+/**
+ * Rating filter widget
+ */
+.widget_layered_nav{
+	
+	.select2{
+		.select2-selection--single{
+			height: $wc-widget-select-height;
+			border: 1px solid $wc-border-color;
+			border-radius: 4px;
+			
+			.select2-selection__arrow{
+				height: $wc-widget-select-height;
+			}
+			
+			.select2-selection__rendered{
+				line-height: $wc-widget-select-height;
+			}
+		}
+	}
+	
+	ul{
+		list-style: none;
+		margin: 0;
+		
+		li{
+			position: relative;
+			padding-left: 25px;
+			
+			&:before{
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 2px;
+				width: 16px;
+				height: 16px;
+				display: block;
+				border: 1px solid $wc-border-color;
+				border-radius: 4px;
+			}
+			
+			&.chosen{
+				&:after{
+					content: $wc-list-widget-current-item-icon;
+					position: absolute;
+					display: block;
+					font-size: 10px;
+					left: 4px;
+					top: 6px;
+					
+					@extend %icon-font-default;
+				}
+			}
+			
+			+ li{
+				margin-top: $wc-list-widget-space-between-items;
+			}
+			
+		}
+		
+	}
+}
+
+.select2-dropdown{
+	border-color: $wc-border-color!important;
+}

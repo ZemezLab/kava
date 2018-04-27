@@ -1,0 +1,119 @@
+/* Grid Posts List */
+
+.posts-list.list-style-v3 .comments-link {
+	border-color: $link_color;
+}
+
+.posts-list.list-style-v4 .comments-link {
+	color: $secondary_text_color;
+}
+.posts-list.list-style-v4 .posts-list__item.grid-item .grid-item-wrap .comments-link:hover {
+	color: $invert_text_color;
+	background-color: $link_color;
+}
+
+/* Posts List Grid Item Invert */
+.grid-item-wrap.invert,
+.grid-item-wrap.invert .posted-on,
+.grid-item-wrap.invert .cat-links,
+.grid-item-wrap.invert .byline,
+.grid-item-wrap.invert .tags-links,
+.grid-item-wrap.invert .entry-meta,
+.grid-item-wrap.invert a,
+.grid-item-wrap.invert .btn-icon,
+.grid-item-wrap.invert .comments-button {
+	color: $invert_text_color;
+}
+
+/* Posts List Grid-5 Item Invert */
+.list-style-v5 .grid-item-wrap.invert .posted-on,
+.list-style-v5 .grid-item-wrap.invert .cat-links,
+.list-style-v5 .grid-item-wrap.invert .byline,
+.list-style-v5 .grid-item-wrap.invert .tags-links,
+.list-style-v5 .grid-item-wrap.invert .posted-on a,
+.list-style-v5 .grid-item-wrap.invert .cat-links a,
+.list-style-v5 .grid-item-wrap.invert .tags-links a,
+.list-style-v5 .grid-item-wrap.invert .byline a,
+.list-style-v5 .grid-item-wrap.invert .comments-link,
+.list-style-v5 .grid-item-wrap.invert .entry-title a:hover {
+	color: $accent_color;
+}
+.list-style-v5 .grid-item-wrap.invert .posted-on a:hover,
+.list-style-v5 .grid-item-wrap.invert .cat-links a:hover,
+.list-style-v5 .grid-item-wrap.invert .tags-links a:hover,
+.list-style-v5 .grid-item-wrap.invert .byline a:hover,
+.list-style-v5 .grid-item-wrap.invert .comments-link:hover {
+	color: $invert_text_color;
+}
+/* Posts List Grid-6 Item Invert */
+.posts-list.list-style-v6 .posts-list__item.grid-item .grid-item-wrap .cat-links a,
+.posts-list.list-style-v7 .posts-list__item.grid-item .grid-item-wrap .cat-links a {
+	color: $invert_text_color;
+	background-color: $link_color;
+}
+
+.posts-list.list-style-v6 .posts-list__item.grid-item .grid-item-wrap .cat-links a:hover,
+.posts-list.list-style-v7 .posts-list__item.grid-item .grid-item-wrap .cat-links a:hover {
+	color: $invert_text_color;
+	background-color: @lighten($accent_color, 15%);
+}
+
+.posts-list.list-style-v9 .posts-list__item.grid-item .grid-item-wrap .entry-header .entry-title {
+	font-weight : $body_font_weight;
+}
+
+/* Grid 7 */
+
+.list-style-v7 .grid-item-wrap.invert .posted-on a:hover,
+.list-style-v7 .grid-item-wrap.invert .cat-links a:hover,
+.list-style-v7 .grid-item-wrap.invert .tags-links a:hover,
+.list-style-v7 .grid-item-wrap.invert .byline a:hover,
+.list-style-v7 .grid-item-wrap.invert .comments-link:hover,
+.list-style-v7 .grid-item-wrap.invert .entry-title a:hover,
+.list-style-v6 .grid-item-wrap.invert .posted-on a:hover,
+.list-style-v6 .grid-item-wrap.invert .cat-links a:hover,
+.list-style-v6 .grid-item-wrap.invert .tags-links a:hover,
+.list-style-v6 .grid-item-wrap.invert .byline a:hover,
+.list-style-v6 .grid-item-wrap.invert .comments-link:hover,
+.list-style-v6 .grid-item-wrap.invert .entry-title a:hover {
+	color: $accent_color;
+}
+.list-style-v7 .grid-item-wrap.invert .posted-on,
+.list-style-v7 .grid-item-wrap.invert .cat-links,
+.list-style-v7 .grid-item-wrap.invert .byline,
+.list-style-v7 .grid-item-wrap.invert .tags-links,
+.list-style-v7 .grid-item-wrap.invert .posted-on a,
+.list-style-v7 .grid-item-wrap.invert .cat-links a,
+.list-style-v7 .grid-item-wrap.invert .tags-links a,
+.list-style-v7 .grid-item-wrap.invert .byline a,
+.list-style-v7 .grid-item-wrap.invert .comments-link,
+.list-style-v7 .grid-item-wrap.invert .entry-title a,
+.list-style-v7 .grid-item-wrap.invert .entry-content p,
+.list-style-v6 .grid-item-wrap.invert .posted-on,
+.list-style-v6 .grid-item-wrap.invert .cat-links,
+.list-style-v6 .grid-item-wrap.invert .byline,
+.list-style-v6 .grid-item-wrap.invert .tags-links,
+.list-style-v6 .grid-item-wrap.invert .posted-on a,
+.list-style-v6 .grid-item-wrap.invert .cat-links a,
+.list-style-v6 .grid-item-wrap.invert .tags-links a,
+.list-style-v6 .grid-item-wrap.invert .byline a,
+.list-style-v6 .grid-item-wrap.invert .comments-link,
+.list-style-v6 .grid-item-wrap.invert .entry-title a,
+.list-style-v6 .grid-item-wrap.invert .entry-content p {
+	color: $invert_text_color;
+}
+
+.posts-list.list-style-v7 .grid-item .grid-item-wrap .entry-footer .comments-link:hover,
+.posts-list.list-style-v6 .grid-item .grid-item-wrap .entry-footer .comments-link:hover,
+.posts-list.list-style-v6 .posts-list__item.grid-item .grid-item-wrap .btn:hover,
+.posts-list.list-style-v7 .posts-list__item.grid-item .grid-item-wrap .btn:hover {
+	color: $accent_color;
+	border-color: $accent_color;
+}
+
+.posts-list.list-style-v10 .grid-item-inner .space-between-content .comments-link {
+	color: $secondary_text_color;
+}
+.posts-list.list-style-v10 .grid-item-inner .space-between-content .comments-link:hover {
+	color: $accent_color;
+}

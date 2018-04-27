@@ -1,0 +1,36 @@
+/**
+ * Shop layout
+ */
+ul.products {
+	@include make-row();
+	list-style: none;
+
+	li.product {
+		@include make-col-ready();
+	}
+}
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+	@include media-breakpoint-up($breakpoint, $grid-breakpoints) {
+		
+		$infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+		
+		@for $i from 1 through $wc-max-columns {
+			
+			ul.products {
+				&.columns-#{$i} {
+					li.product {
+						@include column-width($i);
+					}
+				}
+				
+				&.columns-#{$infix}-#{$i} {
+					li.product {
+						@include column-width($i);
+					}
+				}
+			}
+			
+		}
+	}
+}

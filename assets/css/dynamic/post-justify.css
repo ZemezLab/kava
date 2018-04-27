@@ -1,0 +1,89 @@
+.posts-list.list-style-v10 .posts-list__item.justify-item .justify-item-inner .entry-title a {
+	color: $primary_text_color;
+}
+.posts-list.list-style-v10 .posts-list__item.justify-item .justify-item-inner .entry-title a:hover{
+	color: $invert_text_color;
+	background-color: $accent_color;
+}
+.posts-list.list-style-v5 .posts-list__item.justify-item .justify-item-inner.invert .cat-links a:hover,
+.posts-list.list-style-v8 .posts-list__item.justify-item .justify-item-inner.invert .cat-links a:hover {
+	color: $invert_text_color;
+	background-color: @lighten($accent_color, 15%);
+}
+.posts-list.list-style-v5 .posts-list__item.justify-item .justify-item-inner.invert .cat-links a,
+.posts-list.list-style-v8 .posts-list__item.justify-item .justify-item-inner.invert .cat-links a{
+	color: $invert_text_color;
+	background-color: $link_color;
+}
+
+.list-style-v8 .justify-item-inner.invert .posted-on,
+.list-style-v8 .justify-item-inner.invert .cat-links,
+.list-style-v8 .justify-item-inner.invert .byline,
+.list-style-v8 .justify-item-inner.invert .tags-links,
+.list-style-v8 .justify-item-inner.invert .posted-on a,
+.list-style-v8 .justify-item-inner.invert .cat-links a,
+.list-style-v8 .justify-item-inner.invert .tags-links a,
+.list-style-v8 .justify-item-inner.invert .byline a,
+.list-style-v8 .justify-item-inner.invert .comments-link,
+.list-style-v8 .justify-item-inner.invert .entry-title a,
+.list-style-v8 .justify-item-inner.invert .entry-content p,
+.list-style-v5 .justify-item-inner.invert .posted-on,
+.list-style-v5 .justify-item-inner.invert .cat-links,
+.list-style-v5 .justify-item-inner.invert .byline,
+.list-style-v5 .justify-item-inner.invert .tags-links,
+.list-style-v5 .justify-item-inner.invert .posted-on a,
+.list-style-v5 .justify-item-inner.invert .cat-links a,
+.list-style-v5 .justify-item-inner.invert .tags-links a,
+.list-style-v5 .justify-item-inner.invert .byline a,
+.list-style-v5 .justify-item-inner.invert .comments-link,
+.list-style-v5 .justify-item-inner.invert .entry-title a,
+.list-style-v5 .justify-item-inner.invert .entry-content p,
+.list-style-v4 .justify-item-inner.invert .posted-on:hover,
+.list-style-v4 .justify-item-inner.invert .cat-links,
+.list-style-v4 .justify-item-inner.invert .byline,
+.list-style-v4 .justify-item-inner.invert .tags-links,
+.list-style-v4 .justify-item-inner.invert .posted-on a,
+.list-style-v4 .justify-item-inner.invert .cat-links a,
+.list-style-v4 .justify-item-inner.invert .tags-links a,
+.list-style-v4 .justify-item-inner.invert .byline a,
+.list-style-v4 .justify-item-inner.invert .comments-link,
+.list-style-v4 .justify-item-inner.invert .entry-title a,
+.list-style-v4 .justify-item-inner.invert .entry-content p {
+	color: $invert_text_color;
+
+}
+.list-style-v8 .justify-item-inner.invert .posted-on a:hover,
+.list-style-v8 .justify-item-inner.invert .cat-links a:hover,
+.list-style-v8 .justify-item-inner.invert .tags-links a:hover,
+.list-style-v8 .justify-item-inner.invert .byline a:hover,
+.list-style-v8 .justify-item-inner.invert .comments-link:hover,
+.list-style-v8 .justify-item-inner.invert .entry-title a:hover,
+.list-style-v5 .justify-item-inner.invert .posted-on a:hover,
+.list-style-v5 .justify-item-inner.invert .cat-links a:hover,
+.list-style-v5 .justify-item-inner.invert .tags-links a:hover,
+.list-style-v5 .justify-item-inner.invert .byline a:hover,
+.list-style-v5 .justify-item-inner.invert .entry-title a:hover,
+.list-style-v4 .justify-item-inner.invert .posted-on a,
+.list-style-v4 .justify-item-inner.invert .cat-links a:hover,
+.list-style-v4 .justify-item-inner.invert .tags-links a:hover,
+.list-style-v4 .justify-item-inner.invert .byline a:hover,
+.list-style-v4 .justify-item-inner.invert .comments-link:hover,
+.list-style-v4 .justify-item-inner.invert .entry-title a:hover  {
+	color: $accent_color;
+}
+.posts-list.list-style-v5 .justify-item .justify-item-wrap .entry-footer .comments-link:hover {
+	border-color: $accent_color;
+}
+
+.list-style-v4 .justify-item-inner.invert .btn:hover,
+.list-style-v6 .justify-item-wrap.invert .btn:hover,
+.list-style-v8 .justify-item-inner.invert .btn:hover {
+	color: $invert_text_color;
+}
+
+
+.posts-list.posts-list--vertical-justify.list-style-v5 .posts-list__item.justify-item .justify-item-wrap .entry-footer .comments-link:hover,
+.posts-list.posts-list--vertical-justify.list-style-v5 .posts-list__item.justify-item .justify-item-wrap .entry-footer .btn:hover {
+	color: $accent_color;
+	border-color: $accent_color;
+}

@@ -1,0 +1,8 @@
+/**
+ * Top rated products widget
+ */
+.widget_recent_reviews {
+	.product_list_widget {
+		@extend %product-list-widget;
+	}
+}

@@ -1,0 +1,63 @@
+.cx-button{
+	@include button_base();
+
+	&.cx-button-normal-style {
+		color: $dark_color;
+		border-color: $normal_outset_1 $normal_outset_2 $normal_outset_2 $normal_outset_1;
+		background-color: $normal_gradint_2;
+		&:active {
+			background-color: $normal_bg_color;
+			border-color: darken( $normal_outset_2, 10%) $normal_outset_1 $normal_outset_1 darken( $normal_outset_2, 10%);
+		}
+	}
+
+	&.cx-button-success-style {
+		color: $light_color;
+		border-color: $success_outset_1 $success_outset_2 $success_outset_2 $success_outset_1;
+		background-color: $success_gradint_2;
+		&:active {
+			background-color: $success_bg_color;
+			border-color: darken( $success_outset_2, 10%) $success_outset_1 $success_outset_1 darken( $success_outset_2, 10%);
+		}
+	}
+
+	&.cx-button-primary-style {
+		color: $light_color;
+		border-color: $primary_outset_1 $primary_outset_2 $primary_outset_2 $primary_outset_1;
+		background-color: $primary_gradint_2;
+		&:active {
+			background-color: $primary_bg_color;
+			border-color: darken( $primary_outset_2, 10%) $primary_outset_1 $primary_outset_1 darken( $primary_outset_2, 10%);
+		}
+	}
+
+	&.cx-button-secondary-style {
+		color: $light_color;
+		border-color: $secondary_outset_1 $secondary_outset_2 $secondary_outset_2 $secondary_outset_1;
+		background-color: $secondary_gradint_2;
+		&:active {
+			background-color: $secondary_bg_color;
+			border-color: darken( $secondary_outset_2, 10%) $secondary_outset_1 $secondary_outset_1 darken( $secondary_outset_2, 10%);
+		}
+	}
+
+	&.cx-button-danger-style{
+		color: $light_color;
+		border-color: $danger_outset_1 $danger_outset_2 $danger_outset_2 $danger_outset_1;
+		background-color: $danger_gradint_2;
+		&:active {
+			background-color: $danger_bg_color;
+			border-color: darken( $danger_outset_2, 10%) $danger_outset_1 $danger_outset_1 darken( $danger_outset_2, 10%);
+		}
+	}
+
+	&.cx-button-warning-style{
+		color: $light_color;
+		border-color: $warning_outset_1 $warning_outset_2 $warning_outset_2 $warning_outset_1;
+		background-color: $warning_gradint_2;
+		&:active {
+			background-color: $warning_bg_color;
+			border-color: darken( $warning_outset_2, 10%) $warning_outset_1 $warning_outset_1 darken( $warning_outset_2, 10%);
+		}
+	}
+}

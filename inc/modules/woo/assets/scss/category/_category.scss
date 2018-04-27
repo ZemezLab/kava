@@ -1,0 +1,30 @@
+/**
+ * Category main styles
+ */
+.products{
+	.product-category{
+		margin: $wc-category-offset;
+		
+		.category-content{
+			padding: $wc-category-inset;
+			border: $wc-category-border;
+			border-radius: $wc-category-border-radius;
+		}
+		
+	}
+}
+
+.woocommerce-loop-category__title{
+	text-align: left;
+	font-size: $wc-category-title-fz;
+	line-height: $wc-category-title-lh;
+	margin: $wc-category-title-offset;
+
+	// reset default styles for tag mark
+	.count{
+		font-style: normal;
+		background: transparent;
+		text-decoration: none;
+		border: none;
+	}
+}

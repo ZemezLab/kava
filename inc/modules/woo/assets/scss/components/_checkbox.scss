@@ -1,0 +1,37 @@
+/**
+ *  Checkbox
+ */
+label.checkbox,
+label.inline {
+	position: relative;
+	&.woocommerce-form__label {
+		padding-left: 30px;
+	}
+	input[type="checkbox"] {
+		display: none;
+	}
+	input[type="checkbox"] + span::before {
+		content: '';
+		display: inline-block;
+		width: $wc-checkbox-width;
+		height: $wc-checkbox-height;
+		background: transparent;
+		border: 1px solid $wc-border-color;
+		border-radius: $wc-checkbox-br;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	input[type="checkbox"] + span::after {
+		content: $wc-checkbox-active-icon;
+		opacity: 0;
+		font-size: $wc-checkbox-active-icon-fz;
+		position: absolute;
+		top: 4px;
+		left: 4px;
+		@extend %icon-font-default;
+	}
+	input[type="checkbox"]:checked + span::after {
+		opacity: 1;
+	}
+}

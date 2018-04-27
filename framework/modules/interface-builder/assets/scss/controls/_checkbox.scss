@@ -1,0 +1,55 @@
+.cx-checkbox-item{
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	border-radius: $border_radius_extra_small;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	cursor: pointer;
+	position: relative;
+	background-color: $grey_color_3;
+	user-select: none;
+	transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+
+	.marker{
+		position: absolute;
+		width: 20px;
+		height: 20px;
+		top: 0px;
+		left: 0px;
+		color: #fff;
+		font-size: 20px;
+		transition:inherit;
+		transform: scale(0);
+
+		&:before{
+			transition:inherit;
+			position: relative;
+			left: -1px;
+		}
+	}
+}
+.cx-label-content {
+	display: flex;
+}
+
+.cx-checkbox-input{
+	&[checked]{
+		&+.cx-checkbox-item{
+			background-color: $green_color;
+			.marker{
+				transform: scale(1);
+			}
+		}
+	}
+}
+.cx-checkbox-label{
+	font-size: 12px;
+	line-height: 20px;
+	color: $dark_color_1;
+	user-select: none;
+	&:focus{
+		outline: 1px solid rgba(41, 143, 252, .6);
+		box-shadow: 0px 0px 2px rgba(41,143,252,0.6);
+	}
+}

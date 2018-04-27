@@ -1,0 +1,33 @@
+/* #Button Appearance Styles (regular scheme) */
+.btn,
+button,
+input[type='button'],
+input[type='reset'],
+input[type='submit'] {
+	font-style: $button_font_style;
+	font-weight: $button_font_weight;
+	font-size: $button_font_size{px};
+	line-height: $button_line_height;
+	font-family: @font_family( $button_font_family );
+	letter-spacing: $button_letter_spacing{px};
+
+	color: $invert_text_color;
+	background-color: $accent_color;
+}
+.btn:hover,
+button:hover,
+input[type='button']:hover,
+input[type='reset']:hover,
+input[type='submit']:hover,
+input[type='reset']:hover {
+	color: $invert_text_color;
+	background-color: @lighten($accent_color, 15%);
+}
+
+.btn.invert-button {
+	color: $invert_text_color;
+}
+.btn.invert-button:hover {
+	border-color: $accent_color;
+	background-color: $accent_color;
+}

@@ -1,0 +1,49 @@
+.widget_recent_entries a,
+.widget_recent_comments a {
+	font-style: $h6_font_style;
+	font-weight: $h6_font_weight;
+	font-size: $h6_font_size{px};
+	line-height: $h6_line_height;
+	font-family: @font_family( $h6_font_family );
+	letter-spacing: $h6_letter_spacing{px};
+	color: $h6_color;
+}
+
+.widget_recent_entries a:hover,
+.widget_recent_comments a:hover {
+	color: $link_color;
+}
+
+.widget_recent_entries .post-date,
+.widget_recent_comments .recentcomments {
+	color: $secondary_text_color;
+}
+
+.widget_recent_comments .comment-author-link a {
+	color: $secondary_text_color;
+}
+.widget_recent_comments .comment-author-link a:hover {
+	color: $link_color;
+}
+
+.widget_calendar th,
+.widget_calendar caption {
+	color: $accent_color;
+}
+
+.widget_calendar tbody td a {
+	color: $primary_text_color;
+}
+
+.widget_calendar tbody td a:hover {
+	color: $invert_text_color;
+	background-color: $accent_color;
+}
+
+.widget_calendar tfoot td a {
+	color: $secondary_text_color;
+}
+
+.widget_calendar tfoot td a:hover {
+	color: $link_hover_color;
+}

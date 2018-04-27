@@ -1,0 +1,25 @@
+.footer-container {
+	padding-top: 30px;
+	padding-bottom: 30px;
+	@include font-size(11/16);
+	line-height: 20px;
+	&__wrap {
+		align-items: center;
+		.space-between-content {
+			@include media-breakpoint-down(xs) {
+				display: block;
+				text-align: center;
+			}
+		}
+	}
+}
+
+.footer-area {
+	@include make-container();
+	@include make-container-max-widths();
+	display: flex;
+	flex-wrap: wrap;
+	>.widget {
+		width: 25%;
+	}
+}

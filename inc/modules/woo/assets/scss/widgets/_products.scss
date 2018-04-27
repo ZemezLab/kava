@@ -1,0 +1,8 @@
+/**
+ * Products widget
+ */
+.widget_products {
+	.product_list_widget {
+		@extend %product-list-widget;
+	}
+}

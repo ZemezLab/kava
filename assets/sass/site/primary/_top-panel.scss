@@ -1,0 +1,34 @@
+.top-panel {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	@include font-size(11/16);
+	line-height: 20px;
+	.space-between-content {
+		@include media-breakpoint-down(xs) {
+			display: block;
+			text-align: center;
+		}
+	}
+	&__wrap {
+		align-items: center;
+	}
+	&-content {
+		&__left,
+		&__right {
+			>* {
+				display: inline-block;
+				vertical-align: middle;
+			}
+		}
+		&__left {
+			>* {
+				margin-right: 10px;
+			}
+		}
+		&__right {
+			>* {
+				margin-left: 10px;
+			}
+		}
+	}
+}

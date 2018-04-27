@@ -1,0 +1,19 @@
+/**
+ * Product main styles
+ */
+.products{
+
+	a:focus{
+		outline: none;
+	}
+
+	.product{
+		margin: $wc-product-offset;
+		
+		.product-content{
+			padding: $wc-product-inset;
+			border: $wc-product-border;
+			border-radius: $wc-product-border-radius;
+		}
+	}
+}

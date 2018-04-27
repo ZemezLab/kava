@@ -1,0 +1,30 @@
+// Grid breakpoints
+$grid-breakpoints: (
+	// Extra small screen / phone
+	xs: 0,
+	// Small screen / phone
+	sm: 640px,
+	// Medium screen / tablet
+	md: 940px,
+	// Large screen / desktop
+	lg: 1120px,
+	// Extra large screen / wide desktop
+	xl: 1200px
+) !default;
+
+// Grid containers
+$container-max-widths: (
+	sm: 640px,
+	md: 940px,
+	lg: 1120px,
+	xl: 1200px
+) !default;
+
+// Grid columns
+$grid-columns:      12 !default;
+$grid-gutter-width: 1.875rem !default; // 30px
+
+// Some configuration
+$need-pull:   true !default;
+$need-push:   true !default;
+$need-offset: true !default;

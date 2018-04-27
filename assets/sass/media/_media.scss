@@ -1,0 +1,48 @@
+.page-content .wp-smiley,
+.entry-content .wp-smiley,
+.comment-content .wp-smiley {
+	margin-top: 0;
+	margin-bottom: 0;
+	padding: 0;
+	border: none;
+}
+
+/* Make sure embeds and iframes fit their containers. */
+embed,
+iframe,
+object {
+	max-width: 100%;
+}
+
+.img-pull-left {
+	float: left;
+	width: 50%;
+	margin: 0 4% 1% 0;
+}
+.img-pull-right {
+	float: right;
+	width: 50%;
+	margin: 0 0 1% 4%;
+}
+
+.alignleft {
+	margin: 15px 30px 15px 0;
+}
+.alignright {
+	margin: 15px 0 15px 30px;
+}
+
+/*--------------------------------------------------------------
+## Captions
+--------------------------------------------------------------*/
+@import 'captions';
+
+/*--------------------------------------------------------------
+## Galleries
+--------------------------------------------------------------*/
+@import 'galleries';
+
+/*--------------------------------------------------------------
+## Embeds
+--------------------------------------------------------------*/
+@import 'embeds';

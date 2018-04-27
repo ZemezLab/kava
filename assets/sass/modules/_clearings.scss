@@ -1,0 +1,33 @@
+.clear:before,
+.clear:after,
+.comment-body:before,
+.comment-body:after,
+.entry-content:before,
+.entry-content:after,
+.entry-footer:before,
+.entry-footer:after,
+.comment-content:before,
+.comment-content:after,
+.site-header:before,
+.site-header:after,
+.site-content:before,
+.site-content:after,
+.site-footer:before,
+.site-footer:after {
+	@include clearfix;
+}
+
+.clear:after,
+.comment-body:after,
+.entry-content:after,
+.entry-footer:after,
+.comment-content:after,
+.site-header:after,
+.site-content:after,
+.site-footer:after {
+	@include clearfix-after;
+}
+
+.hidden {
+	display: none;
+}

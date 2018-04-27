@@ -1,0 +1,8 @@
+/**
+ * Recently viewed products widget
+ */
+.widget_recently_viewed_products {
+	.product_list_widget {
+		@extend %product-list-widget;
+	}
+}

@@ -1,0 +1,23 @@
+.breadcrumbs {
+	position: relative;
+	padding-top: 17px;
+	padding-bottom: 17px;
+	border-top: 1px solid $color__background-hr;
+	.page-title {
+		text-align: left;
+		margin-top: 5px;
+		@include font-size(18/16);
+	}
+	&_wrap {
+		overflow: hidden;
+	}
+	&_item {
+		float: left;
+		&_link:hover {
+			text-decoration: underline;
+		}
+		&_sep {
+			margin: 0 .5em;
+		}
+	}
+}

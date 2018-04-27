@@ -1,0 +1,124 @@
+// Center block
+@mixin center-block {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+// Clearfix
+@mixin clearfix {
+	content: "";
+	display: table;
+	table-layout: fixed;
+}
+
+// Clear after (not all clearfix need this also)
+@mixin clearfix-after {
+	clear: both;
+}
+
+// Clear list
+@mixin reset-list {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+// Rem output with px fallback
+@mixin font-size($sizeValue: 1) {
+	font-size: ($sizeValue * 16) * 1px;
+	font-size: $sizeValue * 1rem;
+}
+
+// Optional hyphenation
+@mixin hyphens($mode: auto) {
+	word-wrap: break-word;
+	-webkit-hyphens: $mode;
+	-moz-hyphens: $mode;
+	-ms-hyphens: $mode; // IE10+
+	-o-hyphens: $mode;
+	hyphens: $mode;
+}
+
+// Font-awesome icon
+@mixin font-awesome-icon {
+	display: inline-block;
+	font: normal normal normal 14px/1 FontAwesome;
+	font-size: inherit;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Button */
+@mixin btn {
+	display: inline-block;
+	max-width: 100%;
+	padding: $button__indents;
+	cursor: pointer;
+	text-align: center;
+	white-space: nowrap;
+	text-transform: uppercase;
+	text-overflow: ellipsis;
+	text-decoration: none;
+	border: $button__border;
+	@include border-radius($button__border-radius);
+	box-shadow: $button__box-shadow;
+	transition: all 0.3s ease;
+}
+
+
+// Resize anything
+@mixin resizable($direction) {
+	resize: $direction; // Options: horizontal, vertical, both
+	overflow: auto; // Per CSS3 UI, `resize` only applies when `overflow` isn't `visible`
+}
+
+// Layout justify content space between
+@mixin space-between-content($child-indent-type: 'margin') {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	margin-left: -$grid-gutter-width/2;
+	margin-right: -$grid-gutter-width/2;
+	@if $child-indent-type=='padding' or $child-indent-type=='margin' {
+		>* {
+			margin-left: $grid-gutter-width/2;
+			margin-right: $grid-gutter-width/2;
+		}
+	} @else {
+		>* {
+			padding-left: $grid-gutter-width/2;
+			padding-right: $grid-gutter-width/2;
+		}
+	}
+}
+
+// Custom grid indent
+@mixin grid-indent( $indent: $grid-gutter-width/2, $child-indent-type: 'padding', $child-selector: '> *' ) {
+	margin-left: - $indent;
+	margin-right: - $indent;
+
+	@if $child-indent-type=='padding' or $child-indent-type=='margin' {
+		#{$child-selector} {
+			#{$child-indent-type}-left: $indent;
+			#{$child-indent-type}-right: $indent;
+		}
+	} @else {
+		#{$child-selector} {
+			padding-left: $indent;
+			padding-right: $indent;
+		}
+	}
+}
+
+// Overlay position
+@mixin overlay-position() {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+
+@import "border-radius";

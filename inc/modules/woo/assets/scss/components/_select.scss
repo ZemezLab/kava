@@ -1,0 +1,15 @@
+/**
+ * Select
+ */
+select {
+	font-size: $wc-select-fz;
+	line-height: $wc-select-lh;
+	padding: $wc-select-inset;
+	border-radius: $wc-select-border-radius;
+	border: $wc-select-border;
+	&:focus {
+		box-shadow: none;
+	}
+}
+
+

@@ -1,0 +1,81 @@
+.social-list {
+	.menu-item {
+		> a {
+			display: block;
+			text-decoration: none;
+			text-align: center;
+			&:hover {
+				text-decoration: none;
+			}
+			&:focus {
+				outline: none;
+			}
+			&[href*="500px.com"]::before          { content: '\f26e'; }
+			&[href*="angel.co"]::before           { content: '\f209'; }
+			&[href*="codepen.io"]::before         { content: '\f1cb'; }
+			&[href*="del.icio"]::before,
+			&[href*="delicious.com"]::before      { content: '\f1a5'; }
+			&[href*="digg.com"]::before           { content: '\f1a6'; }
+			&[href*="dribbble.com"]::before       { content: '\f17d'; }
+			&[href*="dropbox.com"]::before        { content: '\f16b'; }
+			&[href*="facebook.com"]::before       { content: '\f09a'; }
+			&[href*="foursquare.com"]::before     { content: '\f180'; }
+			&[href*="flickr.com"]::before         { content: '\f16e'; }
+			&[href*="plus.google.com"]::before    { content: '\f0d5'; }
+			&[href*="github.com"]::before         { content: '\f09b'; }
+			&[href*="instagram.com"]::before      { content: '\f16d'; }
+			&[href*="linkedin.com"]::before       { content: '\f0e1'; }
+			&[href*="pinterest.com"]::before      { content: '\f0d2'; }
+			&[href*="getpocket.com"]::before      { content: '\f265'; }
+			&[href*="reddit.com"]::before         { content: '\f1a1'; }
+			&[href*="skype.com"]::before,
+			&[href*="skype:"]::before             { content: '\f17e'; }
+			&[href*="stumbleupon.com"]::before    { content: '\f1a4'; }
+			&[href*="tumblr.com"]::before         { content: '\f173'; }
+			&[href*="twitter.com"]::before        { content: '\f099'; }
+			&[href*="vimeo.com"]::before          { content: '\f27d'; }
+			&[href*="wordpress.org"]::before,
+			&[href*="wordpress.com"]::before      { content: '\f19a'; }
+			&[href*="youtube.com"]::before        { content: '\f167'; }
+			&[href*="amazon.com"]::before         { content: '\f270'; }
+			&[href*="tripadvisor"]::before        { content: '\f262'; }
+			&[href*="ycombinator.com"]::before    { content: '\f23b'; }
+			&[href*="xing.com"]::before           { content: '\f168'; }
+			&[href*="yahoo."]::before             { content: '\f19e'; }
+			&[href*="vine.co"]::before            { content: '\f1ca'; }
+			&[href*="weibo.com"]::before          { content: '\f18a'; }
+			&[href*="trello.com"]::before         { content: '\f181'; }
+			&[href*="steampowered.com"]::before   { content: '\f1b6'; }
+			&[href*="soundcloud.com"]::before     { content: '\f1be'; }
+			&[href*="spotify.com"]::before        { content: '\f1bc'; }
+			&[href*="stackexchange.com"]::before  { content: '\f18d'; }
+			&[href*="stackoverflow.com"]::before  { content: '\f16c'; }
+			&[href*="slideshare.net"]::before     { content: '\f1e7'; }
+			&[href*="slack.com"]::before          { content: '\f198'; }
+			&[href*="skyatlas.com"]::before       { content: '\f216'; }
+			&[href*="last.fm"]::before            { content: '\f202'; }
+			&[href*="jsfiddle.net"]::before       { content: '\f1cc'; }
+			&[href*="behance.net"]::before        { content: '\f1b4'; }
+			&[href*="bitbucket.org"]::before      { content: '\f171'; }
+			&[href*="codepen.io"]::before         { content: '\f1cb'; }
+			&[href*="codiepie.com"]::before       { content: '\f284'; }
+			&[href*="connectdevelop.com"]::before { content: '\f20e'; }
+			&[href*="dashcube.com"]::before       { content: '\f210'; }
+			&[href*="contao.org"]::before         { content: '\f26d'; }
+			&[href*="deviantart.com"]::before     { content: '\f1bd'; }
+			&[href*="vk.com"]::before             { content: '\f189'; }
+			&[href*="ok.ru"]::before              { content: '\f263'; }
+			&::before {
+				@include font-awesome-icon();
+				@include font-size(12/16);
+				display: block;
+				width: 20px;
+				height: 20px;
+				line-height: 20px;
+				.social-list--text & {
+					display: none;
+				}
+			}
+		}
+	}
+}

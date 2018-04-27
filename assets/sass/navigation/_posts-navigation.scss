@@ -1,0 +1,145 @@
+.comment-navigation,
+.posts-navigation,
+.pagination {
+	overflow: hidden;
+	margin-top: 50px;
+	padding-top: 45px;
+	padding-bottom: 25px;
+	border-top: 1px solid $color__background-hr;
+	.nav {
+		&-links {
+			font-weight: 400;
+		}
+	}
+}
+
+.pagination {
+	.page-numbers {
+		outline: none;
+		margin-right: 7px;
+		&:last-child {
+			margin-right: 0;
+		}
+		&.prev {
+			margin-right: 20px;
+		}
+		&.next {
+			margin-left: 10px;
+		}
+	}
+	.page-numbers:not(.prev):not(.next):not(.dots) {
+		@include border-radius;
+		display: inline-block;
+		width: 33px;
+		height: 33px;
+		text-align: center;
+		line-height: 33px;
+		border: 1px solid $color__background-hr;
+		&:hover,
+		&.current {
+			background-color: $color__background-hr;
+		}
+	}
+}
+
+.comment-navigation,
+.posts-navigation {
+	.nav {
+		&-previous {
+			float: left;
+			width: 50%;
+			i {
+				margin-right: 2px;
+			}
+		}
+		&-next {
+			float: right;
+			text-align: right;
+			width: 50%;
+			i {
+				margin-left: 2px;
+			}
+		}
+	}
+}
+
+.posts-navigation {
+	.posts-list--creative.list-style-default+&,
+	.posts-list--default.list-style-v9+& {
+		border: none;
+		margin-top: 0;
+	}
+	.posts-list--creative.list-style-default+&,
+	.posts-list--default.list-style-v9+&,
+	.posts-list--creative.list-style-v2+& {
+		.nav-links {
+			max-width: 1200px;
+			margin-left: auto;
+			margin-right: auto;
+			padding-left: $grid-gutter-width/2;
+			padding-right: $grid-gutter-width/2;
+		}
+	}
+}
+
+.post-navigation {
+	overflow: hidden;
+	margin: 45px 0 40px;
+	padding-bottom: 45px;
+	border-bottom: 1px solid $color__background-hr;
+	.nav {
+		&-links {
+			font-weight: 400;
+			.post-title {
+				margin: 0;
+				@include media-breakpoint-down(xs) {
+					@include font-size(16/16);
+				}
+			}
+			i {
+				position: absolute;
+				top: 32px;
+				@include media-breakpoint-up(sm) {
+					top: 35px;
+				}
+			}
+		}
+		&-text {
+			margin-bottom: 10px;
+			@include font-size(11/16);
+			font-weight: 600;
+			text-transform: uppercase;
+		}
+		&-previous,
+		&-next {
+			position: relative;
+			@include media-breakpoint-up(sm) {
+				width: 50%;
+			}
+		}
+		&-previous {
+			padding: 0 15px 0 35px;
+			@include media-breakpoint-up(sm) {
+				float: left;
+			}
+			i {
+				left: 0;
+			}
+		}
+		&-next {
+			text-align: right;
+			padding: 0 35px 0 15px;
+			@include media-breakpoint-up(sm) {
+				float: right;
+			}
+			i {
+				right: 0;
+			}
+		}
+	}
+	.nav-previous + .nav-next {
+		@include media-breakpoint-down(xs) {
+			margin-top: 30px;
+		}
+	}
+}

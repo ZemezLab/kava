@@ -1,0 +1,76 @@
+/**
+ * Tables
+ */
+.woocommerce table {
+	border-radius: $wc-table-border;
+
+		th, td {
+			font-size: $wc-table-fz;
+			line-height: $wc-table-lh;
+			padding: $wc-table-inset;
+
+			p {
+				margin-bottom: 0;
+			}
+		}
+
+	//  thead style
+	@if ($wc-table-fz != $wc-thead-table-fz) or ($wc-table-lh != $wc-thead-table-lh) {
+		thead {
+			tr th {
+				font-size: $wc-thead-table-fz;
+				line-height: $wc-thead-table-lh;
+			}
+		}
+	}
+
+	// inner border
+	@if ($wc-table-with-inner-border) {
+		tr {
+			border-bottom: 1px solid $wc-table-border-color;
+
+			&:last-child {
+				border-bottom: none;
+			}
+		}
+
+		tr td {
+			border-left: 1px solid $wc-table-border-color;
+
+			&:first-child {
+				border-left: none;
+			}
+		}
+	}
+
+	// inner bottom border
+	@if ($wc-table-with-inner-bottom-border) {
+		tr, thead {
+			border-bottom: 1px solid $wc-table-border-color;
+
+			&:last-child {
+				border-bottom: none;
+			}
+		}
+	}
+
+	// inner thead border
+	@if ($wc-table-with-inner-thead-border) {
+		thead {
+			border-bottom: 1px solid $wc-table-border-color;;
+		}
+		tr th {
+			border-left: 1px solid $wc-table-border-color;
+
+			&:first-child {
+				border-left: none;
+			}
+		}
+	}
+
+	// outer border
+	@if ($wc-table-with-outer-border) {
+		border: 1px solid $wc-table-border-color;
+	}
+
+}

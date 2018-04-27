@@ -1,0 +1,99 @@
+// Grid system
+@mixin make-container($gutter: $grid-gutter-width) {
+	margin-left: auto;
+	margin-right: auto;
+	padding-left:  ($gutter / 2);
+	padding-right: ($gutter / 2);
+}
+
+// For each breakpoint, define the maximum width of the container in a media query
+@mixin make-container-max-widths($max-widths: $container-max-widths) {
+	@each $breakpoint, $container-max-width in $max-widths {
+		@include media-breakpoint-up($breakpoint) {
+			max-width: $container-max-width;
+		}
+	}
+}
+
+@mixin make-row($gutter: $grid-gutter-width) {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left:  ($gutter / -2);
+	margin-right: ($gutter / -2);
+}
+
+@mixin make-col($gutter: $grid-gutter-width) {
+	position: relative;
+	min-height: 1px;
+	padding-left:  ($gutter / 2);
+	padding-right: ($gutter / 2);
+}
+
+@mixin make-col-span($size, $columns: $grid-columns) {
+	flex: 0 0 percentage($size / $columns);
+	max-width: percentage($size / $columns);
+}
+
+@mixin make-col-offset($size, $columns: $grid-columns) {
+	@if $need-offset {
+		margin-left: percentage($size / $columns);
+	}
+}
+
+@mixin make-col-push($size, $columns: $grid-columns) {
+	@if $need-push {
+		left: if($size > 0, percentage($size / $columns), auto);
+	}
+}
+
+@mixin make-col-pull($size, $columns: $grid-columns) {
+	@if $need-pull {
+		right: if($size > 0, percentage($size / $columns), auto);
+	}
+}
+
+@mixin make-col-modifier($type, $size, $columns) {
+	// Work around the lack of dynamic mixin @include support (https://github.com/sass/sass/issues/626)
+	@if $type == push {
+		@include make-col-push($size, $columns);
+	} @else if $type == pull {
+		@include make-col-pull($size, $columns);
+	} @else if $type == offset {
+		@include make-col-offset($size, $columns);
+	}
+}
+
+@mixin make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
+	// Common properties for all breakpoints
+	%grid-column {
+		position: relative;
+		// Prevent columns from collapsing when empty
+		min-height: 1px;
+		// Inner gutter via padding
+		padding-left: ($gutter / 2);
+		padding-right: ($gutter / 2);
+	}
+	@each $breakpoint in map-keys($breakpoints) {
+		@for $i from 1 through $columns {
+			.col-#{$breakpoint}-#{$i} {
+				@extend %grid-column;
+			}
+		}
+
+		@include media-breakpoint-up($breakpoint) {
+
+			@for $i from 1 through $columns {
+				.col-#{$breakpoint}-#{$i} {
+					@include make-col-span($i, $columns);
+				}
+			}
+			@each $modifier in (pull, push, offset) {
+				@for $i from 0 through $columns {
+					.col-#{$breakpoint}-#{$modifier}-#{$i} {
+						@include make-col-modifier($modifier, $i, $columns)
+					}
+				}
+			}
+		}
+	}
+}

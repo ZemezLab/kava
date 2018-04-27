@@ -1,0 +1,92 @@
+html {
+	box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+	/* Inherit box-sizing to make it easier to change the property for components that leverage other behavior; see http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
+	box-sizing: inherit;
+}
+
+img {
+	height: auto;
+	/* Make sure images are scaled correctly. */
+	max-width: 100%;
+	/* Adhere to container width. */
+}
+
+blockquote,
+q {
+	quotes: none;
+	&:before,
+	&:after {
+		content: '';
+	}
+}
+
+blockquote {
+	position: relative;
+	margin: 35px 0;
+	padding: 0 0 0 60px;
+	@include font-size(18/16);
+	font-weight: 400;
+	line-height: 1.45;
+	font-style: italic;
+	@include media-breakpoint-up(sm) {
+		@include font-size(22/16);
+	}
+	@include media-breakpoint-up(md) {
+		@include font-size(28/16);
+	}
+	p {
+		margin: 0;
+		&+p {
+			margin-top: 1em;
+		}
+	}
+	cite {
+		display: block;
+		margin-top: 5px;
+		font-style: normal;
+		&:before {
+			content: "- ";
+		}
+	}
+	&:before {
+		content: "\f10d";
+		@include font-awesome-icon;
+		position: absolute;
+		font-size: 30px;
+		top: 0;
+		left: 10px;
+	}
+}
+
+hr {
+	background-color: $color__background-hr;
+	border: 0;
+	height: 1px;
+	margin: 1.5em 0;
+}
+
+.edit-link {
+	display: inline-block;
+	margin-top: 15px;
+}
+
+/*--------------------------------------------------------------
+## Lists
+--------------------------------------------------------------*/
+
+@import "lists";
+/*--------------------------------------------------------------
+## ToTop
+--------------------------------------------------------------*/
+
+@import "totop-button";
+/*--------------------------------------------------------------
+## Page preloader
+--------------------------------------------------------------*/
+
+@import "page-preloader";

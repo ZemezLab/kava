@@ -1,0 +1,21 @@
+#toTop {
+	overflow: hidden;
+	display: none;
+	text-decoration: none;
+	position: fixed;
+	bottom: 15px;
+	right: -999em;
+	z-index: 999;
+	&:before{
+		content: "\f106";
+		@include font-awesome-icon;
+		width: 100%;
+		font-size: 25px;
+	}
+	&:focus {
+		outline: none;
+	}
+	@include media-breakpoint-up(sm) {
+		right: 20px;
+	}
+}
