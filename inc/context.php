@@ -38,13 +38,11 @@ function kava_get_container_classes( $classes = null, $fullwidth = false ) {
 		$classes .= ' ';
 	}
 
-	if ( ! $fullwidth ) {
+	if ( ! apply_filters( 'kava-theme/site/fullwidth', $fullwidth ) ) {
 		$layout_type = kava_theme()->customizer->get_value( 'container_type' );
 
 		if ( 'boxed' == $layout_type ) {
 			$classes .= 'container';
-		} else {
-			//$classes .= 'container-fluid';
 		}
 	}
 
@@ -61,16 +59,12 @@ function kava_get_site_content_wrapper_classes( $classes = null ) {
 	if ( $classes ) {
 		$classes .= ' ';
 	}
-
+	
 	$classes .= 'site-content__wrap';
-
-	$fullwidth = kava_theme()->content_fullwidth;
-
-	if ( $fullwidth ) {
-		return 'class="' . $classes . '"';
+	$site_content_container = apply_filters( 'kava-theme/wrapper/site-content-container-enabled', true );
+	if ( $site_content_container ) {
+		$classes .= ' container';
 	}
-
-	$classes .= ' container';
 
 	return 'class="' . apply_filters( 'kava-theme/wrapper/site-content-classes', $classes ) . '"';
 }
@@ -83,14 +77,7 @@ function kava_get_site_content_wrapper_classes( $classes = null ) {
  * @return void
  */
 function kava_primary_content_class( $classes = array() ) {
-	$fullwidth_page = kava_theme()->content_fullwidth;
-	if ( ! $fullwidth_page ) {
-		echo kava_get_layout_classes( 'content', $classes );
-	} else {
-		array_push( $classes, 'col-xs-12' );
-
-		echo 'class="' . join( ' ', $classes ) . '"';
-	}
+	echo kava_get_layout_classes( 'content', $classes );
 }
 
 /**
@@ -113,11 +100,10 @@ function kava_secondary_content_class( $classes = array() ) {
  * @return string
  */
 function kava_get_layout_classes( $layout = 'content', $classes = array() ) {
-	$sidebar          = kava_theme()->sidebar_enabled;
 	$sidebar_position = kava_theme()->sidebar_position;
 	$sidebar_width    = kava_theme()->customizer->get_value( 'sidebar_width' );
 
-	if ( ! $sidebar || 'fullwidth' === $sidebar_position ) {
+	if ( 'none' === $sidebar_position ) {
 		$sidebar_position = is_singular( 'post' ) ? 'single-post-fullwidth' : 'fullwidth';
 		$sidebar_width = 0;
 	}
@@ -141,28 +127,17 @@ function kava_get_layout_classes( $layout = 'content', $classes = array() ) {
  * Retrieve or print `class` attribute for Post List wrapper.
  *
  * @since  1.0.0
- * @param  array       $classes Additional classes.
- * @param  boolean     $echo    True for print. False - return.
+ * @param  string       $classes Additional classes.
  * @return string|void
  */
-function kava_posts_list_class( $classes = array(), $echo = true ) {
-	$layout_type      = kava_theme()->customizer->get_value( 'blog_layout_type' );
-	$layout_type      = ! is_search() ? $layout_type : 'default';
-	$layout_style     = kava_theme()->customizer->get_value( 'blog_style' );
-
-	$classes[] = 'posts-list';
-	$classes[] = 'posts-list--' . sanitize_html_class( $layout_type );
-	$classes[] = 'list-style-' . sanitize_html_class( $layout_style );
-
-	$classes = apply_filters( 'kava-theme/posts/list_class', $classes );
-
-	$output = 'class="' . join( ' ', $classes ) . '"';
-
-	if ( ! $echo ) {
-		return $output;
+function kava_posts_list_class( $classes = null ) {
+	if ( $classes ) {
+		$classes .= ' ';
 	}
 
-	echo $output;
+	$classes .= 'posts-list';
+
+	echo 'class="' . apply_filters( 'kava-theme/posts/list-class', $classes ) . '"';
 }
 
 

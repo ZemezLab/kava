@@ -25,28 +25,12 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		private $is_blog = false;
 
 		/**
-		 * Container fullwidth.
-		 *
-		 * @since 1.0.0
-		 * @var   Boolean
-		 */
-		public $content_fullwidth = false;
-
-		/**
-		 * Sidebar enabled.
-		 *
-		 * @since 1.0.0
-		 * @var   Boolean
-		 */
-		public $sidebar_enabled = false;
-
-		/**
 		 * Sidebar position.
 		 *
 		 * @since 1.0.0
 		 * @var   String
 		 */
-		public $sidebar_position = 'one-right-sidebar';
+		public $sidebar_position = 'none';
 
 		/**
 		 * Loaded modules
@@ -82,9 +66,6 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 			// Initialization of breadcrumbs module
 			add_action( 'wp_head', array( $this, 'kava_breadcrumbs' ) );
 
-			// Init properties.
-			add_action( 'wp_head', array( $this, 'kava_init_properties' ) );
-
 			// Language functions and translations setup.
 			add_action( 'after_setup_theme', array( $this, 'l10n' ), 2 );
 
@@ -97,6 +78,9 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 			// Load theme modules.
 			add_action( 'after_setup_theme', array( $this, 'load_modules' ), 5 );
 
+			// Init properties.
+			add_action( 'wp_head', array( $this, 'kava_init_properties' ) );
+
 			// Register public assets.
 			add_action( 'wp_enqueue_scripts', array( $this, 'register_assets' ), 9 );
 
@@ -108,6 +92,7 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 
 			// Maybe register Elementor Pro locations.
 			add_action( 'elementor/theme/register_locations', array( $this, 'elementor_locations' ) );
+
 		}
 
 		/**
@@ -116,7 +101,9 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		 * @return string
 		 */
 		public function version() {
+
 			return $this->version;
+
 		}
 
 		/**
@@ -125,6 +112,7 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		 * @since  1.0.0
 		 */
 		public function kava_framework_loader() {
+
 			require get_theme_file_path( 'framework/loader.php' );
 
 			new Kava_CX_Loader(
@@ -137,6 +125,7 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 					get_theme_file_path( 'framework/modules/interface-builder/cherry-x-interface-builder.php' ),
 				)
 			);
+
 		}
 
 		/**
@@ -145,8 +134,10 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		 * @since 1.0.0
 		 */
 		public function kava_customizer() {
+
 			$this->customizer = new CX_Customizer( kava_get_customizer_options() );
 			$this->dynamic_css = new CX_Dynamic_CSS( kava_get_dynamic_css_options() );
+
 		}
 
 		/**
@@ -155,7 +146,9 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		 * @since 1.0.0
 		 */
 		public function kava_breadcrumbs() {
+
 			$this->breadcrumbs = new CX_Breadcrumbs( kava_get_breadcrumbs_options() );
+
 		}
 
 		/**
@@ -164,40 +157,19 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		 * @since 1.0.0
 		 */
 		public function kava_init_properties() {
+
+			$this->is_blog = is_home() || ( is_archive() && ! is_tax() && ! is_post_type_archive() ) ? true : false;
+
 			// Blog list properties init
 			if ( $this->is_blog ) {
-				$fullwidth_list = array (
-					'default'  => array( 'v9' ),
-					'grid'  => array( 'v4','v5','v9' ),
-					'masonry'  => array( 'v4','v9' ),
-					'vertical-justify'  => array( 'v4','v5','v6','v9','v10' ),
-					'creative' => array( 'default','v2' )
-				);
-
-				$layout_type  = $this->customizer->get_value( 'blog_layout_type' );
-				$layout_style = $this->customizer->get_value( 'blog_style' );
-
-				if( ! empty( $fullwidth_list[$layout_type] ) )
-					$this->content_fullwidth = in_array( $layout_style, $fullwidth_list[$layout_type] );
-
-				$sidebar_list = array (
-					'default'  => array( 'default','v2','v3','v4','v5','v6','v8','v10' ),
-					'creative' => array( 'v3','v5','v8' ),
-					'grid' => array( 'v3','v10' ),
-					'masonry' => array( 'v3','v5','v6','v7','v10' )
-				);
-
 				$this->sidebar_position = kava_theme()->customizer->get_value( 'blog_sidebar_position' );
-
-				if ( ! empty( $sidebar_list[$layout_type] ) )
-					$this->sidebar_enabled = in_array( $layout_style, $sidebar_list[$layout_type] );
 			}
 
 			// Single blog properties init
 			if ( is_singular( 'post' ) ) {
-				$this->sidebar_enabled = true;
 				$this->sidebar_position = kava_theme()->customizer->get_value( 'single_sidebar_position' );
 			}
+
 		}
 
 		/**
@@ -206,11 +178,13 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		 * @since 1.0.0
 		 */
 		public function l10n() {
+
 			/*
 			 * Make theme available for translation.
 			 * Translations can be filed in the /languages/ directory.
 			 */
 			load_theme_textdomain( 'kava', get_theme_file_path( 'languages' ) );
+
 		}
 
 		/**
@@ -258,6 +232,7 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		 * @since 1.0.0
 		 */
 		public function includes() {
+
 			/**
 			 * Configurations.
 			 */
@@ -298,7 +273,9 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		 * @return string
 		 */
 		public function modules_base() {
+
 			return 'inc/modules/';
+
 		}
 
 		/**
@@ -306,8 +283,10 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		 * @return [type] [description]
 		 */
 		public function get_module_class( $name ) {
+
 			$module = str_replace( ' ', '_', ucwords( str_replace( '-', ' ', $name ) ) );
 			return 'Kava_' . $module . '_Module';
+
 		}
 
 		/**
@@ -348,7 +327,6 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		 * @since 1.0.0
 		 */
 		public function register_assets() {
-			$this->is_blog = is_home() || ( is_archive() && ! is_tax() && ! is_post_type_archive() ) ? true : false;
 
 			wp_register_script(
 				'magnific-popup',
@@ -412,6 +390,7 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		 * @since 1.0.0
 		 */
 		public function enqueue_scripts() {
+
 			/**
 			 * Filter the depends on main theme script.
 			 *
@@ -439,6 +418,7 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 			if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 				wp_enqueue_script( 'comment-reply' );
 			}
+
 		}
 
 		/**
@@ -447,6 +427,7 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		 * @since 1.0.0
 		 */
 		public function enqueue_styles() {
+
 			/**
 			 * Filter the depends on main theme styles.
 			 *
@@ -476,6 +457,7 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 					$this->version
 				);
 			}
+
 		}
 
 		/**
@@ -545,6 +527,7 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 			}
 
 			return self::$instance;
+
 		}
 	}
 }
@@ -556,7 +539,9 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
  * @return object
  */
 function kava_theme() {
+
 	return Kava_Theme_Setup::get_instance();
+	
 }
 
 kava_theme();

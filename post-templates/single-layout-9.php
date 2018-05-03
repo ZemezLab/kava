@@ -12,7 +12,7 @@
 
 get_header(); 
 	?><div class="site-content__wrap"><?php
-		get_template_part( 'template-parts/post/single/headers/header-v9', get_post_format() );
+		get_template_part( 'template-parts/single-post/headers/header-v9', get_post_format() );
 		?><div class="container">
 			<div class="row">
 				<div id="primary" <?php kava_primary_content_class(); ?>>
@@ -21,15 +21,15 @@ get_header();
 
 							?><article id="post-<?php the_ID(); ?>" <?php post_class(); ?>><?php
 							
-								get_template_part( 'template-parts/post/single/author-bio' );
-								get_template_part( 'template-parts/post/single/content', get_post_format() );
-								get_template_part( 'template-parts/post/single/footer' );
+								get_template_part( 'template-parts/single-post/author-bio' );
+								get_template_part( 'template-parts/single-post/content', get_post_format() );
+								get_template_part( 'template-parts/single-post/footer' );
 
 							?></article><?php
 
-								get_template_part( 'template-parts/post/single/post_navigation' );
+								get_template_part( 'template-parts/single-post/post_navigation' );
 								kava_related_posts();
-								get_template_part( 'template-parts/post/single/comments' );
+								get_template_part( 'template-parts/single-post/comments' );
 
 						endwhile; // End of the loop. ?>
 					</main><!-- #main -->

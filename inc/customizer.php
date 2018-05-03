@@ -1257,7 +1257,7 @@ function kava_get_customizer_options() {
 				'choices' => array(
 					'one-left-sidebar'  => esc_html__( 'Sidebar on left side', 'kava' ),
 					'one-right-sidebar' => esc_html__( 'Sidebar on right side', 'kava' ),
-					'fullwidth'         => esc_html__( 'No sidebar', 'kava' ),
+					'none'              => esc_html__( 'No sidebar', 'kava' ),
 				),
 				'type' => 'control',
 				'active_callback' => 'kava_is_blog_sidebar_enabled',
@@ -1397,7 +1397,7 @@ function kava_get_customizer_options() {
 				'choices' => array(
 					'one-left-sidebar'  => esc_html__( 'Sidebar on left side', 'kava' ),
 					'one-right-sidebar' => esc_html__( 'Sidebar on right side', 'kava' ),
-					'fullwidth'         => esc_html__( 'No sidebar', 'kava' ),
+					'none'              => esc_html__( 'No sidebar', 'kava' ),
 				),
 				'type' => 'control',
 			),
@@ -1717,7 +1717,7 @@ function kava_get_default_footer_copyright() {
  * @return bool
  */
 function kava_is_blog_sidebar_enabled() {
-	return kava_theme()->sidebar_enabled;
+	return apply_filters( 'kava-theme/customizer/blog-sidebar-enabled', true );
 }
 
 

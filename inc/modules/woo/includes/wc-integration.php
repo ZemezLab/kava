@@ -237,7 +237,6 @@ if ( ! function_exists( 'kava_init_wc_properties' ) ) {
 
 		// Sidebar properties for archive product
 		if ( ( is_shop() || is_product_taxonomy() ) && ! is_singular( 'product' ) ) {
-			kava_theme()->sidebar_enabled  = true;
 			kava_theme()->sidebar_position = 'one-left-sidebar';
 		}
 

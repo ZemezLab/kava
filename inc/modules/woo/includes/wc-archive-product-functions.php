@@ -41,7 +41,7 @@ if ( ! function_exists( 'kava_wc_loop_columns' ) ) {
 	function kava_wc_loop_columns() {
 		$sidebar_position = kava_theme()->customizer->get_value( 'blog_sidebar_position' );
 
-		if ( 'fullwidth' === $sidebar_position ) {
+		if ( 'none' === $sidebar_position ) {
 			return 4;
 		}
 

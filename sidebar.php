@@ -13,7 +13,7 @@
 
 do_action( 'kava-theme/sidebar/before' );
 
-if ( is_active_sidebar( 'sidebar' ) && kava_theme()->sidebar_enabled && 'fullwidth' !== kava_theme()->sidebar_position ) : ?>
+if ( is_active_sidebar( 'sidebar' ) && 'none' !== kava_theme()->sidebar_position ) : ?>
 	<aside id="secondary" <?php kava_secondary_content_class( array( 'widget-area' ) ); ?>>
 		<?php dynamic_sidebar( 'sidebar' ); ?>
 	</aside><!-- #secondary -->

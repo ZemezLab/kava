@@ -19,7 +19,7 @@ get_header();
 			<div class="row">
 				<?php if ( $author_block_enabled ) : ?>
 					<div id="author-block" class="col-xs-12 col-md-3"><?php
-						get_template_part( 'template-parts/post/single/author-bio' );
+						get_template_part( 'template-parts/single-post/author-bio' );
 						kava_posted_on( array(
 							'prefix'  => __( 'Posted', 'kava' ),
 							'before' => '<div class="posted-on">',
@@ -33,15 +33,15 @@ get_header();
 
 							?><article id="post-<?php the_ID(); ?>" <?php post_class(); ?>><?php
 								
-								get_template_part( 'template-parts/post/single/headers/header-v6', get_post_format() );
-								get_template_part( 'template-parts/post/single/content', get_post_format() );
-								get_template_part( 'template-parts/post/single/footer' );
+								get_template_part( 'template-parts/single-post/headers/header-v6', get_post_format() );
+								get_template_part( 'template-parts/single-post/content', get_post_format() );
+								get_template_part( 'template-parts/single-post/footer' );
 
 							?></article><?php
 
-								get_template_part( 'template-parts/post/single/post_navigation' );
+								get_template_part( 'template-parts/single-post/post_navigation' );
 								kava_related_posts();
-								get_template_part( 'template-parts/post/single/comments' );
+								get_template_part( 'template-parts/single-post/comments' );
 
 						endwhile; // End of the loop. ?>
 					</main><!-- #main -->

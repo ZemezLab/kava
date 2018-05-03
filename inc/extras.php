@@ -211,5 +211,5 @@ function kava_get_post_template_part_slug() {
  * @return string
  */
 function kava_get_post_style() {
-	return apply_filters( 'kava-theme/posts/post_style', false );
+	return apply_filters( 'kava-theme/posts/post-style', false );
 }

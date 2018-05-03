@@ -63,15 +63,27 @@
 	}
 }
 
-.posts-navigation {
+.navigation {
 	.posts-list--creative.list-style-default+&,
-	.posts-list--default.list-style-v9+& {
+	.posts-list--default.list-style-v9+&,
+	.posts-list--grid.list-style-v9+&,
+	.posts-list--vertical-justify.list-style-v6+& {
 		border: none;
 		margin-top: 0;
 	}
 	.posts-list--creative.list-style-default+&,
 	.posts-list--default.list-style-v9+&,
-	.posts-list--creative.list-style-v2+& {
+	.posts-list--creative.list-style-v2+&,
+	.posts-list--grid.list-style-v4+&,
+	.posts-list--grid.list-style-v5+&,
+	.posts-list--grid.list-style-v9+&,
+	.posts-list--masonry.list-style-v4+&,
+	.posts-list--masonry.list-style-v9+&,
+	.posts-list--vertical-justify.list-style-v4+&,
+	.posts-list--vertical-justify.list-style-v5+&,
+	.posts-list--vertical-justify.list-style-v6+&,
+	.posts-list--vertical-justify.list-style-v9+&,
+	.posts-list--vertical-justify.list-style-v10+& {
 		.nav-links {
 			max-width: 1200px;
 			margin-left: auto;

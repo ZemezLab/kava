@@ -28,5 +28,5 @@
 		<?php kava_theme()->do_location( 'header', 'template-parts/header' ); ?>
 	</header><!-- #masthead -->
 
-	<div id="content" <?php echo kava_get_container_classes( 'site-content', kava_theme()->content_fullwidth ); ?>>
+	<div id="content" <?php echo kava_get_container_classes( 'site-content' ); ?>>
 		<?php get_template_part( 'template-parts/breadcrumbs' ); ?>

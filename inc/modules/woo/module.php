@@ -113,13 +113,16 @@ if ( ! class_exists( 'Kava_Woo_Module' ) ) {
 			font-style: normal;
 			}';
 
-			wp_enqueue_style(
-				'kava-woocommerce-style',
-				get_template_directory_uri() . '/inc/modules/woo/assets/css/woo-module' . ( is_rtl() ? '-rtl' : '' ) . '.css'
-			);
 			wp_add_inline_style(
 				'kava-woocommerce-style',
 				$inline_font
+			);
+
+			wp_enqueue_style(
+				'kava-woocommerce-style',
+				get_template_directory_uri() . '/inc/modules/woo/assets/css/woo-module' . ( is_rtl() ? '-rtl' : '' ) . '.css',
+				false,
+				kava_theme()->version()
 			);
 
 		}

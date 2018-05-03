@@ -61,7 +61,7 @@ function kava_extra_body_classes( $classes ) {
 	$sidebar     = kava_theme()->customizer->get_value( 'sidebar_width' );
 
 	array_push( $options_based_classes, 'layout-' . $layout, 'blog-' . $blog_layout );
-	if( kava_theme()->sidebar_enabled && 'fullwidth' !== $sb_position ) {
+	if( 'none' !== $sb_position ) {
 		array_push( $options_based_classes, 'sidebar_enabled', 'position-' . $sb_position, 'sidebar-' . str_replace( '/', '-', $sidebar ) );
 	}
 	
