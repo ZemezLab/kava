@@ -247,6 +247,15 @@ if ( ! class_exists( 'Kava_Blog_Layouts_Module' ) ) {
 				kava_theme()->version()
 			);
 
+			if ( is_rtl() ) {
+				wp_enqueue_style(
+					'blog-layouts-module-rtl',
+					get_theme_file_uri( 'inc/modules/blog-layouts/assets/css/rtl.css' ),
+					false,
+					kava_theme()->version()
+				);
+			}
+
 		}
 
 	}
