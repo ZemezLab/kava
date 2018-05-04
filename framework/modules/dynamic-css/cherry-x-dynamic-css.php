@@ -165,6 +165,23 @@ if ( ! class_exists( 'CX_Dynamic_CSS' ) ) {
 		}
 
 		/**
+		 * Fix customizer preview variables.
+		 *
+		 * @param  [type] $variables [description]
+		 * @return [type]            [description]
+		 */
+		public function fix_customizer_preview_vars( $variables ) {
+
+			$result = array();
+
+			foreach ( $variables as $name => $value ) {
+				$result[ $name ] = get_theme_mod( $name );
+			}
+
+			return $result;
+		}
+
+		/**
 		 * Get CSS variables into array
 		 *
 		 * @since  1.0.0
@@ -179,6 +196,10 @@ if ( ! class_exists( 'CX_Dynamic_CSS' ) ) {
 			if ( ! empty( $this->args['options_cb'] ) && is_callable( $this->args['options_cb'] ) ) {
 
 				$this->variables = call_user_func( $this->args['options_cb'] );
+
+				if ( 'theme_mod' === $this->args['type'] && is_customize_preview() ) {
+					$this->variables = $this->fix_customizer_preview_vars( $this->variables );
+				}
 
 				/**
 				 * Filter result variables list with values
