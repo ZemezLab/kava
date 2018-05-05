@@ -9,8 +9,8 @@
 <?php do_action( 'kava-theme/widget-area/render', 'footer-area' ); ?>
 
 <div <?php kava_footer_class(); ?>>
-	<div class="space-between-content">
-		<?php kava_footer_copyright(); ?>
-		<?php kava_social_list( 'footer' ); ?>
-	</div>
+	<div class="space-between-content"><?php
+		kava_footer_copyright();
+		kava_social_list( 'footer' );
+	?></div>
 </div><!-- .container -->

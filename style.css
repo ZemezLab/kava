@@ -1596,7 +1596,7 @@ a {
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease; }
   a:focus {
-    outline: thin dotted; }
+    outline: none; }
   a:hover, a:active {
     text-decoration: none; }
   h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -1730,9 +1730,8 @@ body.admin-bar .mobile-menu .menu {
 .posts-navigation,
 .pagination {
   overflow: hidden;
-  margin-top: 50px;
-  padding-top: 45px;
-  padding-bottom: 25px;
+  padding-top: 40px;
+  padding-bottom: 40px;
   border-top: 1px solid #ebeced; }
   .comment-navigation .nav-links,
   .posts-navigation .nav-links,
@@ -2249,19 +2248,20 @@ body.admin-bar .mobile-menu .menu {
 /*--------------------------------------------------------------
 ## Header
 --------------------------------------------------------------*/
-.site-header__wrap {
-  padding-top: 18px;
-  padding-bottom: 36px; }
-  @media (min-width: 940px) {
-    .site-header__wrap.isStick {
-      position: fixed;
-      z-index: 1000;
-      right: 0;
-      left: 0; } }
-  .site-header__wrap .space-between-content {
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center; }
+.site-header {
+  padding-bottom: 35px; }
+  .site-header__wrap {
+    padding-top: 18px; }
+    @media (min-width: 940px) {
+      .site-header__wrap.isStick {
+        position: fixed;
+        z-index: 1000;
+        right: 0;
+        left: 0; } }
+    .site-header__wrap .space-between-content {
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center; }
 
 .site-branding .custom-logo {
   display: block; }
@@ -2301,8 +2301,6 @@ body.admin-bar .mobile-menu .menu {
 ## Footer
 --------------------------------------------------------------*/
 .site-footer__wrap {
-  padding-top: 30px;
-  padding-bottom: 30px;
   font-size: 11px;
   font-size: 0.6875rem;
   line-height: 20px; }
@@ -2310,6 +2308,9 @@ body.admin-bar .mobile-menu .menu {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center; }
+    .site-footer__wrap .space-between-content:not(:empty) {
+      padding-top: 30px;
+      padding-bottom: 30px; }
     @media (max-width: 639px) {
       .site-footer__wrap .space-between-content {
         display: block;
@@ -2416,6 +2417,12 @@ span.tags-links {
   .btn-style .post-categories a {
     padding: 6px 10px;
     border-radius: 4px; }
+
+/*--------------------------------------------------------------
+### Posts list
+--------------------------------------------------------------*/
+.posts-list {
+  margin-bottom: 50px; }
 
 /*--------------------------------------------------------------
 ### Post default item
@@ -3139,155 +3146,131 @@ span.tags-links {
 /*--------------------------------------------------------------
 # Widgets
 --------------------------------------------------------------*/
-.widget-title {
-  text-transform: uppercase;
-  margin-top: 0;
-  margin-bottom: 25px; }
-
-.widget + .widget {
-  margin-top: 50px;
-  padding-top: 40px;
-  border-top: 1px solid #ebeced; }
-
-.sidebar .widget,
-.footer-area .widget {
-  margin-top: 1.5em; }
-  @media (min-width: 940px) {
-    .sidebar .widget,
-    .footer-area .widget {
-      margin-top: 3em; } }
-
-.widget-area .widget:last-child {
-  margin-bottom: 1em; }
-  @media (min-width: 940px) {
-    .widget-area .widget:last-child {
-      margin-bottom: 2em; } }
-
-.widget select {
-  width: 100%; }
-
-.widget ul:not([class]) {
-  list-style: none;
-  margin-left: 0; }
-  .widget ul:not([class]) li {
-    margin-bottom: 4px; }
-
-.widget_recent_entries ul:not([class]) li {
-  margin-bottom: 20px; }
-
-.widget_recent_entries .post-date {
-  display: block; }
-  .widget_recent_entries .post-date:before {
-    content: '\f133';
-    margin-right: 5px;
-    display: inline-block;
-    font: normal normal normal 14px/1 FontAwesome;
-    font-size: inherit;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale; }
-
-.widget_recent_comments ul:not([class]) li {
-  margin-bottom: 20px; }
-
-.widget_recent_comments .recentcomments {
-  margin-bottom: 20px; }
-  .widget_recent_comments .recentcomments:before {
-    content: '\f075';
-    display: inline-block;
-    font: normal normal normal 14px/1 FontAwesome;
-    font-size: inherit;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-size: 14px;
-    font-size: 0.875rem;
-    margin-right: 5px; }
-  .widget_recent_comments .recentcomments .comment-author-link a {
-    font-weight: initial; }
-  .widget_recent_comments .recentcomments .comment-author-link a:before {
-    content: none; }
-  .widget_recent_comments .recentcomments a:before {
-    content: '';
+.widget {
+  margin-bottom: 50px; }
+  .widget-title {
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 25px; }
+  .widget + .widget {
+    padding-top: 40px;
+    border-top: 1px solid #ebeced; }
+  .sidebar .widget,
+  .footer-area .widget {
+    margin-top: 1.5em; }
+    @media (min-width: 940px) {
+      .sidebar .widget,
+      .footer-area .widget {
+        margin-top: 3em; } }
+  .widget select {
+    width: 100%; }
+  .widget ul:not([class]) {
+    list-style: none;
+    margin-left: 0; }
+    .widget ul:not([class]) li {
+      margin-bottom: 4px; }
+  .widget_recent_entries ul:not([class]) li {
+    margin-bottom: 20px; }
+  .widget_recent_entries .post-date {
     display: block; }
-
-.widget_tag_cloud .tag-cloud-link {
-  display: inline-block;
-  margin-right: 2px;
-  margin-bottom: 5px;
-  padding: 6px 10px;
-  font-size: 14px !important;
-  border-radius: 4px;
-  border: 1px solid #ebeced; }
-  .widget_tag_cloud .tag-cloud-link:hover {
-    background-color: #ebeced; }
-
-.widget_calendar .calendar_wrap {
-  border: 1px solid #ebeced; }
-
-.widget_calendar table {
-  margin-bottom: 0;
-  padding-left: 5.5%;
-  padding-right: 5.5%;
-  padding-bottom: 4%;
-  table-layout: fixed;
-  width: 100%;
-  position: relative;
-  border-collapse: initial; }
-  .widget_calendar table th,
-  .widget_calendar table td,
-  .widget_calendar table thead th,
-  .widget_calendar table tbody + tbody {
-    border: none; }
-
-.widget_calendar thead {
-  text-align: center; }
-
-.widget_calendar caption {
-  padding: 20px 0;
-  font-size: 20px;
-  font-size: 1.25rem;
-  text-align: center;
-  font-weight: 400; }
-
-.widget_calendar th {
-  padding: 0 0 40px;
-  font-weight: inherit; }
-
-.widget_calendar tbody:before {
-  position: absolute;
-  content: '';
-  left: 0;
-  right: 0;
-  height: 1px;
-  margin-top: -15px;
-  background-color: #ebeced; }
-
-.widget_calendar tbody td {
-  position: relative;
-  text-align: center;
-  line-height: 44px;
-  height: 44px; }
-  .widget_calendar tbody td a {
+    .widget_recent_entries .post-date:before {
+      content: '\f133';
+      margin-right: 5px;
+      display: inline-block;
+      font: normal normal normal 14px/1 FontAwesome;
+      font-size: inherit;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale; }
+  .widget_recent_comments ul:not([class]) li {
+    margin-bottom: 20px; }
+  .widget_recent_comments .recentcomments {
+    margin-bottom: 20px; }
+    .widget_recent_comments .recentcomments:before {
+      content: '\f075';
+      display: inline-block;
+      font: normal normal normal 14px/1 FontAwesome;
+      font-size: inherit;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-size: 14px;
+      font-size: 0.875rem;
+      margin-right: 5px; }
+    .widget_recent_comments .recentcomments .comment-author-link a {
+      font-weight: initial; }
+    .widget_recent_comments .recentcomments .comment-author-link a:before {
+      content: none; }
+    .widget_recent_comments .recentcomments a:before {
+      content: '';
+      display: block; }
+  .widget_tag_cloud .tag-cloud-link {
     display: inline-block;
-    width: 45px;
-    max-width: 100%;
-    height: 45px;
-    line-height: 45px;
-    background-color: #ebeced;
-    border-radius: 50%; }
-
-.widget_calendar tfoot td {
-  position: absolute;
-  top: 26px; }
-  .widget_calendar tfoot td#prev {
-    left: 10%; }
-  .widget_calendar tfoot td#next {
-    right: 10%; }
-
-.widget_calendar td#today {
-  font-weight: 900; }
-
-.widget_calendar #next {
-  text-align: right; }
+    margin-right: 2px;
+    margin-bottom: 5px;
+    padding: 6px 10px;
+    font-size: 14px !important;
+    border-radius: 4px;
+    border: 1px solid #ebeced; }
+    .widget_tag_cloud .tag-cloud-link:hover {
+      background-color: #ebeced; }
+  .widget_calendar .calendar_wrap {
+    border: 1px solid #ebeced; }
+  .widget_calendar table {
+    margin-bottom: 0;
+    padding-left: 5.5%;
+    padding-right: 5.5%;
+    padding-bottom: 4%;
+    table-layout: fixed;
+    width: 100%;
+    position: relative;
+    border-collapse: initial; }
+    .widget_calendar table th,
+    .widget_calendar table td,
+    .widget_calendar table thead th,
+    .widget_calendar table tbody + tbody {
+      border: none; }
+  .widget_calendar thead {
+    text-align: center; }
+  .widget_calendar caption {
+    padding: 20px 0;
+    font-size: 20px;
+    font-size: 1.25rem;
+    text-align: center;
+    font-weight: 400; }
+  .widget_calendar th {
+    padding: 0 0 40px;
+    font-weight: inherit; }
+  .widget_calendar tbody:before {
+    position: absolute;
+    content: '';
+    left: 0;
+    right: 0;
+    height: 1px;
+    margin-top: -15px;
+    background-color: #ebeced; }
+  .widget_calendar tbody td {
+    position: relative;
+    text-align: center;
+    line-height: 44px;
+    height: 44px; }
+    .widget_calendar tbody td a {
+      display: inline-block;
+      width: 45px;
+      max-width: 100%;
+      height: 45px;
+      line-height: 45px;
+      background-color: #ebeced;
+      border-radius: 50%; }
+  .widget_calendar tfoot td {
+    position: absolute;
+    top: 26px; }
+    .widget_calendar tfoot td#prev {
+      left: 10%; }
+    .widget_calendar tfoot td#next {
+      right: 10%; }
+  .widget_calendar td#today {
+    font-weight: 900; }
+  .widget_calendar #next {
+    text-align: right; }
 
 /*--------------------------------------------------------------
 # Media

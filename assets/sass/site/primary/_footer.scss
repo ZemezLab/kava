@@ -1,10 +1,12 @@
 .site-footer {
 	&__wrap {
-		padding-top: 30px;
-		padding-bottom: 30px;
 		@include font-size(11/16);
 		line-height: 20px;
 		.space-between-content {
+			&:not(:empty) {
+				padding-top: 30px;
+				padding-bottom: 30px;
+			}
 			align-items: center;
 			@include media-breakpoint-down(xs) {
 				display: block;

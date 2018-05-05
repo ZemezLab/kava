@@ -1,11 +1,11 @@
 .widget {
+	margin-bottom: 50px;
 	&-title {
 		text-transform: uppercase;
 		margin-top: 0;
 		margin-bottom: 25px;
 	}
 	&+.widget {
-		margin-top: 50px;
 		padding-top: 40px;
 		border-top: 1px solid $color__background-hr;
 	}
@@ -14,14 +14,6 @@
 		margin-top: 1.5em;
 		@include media-breakpoint-up(md) {
 			margin-top: 3em;
-		}
-	}
-	&:last-child {
-		.widget-area & {
-			margin-bottom: 1em;
-			@include media-breakpoint-up(md) {
-				margin-bottom: 2em;
-			}
 		}
 	}
 	select {

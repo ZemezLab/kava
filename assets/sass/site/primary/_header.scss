@@ -1,7 +1,7 @@
 .site-header {
+	padding-bottom: 35px;
 	&__wrap {
 		padding-top: 18px;
-		padding-bottom: 36px;
 		@include media-breakpoint-up(md) {
 			&.isStick {
 				position: fixed;

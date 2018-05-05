@@ -2,7 +2,7 @@ a {
 	text-decoration: none;
 	transition: all 0.3s ease;
 	&:focus {
-		outline: thin dotted;
+		outline: none;
 	}
 	&:hover,
 	&:active {
