@@ -67,7 +67,7 @@ if ( ! class_exists( 'Kava_Blog_Layouts_Module' ) ) {
 			add_filter( 'kava-theme/posts/template-part-slug', array( $this, 'apply_layout_template' ) );
 			add_filter( 'kava-theme/posts/post-style', array( $this, 'apply_style_template' ) );
 			add_filter( 'kava-theme/posts/list-class', array( $this, 'add_list_class' ) );
-			add_filter( 'kava-theme/wrapper/site-content-container-enabled', array( $this, 'disable_site_content_container' ) );
+			add_filter( 'kava-theme/site-content/container-enabled', array( $this, 'disable_site_content_container' ) );
 
 		}
 

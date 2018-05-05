@@ -73,7 +73,7 @@ if ( ! function_exists( 'kava_wc_wrapper_before' ) ) {
 	 */
 	function kava_wc_wrapper_before() {
 		?>
-			<div <?php echo kava_get_site_content_wrapper_classes() ?>>
+			<div <?php kava_content_class() ?>>
 			<div class="row">
 			<div id="primary" <?php kava_primary_content_class(); ?>>
 			<main id="main" class="site-main">

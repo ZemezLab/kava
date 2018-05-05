@@ -6,27 +6,6 @@
  */
 
 /**
- * Prints site header container CSS classes
- *
- * @since   1.0.0
- * @param   string  $classes Additional classes.
- * @return  void
- */
-function kava_header_container_class( $classes = null ) {
-	if ( $classes ) {
-		$classes .= ' ';
-	}
-
-	$sticky = kava_theme()->customizer->get_value( 'is_sticky_mode' );
-
-	if ( $sticky ) {
-		$classes .= 'header-sticky';
-	}
-
-	echo 'class="' . $classes . '"';
-}
-
-/**
  * Retrieve a CSS class attribute for container based on `Page Layout Type` option.
  *
  * @since  1.0.0
@@ -50,23 +29,79 @@ function kava_get_container_classes( $classes = null, $fullwidth = false ) {
 }
 
 /**
- * Retrieve a site content wrapper class.
+ * Prints site header container CSS classes
+ *
+ * @since   1.0.0
+ * @param   string  $classes Additional classes.
+ * @return  void
+ */
+function kava_header_class( $classes = null ) {
+	if ( $classes ) {
+		$classes .= ' ';
+	}
+
+	$classes .= 'site-header__wrap';
+
+	$site_header_container = apply_filters(
+		'kava-theme/site-header/container-enabled',
+		true
+	);
+
+	if ( $site_header_container ) {
+		$classes .= ' container';
+	}
+
+	$sticky = kava_theme()->customizer->get_value( 'is_sticky_mode' );
+
+	if ( $sticky ) {
+		$classes .= 'header-sticky';
+	}
+
+	echo 'class="' . apply_filters( 'kava-theme/site-header/content-classes', $classes ) . '"';
+}
+
+/**
+ * Prints site content container CSS classes
  *
  * @since  1.0.0
  * @return string
  */
-function kava_get_site_content_wrapper_classes( $classes = null ) {
+function kava_content_class( $classes = null ) {
 	if ( $classes ) {
 		$classes .= ' ';
 	}
 	
 	$classes .= 'site-content__wrap';
-	$site_content_container = apply_filters( 'kava-theme/wrapper/site-content-container-enabled', true );
+
+	$site_content_container = apply_filters( 'kava-theme/site-content/container-enabled', true );
+
 	if ( $site_content_container ) {
 		$classes .= ' container';
 	}
 
-	return 'class="' . apply_filters( 'kava-theme/wrapper/site-content-classes', $classes ) . '"';
+	echo 'class="' . apply_filters( 'kava-theme/site-content/content-classes', $classes ) . '"';
+}
+
+/**
+ * Prints site footer container CSS classes
+ *
+ * @since  1.0.0
+ * @return string
+ */
+function kava_footer_class( $classes = null ) {
+	if ( $classes ) {
+		$classes .= ' ';
+	}
+	
+	$classes .= 'site-footer__wrap';
+
+	$site_content_container = apply_filters( 'kava-theme/site-footer/container-enabled', true );
+
+	if ( $site_content_container ) {
+		$classes .= ' container';
+	}
+
+	echo 'class="' . apply_filters( 'kava-theme/site-footer/content-classes', $classes ) . '"';
 }
 
 /**

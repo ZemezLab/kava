@@ -2249,16 +2249,16 @@ body.admin-bar .mobile-menu .menu {
 /*--------------------------------------------------------------
 ## Header
 --------------------------------------------------------------*/
-.header-container {
+.site-header__wrap {
   padding-top: 18px;
   padding-bottom: 36px; }
   @media (min-width: 940px) {
-    .header-container.isStick {
+    .site-header__wrap.isStick {
       position: fixed;
       z-index: 1000;
       right: 0;
       left: 0; } }
-  .header-container .space-between-content {
+  .site-header__wrap .space-between-content {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center; }
@@ -2300,18 +2300,18 @@ body.admin-bar .mobile-menu .menu {
 /*--------------------------------------------------------------
 ## Footer
 --------------------------------------------------------------*/
-.footer-container {
+.site-footer__wrap {
   padding-top: 30px;
   padding-bottom: 30px;
   font-size: 11px;
   font-size: 0.6875rem;
   line-height: 20px; }
-  .footer-container__wrap {
+  .site-footer__wrap .space-between-content {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center; }
     @media (max-width: 639px) {
-      .footer-container__wrap .space-between-content {
+      .site-footer__wrap .space-between-content {
         display: block;
         text-align: center; } }
 

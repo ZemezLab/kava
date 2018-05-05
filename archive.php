@@ -11,7 +11,7 @@ get_header();
 
 	do_action( 'kava-theme/site/site-content-before', 'archive' ); ?>
 
-	<div <?php echo kava_get_site_content_wrapper_classes() ?>>
+	<div <?php kava_content_class() ?>>
 
 		<header class="page-header">
 			<?php
