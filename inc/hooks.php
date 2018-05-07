@@ -147,7 +147,7 @@ function kava_add_theme_icons_to_icon_control( $controls_manager ) {
 	$default_icons = $controls_manager->get_control( 'icon' )->get_settings( 'options' );
 	$nc_mini_icons_data = array(
 		'icons'  => kava_get_nc_mini_icons_set(),
-		'format' => 'nc-icon-mini %s',
+		'format' => 'nc-icon-outline %s',
 	);
 	$nc_mini_icons_array = array();
 	foreach ( $nc_mini_icons_data['icons'] as $icon ) {
@@ -163,8 +163,8 @@ function kava_add_theme_icons_to_icon_control( $controls_manager ) {
  */
 function kava_enqueue_icon_font() {
 	wp_enqueue_style(
-		'nucleo-mini',
-		get_parent_theme_file_uri( 'nucleo-mini-icon-font/nucleo-mini.css' ),
+		'nucleo-outline',
+		get_parent_theme_file_uri( 'nucleo-outline-icon-font/nucleo-outline.css' ),
 		array(),
 		'1.0.0'
 	);
@@ -179,7 +179,7 @@ function kava_get_nc_mini_icons_set() {
 	static $nc_mini_icons;
 	if ( ! $nc_mini_icons ) {
 		ob_start();
-		include get_parent_theme_file_path( 'nucleo-mini-icon-font/nucleo-mini.css' );
+		include get_parent_theme_file_path( 'nucleo-outline-icon-font/nucleo-outline.css' );
 		$result = ob_get_clean();
 		
 		preg_match_all( '/\.([-_a-zA-Z0-9]+):before[, {]/', $result, $matches );

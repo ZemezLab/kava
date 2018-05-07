@@ -16,7 +16,7 @@ if ( ! function_exists( 'kava_get_allowed_modules' ) ) {
 			'blog-layouts'    => array(),
 			'crocoblock'      => array(),
 			'woo'             => array(),
-			'woo-breadcrumbs' => array(),
+			//'woo-breadcrumbs' => array(),
 			'woo-page-title'  => array(),
 		) );
 	}
