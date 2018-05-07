@@ -4,6 +4,11 @@
  */
 
 $title = woocommerce_page_title( false ) ? '<h1 class="woocommerce-products-header__title page-title">' . woocommerce_page_title( false ) . '</h1>' : '';
+
+if ( !is_shop() && !is_product_taxonomy() ){
+	return;
+}
+
 ?>
 
 <header class="woocommerce-products-header container">
