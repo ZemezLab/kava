@@ -2248,20 +2248,19 @@ body.admin-bar .mobile-menu .menu {
 /*--------------------------------------------------------------
 ## Header
 --------------------------------------------------------------*/
-.site-header {
+.site-header__wrap {
+  padding-top: 18px;
   padding-bottom: 35px; }
-  .site-header__wrap {
-    padding-top: 18px; }
-    @media (min-width: 940px) {
-      .site-header__wrap.isStick {
-        position: fixed;
-        z-index: 1000;
-        right: 0;
-        left: 0; } }
-    .site-header__wrap .space-between-content {
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      align-items: center; }
+  @media (min-width: 940px) {
+    .site-header__wrap.isStick {
+      position: fixed;
+      z-index: 1000;
+      right: 0;
+      left: 0; } }
+  .site-header__wrap .space-between-content {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center; }
 
 .site-branding .custom-logo {
   display: block; }

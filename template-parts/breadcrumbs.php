@@ -13,8 +13,10 @@ if ( !$breadcrumbs_visibillity ) {
 	return;
 }
 
-?><div class="breadcrumbs-area container">
-	<?php do_action( 'kava-theme/breadcrumbs/before' ); ?>
-	<?php do_action( 'cx_breadcrumbs/render' ); ?>
-	<?php do_action( 'kava-theme/breadcrumbs/after' ); ?>
+?><div class="site-breadcrumbs">
+	<div class="site-breadcrumbs__wrap container">
+		<?php do_action( 'kava-theme/breadcrumbs/before' ); ?>
+		<?php do_action( 'cx_breadcrumbs/render' ); ?>
+		<?php do_action( 'kava-theme/breadcrumbs/after' ); ?>
+	</div>
 </div><?php
