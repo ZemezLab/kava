@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Custom WooCommerce breadcrumbs for Cherry
  * (extends default Cherry breadcrumbs)
@@ -12,19 +13,15 @@ class Kava_WC_Breadcrumbs extends CX_Breadcrumbs {
 
 		$this->is_extend = true;
 
-		if ( is_front_page() ) {
-			// if we on front page
-			$this->add_front_page();
-		} else {
-			// do this for all other pages
-			$this->add_network_home_link();
-			$this->add_site_home_link();
-			$this->add_shop_page();
-			if ( is_singular( 'product' ) ) {
-				$this->add_single_product();
-			} elseif ( is_tax( array( 'product_cat', 'product_tag' ) ) ) {
-				$this->add_product_tax();
-			}
+		// do this for all other pages
+		$this->add_network_home_link();
+		$this->add_site_home_link();
+		$this->add_shop_page();
+
+		if ( is_singular( 'product' ) ) {
+			$this->add_single_product();
+		} elseif ( is_tax( array( 'product_cat', 'product_tag' ) ) ) {
+			$this->add_product_tax();
 		}
 
 		/* Add paged items if they exist. */

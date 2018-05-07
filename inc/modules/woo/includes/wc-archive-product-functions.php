@@ -86,7 +86,7 @@ if ( ! function_exists( 'kava_wc_product_loop_start' ) ) {
 				break;
 		}
 
-		$columns = apply_filters( 'kava-theme/woo/products_loop_columns', $columns );
+		$columns = apply_filters( 'kava-theme/woo/products_loop_columns', $columns, $context );
 
 		if ( is_shop() || is_product_taxonomy() || is_product() ) {
 			$ob_get_clean = sprintf(
