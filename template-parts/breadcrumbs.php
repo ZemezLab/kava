@@ -13,8 +13,8 @@ if ( !$breadcrumbs_visibillity ) {
 	return;
 }
 
-?><div class="site-breadcrumbs">
-	<div class="site-breadcrumbs__wrap container">
+?><div <?php echo kava_get_container_classes( 'site-breadcrumbs' ); ?>>
+	<div <?php kava_breadcrumbs_class(); ?>>
 		<?php do_action( 'kava-theme/breadcrumbs/before' ); ?>
 		<?php do_action( 'cx_breadcrumbs/render' ); ?>
 		<?php do_action( 'kava-theme/breadcrumbs/after' ); ?>

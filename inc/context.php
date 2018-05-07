@@ -61,6 +61,32 @@ function kava_header_class( $classes = null ) {
 }
 
 /**
+ * Prints site breadcrumbs container CSS classes
+ *
+ * @since   1.0.0
+ * @param   string  $classes Additional classes.
+ * @return  void
+ */
+function kava_breadcrumbs_class( $classes = null ) {
+	if ( $classes ) {
+		$classes .= ' ';
+	}
+
+	$classes .= 'site-breadcrumbs__wrap';
+
+	$site_breadcrumbs_container = apply_filters(
+		'kava-theme/site-breadcrumbs/container-enabled',
+		true
+	);
+
+	if ( $site_breadcrumbs_container ) {
+		$classes .= ' container';
+	}
+
+	echo 'class="' . apply_filters( 'kava-theme/site-breadcrumbs/content-classes', $classes ) . '"';
+}
+
+/**
  * Prints site content container CSS classes
  *
  * @since  1.0.0
