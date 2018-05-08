@@ -5,28 +5,36 @@
  * @package Kava
  */
 
-add_action( 'woocommerce_before_shop_loop', 'wc_loop_products_panel_open', 15 );
-add_action( 'woocommerce_before_shop_loop', 'wc_loop_products_panel_close', 50 );
+add_action( 'woocommerce_before_shop_loop', 'kava_wc_loop_products_panel_open', 15 );
+add_action( 'woocommerce_before_shop_loop', 'kava_wc_loop_products_panel_close', 50 );
 add_filter( 'loop_shop_columns', 'kava_wc_loop_columns' );
 add_filter( 'woocommerce_product_loop_start', 'kava_wc_product_loop_start' );
 
-if ( ! function_exists( 'wc_loop_products_panel_open' ) ) {
+if ( ! function_exists( 'kava_wc_loop_products_panel_open' ) ) {
 
 	/**
 	 * Archive products panel wrapper open
 	 */
-	function wc_loop_products_panel_open() {
+	function kava_wc_loop_products_panel_open() {
+		if ( ! wc_get_loop_prop( 'is_paginated' ) || ! woocommerce_products_will_display() ) {
+			return;
+		}
+
 		echo '<div class="woocommerce-products__panel">';
 	}
 
 }
 
-if ( ! function_exists( 'wc_loop_products_panel_close' ) ) {
+if ( ! function_exists( 'kava_wc_loop_products_panel_close' ) ) {
 
 	/**
 	 * Archive products panel wrapper close
 	 */
-	function wc_loop_products_panel_close() {
+	function kava_wc_loop_products_panel_close() {
+		if ( ! wc_get_loop_prop( 'is_paginated' ) || ! woocommerce_products_will_display() ) {
+			return;
+		}
+
 		echo '</div>';
 	}
 

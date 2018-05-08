@@ -199,6 +199,10 @@ label.inline input[type="checkbox"] + span::after, .woocommerce-cart table.cart 
   border-bottom: 1px solid #ebeced;
 }
 
+.woocommerce-products__panel:empty {
+  display: none !important;
+}
+
 .woocommerce-result-count {
   order: 1;
   margin: 0;
