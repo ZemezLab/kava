@@ -16,7 +16,7 @@ get_header();
 
 	do_action( 'kava-theme/site/site-content-before', 'page' ); ?>
 
-	<div class="site-content__wrap container">
+	<div <?php kava_content_class() ?>>
 		<div class="row">
 
 			<?php do_action( 'kava-theme/site/primary-before', 'page' ); ?>

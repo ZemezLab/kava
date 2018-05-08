@@ -9,10 +9,31 @@
 		font-weight: 700;
 	}
 	&-header.container,
+	&-breadcrumbs.container,
 	&-content.container,
 	&-footer.container {
 		padding-left: 0;
 		padding-right: 0;
+	}
+	&-breadcrumbs {
+		margin-top: 20px;
+	}
+	&-content {
+		body:not(.page-template-fullwidth-content) & {
+			margin-top: 30px;
+			margin-bottom: 30px;
+		}
+	}
+	&-main {
+		>*:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+#secondary {
+	@include media-breakpoint-down(sm) {
+		margin-top: 40px;
 	}
 }
 

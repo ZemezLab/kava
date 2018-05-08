@@ -8,31 +8,14 @@
  * @package Kava
  */
 
-get_header(); 
+get_header();
 
-	do_action( 'kava-theme/site/site-content-before', 'page' ); ?>
+	while ( have_posts() ) : the_post();
 
-	<div class="site-content__wrap">
+		?><article id="post-<?php the_ID(); ?>" <?php post_class(); ?>><?php
+			the_content();
+		?></article><!-- #post-<?php the_ID(); ?> --><?php
 
-		<?php do_action( 'kava-theme/site/main-before', 'page' ); ?>
-
-		<main id="main" class="site-main"><?php
-			while ( have_posts() ) : the_post();
-
-				get_template_part( 'template-parts/content', 'page' );
-
-				// If comments are open or we have at least one comment, load up the comment template.
-				if ( comments_open() || get_comments_number() ) :
-					comments_template();
-				endif;
-
-			endwhile; // End of the loop.
-		?></main><!-- #main -->
-
-		<?php do_action( 'kava-theme/site/main-after', 'page' ); ?>
-
-	</div>
-
-	<?php do_action( 'kava-theme/site/site-content-after', 'page' );
+	endwhile; // End of the loop.
 
 get_footer();
