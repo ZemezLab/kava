@@ -1,0 +1,23 @@
+$loader-width: 20px;
+$loader-border-width: 3px;
+
+div.wpcf7 .ajax-loader {
+	position: relative;
+	border-radius: 50%;
+	width: $loader-width;
+	height: $loader-width;
+	border: $loader-border-width solid transparent;
+	margin: 0 15px;
+	background: none;
+	animation: tm_spin 1s linear infinite;
+	z-index: 11;
+}
+
+@keyframes tm_spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}

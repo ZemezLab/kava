@@ -1388,15 +1388,15 @@ dd {
   background-color: #fff; }
 
 .page-preloader {
-  display: block;
   position: relative;
+  display: block;
   left: 50%;
   top: 50%;
+  border-radius: 50%;
   width: 30px;
   height: 30px;
-  margin: -16.5px 0 0 -16.5px;
-  border-radius: 50%;
   border: 3px solid transparent;
+  margin: -16.5px 0 0 -16.5px;
   -webkit-animation: tm_spin 1s linear infinite;
   animation: tm_spin 1s linear infinite;
   z-index: 11; }
@@ -2290,14 +2290,14 @@ body.admin-bar .mobile-menu .menu {
   font-size: 11px;
   font-size: 0.6875rem;
   line-height: 20px; }
-  @media (max-width: 639px) {
-    .top-panel .space-between-content {
-      display: block;
-      text-align: center; } }
-  .top-panel__wrap {
+  .top-panel .space-between-content {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center; }
+    @media (max-width: 639px) {
+      .top-panel .space-between-content {
+        display: block;
+        text-align: center; } }
   .top-panel-content__left > *, .top-panel-content__right > * {
     display: inline-block;
     vertical-align: middle; }
@@ -2524,11 +2524,10 @@ span.tags-links {
 /*--------------------------------------------------------------
 ### Search Results
 --------------------------------------------------------------*/
-.search-item + .search-item {
-  margin-top: 50px; }
-
-.search-item .entry-title, .search-item .entry-meta {
-  margin-bottom: 5px; }
+.search-item {
+  margin-bottom: 50px; }
+  .search-item .entry-title, .search-item .entry-meta {
+    margin-bottom: 5px; }
 
 /*--------------------------------------------------------------
 ## Post Formats
@@ -3428,6 +3427,42 @@ object {
 /*--------------------------------------------------------------
 # Plugins
 --------------------------------------------------------------*/
+/*--------------------------------------------------------------
+## Jet plugins
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+## Jet Blog
+--------------------------------------------------------------*/
+.jet-smart-listing-wrap.jet-processing + div.jet-smart-listing-loading {
+  width: 30px;
+  height: 30px;
+  border: 3px solid transparent;
+  border-top-color: red;
+  border-right-color: red; }
+
+/*--------------------------------------------------------------
+## WPCF7
+--------------------------------------------------------------*/
+div.wpcf7 .ajax-loader {
+  position: relative;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  border: 3px solid transparent;
+  margin: 0 15px;
+  background: none;
+  -webkit-animation: tm_spin 1s linear infinite;
+  animation: tm_spin 1s linear infinite;
+  z-index: 11; }
+
+@keyframes tm_spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
 /*--------------------------------------------------------------
 ## WPML
 --------------------------------------------------------------*/

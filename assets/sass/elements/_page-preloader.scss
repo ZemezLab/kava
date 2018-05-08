@@ -1,5 +1,5 @@
-$loader-width: 30px;
-$border-width: 3px;
+$main-loader-width: 30px;
+$main-loader-border-width: 3px;
 
 .page-preloader-cover {
 	position: fixed;
@@ -13,15 +13,15 @@ $border-width: 3px;
 }
 
 .page-preloader {
-	display: block;
 	position: relative;
+	display: block;
 	left: 50%;
 	top: 50%;
-	width: $loader-width;
-	height: $loader-width;
-	margin: ($loader-width+$border-width)/-2 0 0 ($loader-width+$border-width)/-2;
 	border-radius: 50%;
-	border: $border-width solid transparent;
+	width: $main-loader-width;
+	height: $main-loader-width;
+	border: $main-loader-border-width solid transparent;
+	margin: ($main-loader-width+$main-loader-border-width)/-2 0 0 ($main-loader-width+$main-loader-border-width)/-2;
 	animation: tm_spin 1s linear infinite;
 	z-index: 11;
 }
