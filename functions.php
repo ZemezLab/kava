@@ -101,9 +101,7 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		 * @return string
 		 */
 		public function version() {
-
-			return $this->version;
-
+			return apply_filters( 'kava-theme/version', $this->version );
 		}
 
 		/**
@@ -410,7 +408,7 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 				'kava-theme-script',
 				get_theme_file_uri( 'assets/js/theme-script.js' ),
 				$scripts_depends,
-				$this->version,
+				$this->version(),
 				true
 			);
 
@@ -454,7 +452,7 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 					'rtl',
 					get_theme_file_uri( 'rtl.css' ),
 					false,
-					$this->version
+					$this->version()
 				);
 			}
 
@@ -541,7 +539,7 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 function kava_theme() {
 
 	return Kava_Theme_Setup::get_instance();
-	
+
 }
 
 kava_theme();
