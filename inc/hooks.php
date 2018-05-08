@@ -65,7 +65,7 @@ function kava_extra_body_classes( $classes ) {
 	if( 'none' !== $sb_position ) {
 		array_push( $options_based_classes, 'sidebar_enabled', 'position-' . $sb_position, 'sidebar-' . str_replace( '/', '-', $sidebar ) );
 	}
-	
+
 	return array_merge( $classes, $options_based_classes );
 }
 
@@ -127,67 +127,4 @@ function kava_modify_comment_form( $args ) {
 	$args['comment_field'] = '<p class="comment-form-comment"><textarea id="comment" class="comment-form__field" name="comment" placeholder="' . esc_html__( 'Comments *', 'kava' ) . '" cols="45" rows="7" aria-required="true" required="required"></textarea></p>';
 
 	return $args;
-}
-
-
-
-
-/* Fore Kava Extras Plugin */
-
-add_action( 'elementor/controls/controls_registered', 'kava_add_theme_icons_to_icon_control', 20 );
-add_action( 'elementor/editor/after_enqueue_styles', 'kava_enqueue_icon_font' );
-add_action( 'wp_enqueue_scripts', 'kava_enqueue_icon_font' );
-
-/**
- * Add theme icons to the icon control.
- *
- * @param object $controls_manager Object Controls manager.
- */
-function kava_add_theme_icons_to_icon_control( $controls_manager ) {
-	$default_icons = $controls_manager->get_control( 'icon' )->get_settings( 'options' );
-	$nc_mini_icons_data = array(
-		'icons'  => kava_get_nc_mini_icons_set(),
-		'format' => 'nc-icon-outline %s',
-	);
-	$nc_mini_icons_array = array();
-	foreach ( $nc_mini_icons_data['icons'] as $icon ) {
-		$key = sprintf( $nc_mini_icons_data['format'], $icon );
-		$nc_mini_icons_array[ $key ] = $icon;
-	}
-	$new_icons = array_merge( $default_icons, $nc_mini_icons_array );
-	$controls_manager->get_control( 'icon' )->set_settings( 'options', $new_icons );
-}
-
-/**
- * Enqueue icon font.
- */
-function kava_enqueue_icon_font() {
-	wp_enqueue_style(
-		'nucleo-outline',
-		get_parent_theme_file_uri( 'nucleo-outline-icon-font/nucleo-outline.css' ),
-		array(),
-		'1.0.0'
-	);
-}
-
-/**
- * Get nc_mini icons set.
- *
- * @return array
- */
-function kava_get_nc_mini_icons_set() {
-	static $nc_mini_icons;
-	if ( ! $nc_mini_icons ) {
-		ob_start();
-		include get_parent_theme_file_path( 'nucleo-outline-icon-font/nucleo-outline.css' );
-		$result = ob_get_clean();
-		
-		preg_match_all( '/\.([-_a-zA-Z0-9]+):before[, {]/', $result, $matches );
-		if ( ! is_array( $matches ) || empty( $matches[1] ) ) {
-			return;
-		}
-		$nc_mini_icons = $matches[1];
-	}
-	
-	return $nc_mini_icons;
 }

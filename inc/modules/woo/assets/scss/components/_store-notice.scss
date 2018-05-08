@@ -1,0 +1,23 @@
+/**
+ * Store Notice
+ */
+
+.woocommerce-store-notice{
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	padding: 30px 80px;
+	display: flex;
+	justify-content: space-between;
+	
+	.admin-bar &{
+		top: 30px;
+	}
+	
+	.woocommerce-store-notice__dismiss-link{
+		&:hover{
+			text-decoration: underline;
+		}
+	}
+}
