@@ -641,6 +641,27 @@ label.inline input[type="checkbox"]:checked + span::after {
   opacity: 1;
 }
 
+/**
+ * Store Notice
+ */
+.woocommerce-store-notice {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding: 30px 80px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.admin-bar .woocommerce-store-notice {
+  top: 30px;
+}
+
+.woocommerce-store-notice .woocommerce-store-notice__dismiss-link:hover {
+  text-decoration: underline;
+}
+
 /*        Layouts        */
 /**
  * Shop layout
@@ -1308,20 +1329,6 @@ ul.products.columns--6 li.product {
 
 .woocommerce-checkout #order_review_heading {
   margin: 45px 0 30px;
-}
-
-.woocommerce-checkout .checkout_coupon {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.woocommerce-checkout .checkout_coupon .form-row-first {
-  flex-grow: 3;
-}
-
-.woocommerce-checkout .checkout_coupon .form-row-last {
-  margin-left: 5px;
 }
 
 .woocommerce-checkout label {

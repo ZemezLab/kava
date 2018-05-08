@@ -56,20 +56,6 @@
 		margin: 45px 0 30px;
 	}
 
-	.checkout_coupon {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-
-		.form-row-first {
-			flex-grow: 3;
-		}
-
-		.form-row-last {
-			margin-left: 5px;
-		}
-	}
-
 	label {
 		display: block;
 		font-size: $wc-label-fz;
