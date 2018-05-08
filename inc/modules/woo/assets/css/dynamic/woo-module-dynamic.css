@@ -320,3 +320,14 @@ table.woocommerce-table--order-downloads.shop_table tbody tr td.download-file .b
 .header-cart .amount{
 	color: $primary_text_color;
 }
+
+/*     Store Notice       */
+.woocommerce-store-notice{
+	background-color: $accent_color;
+	color: $invert_text_color;
+}
+
+.woocommerce-store-notice__dismiss-link:hover,
+.woocommerce-store-notice__dismiss-link{
+	color: $invert_text_color;
+}
