@@ -1696,6 +1696,7 @@ function kava_get_dynamic_css_options() {
 			get_theme_file_path( 'assets/css/dynamic/post-justify.css' ),
 			get_theme_file_path( 'assets/css/dynamic/post-masonry.css' ),
 			get_theme_file_path( 'assets/css/dynamic/widgets.css' ),
+			get_theme_file_path( 'assets/css/dynamic/plugins.css' ),
 		),
 		'options_cb'     => 'get_theme_mods',
 	) );

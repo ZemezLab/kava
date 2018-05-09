@@ -1,0 +1,6 @@
+/* Preloader */
+.jet-smart-listing-wrap.jet-processing + div.jet-smart-listing-loading,
+div.wpcf7 .ajax-loader {
+	border-top-color: $accent_color;
+	border-right-color: $accent_color;
+}

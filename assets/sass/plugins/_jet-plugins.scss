@@ -1,0 +1,13 @@
+/*--------------------------------------------------------------
+## Jet Blog
+--------------------------------------------------------------*/
+$loader-width: 30px;
+$loader-border-width: 3px;
+
+.jet-smart-listing-wrap.jet-processing + div.jet-smart-listing-loading {
+	width: $loader-width;
+	height: $loader-width;
+	border: $loader-border-width solid transparent;
+	border-top-color: red;
+	border-right-color: red;
+}
