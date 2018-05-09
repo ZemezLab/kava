@@ -349,7 +349,6 @@ select.orderby {
   font-size: 20px;
   line-height: 1;
   margin: 6px 0 16px 0;
-  display: flex;
 }
 
 .price ins, .price del {
@@ -359,12 +358,10 @@ select.orderby {
 .price ins {
   font-style: normal;
   border: none;
-  order: 0;
   margin-right: 5px;
 }
 
 .price del {
-  order: 1;
   color: #fd6d75;
 }
 
