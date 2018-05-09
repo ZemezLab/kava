@@ -7,7 +7,6 @@
 	font-size: $wc-grid-price-fz;
 	line-height: $wc-grid-price-lh;
 	margin: $wc-grid-price-offset;
-	display: flex;
 
 	ins, del {
 		line-height: 1;
@@ -16,7 +15,6 @@
 	ins {
 		font-style: normal;
 		border: none;
-		order: 0;
 		margin-right: 5px;
 		@if ($wc-grid-ins-price-fz != $wc-grid-price-fz) {
 			font-size: $wc-grid-ins-price-fz;
@@ -24,7 +22,6 @@
 	}
 
 	del {
-		order: 1;
 		color: $wc-sale-price-color;
 		@if ($wc-grid-del-price-fz != $wc-grid-price-fz) {
 			font-size: $wc-grid-del-price-fz;
