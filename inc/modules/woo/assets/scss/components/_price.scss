@@ -7,7 +7,8 @@
 	font-size: $wc-grid-price-fz;
 	line-height: $wc-grid-price-lh;
 	margin: $wc-grid-price-offset;
-
+	display: block;
+	
 	ins, del {
 		line-height: 1;
 	}

@@ -349,6 +349,7 @@ select.orderby {
   font-size: 20px;
   line-height: 1;
   margin: 6px 0 16px 0;
+  display: block;
 }
 
 .price ins, .price del {
@@ -1945,6 +1946,7 @@ table.woocommerce-table--order-downloads.shop_table tbody tr td.download-file .b
 .single-product .quantity label {
   clip: auto;
   position: relative !important;
+  top: 0;
   height: auto;
   width: auto;
   overflow: visible;
