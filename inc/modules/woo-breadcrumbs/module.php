@@ -69,15 +69,6 @@ if ( ! class_exists( 'Kava_Woo_Breadcrumbs_Module' ) ) {
 
 		}
 
-		/**
-		 * Module condition callback.
-		 *
-		 * @return bool|callable
-		 */
-		public function condition_cb() {
-			return class_exists( 'WooCommerce' );
-		}
-
 	}
 
 }

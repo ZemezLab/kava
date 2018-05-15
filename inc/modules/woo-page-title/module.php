@@ -51,14 +51,6 @@ if ( ! class_exists( 'Kava_Woo_Page_Title_Module' ) ) {
 			add_filter( 'woocommerce_show_page_title', '__return_false' );
 		}
 
-		/**
-		 * Module condition callback.
-		 *
-		 * @return bool|callable
-		 */
-		public function condition_cb() {
-			return class_exists( 'WooCommerce' );
-		}
 	}
 
 }
