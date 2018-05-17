@@ -7,6 +7,16 @@
 .elementor-woo-best-selling-products,
 .elementor-woo-top-rated-products,
 .elementor-woo-recent-products{
+	.star-rating {
+		margin: 30px 0 0 auto;
+	}
+	
+	.add_to_cart_button,
+	.product_type_variable{
+		display: block;
+	}
+	
+	// Columns resize styles
 	ul.products{
 		@for $i from 2 through 3 {
 			&.columns-#{$i} {

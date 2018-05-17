@@ -2210,6 +2210,27 @@ ol.commentlist li + li {
 /**
  * Jet elements widgets
  */
+.elementor-woo-featured-products .star-rating,
+.elementor-woo-sale-products .star-rating,
+.elementor-woo-best-selling-products .star-rating,
+.elementor-woo-top-rated-products .star-rating,
+.elementor-woo-recent-products .star-rating {
+  margin: 30px 0 0 auto;
+}
+
+.elementor-woo-featured-products .add_to_cart_button,
+.elementor-woo-featured-products .product_type_variable,
+.elementor-woo-sale-products .add_to_cart_button,
+.elementor-woo-sale-products .product_type_variable,
+.elementor-woo-best-selling-products .add_to_cart_button,
+.elementor-woo-best-selling-products .product_type_variable,
+.elementor-woo-top-rated-products .add_to_cart_button,
+.elementor-woo-top-rated-products .product_type_variable,
+.elementor-woo-recent-products .add_to_cart_button,
+.elementor-woo-recent-products .product_type_variable {
+  display: block;
+}
+
 @media (max-width: 1119px) {
   .elementor-woo-featured-products ul.products.columns-2 li.product,
   .elementor-woo-sale-products ul.products.columns-2 li.product,
