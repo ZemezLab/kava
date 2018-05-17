@@ -2376,7 +2376,7 @@ body.admin-bar .mobile-menu .menu {
       margin-bottom: 28px; }
     .grid-item .entry-header .entry-meta {
       margin-bottom: 3px; }
-  .grid-item .entry-footer .entry-meta > * {
+  .entry-footer .entry-meta > * {
     margin-top: 18px; }
   .entry-footer .entry-meta > *:first-child {
     margin-top: 0; }

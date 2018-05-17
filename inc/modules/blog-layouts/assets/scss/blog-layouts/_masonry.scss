@@ -13,8 +13,10 @@ $color__nothumb: #383838;
 	/* 4grids */
 	display: block;
 	> .post {
-		display: inline-block;
 		width: 100%;
+		-webkit-column-break-inside: avoid; /* Chrome, Safari, Opera */
+		page-break-inside: avoid; /* Firefox */
+		break-inside: avoid;
 		.post-thumbnail {
 			line-height: 0;
 		}
@@ -109,9 +111,13 @@ $color__nothumb: #383838;
 	/*-------------------
 	### V1 Styles
 	---------------------*/
+	&.list-style-default {
+		.posts-list__item.masonry-item {
+			margin-bottom: 60px;
+		}
+	}
 	&.list-style-default, &.list-style-v3 {
 		.posts-list__item.masonry-item {
-			margin-bottom: $grid-gutter-width;
 			.post-thumbnail {
 				margin-bottom: 20px; 
 			}
@@ -144,6 +150,14 @@ $color__nothumb: #383838;
 					padding: 36px 38px 38px;
 				}
 			}
+		}
+	}
+	/*-------------------
+	### V3 Styles
+	---------------------*/
+	&.list-style-v3 {
+		.posts-list__item.masonry-item {
+			margin-bottom: $grid-gutter-width;
 		}
 	}
 	/*-------------------
