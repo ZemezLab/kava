@@ -55,5 +55,9 @@ WooCommerce styles override
 @import "single-product/tabs";
 @import "single-product/thumbnails";
 
+/*       Plugins        */
+@import "plugins/elementor";
+@import "plugins/jet-elements";
+
 /*       Widgets        */
 @import "widgets/widgets";

@@ -1,0 +1,54 @@
+/**
+ * Jet elements widgets
+ */
+
+.elementor-woo-featured-products,
+.elementor-woo-sale-products,
+.elementor-woo-best-selling-products,
+.elementor-woo-top-rated-products,
+.elementor-woo-recent-products{
+	ul.products{
+		@for $i from 2 through 3 {
+			&.columns-#{$i} {
+				li.product{
+					@include media-breakpoint-down( md ){
+						flex: 0 0 50%;
+						max-width: 50%;
+					}
+					
+					@media (max-width: 420px){
+						flex: 0 0 100%;
+						max-width: 100%;
+					}
+				}
+			}
+		}
+		
+		@for $i from 4 through 6 {
+			&.columns-#{$i} {
+				li.product{
+					@include media-breakpoint-down( lg ){
+						flex: 0 0 25%;
+						max-width: 25%;
+					}
+					
+					@include media-breakpoint-down( md ){
+						flex: 0 0 33.3333%;
+						max-width: 33.3333%;
+					}
+					
+					@include media-breakpoint-down( sm ){
+						flex: 0 0 50%;
+						max-width: 50%;
+					}
+					
+					@media (max-width: 420px){
+						flex: 0 0 100%;
+						max-width: 100%;
+					}
+				}
+			}
+		}
+		
+	}
+}
