@@ -159,6 +159,7 @@
 		min-height: 150px;
 		overflow-x: hidden;
 		overflow-y: auto;
+		text-align: left;
 		
 		/* Custom scroll bar styles */
 		&::-webkit-scrollbar {
@@ -181,6 +182,10 @@
 		&::-webkit-scrollbar-thumb:window-inactive {
 			background: rgba(161, 162, 164, 0.4);
 		}
+	}
+	
+	.woocommerce-mini-cart__total{
+		text-align: left;
 	}
 	
 	.widgettitle {

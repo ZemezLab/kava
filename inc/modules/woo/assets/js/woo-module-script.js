@@ -1,7 +1,9 @@
 ;var Kava_Woo_Module;
 
+
 (function ($) {
 	"use strict";
+
 
 	Kava_Woo_Module = {
 
@@ -10,13 +12,17 @@
 		},
 
 		wooHeaderCart: function () {
-			var headerCartButton = $('.header-cart__link');
+			var headerCartButton = $('.header-cart__link-wrap'),
 
-			headerCartButton.on('click', function ( event ) {
-				event.preventDefault();
+			toggleButton = function (e){
+				e.preventDefault();
 				$('.header-cart__content').toggleClass('show');
-			})
+			};
+
+			headerCartButton.on('click', toggleButton );
+
 		}
+
 	};
 
 	Kava_Woo_Module.init();

@@ -11,6 +11,7 @@
 		margin: 30px 0 0 auto;
 	}
 	
+	.product_type_grouped,
 	.add_to_cart_button,
 	.product_type_variable{
 		display: block;
@@ -26,7 +27,7 @@
 						max-width: 50%;
 					}
 					
-					@media (max-width: 420px){
+					@media (max-width: 480px){
 						flex: 0 0 100%;
 						max-width: 100%;
 					}
@@ -52,7 +53,7 @@
 						max-width: 50%;
 					}
 					
-					@media (max-width: 420px){
+					@media (max-width: 480px){
 						flex: 0 0 100%;
 						max-width: 100%;
 					}

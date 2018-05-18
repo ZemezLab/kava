@@ -2218,14 +2218,19 @@ ol.commentlist li + li {
   margin: 30px 0 0 auto;
 }
 
+.elementor-woo-featured-products .product_type_grouped,
 .elementor-woo-featured-products .add_to_cart_button,
 .elementor-woo-featured-products .product_type_variable,
+.elementor-woo-sale-products .product_type_grouped,
 .elementor-woo-sale-products .add_to_cart_button,
 .elementor-woo-sale-products .product_type_variable,
+.elementor-woo-best-selling-products .product_type_grouped,
 .elementor-woo-best-selling-products .add_to_cart_button,
 .elementor-woo-best-selling-products .product_type_variable,
+.elementor-woo-top-rated-products .product_type_grouped,
 .elementor-woo-top-rated-products .add_to_cart_button,
 .elementor-woo-top-rated-products .product_type_variable,
+.elementor-woo-recent-products .product_type_grouped,
 .elementor-woo-recent-products .add_to_cart_button,
 .elementor-woo-recent-products .product_type_variable {
   display: block;
@@ -2242,7 +2247,7 @@ ol.commentlist li + li {
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 480px) {
   .elementor-woo-featured-products ul.products.columns-2 li.product,
   .elementor-woo-sale-products ul.products.columns-2 li.product,
   .elementor-woo-best-selling-products ul.products.columns-2 li.product,
@@ -2264,7 +2269,7 @@ ol.commentlist li + li {
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 480px) {
   .elementor-woo-featured-products ul.products.columns-3 li.product,
   .elementor-woo-sale-products ul.products.columns-3 li.product,
   .elementor-woo-best-selling-products ul.products.columns-3 li.product,
@@ -2308,7 +2313,7 @@ ol.commentlist li + li {
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 480px) {
   .elementor-woo-featured-products ul.products.columns-4 li.product,
   .elementor-woo-sale-products ul.products.columns-4 li.product,
   .elementor-woo-best-selling-products ul.products.columns-4 li.product,
@@ -2352,7 +2357,7 @@ ol.commentlist li + li {
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 480px) {
   .elementor-woo-featured-products ul.products.columns-5 li.product,
   .elementor-woo-sale-products ul.products.columns-5 li.product,
   .elementor-woo-best-selling-products ul.products.columns-5 li.product,
@@ -2396,7 +2401,7 @@ ol.commentlist li + li {
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 480px) {
   .elementor-woo-featured-products ul.products.columns-6 li.product,
   .elementor-woo-sale-products ul.products.columns-6 li.product,
   .elementor-woo-best-selling-products ul.products.columns-6 li.product,
@@ -2847,6 +2852,7 @@ ol.commentlist li + li {
   min-height: 150px;
   overflow-x: hidden;
   overflow-y: auto;
+  text-align: left;
   /* Custom scroll bar styles */
   /* Track */
   /* Handle */
@@ -2870,6 +2876,10 @@ ol.commentlist li + li {
 
 .header-cart .product_list_widget::-webkit-scrollbar-thumb:window-inactive {
   background: rgba(161, 162, 164, 0.4);
+}
+
+.header-cart .woocommerce-mini-cart__total {
+  text-align: left;
 }
 
 .header-cart .widgettitle {

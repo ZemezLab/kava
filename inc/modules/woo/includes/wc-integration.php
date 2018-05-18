@@ -140,7 +140,7 @@ if ( ! function_exists( 'kava_wc_cart_link_fragment' ) ) {
 	function kava_wc_cart_link_fragment( $fragments ) {
 		ob_start();
 		kava_wc_cart_link();
-		$fragments['a.cart-contents'] = ob_get_clean();
+		$fragments['a.header-cart__link'] = ob_get_clean();
 
 		return $fragments;
 	}
@@ -164,6 +164,7 @@ if ( ! function_exists( 'kava_wc_cart_link' ) ) {
 			  esc_html__( '%d', 'kava' ),
 			  WC()->cart->get_cart_contents_count()
 		  );
+
 		  ?>
 				<i class="header-cart__link-icon"></i>
 				<span class="header-cart__link-count"><?php echo esc_html( $item_count_text ); ?></span>
