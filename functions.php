@@ -294,8 +294,12 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		 */
 		public function load_modules() {
 
+			$disabled_modules = apply_filters( 'kava-theme/disabled-modules', array() );
+
 			foreach ( kava_get_allowed_modules() as $module => $childs ) {
-				$this->load_module( $module, $childs );
+				if ( ! in_array( $module, $disabled_modules ) ) {
+					$this->load_module( $module, $childs );
+				}
 			}
 
 		}
