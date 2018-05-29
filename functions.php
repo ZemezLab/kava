@@ -192,6 +192,12 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		 */
 		public function theme_support() {
 
+			global $content_width;
+
+			if ( ! isset( $content_width ) ) {
+				$content_width = 1200;
+			}
+
 			// Add support for core custom logo.
 			add_theme_support( 'custom-logo', array(
 				'height'      => 35,
@@ -247,7 +253,6 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 			 * Classes.
 			*/
 			require_once get_theme_file_path( 'inc/classes/class-widget-area.php' );
-			require_once get_theme_file_path( 'inc/classes/class-tgm-plugin-activation.php' );
 
 			/**
 			 * Functions.
@@ -261,7 +266,6 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 			require_once get_theme_file_path( 'inc/breadcrumbs.php' );
 			require_once get_theme_file_path( 'inc/context.php' );
 			require_once get_theme_file_path( 'inc/hooks.php' );
-			require_once get_theme_file_path( 'inc/register-plugins.php' );
 
 		}
 

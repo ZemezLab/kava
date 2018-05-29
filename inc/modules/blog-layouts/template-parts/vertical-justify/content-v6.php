@@ -14,7 +14,7 @@
 		<?php if ( has_post_thumbnail() ) : ?>
 			<div class="justify-item__thumbnail" <?php kava_post_overlay_thumbnail( kava_justify_thumbnail_size(0) );?>></div>
 		<?php endif; ?>
-		<div class="justify-item-inner__top"><?php 
+		<div class="justify-item-inner__top"><?php
 			kava_post_comments( array(
 				'prefix' => '<i class="fa fa-comment" aria-hidden="true"></i>',
 				'class'  => 'comments-button'
@@ -28,14 +28,14 @@
 					kava_posted_in( array(
 						'prefix' => __( 'In', 'kava' ),
 						'delimiter' => ', '
-					) ); 
+					) );
 					kava_posted_on( array(
-						'prefix' => __( '', 'kava' ),
-					) ); 
+						'prefix' => '',
+					) );
 					kava_post_tags();
 					?>
 				</div><!-- .entry-meta -->
-				<h4 class="entry-title"><?php 
+				<h4 class="entry-title"><?php
 					kava_sticky_label();
 					the_title( '<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a>' );
 				?></h4>

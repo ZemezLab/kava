@@ -22,13 +22,13 @@
 					kava_posted_in( array(
 						'prefix' => __( 'In', 'kava' ),
 						'delimiter' => ', '
-					) ); 
+					) );
 					kava_posted_on( array(
-						'prefix' => __( '', 'kava' ),
-					) ); 
+						'prefix' => '',
+					) );
 					?>
 				</div><!-- .entry-meta -->
-				<h4 class="entry-title"><?php 
+				<h4 class="entry-title"><?php
 					kava_sticky_label();
 					the_title( '<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a>' );
 				?></h4>

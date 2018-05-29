@@ -1,118 +1,942 @@
 # Copyright (C) 2017 Automattic
 # This file is distributed under the GNU General Public License v2 or later.
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: _s 1.0.0\n"
+"Project-Id-Version: Kava\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/tags/_s\n"
-"POT-Creation-Date: 2018-04-18 12:26+0300\n"
+"POT-Creation-Date: 2018-05-29 11:17+0200\n"
+"PO-Revision-Date: 2018-05-29 11:17+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
-"Last-Translator: \n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"X-Generator: Poedit 2.0.2\n"
+"X-Generator: Poedit 1.7.6\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: _e;__;_x;esc_html__;esc_html_e;esc_attr__;esc_attr_e\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: framework\n"
 
-#: 404.php:17
+#: 404.php:27
 msgid "Oops! That page can&rsquo;t be found."
 msgstr ""
 
-#: 404.php:21
+#: 404.php:31
 msgid ""
 "It looks like nothing was found at this location. Maybe try one of the links "
 "below or a search?"
 msgstr ""
 
-#: 404.php:30
-msgid "Most Used Categories"
-msgstr ""
-
-#. translators: %1$s: smiley
-#: 404.php:47
-msgid "Try looking in the monthly archives. %1$s"
-msgstr ""
-
-#. translators: 1: title.
-#: comments.php:34
-msgid "One thought on &ldquo;%1$s&rdquo;"
-msgstr ""
-
-#: comments.php:67
+#: comments.php:59
 msgid "Comments are closed."
 msgstr ""
 
-#: footer.php:18
-msgid "https://wordpress.org/"
+#: config/menus.php:12
+msgid "Main"
 msgstr ""
 
-#. translators: %s: CMS name, i.e. WordPress.
-#: footer.php:20
-msgid "Proudly powered by %s"
+#: config/menus.php:13 inc/customizer.php:1223
+msgid "Footer"
 msgstr ""
 
-#. translators: 1: Theme name, 2: Theme author.
-#: footer.php:25
-msgid "Theme: %1$s by %2$s."
+#: config/menus.php:14
+msgid "Social"
 msgstr ""
 
-#: functions.php:47
-msgid "Primary"
-msgstr ""
-
-#: functions.php:105
+#: config/sidebars.php:13 inc/customizer.php:1252 inc/customizer.php:1393
 msgid "Sidebar"
 msgstr ""
 
-#: functions.php:107
-msgid "Add widgets here."
+#: config/sidebars.php:24
+msgid "Shop Sidebar"
 msgstr ""
 
-#: header.php:24
+#: header.php:26
 msgid "Skip to content"
 msgstr ""
 
-#: header.php:45
-msgid "Primary Menu"
+#: inc/customizer.php:31
+msgid "Show tagline on top panel"
 msgstr ""
 
-#. translators: used between list items, there is a space after the comma
-#: inc/template-tags.php:52
-msgid ", "
+#: inc/customizer.php:39
+msgid "Show ToTop button"
 msgstr ""
 
-#. translators: 1: list of categories.
-#: inc/template-tags.php:55
-msgid "Posted in %1$s"
+#: inc/customizer.php:47
+msgid "Show page preloader"
 msgstr ""
 
-#. translators: 1: list of tags.
-#: inc/template-tags.php:62
-msgid "Tagged %1$s"
+#: inc/customizer.php:55
+msgid "General Site settings"
 msgstr ""
 
-#. translators: %s: post title
-#: inc/template-tags.php:72
-msgid "Leave a Comment<span class=\"screen-reader-text\"> on %s</span>"
+#: inc/customizer.php:62
+msgid "Favicon"
 msgstr ""
 
-#. translators: %s: Name of current post. Only visible to screen readers
-#: inc/template-tags.php:89 template-parts/content-page.php:35
+#: inc/customizer.php:70 inc/customizer.php:979
+msgid "Breadcrumbs"
+msgstr ""
+
+#: inc/customizer.php:76
+msgid "Enable Breadcrumbs"
+msgstr ""
+
+#: inc/customizer.php:83
+msgid "Enable Breadcrumbs on front page"
+msgstr ""
+
+#: inc/customizer.php:90
+msgid "Enable page title in breadcrumbs area"
+msgstr ""
+
+#: inc/customizer.php:97
+msgid "Show full/minified path"
+msgstr ""
+
+#: inc/customizer.php:102
+msgid "Full"
+msgstr ""
+
+#: inc/customizer.php:103
+msgid "Minified"
+msgstr ""
+
+#: inc/customizer.php:110
+msgid "Social links"
+msgstr ""
+
+#: inc/customizer.php:116
+msgid "Show social links in header"
+msgstr ""
+
+#: inc/customizer.php:123
+msgid "Show social links in footer"
+msgstr ""
+
+#: inc/customizer.php:132
+msgid "Page Layout"
+msgstr ""
+
+#: inc/customizer.php:138
+msgid "Container type"
+msgstr ""
+
+#: inc/customizer.php:143
+msgid "Boxed"
+msgstr ""
+
+#: inc/customizer.php:144
+msgid "Fullwidth"
+msgstr ""
+
+#: inc/customizer.php:149
+msgid "Sidebar width"
+msgstr ""
+
+#: inc/customizer.php:163
+msgid "Color Scheme"
+msgstr ""
+
+#: inc/customizer.php:164
+msgid "Configure Color Scheme"
+msgstr ""
+
+#: inc/customizer.php:170
+msgid "Accent color"
+msgstr ""
+
+#: inc/customizer.php:177
+msgid "Primary Text color"
+msgstr ""
+
+#: inc/customizer.php:184
+msgid "Secondary Text color"
+msgstr ""
+
+#: inc/customizer.php:191
+msgid "Invert Text color"
+msgstr ""
+
+#: inc/customizer.php:198
+msgid "Link color"
+msgstr ""
+
+#: inc/customizer.php:205
+msgid "Link hover color"
+msgstr ""
+
+#: inc/customizer.php:212
+msgid "H1 color"
+msgstr ""
+
+#: inc/customizer.php:219
+msgid "H2 color"
+msgstr ""
+
+#: inc/customizer.php:226
+msgid "H3 color"
+msgstr ""
+
+#: inc/customizer.php:233
+msgid "H4 color"
+msgstr ""
+
+#: inc/customizer.php:240
+msgid "H5 color"
+msgstr ""
+
+#: inc/customizer.php:247
+msgid "H6 color"
+msgstr ""
+
+#: inc/customizer.php:256
+msgid "Typography"
+msgstr ""
+
+#: inc/customizer.php:257
+msgid "Configure typography settings"
+msgstr ""
+
+#: inc/customizer.php:264
+msgid "Body text"
+msgstr ""
+
+#: inc/customizer.php:270 inc/customizer.php:354 inc/customizer.php:438
+#: inc/customizer.php:522 inc/customizer.php:606 inc/customizer.php:690
+#: inc/customizer.php:774 inc/customizer.php:858 inc/customizer.php:909
+#: inc/customizer.php:985 inc/customizer.php:1060
+msgid "Font Family"
+msgstr ""
+
+#: inc/customizer.php:277 inc/customizer.php:361 inc/customizer.php:445
+#: inc/customizer.php:529 inc/customizer.php:613 inc/customizer.php:697
+#: inc/customizer.php:781 inc/customizer.php:865 inc/customizer.php:916
+#: inc/customizer.php:992 inc/customizer.php:1067
+msgid "Font Style"
+msgstr ""
+
+#: inc/customizer.php:285 inc/customizer.php:369 inc/customizer.php:453
+#: inc/customizer.php:537 inc/customizer.php:621 inc/customizer.php:705
+#: inc/customizer.php:789 inc/customizer.php:873 inc/customizer.php:924
+#: inc/customizer.php:1000 inc/customizer.php:1075
+msgid "Font Weight"
+msgstr ""
+
+#: inc/customizer.php:293 inc/customizer.php:377 inc/customizer.php:461
+#: inc/customizer.php:545 inc/customizer.php:629 inc/customizer.php:713
+#: inc/customizer.php:797 inc/customizer.php:881 inc/customizer.php:932
+#: inc/customizer.php:1008 inc/customizer.php:1083
+msgid "Font Size, px"
+msgstr ""
+
+#: inc/customizer.php:305 inc/customizer.php:389 inc/customizer.php:473
+#: inc/customizer.php:557 inc/customizer.php:641 inc/customizer.php:725
+#: inc/customizer.php:809 inc/customizer.php:944 inc/customizer.php:1020
+#: inc/customizer.php:1095
+msgid "Line Height"
+msgstr ""
+
+#: inc/customizer.php:306 inc/customizer.php:390 inc/customizer.php:474
+#: inc/customizer.php:558 inc/customizer.php:642 inc/customizer.php:726
+#: inc/customizer.php:810 inc/customizer.php:945 inc/customizer.php:1021
+#: inc/customizer.php:1096
+msgid "Relative to the font-size of the element"
+msgstr ""
+
+#: inc/customizer.php:318 inc/customizer.php:402 inc/customizer.php:486
+#: inc/customizer.php:570 inc/customizer.php:654 inc/customizer.php:738
+#: inc/customizer.php:822 inc/customizer.php:957 inc/customizer.php:1033
+#: inc/customizer.php:1108
+msgid "Letter Spacing, px"
+msgstr ""
+
+#: inc/customizer.php:330 inc/customizer.php:414 inc/customizer.php:498
+#: inc/customizer.php:582 inc/customizer.php:666 inc/customizer.php:750
+#: inc/customizer.php:834 inc/customizer.php:893 inc/customizer.php:969
+#: inc/customizer.php:1045 inc/customizer.php:1120
+msgid "Character Set"
+msgstr ""
+
+#: inc/customizer.php:338 inc/customizer.php:422 inc/customizer.php:506
+#: inc/customizer.php:590 inc/customizer.php:674 inc/customizer.php:758
+#: inc/customizer.php:842
+msgid "Text Align"
+msgstr ""
+
+#: inc/customizer.php:348
+msgid "H1 Heading"
+msgstr ""
+
+#: inc/customizer.php:432
+msgid "H2 Heading"
+msgstr ""
+
+#: inc/customizer.php:516
+msgid "H3 Heading"
+msgstr ""
+
+#: inc/customizer.php:600
+msgid "H4 Heading"
+msgstr ""
+
+#: inc/customizer.php:684
+msgid "H5 Heading"
+msgstr ""
+
+#: inc/customizer.php:768
+msgid "H6 Heading"
+msgstr ""
+
+#: inc/customizer.php:852
+msgid "Logo text"
+msgstr ""
+
+#: inc/customizer.php:903
+msgid "Menu"
+msgstr ""
+
+#: inc/customizer.php:1054
+msgid "Button"
+msgstr ""
+
+#: inc/customizer.php:1130
+msgid "Header"
+msgstr ""
+
+#: inc/customizer.php:1137
+msgid "Styles"
+msgstr ""
+
+#: inc/customizer.php:1143
+msgid "Background Color"
+msgstr ""
+
+#: inc/customizer.php:1150
+msgid "Background Image"
+msgstr ""
+
+#: inc/customizer.php:1156
+msgid "Background Repeat"
+msgstr ""
+
+#: inc/customizer.php:1161
+msgid "No Repeat"
+msgstr ""
+
+#: inc/customizer.php:1162
+msgid "Tile"
+msgstr ""
+
+#: inc/customizer.php:1163
+msgid "Tile Horizontally"
+msgstr ""
+
+#: inc/customizer.php:1164
+msgid "Tile Vertically"
+msgstr ""
+
+#: inc/customizer.php:1169
+msgid "Background Position"
+msgstr ""
+
+#: inc/customizer.php:1174 inc/customizer.php:1646
+msgid "Left"
+msgstr ""
+
+#: inc/customizer.php:1175 inc/customizer.php:1644
+msgid "Center"
+msgstr ""
+
+#: inc/customizer.php:1176 inc/customizer.php:1647
+msgid "Right"
+msgstr ""
+
+#: inc/customizer.php:1181
+msgid "Background Attachment"
+msgstr ""
+
+#: inc/customizer.php:1186
+msgid "Scroll"
+msgstr ""
+
+#: inc/customizer.php:1187
+msgid "Fixed"
+msgstr ""
+
+#: inc/customizer.php:1194
+msgid "Top Panel"
+msgstr ""
+
+#: inc/customizer.php:1200
+msgid "Enable Top Panel"
+msgstr ""
+
+#: inc/customizer.php:1207
+msgid "Enable search"
+msgstr ""
+
+#: inc/customizer.php:1214
+msgid "Background color"
+msgstr ""
+
+#: inc/customizer.php:1229
+msgid "Copyright text"
+msgstr ""
+
+#: inc/customizer.php:1238
+msgid "Blog Settings"
+msgstr ""
+
+#: inc/customizer.php:1245
+msgid "Blog"
+msgstr ""
+
+#: inc/customizer.php:1258 inc/customizer.php:1398
+msgid "Sidebar on left side"
+msgstr ""
+
+#: inc/customizer.php:1259 inc/customizer.php:1399
+msgid "Sidebar on right side"
+msgstr ""
+
+#: inc/customizer.php:1260 inc/customizer.php:1400
+msgid "No sidebar"
+msgstr ""
+
+#: inc/customizer.php:1266
+msgid "Navigation type"
+msgstr ""
+
+#: inc/customizer.php:1271
+msgid "Navigation"
+msgstr ""
+
+#: inc/customizer.php:1272
+msgid "Pagination"
+msgstr ""
+
+#: inc/customizer.php:1277
+msgid "Sticky label type"
+msgstr ""
+
+#: inc/customizer.php:1283
+msgid "Text Label"
+msgstr ""
+
+#: inc/customizer.php:1284
+msgid "Font Icon"
+msgstr ""
+
+#: inc/customizer.php:1285
+msgid "Text with Icon"
+msgstr ""
+
+#: inc/customizer.php:1290
+msgid "Featured Post Label"
+msgstr ""
+
+#: inc/customizer.php:1291
+msgid "Label for sticky post"
+msgstr ""
+
+#: inc/customizer.php:1293
+msgid "Featured"
+msgstr ""
+
+#: inc/customizer.php:1300 inc/customizer.php:1405 inc/customizer.php:1503
+msgid "Show post author"
+msgstr ""
+
+#: inc/customizer.php:1308 inc/customizer.php:1412
+msgid "Show publish date"
+msgstr ""
+
+#: inc/customizer.php:1316 inc/customizer.php:1419
+msgid "Show categories"
+msgstr ""
+
+#: inc/customizer.php:1324 inc/customizer.php:1426
+msgid "Show tags"
+msgstr ""
+
+#: inc/customizer.php:1332 inc/customizer.php:1433
+msgid "Show comments"
+msgstr ""
+
+#: inc/customizer.php:1340
+msgid "Show Excerpt"
+msgstr ""
+
+#: inc/customizer.php:1348
+msgid "Excerpt Words Count"
+msgstr ""
+
+#: inc/customizer.php:1361
+msgid "Read more button type"
+msgstr ""
+
+#: inc/customizer.php:1367
+msgid "Text"
+msgstr ""
+
+#: inc/customizer.php:1368
+msgid "Icon"
+msgstr ""
+
+#: inc/customizer.php:1369
+msgid "Text & Icon"
+msgstr ""
+
+#: inc/customizer.php:1370
+msgid "None"
+msgstr ""
+
+#: inc/customizer.php:1375
+msgid "Read more button text"
+msgstr ""
+
+#: inc/customizer.php:1377
+msgid "More"
+msgstr ""
+
+#: inc/customizer.php:1386
+msgid "Post"
+msgstr ""
+
+#: inc/customizer.php:1440
+msgid "Enable the author block after each post"
+msgstr ""
+
+#: inc/customizer.php:1449
+msgid "Related posts block"
+msgstr ""
+
+#: inc/customizer.php:1456
+msgid "Show related posts block"
+msgstr ""
+
+#: inc/customizer.php:1463
+msgid "Related posts block title"
+msgstr ""
+
+#: inc/customizer.php:1465
+msgid "Related Posts"
+msgstr ""
+
+#: inc/customizer.php:1470
+msgid "Number of post"
+msgstr ""
+
+#: inc/customizer.php:1477 inc/modules/blog-layouts/module.php:172
+msgid "Layout"
+msgstr ""
+
+#: inc/customizer.php:1482
+msgid "2 columns"
+msgstr ""
+
+#: inc/customizer.php:1483
+msgid "3 columns"
+msgstr ""
+
+#: inc/customizer.php:1484
+msgid "4 columns"
+msgstr ""
+
+#: inc/customizer.php:1489
+msgid "Show post image"
+msgstr ""
+
+#: inc/customizer.php:1496
+msgid "Show post publish date"
+msgstr ""
+
+#: inc/customizer.php:1510
+msgid "Show post title"
+msgstr ""
+
+#: inc/customizer.php:1517
+msgid "Display excerpt"
+msgstr ""
+
+#: inc/customizer.php:1596
+msgid "Body Background Color"
+msgstr ""
+
+#: inc/customizer.php:1610
+msgid "Normal"
+msgstr ""
+
+#: inc/customizer.php:1611
+msgid "Italic"
+msgstr ""
+
+#: inc/customizer.php:1612
+msgid "Oblique"
+msgstr ""
+
+#: inc/customizer.php:1613 inc/customizer.php:1643
+msgid "Inherit"
+msgstr ""
+
+#: inc/customizer.php:1625
+msgid "Latin"
+msgstr ""
+
+#: inc/customizer.php:1626
+msgid "Greek"
+msgstr ""
+
+#: inc/customizer.php:1627
+msgid "Greek Extended"
+msgstr ""
+
+#: inc/customizer.php:1628
+msgid "Vietnamese"
+msgstr ""
+
+#: inc/customizer.php:1629
+msgid "Cyrillic Extended"
+msgstr ""
+
+#: inc/customizer.php:1630
+msgid "Latin Extended"
+msgstr ""
+
+#: inc/customizer.php:1631
+msgid "Cyrillic"
+msgstr ""
+
+#: inc/customizer.php:1645
+msgid "Justify"
+msgstr ""
+
+#: inc/customizer.php:1712
+#, php-format
+msgid ""
+"&copy; %%year%% Kava | Multipurpose WP Theme with Elementor Page Builder"
+msgstr ""
+
+#: inc/hooks.php:95
+msgid "Post Thumbnail"
+msgstr ""
+
+#: inc/hooks.php:119
+msgid "Submit Comment"
+msgstr ""
+
+#: inc/hooks.php:121
+msgid "Name"
+msgstr ""
+
+#: inc/hooks.php:123
+msgid "E-mail"
+msgstr ""
+
+#: inc/hooks.php:125
+msgid "Website"
+msgstr ""
+
+#: inc/hooks.php:127
+msgid "Comments *"
+msgstr ""
+
+#: inc/modules/blog-layouts/module.php:178
+msgid "Listing"
+msgstr ""
+
+#: inc/modules/blog-layouts/module.php:179
+msgid "Grid"
+msgstr ""
+
+#: inc/modules/blog-layouts/module.php:180
+msgid "Masonry"
+msgstr ""
+
+#: inc/modules/blog-layouts/module.php:181
+msgid "Vertical Justify"
+msgstr ""
+
+#: inc/modules/blog-layouts/module.php:182
+msgid "Creative"
+msgstr ""
+
+#: inc/modules/blog-layouts/module.php:187
+msgid "Style"
+msgstr ""
+
+#: inc/modules/blog-layouts/module.php:193
+msgid "Style 1"
+msgstr ""
+
+#: inc/modules/blog-layouts/module.php:194
+msgid "Style 2"
+msgstr ""
+
+#: inc/modules/blog-layouts/module.php:195
+msgid "Style 3"
+msgstr ""
+
+#: inc/modules/blog-layouts/module.php:196
+msgid "Style 4"
+msgstr ""
+
+#: inc/modules/blog-layouts/module.php:197
+msgid "Style 5"
+msgstr ""
+
+#: inc/modules/blog-layouts/module.php:198
+msgid "Style 6"
+msgstr ""
+
+#: inc/modules/blog-layouts/module.php:199
+msgid "Style 7"
+msgstr ""
+
+#: inc/modules/blog-layouts/module.php:200
+msgid "Style 8"
+msgstr ""
+
+#: inc/modules/blog-layouts/module.php:201
+msgid "Style 9"
+msgstr ""
+
+#: inc/modules/blog-layouts/module.php:202
+msgid "Style 10"
+msgstr ""
+
+#: inc/modules/blog-layouts/template-parts/creative/content-v10.php:31
+#: inc/modules/blog-layouts/template-parts/creative/content-v3.php:33
+#: inc/modules/blog-layouts/template-parts/creative/content-v4.php:31
+#: inc/modules/blog-layouts/template-parts/creative/content-v6.php:36
+#: inc/modules/blog-layouts/template-parts/creative/content-v7.php:32
+#: inc/modules/blog-layouts/template-parts/creative/content-v8.php:22
+#: inc/modules/blog-layouts/template-parts/default/content-v2.php:22
+#: inc/modules/blog-layouts/template-parts/default/content-v4.php:27
+#: inc/modules/blog-layouts/template-parts/default/content-v5.php:29
+#: inc/modules/blog-layouts/template-parts/default/content-v6.php:27
+#: inc/modules/blog-layouts/template-parts/default/content-v7.php:27
+#: inc/modules/blog-layouts/template-parts/default/content-v8.php:30
+#: inc/modules/blog-layouts/template-parts/default/content-v9.php:24
+#: inc/modules/blog-layouts/template-parts/default/content.php:23
+#: inc/modules/blog-layouts/template-parts/grid/content-v10.php:20
+#: inc/modules/blog-layouts/template-parts/grid/content-v2.php:20
+#: inc/modules/blog-layouts/template-parts/grid/content-v3.php:22
+#: inc/modules/blog-layouts/template-parts/grid/content-v4.php:20
+#: inc/modules/blog-layouts/template-parts/grid/content-v5.php:23
+#: inc/modules/blog-layouts/template-parts/grid/content-v8.php:21
+#: inc/modules/blog-layouts/template-parts/grid/content-v9.php:29
+#: inc/modules/blog-layouts/template-parts/grid/content.php:19
+#: inc/modules/blog-layouts/template-parts/masonry/content-v10.php:20
+#: inc/modules/blog-layouts/template-parts/masonry/content-v2.php:20
+#: inc/modules/blog-layouts/template-parts/masonry/content-v3.php:18
+#: inc/modules/blog-layouts/template-parts/masonry/content-v4.php:19
+#: inc/modules/blog-layouts/template-parts/masonry/content-v5.php:19
+#: inc/modules/blog-layouts/template-parts/masonry/content-v6.php:19
+#: inc/modules/blog-layouts/template-parts/masonry/content-v7.php:20
+#: inc/modules/blog-layouts/template-parts/masonry/content-v8.php:20
+#: inc/modules/blog-layouts/template-parts/masonry/content-v9.php:20
+#: inc/modules/blog-layouts/template-parts/masonry/content.php:19
+#: inc/modules/blog-layouts/template-parts/vertical-justify/content-v10.php:28
+#: inc/modules/blog-layouts/template-parts/vertical-justify/content-v2.php:22
+#: inc/modules/blog-layouts/template-parts/vertical-justify/content-v3.php:23
+#: inc/modules/blog-layouts/template-parts/vertical-justify/content-v4.php:23
+#: inc/modules/blog-layouts/template-parts/vertical-justify/content-v6.php:29
+#: inc/modules/blog-layouts/template-parts/vertical-justify/content-v7.php:25
+#: inc/modules/blog-layouts/template-parts/vertical-justify/content-v9.php:23
+#: inc/modules/blog-layouts/template-parts/vertical-justify/content.php:21
+#: template-parts/content-search.php:17 template-parts/content.php:23
+#: template-parts/single-post/headers/header-v1.php:18
+#: template-parts/single-post/headers/header-v10.php:36
+#: template-parts/single-post/headers/header-v2.php:20
+#: template-parts/single-post/headers/header-v8.php:24
+#: template-parts/single-post/headers/header-v9.php:26
+msgid "In"
+msgstr ""
+
+#: inc/modules/blog-layouts/template-parts/creative/content-v10.php:41
+#: inc/modules/blog-layouts/template-parts/creative/content-v2.php:42
+#: inc/modules/blog-layouts/template-parts/creative/content-v3.php:39
+#: inc/modules/blog-layouts/template-parts/creative/content-v4.php:37
+#: inc/modules/blog-layouts/template-parts/creative/content-v5.php:49
+#: inc/modules/blog-layouts/template-parts/creative/content-v6.php:51
+#: inc/modules/blog-layouts/template-parts/creative/content-v7.php:49
+#: inc/modules/blog-layouts/template-parts/creative/content-v8.php:39
+#: inc/modules/blog-layouts/template-parts/creative/content-v9.php:39
+#: inc/modules/blog-layouts/template-parts/creative/content.php:50
+#: inc/modules/blog-layouts/template-parts/default/content-v10.php:34
+#: inc/modules/blog-layouts/template-parts/default/content-v2.php:39
+#: inc/modules/blog-layouts/template-parts/default/content-v4.php:42
+#: inc/modules/blog-layouts/template-parts/default/content-v5.php:44
+#: inc/modules/blog-layouts/template-parts/default/content-v6.php:42
+#: inc/modules/blog-layouts/template-parts/default/content-v7.php:42
+#: inc/modules/blog-layouts/template-parts/default/content-v8.php:48
+#: inc/modules/blog-layouts/template-parts/default/content-v9.php:30
+#: inc/modules/blog-layouts/template-parts/default/content.php:40
+#: template-parts/content.php:40 template-parts/single-post/footer.php:15
+msgid "Tags:"
+msgstr ""
+
+#: inc/modules/blog-layouts/template-parts/creative/content-v2.php:22
+#: inc/modules/blog-layouts/template-parts/creative/content-v3.php:36
+#: inc/modules/blog-layouts/template-parts/creative/content-v4.php:34
+#: inc/modules/blog-layouts/template-parts/creative/content-v5.php:40
+#: inc/modules/blog-layouts/template-parts/creative/content-v7.php:35
+#: inc/modules/blog-layouts/template-parts/creative/content-v8.php:25
+#: inc/modules/blog-layouts/template-parts/creative/content-v9.php:36
+#: inc/modules/blog-layouts/template-parts/creative/content.php:47
+#: inc/modules/blog-layouts/template-parts/default/content-v10.php:31
+#: inc/modules/blog-layouts/template-parts/default/content-v2.php:25
+#: inc/modules/blog-layouts/template-parts/default/content-v4.php:30
+#: inc/modules/blog-layouts/template-parts/default/content-v5.php:32
+#: inc/modules/blog-layouts/template-parts/default/content-v6.php:30
+#: inc/modules/blog-layouts/template-parts/default/content-v7.php:30
+#: inc/modules/blog-layouts/template-parts/default/content-v8.php:33
+#: inc/modules/blog-layouts/template-parts/default/content-v9.php:27
+#: inc/modules/blog-layouts/template-parts/default/content.php:26
+#: inc/modules/blog-layouts/template-parts/grid/content-v10.php:24
+#: inc/modules/blog-layouts/template-parts/grid/content-v2.php:24
+#: inc/modules/blog-layouts/template-parts/grid/content-v3.php:26
+#: inc/modules/blog-layouts/template-parts/grid/content-v4.php:24
+#: inc/modules/blog-layouts/template-parts/grid/content-v8.php:25
+#: inc/modules/blog-layouts/template-parts/grid/content.php:23
+#: inc/modules/blog-layouts/template-parts/masonry/content-v10.php:24
+#: inc/modules/blog-layouts/template-parts/masonry/content-v2.php:24
+#: inc/modules/blog-layouts/template-parts/masonry/content-v3.php:22
+#: inc/modules/blog-layouts/template-parts/masonry/content-v4.php:23
+#: inc/modules/blog-layouts/template-parts/masonry/content-v5.php:23
+#: inc/modules/blog-layouts/template-parts/masonry/content-v6.php:23
+#: inc/modules/blog-layouts/template-parts/masonry/content-v7.php:24
+#: inc/modules/blog-layouts/template-parts/masonry/content-v8.php:24
+#: inc/modules/blog-layouts/template-parts/masonry/content-v9.php:24
+#: inc/modules/blog-layouts/template-parts/masonry/content.php:23
+#: inc/modules/blog-layouts/template-parts/vertical-justify/content-v2.php:26
+#: inc/modules/blog-layouts/template-parts/vertical-justify/content-v3.php:27
+#: inc/modules/blog-layouts/template-parts/vertical-justify/content-v7.php:29
+#: inc/modules/blog-layouts/template-parts/vertical-justify/content.php:25
+#: post-templates/single-layout-6.php:24 template-parts/content-search.php:20
+#: template-parts/content.php:26
+#: template-parts/single-post/headers/header-v1.php:21
+#: template-parts/single-post/headers/header-v10.php:39
+#: template-parts/single-post/headers/header-v2.php:23
+#: template-parts/single-post/headers/header-v3.php:44
+#: template-parts/single-post/headers/header-v4.php:45
+#: template-parts/single-post/headers/header-v5.php:30
+#: template-parts/single-post/headers/header-v6.php:26
+#: template-parts/single-post/headers/header-v7.php:28
+#: template-parts/single-post/headers/header-v8.php:27
+#: template-parts/single-post/headers/header-v9.php:29
+msgid "Posted"
+msgstr ""
+
+#: inc/modules/blog-layouts/template-parts/creative/content-v3.php:42
+#: inc/modules/blog-layouts/template-parts/creative/content-v5.php:43
+#: inc/modules/blog-layouts/template-parts/creative/content-v6.php:54
+#: inc/modules/blog-layouts/template-parts/creative/content.php:56
+#: inc/modules/blog-layouts/template-parts/default/content-v2.php:42
+#: inc/modules/blog-layouts/template-parts/default/content-v9.php:33
+#: template-parts/single-post/headers/header-v4.php:52
+#: template-parts/single-post/headers/header-v7.php:44
+#: template-parts/single-post/headers/header-v8.php:34
+msgid "Comment(s)"
+msgstr ""
+
+#: inc/modules/blog-layouts/template-parts/grid/content-v5.php:50
+#: inc/modules/blog-layouts/template-parts/vertical-justify/content-v10.php:36
+#: inc/modules/blog-layouts/template-parts/vertical-justify/content-v4.php:50
+#: inc/modules/blog-layouts/template-parts/vertical-justify/content-v8.php:45
+#: inc/modules/blog-layouts/template-parts/vertical-justify/content-v9.php:49
+msgid "comments"
+msgstr ""
+
+#: inc/modules/blog-layouts/template-parts/vertical-justify/content-v10.php:32
+#: inc/modules/blog-layouts/template-parts/vertical-justify/content-v8.php:42
+msgid "Posted "
+msgstr ""
+
+#: inc/modules/woo/includes/wc-integration.php:160
+msgid "View your shopping cart"
+msgstr ""
+
+#: inc/modules/woo/includes/wc-integration.php:164
+#, php-format
+msgid "%d"
+msgstr ""
+
+#: inc/modules/woo/includes/wc-integration.php:195
+msgid "My cart"
+msgstr ""
+
+#: inc/modules/woo/includes/wc-integration.php:219
+#: template-parts/content-navigation.php:36
+msgid "Prev"
+msgstr ""
+
+#: inc/modules/woo/includes/wc-integration.php:224
+#: template-parts/content-navigation.php:40
+#: template-parts/single-post/post_navigation.php:24
+msgid "Next"
+msgstr ""
+
+#: inc/template-comment.php:178
+msgid "Edit"
+msgstr ""
+
+#: inc/template-menu.php:27
+msgid "Set main menu"
+msgstr ""
+
+#: inc/template-menu.php:53
+msgid "Set footer menu"
+msgstr ""
+
+#: inc/template-menu.php:94
+msgid "Set social menu"
+msgstr ""
+
+#: inc/template-tags.php:99
+msgid "By"
+msgstr ""
+
+#: inc/template-tags.php:141 inc/template-tags.php:182
+#, php-format
+msgid "%s"
+msgstr ""
+
+#: inc/template-tags.php:380 template-parts/content-page.php:37
+#, php-format
 msgid "Edit <span class=\"screen-reader-text\">%s</span>"
 msgstr ""
 
-#. translators: %s: search query.
-#: search.php:21
+#: search.php:29
+#, php-format
 msgid "Search Results for: %s"
+msgstr ""
+
+#: searchform.php:10
+msgid "Search for:"
+msgstr ""
+
+#: template-parts/content-navigation.php:20
+msgid "Older Posts"
+msgstr ""
+
+#: template-parts/content-navigation.php:24
+msgid "Newer Posts"
 msgstr ""
 
 #: template-parts/content-none.php:14
 msgid "Nothing Found"
 msgstr ""
 
-#. translators: 1: link to WP admin new post page.
 #: template-parts/content-none.php:25
-msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+#, php-format
+msgid ""
+"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
 msgstr ""
 
 #: template-parts/content-none.php:38
@@ -123,65 +947,14 @@ msgstr ""
 
 #: template-parts/content-none.php:44
 msgid ""
-"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching "
-"can help."
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching can help."
 msgstr ""
 
-#: template-parts/content-page.php:22 template-parts/content.php:45
+#: template-parts/content-page.php:24
 msgid "Pages:"
 msgstr ""
 
-#. translators: %s: Name of current post. Only visible to screen readers
-#: template-parts/content.php:34
-msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
-msgstr ""
-
-#. Theme Name of the plugin/theme
-msgid "_s"
-msgstr ""
-
-#. Theme URI of the plugin/theme
-msgid "https://underscores.me/"
-msgstr ""
-
-#. Description of the plugin/theme
-msgid ""
-"Hi. I'm a starter theme called <code>_s</code>, or <em>underscores</em>, if "
-"you like. I'm a theme meant for hacking so don't use me as a <em>Parent "
-"Theme</em>. Instead try turning me into the next, most awesome, WordPress "
-"theme out there. That's what I'm here for."
-msgstr ""
-
-#. Author of the plugin/theme
-msgid "Automattic"
-msgstr ""
-
-#. Author URI of the plugin/theme
-msgid "https://automattic.com/"
-msgstr ""
-
-#. translators: 1: comment count number, 2: title.
-#: comments.php:40
-msgctxt "comments title"
-msgid "%1$s thought on &ldquo;%2$s&rdquo;"
-msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
-msgstr[0] ""
-msgstr[1] ""
-
-#. translators: %s: post date.
-#: inc/template-tags.php:29
-msgctxt "post date"
-msgid "Posted on %s"
-msgstr ""
-
-#. translators: %s: post author.
-#: inc/template-tags.php:35
-msgctxt "post author"
-msgid "by %s"
-msgstr ""
-
-#. translators: used between list items, there is a space after the comma
-#: inc/template-tags.php:59
-msgctxt "list item separator"
-msgid ", "
+#: template-parts/single-post/post_navigation.php:16
+msgid "Previous"
 msgstr ""

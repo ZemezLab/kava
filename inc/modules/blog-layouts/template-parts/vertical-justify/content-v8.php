@@ -18,14 +18,14 @@
 			<div class="entry-meta__top">
 				<?php
 					kava_posted_in( array(
-						'prefix' => __( '', 'kava' ),
+						'prefix' => '',
 						'delimiter' => ''
-					) ); 
+					) );
 					kava_post_tags();
 				?>
 			</div><!-- .entry-meta -->
 			<header class="entry-header">
-				<h4 class="entry-title"><?php 
+				<h4 class="entry-title"><?php
 					kava_sticky_label();
 					the_title( '<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a>' );
 				?></h4>

@@ -1709,7 +1709,7 @@ function kava_get_dynamic_css_options() {
  * @return string
  */
 function kava_get_default_footer_copyright() {
-	return esc_html__( '© %%year%% Kava | Multipurpose WP Theme with Elementor Page Builder', 'kava' );
+	return esc_html__( '&copy; %%year%% Kava | Multipurpose WP Theme with Elementor Page Builder', 'kava' );
 }
 
 /**

@@ -92,7 +92,7 @@ function kava_enqueue_misc( $depends ) {
  * @return array
  */
 function kava_image_size_names_choose( $image_sizes ) {
-	$image_sizes['post-thumbnail'] = __( 'Post Thumbnail' );
+	$image_sizes['post-thumbnail'] = __( 'Post Thumbnail', 'kava' );
 
 	return $image_sizes;
 }
