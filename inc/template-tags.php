@@ -134,7 +134,7 @@ if ( ! function_exists( 'kava_posted_in' ) ) :
 
 			if( $post_categories_enable ) {
 
-				$categories_list = get_the_category_list( esc_html__( $args['delimiter'], 'kava' ) );
+				$categories_list = get_the_category_list( esc_html( $args['delimiter'] ) );
 				if ( $categories_list ) {
 					$categories = sprintf(
 						/* translators: 1: list of categories. */
@@ -149,7 +149,7 @@ if ( ! function_exists( 'kava_posted_in' ) ) :
 				}
 
 			}
-			
+
 		}
 	}
 endif;
@@ -182,7 +182,7 @@ if ( ! function_exists( 'kava_post_tags' ) ) :
 						esc_html__( '%s', 'kava' ),
 						$tags_list
 					);
-					
+
 					echo apply_filters(
 						'kava-theme/post/tags-output',
 						$args['before'] . $args['prefix'] . ' ' . $tags . $args['after']
@@ -593,7 +593,7 @@ function kava_is_top_panel_visible() {
 			'kava-theme/header/top-panel-visibility-conditions',
 			array( $site_description, $search, $social )
 		);
-		
+
 		foreach ( $conditions as $condition ) {
 			if ( ! empty( $condition ) ) {
 				$is_visible = true;
