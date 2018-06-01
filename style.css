@@ -2433,38 +2433,43 @@ span.tags-links {
 /*--------------------------------------------------------------
 ### Post default item
 --------------------------------------------------------------*/
-.post-default {
+.post-default + .post-default {
+  margin-top: 50px;
+  padding-top: 40px;
+  border-top: 1px solid #ebeced; }
+
+body:not(.sidebar_enabled) .post-default {
   max-width: 770px;
   margin-left: auto;
   margin-right: auto; }
-  .post-default + .post-default {
-    margin-top: 50px;
-    padding-top: 40px;
-    border-top: 1px solid #ebeced; }
-  .post-default .post-thumbnail,
-  .post-default .entry-meta {
-    margin-bottom: 15px; }
-  @media (min-width: 640px) {
-    .post-default .entry-content {
-      font-size: 18px;
-      font-size: 1.125rem; } }
-  .post-default .entry-footer .entry-meta .tags-links + div:not(:empty) {
-    margin-top: 28px; }
-  .post-default .entry-footer .entry-meta > div {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    -webkit-box-align: start;
-    -ms-flex-align: start;
-    align-items: flex-start;
-    margin-left: -0.9375rem;
-    margin-right: -0.9375rem; }
-    .post-default .entry-footer .entry-meta > div > * {
-      margin-left: 0.9375rem;
-      margin-right: 0.9375rem; }
+
+.post-default .post-thumbnail,
+.post-default .entry-meta {
+  margin-bottom: 15px; }
+
+@media (min-width: 640px) {
+  .post-default .entry-content {
+    font-size: 18px;
+    font-size: 1.125rem; } }
+
+.post-default .entry-footer .entry-meta .tags-links + div:not(:empty) {
+  margin-top: 28px; }
+
+.post-default .entry-footer .entry-meta > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  margin-left: -0.9375rem;
+  margin-right: -0.9375rem; }
+  .post-default .entry-footer .entry-meta > div > * {
+    margin-left: 0.9375rem;
+    margin-right: 0.9375rem; }
 
 /*--------------------------------------------------------------
 ### Post-thumbnail
@@ -3113,7 +3118,7 @@ span.tags-links {
   margin-bottom: 15px; }
 
 /*--------------------------------------------------------------
-## Sticky
+## Sticky 
 --------------------------------------------------------------*/
 .sticky-label {
   display: inline-block;
