@@ -23,7 +23,7 @@ textarea {
 	@include border-radius;
 	&:focus {
 		outline: none;
-		box-shadow: 0 0 10px $color__border-input;
+		box-shadow: $box__shadow;
 	}
 }
 

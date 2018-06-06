@@ -27,6 +27,12 @@
 	letter-spacing: $h4_letter_spacing{px};
 	color: $h4_color;
 }
+/* Cookies consent */
+.comment-form-cookies-consent input[type='checkbox']:checked ~ label[for=wp-comment-cookies-consent]:before {
+	color: $invert_text_color;
+	border-color: $accent_color;
+	background-color: $accent_color;
+}
 /* #Comment Reply Link */
 #cancel-comment-reply-link {
 	color: $link_color;
