@@ -216,6 +216,8 @@ h1, h2, h3, h4, h5, h6 {
 
 p {
   margin: 0 0 1em; }
+  p:last-child {
+    margin-bottom: 0; }
 
 dfn, cite, em, i {
   font-style: italic; }
