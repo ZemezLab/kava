@@ -10,6 +10,7 @@
 	padding: 30px 80px;
 	display: flex;
 	justify-content: space-between;
+	z-index: 99;
 	
 	.admin-bar &{
 		top: 30px;
