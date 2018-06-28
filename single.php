@@ -7,7 +7,7 @@
  * @package Kava
  */
 
-get_header(); 
+get_header();
 
 	do_action( 'kava-theme/site/site-content-before', 'single' ); ?>
 
@@ -23,18 +23,7 @@ get_header();
 				<main id="main" class="site-main"><?php
 					while ( have_posts() ) : the_post();
 
-						?><article id="post-<?php the_ID(); ?>" <?php post_class(); ?>><?php
-
-							get_template_part( 'template-parts/single-post/headers/header-v1', get_post_format() );
-							get_template_part( 'template-parts/single-post/content', get_post_format() );
-							get_template_part( 'template-parts/single-post/footer' );
-
-						?></article><?php
-
-							get_template_part( 'template-parts/single-post/author-bio' );
-							get_template_part( 'template-parts/single-post/post_navigation' );
-							kava_related_posts();
-							get_template_part( 'template-parts/single-post/comments' );
+						kava_theme()->do_location( 'single', 'template-parts/content-post' );
 
 					endwhile; // End of the loop.
 				?></main><!-- #main -->
