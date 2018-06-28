@@ -493,7 +493,13 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 				return true;
 			} elseif ( null !== $fallback ) {
 				// If for some reasons location coludn't be done and passed fallback template name - include this template and return
-				get_template_part( $fallback );
+				if ( is_array( $fallback ) ) {
+					// fallback in name slug format
+					get_template_part( $fallback[0], $fallback[1] );
+				} else {
+					// fallback with just a name
+					get_template_part( $fallback );
+				}
 				return true;
 			}
 
