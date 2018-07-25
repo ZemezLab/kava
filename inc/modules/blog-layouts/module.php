@@ -19,8 +19,8 @@ if ( ! class_exists( 'Kava_Blog_Layouts_Module' ) ) {
 		 */
 		private $layout_type;
 		private $layout_style;
-		private $sidebar_enabled = false;
-		private $fullwidth_enabled = false;
+		private $sidebar_enabled = true;
+		private $fullwidth_enabled = true;
 
 		/**
 		 * Sidebar list.
@@ -81,11 +81,12 @@ if ( ! class_exists( 'Kava_Blog_Layouts_Module' ) ) {
 			$this->layout_type  = kava_theme()->customizer->get_value( 'blog_layout_type' );
 			$this->layout_style = kava_theme()->customizer->get_value( 'blog_style' );
 
-			if ( ! empty( $this->sidebar_list[$this->layout_type] ) ) {
+			if ( ! empty( $this->sidebar_list[$this->layout_type] ) && $this->is_blog_archive() ) {
+				var_dump(in_array( $this->layout_style, $this->sidebar_list[$this->layout_type] ));
 				$this->sidebar_enabled = in_array( $this->layout_style, $this->sidebar_list[$this->layout_type] );
 			}
 
-			if( ! empty( $this->fullwidth_list[$this->layout_type] ) ) {
+			if( ! empty( $this->fullwidth_list[$this->layout_type] ) && $this->is_blog_archive() ) {
 				$this->fullwidth_enabled = ! in_array( $this->layout_style, $this->fullwidth_list[$this->layout_type] );
 			}
 
@@ -209,6 +210,21 @@ if ( ! class_exists( 'Kava_Blog_Layouts_Module' ) ) {
 
 			return $options;
 
+		}
+
+		/**
+		 * Check blog archive pages
+		 *
+		 * @return bool
+		 */
+		public function is_blog_archive() {
+
+			if ( is_home() || ( is_archive() && ! is_tax() && ! is_post_type_archive() ) ) {
+				return true;
+			}
+
+			return false;
+			
 		}
 
 		/**
