@@ -28,6 +28,6 @@ $author_block_enabled = kava_theme()->customizer->get_value( 'single_author_bloc
 				}
 			?>
 		</div><!-- .entry-meta -->
-		<?php the_title( '<h2 class="entry-title">', '</h2>' ); ?>
+		<?php the_title( '<h1 class="entry-title h2-style">', '</h1>' ); ?>
 	</header><!-- .entry-header -->
 </div>

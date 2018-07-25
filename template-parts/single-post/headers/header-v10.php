@@ -18,7 +18,7 @@ $has_post_thumbnail_class = $has_post_thumbnail ? 'has-post-thumbnail' : '';
 		<div class="row">
 			<div class="col-xs-12">
 				<header class="entry-header">
-					<?php the_title( '<h3 class="entry-title">', '</h3>' ); ?>
+					<?php the_title( '<h1 class="entry-title h3-style">', '</h1>' ); ?>
 					<div class="entry-header-bottom">
 						<div class="entry-meta"><?php
 							if ( kava_theme()->customizer->get_value( 'single_post_author' ) ) : ?>

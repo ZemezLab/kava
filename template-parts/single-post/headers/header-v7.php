@@ -32,7 +32,7 @@ $has_post_thumbnail = has_post_thumbnail();
 				?></div>
 				<header class="entry-header">
 					<?php get_template_part( 'template-parts/single-post/author-bio' ); ?>
-					<?php the_title( '<h3 class="entry-title">', '</h3>' ); ?>
+					<?php the_title( '<h1 class="entry-title h3-style">', '</h1>' ); ?>
 				</header><!-- .entry-header -->
 				<div class="entry-header-bottom">
 					<div class="entry-meta"><?php

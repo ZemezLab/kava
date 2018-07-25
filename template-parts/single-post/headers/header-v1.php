@@ -10,7 +10,7 @@
 ?>
 
 <header class="entry-header">
-	<?php the_title( '<h2 class="entry-title">', '</h2>' ); ?>
+	<?php the_title( '<h1 class="entry-title h2-style">', '</h1>' ); ?>
 	<div class="entry-meta">
 		<?php
 			kava_posted_by();

@@ -82,7 +82,6 @@ if ( ! class_exists( 'Kava_Blog_Layouts_Module' ) ) {
 			$this->layout_style = kava_theme()->customizer->get_value( 'blog_style' );
 
 			if ( ! empty( $this->sidebar_list[$this->layout_type] ) && $this->is_blog_archive() ) {
-				var_dump(in_array( $this->layout_style, $this->sidebar_list[$this->layout_type] ));
 				$this->sidebar_enabled = in_array( $this->layout_style, $this->sidebar_list[$this->layout_type] );
 			}
 
@@ -224,7 +223,7 @@ if ( ! class_exists( 'Kava_Blog_Layouts_Module' ) ) {
 			}
 
 			return false;
-			
+
 		}
 
 		/**
