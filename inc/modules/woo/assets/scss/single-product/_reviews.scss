@@ -13,7 +13,7 @@ ol.commentlist {
 	li {
 
 		.star-rating {
-			margin-bottom: 15px;
+			margin-bottom: 12px;
 		}
 
 		.meta {
@@ -25,6 +25,12 @@ ol.commentlist {
 		& + li {
 			margin-top: 50px;
 		}
+	}
+}
+
+.comment-respond{
+	.comment-reply-title{
+		display: block;
 	}
 }
 

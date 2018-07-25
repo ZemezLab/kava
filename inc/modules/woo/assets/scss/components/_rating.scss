@@ -71,15 +71,10 @@
 		color: $wc-rating-color;
 
 		&:hover,
-		&.active,
-		&:not(.active) {
+		&.active {
 			color: $wc-rating-rated-color;
 		}
-
-		&.active ~ a {
-			color: $wc-rating-color;
-		}
-
+		
 		& + a {
 			margin-left: 3px;
 		}
@@ -96,6 +91,28 @@
 			height: 1em;
 			line-height: 1;
 			text-indent: 0;
+		}
+	}
+	
+	&:hover{
+		a{
+			color: $wc-rating-rated-color;
+			
+			&:hover ~ a {
+				color: $wc-rating-color;
+			}
+		}
+	}
+	
+	&.selected{
+		a{
+			&:not(.active) {
+				color: $wc-rating-rated-color;
+			}
+			
+			&.active ~ a {
+				color: $wc-rating-color;
+			}
 		}
 	}
 }
