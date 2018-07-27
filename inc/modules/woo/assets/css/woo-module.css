@@ -2155,8 +2155,6 @@ ol.commentlist li + li {
   display: inline-block;
   height: 50px;
   width: 50px;
-  font-size: 16px;
-  line-height: 50px;
   border-radius: 50%;
   border: none;
   position: absolute;
@@ -2164,10 +2162,13 @@ ol.commentlist li + li {
   left: 20px;
   z-index: 1;
   text-align: center;
+  font-size: 0;
 }
 
 .woocommerce-product-gallery__trigger::before {
   content: "";
+  font-size: 16px;
+  line-height: 50px;
 }
 
 .woocommerce-product-gallery__trigger img {

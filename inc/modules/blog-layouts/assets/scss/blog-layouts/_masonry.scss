@@ -26,14 +26,18 @@ $color__nothumb: #383838;
 		column-gap: $grid-gutter-width;
 		column-count: 1;
 		column-fill: auto;
+		-moz-column-fill: balance;
 		@include media-breakpoint-up(sm) {
 			column-count: 2;
+			-moz-column-count: 2;
 		}
 		@include media-breakpoint-up(md) {
 			column-count: 3;
+			-moz-column-count: 3;
 		}
 		@include media-breakpoint-up(lg) {
 			column-count: 4;
+			-moz-column-count: 4;
 		}
 
 	}
@@ -213,7 +217,6 @@ $color__nothumb: #383838;
 				padding: 25px;
 				display: flex;
 				flex-direction: column;
-				flex-wrap: wrap;
 				justify-content: space-between;
 				align-content: stretch;
 				align-items: flex-start;

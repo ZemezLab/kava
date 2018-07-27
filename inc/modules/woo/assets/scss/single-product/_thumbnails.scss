@@ -9,8 +9,6 @@
 		display: inline-block;
 		height: 50px;
 		width:  50px;
-		font-size: $wc-single-product-gallery-trigger-fz;
-		line-height:  50px;
 		border-radius: 50%;
 		border: $wc-single-product-gallery-trigger-b;
 		position: absolute;
@@ -18,10 +16,13 @@
 		left: 20px;
 		z-index: 1;
 		text-align: center;
+		font-size: 0;
 
 		&::before {
 			content: $wc-single-product-gallery-trigger-icon;
 			@extend %icon-font-default;
+			font-size: $wc-single-product-gallery-trigger-fz;
+			line-height:  50px;
 		}
 
 		img {
