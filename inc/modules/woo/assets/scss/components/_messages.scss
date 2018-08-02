@@ -13,6 +13,10 @@
 	padding: 20px 30px 20px 90px;
 	overflow: hidden;
 	
+	@media (max-width: 767px) {
+		margin-bottom: 20px;
+	}
+	
 	&:before{
 		position: absolute;
 		left: -1px;
@@ -39,6 +43,10 @@
 	
 	.button{
 		float: right;
+		
+		&.wc-forward{
+			margin-left: 20px;
+		}
 	}
 	
 }

@@ -8,7 +8,7 @@ WooCommerce styles override
 /* Button */
 .button.single_add_to_cart_button:after, .button.single_add_to_cart_button:before, .button.add_to_cart_button:after, .button.add_to_cart_button:before, .button.product_type_variable:after, .button.product_type_variable:before, .woocommerce-message:before,
 .woocommerce-info:before,
-.woocommerce-error:before, .woocommerce-pagination .page-numbers .nav-icon::before, .star-rating::before, .star-rating span::before, .stars a::before, label.checkbox input[type="checkbox"] + span::after,
+.woocommerce-error:before, .woocommerce-pagination .page-numbers .nav-icon::before, .woocommerce-pagination ul.page-numbers li .page-numbers .nav-icon::before, .star-rating::before, .star-rating span::before, .stars a::before, label.checkbox input[type="checkbox"] + span::after,
 label.inline input[type="checkbox"] + span::after, .woocommerce-cart table.cart tr td.actions > .button::before, .woocommerce-cart table.cart tr td.product-remove a::before, .woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .checkout-button::before, .woocommerce-cart .cart-collaterals table tr.shipping td .shipping-calculator-button::before, .woocommerce-cart .cart-collaterals table tr .shipping-calculator-form .button::before, .woocommerce-checkout .place-order .button::before, .woocommerce-account .woocommerce .woocommerce-MyAccount-navigation ul li a::before, .woocommerce-product-gallery__trigger::before, .widget_price_filter .button:before, .widget_rating_filter ul li.chosen:after, .widget_layered_nav ul li.chosen:after, .widget_layered_nav_filters ul li.chosen a:after, .widget_product_categories .product-categories li.current-cat:after, .elementor-widget-wp-widget-woocommerce_product_categories .product-categories li.current-cat:after, .widget_shopping_cart .woocommerce-mini-cart__buttons .checkout:before, .widget_shopping_cart .woocommerce-mini-cart__buttons .wc-forward:not(.checkout):before, .header-cart__link-icon:before {
   display: inline-block;
   font: normal normal normal 14px/1 'FontAwesome';
@@ -229,6 +229,14 @@ select.orderby {
   overflow: hidden;
 }
 
+@media (max-width: 767px) {
+  .woocommerce-message,
+  .woocommerce-info,
+  .woocommerce-error {
+    margin-bottom: 20px;
+  }
+}
+
 .woocommerce-message:before,
 .woocommerce-info:before,
 .woocommerce-error:before {
@@ -260,6 +268,12 @@ select.orderby {
 .woocommerce-info .button,
 .woocommerce-error .button {
   float: right;
+}
+
+.woocommerce-message .button.wc-forward,
+.woocommerce-info .button.wc-forward,
+.woocommerce-error .button.wc-forward {
+  margin-left: 20px;
 }
 
 .woocommerce-message:before {
@@ -337,6 +351,67 @@ select.orderby {
 
 .woocommerce-pagination .page-numbers .nav-icon.icon-prev::before {
   content: "";
+}
+
+.woocommerce-pagination {
+  margin: 0 0 35px;
+}
+
+.woocommerce-pagination ul.page-numbers {
+  list-style: none;
+  margin: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.woocommerce-pagination ul.page-numbers li .page-numbers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  line-height: 33px;
+  padding: 0;
+  text-align: center;
+}
+
+.woocommerce-pagination ul.page-numbers li .page-numbers:not(.prev):not(.next) {
+  height: 33px;
+  width: 33px;
+  border-radius: 3px;
+  border: 1px solid #ebeced;
+}
+
+.woocommerce-pagination ul.page-numbers li .page-numbers:not(.prev):not(.next):hover, .woocommerce-pagination ul.page-numbers li .page-numbers:not(.prev):not(.next).current {
+  background-color: #ebeced;
+}
+
+.woocommerce-pagination ul.page-numbers li .page-numbers.next {
+  margin-left: 10px;
+}
+
+.woocommerce-pagination ul.page-numbers li .page-numbers.prev {
+  margin-right: 10px;
+}
+
+.woocommerce-pagination ul.page-numbers li .page-numbers:hover {
+  outline: none;
+}
+
+.woocommerce-pagination ul.page-numbers li .page-numbers .nav-icon {
+  font-size: 12px;
+}
+
+.woocommerce-pagination ul.page-numbers li .page-numbers .nav-icon.icon-next::before {
+  content: "";
+}
+
+.woocommerce-pagination ul.page-numbers li .page-numbers .nav-icon.icon-prev::before {
+  content: "";
+}
+
+.woocommerce-pagination ul.page-numbers li + li {
+  margin-left: 10px;
 }
 
 /**
@@ -962,6 +1037,11 @@ ul.products.columns--6 li.product {
 /**
  * WooComerce cart page
  */
+.woocommerce .cart-empty {
+  display: block;
+  width: 100%;
+}
+
 .woocommerce-cart .woocommerce-cart-form {
   border: 1px solid #ebeced;
   border-radius: 4px;

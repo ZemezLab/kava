@@ -214,13 +214,11 @@ if ( ! function_exists( 'kava_wc_pagination' ) ) {
 	 */
 	function kava_wc_pagination( $args ) {
 		$args['prev_text'] = sprintf( '
-		<span class="screen-reader-text">%1$s</span>
-		<span class="nav-icon icon-prev"></span>%1$s',
+		<span class="nav-icon icon-prev"></span><span>%1$s</span>',
 			esc_html__( 'Prev', 'kava' ) );
 
 		$args['next_text'] = sprintf( '
-		<span class="screen-reader-text">%1$s</span>
-		%1$s <span class="nav-icon icon-next"></span>',
+		<span>%1$s</span><span class="nav-icon icon-next"></span>',
 			esc_html__( 'Next', 'kava' ) );
 
 		return $args;

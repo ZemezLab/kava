@@ -1,6 +1,14 @@
 /**
  * WooComerce cart page
  */
+
+.woocommerce{
+	.cart-empty{
+		display: block;
+		width: 100%;
+	}
+}
+
 .woocommerce-cart {
 	.woocommerce-cart-form {
 		border: 1px solid $wc-border-color;
