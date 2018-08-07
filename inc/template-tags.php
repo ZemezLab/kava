@@ -21,19 +21,34 @@ if ( ! function_exists( 'kava_post_excerpt' ) ) :
 
 		$post_excerpt_enable = kava_theme()->customizer->get_value( 'blog_post_excerpt' );
 
-		if( $post_excerpt_enable && has_excerpt() ) {
-			$words_count = kava_theme()->customizer->get_value( 'blog_post_excerpt_words_count' );
-			$excerpt = wp_trim_words( get_the_excerpt(), $words_count, '...' );
-			$excerpt_output = apply_filters(
-				'kava-theme/post/excerpt-output',
-				$args['before'] .'<p>'. $excerpt .'</p>'. $args['after']
-			);
+		if ( ! $post_excerpt_enable ) {
+			return;
+		}
 
-			if ( $args['echo'] ) {
-				echo $excerpt_output;
-			} else {
-				return $excerpt_output;
+		$words_count = kava_theme()->customizer->get_value( 'blog_post_excerpt_words_count' );
+
+		if ( has_excerpt() ) {
+			$excerpt = wp_trim_words( get_the_excerpt(), $words_count, '...' );
+		} else {
+			$excerpt = get_the_content();
+			$excerpt = strip_shortcodes( $excerpt );
+			$excerpt = str_replace( ']]>', ']]&gt;', $excerpt );
+			$excerpt = wp_trim_words( $excerpt, $words_count, '...' );
+
+			if ( ! $excerpt ) {
+				return;
 			}
+		}
+
+		$excerpt_output = apply_filters(
+			'kava-theme/post/excerpt-output',
+			$args['before'] .'<p>'. $excerpt .'</p>'. $args['after']
+		);
+
+		if ( $args['echo'] ) {
+			echo $excerpt_output;
+		} else {
+			return $excerpt_output;
 		}
 	}
 endif;
