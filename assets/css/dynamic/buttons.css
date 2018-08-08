@@ -28,6 +28,7 @@ input[type='reset']:hover {
 	color: $invert_text_color;
 }
 .btn.invert-button:hover {
+	color: $invert_text_color;
 	border-color: $accent_color;
 	background-color: $accent_color;
 }

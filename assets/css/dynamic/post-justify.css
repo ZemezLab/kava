@@ -1,7 +1,8 @@
 .posts-list.list-style-v10 .posts-list__item.justify-item .justify-item-inner .entry-title a {
 	color: $primary_text_color;
 }
-.posts-list.list-style-v10 .posts-list__item.justify-item .justify-item-inner .entry-title a:hover{
+
+.posts-list.posts-list--vertical-justify.list-style-v10 .posts-list__item.justify-item .justify-item-inner .entry-title a:hover{
 	color: $invert_text_color;
 	background-color: $accent_color;
 }

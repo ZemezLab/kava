@@ -4,7 +4,7 @@
 @mixin transition($transition...) {
 	transition: $transition;
 }
-$color__nothumb: #383838;
+$color__nothumb: $color__lightblue;
 
 .posts-list.posts-list--masonry {
 	/*-----------------------
@@ -135,6 +135,9 @@ $color__nothumb: #383838;
 		.posts-list__item.masonry-item {
 			margin-bottom: $grid-gutter-width;
 			.post-thumbnail {
+				&__link {
+					display: block;
+				}
 				img {
 					width: 100%;
 					border-radius: ( $button__border-radius $button__border-radius 0 0);
@@ -173,7 +176,11 @@ $color__nothumb: #383838;
 		.posts-list__item.masonry-item {
 			margin-bottom: $grid-gutter-width;
 			.post-thumbnail {
+				&__link {
+					display: block;
+				}
 				img {
+					width: 100%;
 					border-radius: ( $button__border-radius $button__border-radius 0 0);
 				}
 				margin-bottom: 0;

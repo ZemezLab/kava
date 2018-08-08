@@ -9,7 +9,7 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class('posts-list__item default-item invert-item'); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class('posts-list__item default-item invert'); ?>>
 
 	<?php if ( has_post_thumbnail() ) : ?>
 		<div class="default-item__thumbnail" <?php kava_post_overlay_thumbnail( 'kava-thumb-l' ); ?>></div>

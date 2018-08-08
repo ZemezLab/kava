@@ -4,7 +4,7 @@
 @mixin transition($transition...) {
 	transition: $transition;
 }
-$color__nothumb: #383838;
+$color__nothumb: $color__lightblue;
 .posts-list.posts-list--grid {
 	/*-----------------------
 	### Grid layouts styles
@@ -185,6 +185,9 @@ $color__nothumb: #383838;
 		.posts-list__item.grid-item {
 			margin-bottom: 30px;
 			.post-thumbnail {
+				&__link {
+					display: block;
+				}
 				img {
 					width: 100%;
 					border-radius: ( $button__border-radius $button__border-radius 0 0);
@@ -324,7 +327,11 @@ $color__nothumb: #383838;
 		.posts-list__item.grid-item {
 			margin-bottom: $grid-gutter-width;
 			.post-thumbnail {
+				&__link {
+					display: block;
+				}
 				img {
+					width: 100%;
 					border-radius: ( $button__border-radius $button__border-radius 0 0);
 				}
 				margin-bottom: 0;
@@ -354,7 +361,7 @@ $color__nothumb: #383838;
 		.posts-list__item.grid-item {
 			&:not(.has-post-thumbnail) .grid-item-inner {
 				border-radius: $border__radius $border__radius;
-				background-color: $color__dark;
+				background-color: $color__darkgray2;
 			}
 			margin-bottom: $grid-gutter-width;
 			right: 0;
@@ -509,7 +516,7 @@ $color__nothumb: #383838;
 				z-index: -1;
 			}
 			&:not(.has-post-thumbnail) .grid-item-inner {
-				background-color: $color__dark;
+				background-color: $color__darkgray2;
 			}
 			.grid-item-inner {
 				position: relative;
@@ -683,7 +690,11 @@ $color__nothumb: #383838;
 				@include media-breakpoint-up(lg) {
 					margin-right: 40px;
 				}
+				&__link {
+					display: block;
+				}
 				img {
+					width: 100%;
 					border-radius: 0;
 				}
 			}
@@ -699,14 +710,20 @@ $color__nothumb: #383838;
 				align-items: flex-start;
 				> * {
 					order: 0;
-					flex: 0 1 100%;
 					align-self: center;
 					@include media-breakpoint-up(lg) {
-						flex: 0 1 50%;
 						align-self: auto;
 					}
 				}
-				.entry-header .entry-meta .cat-links {
+				> *:not(:only-child) {
+					flex: 0 1 100%;
+					@include media-breakpoint-up(lg) {
+						flex: 0 1 50%;
+					}
+				}
+
+				.entry-header .entry-meta .byline,
+				.entry-header .entry-meta .cat-links{
 					@include media-breakpoint-down(lg) {
 						flex: 0 1 100%;
 					}
@@ -743,7 +760,7 @@ $color__nothumb: #383838;
 		.posts-list__item.grid-item {
 			margin: 0;			
 			&:not(.has-post-thumbnail) .grid-item-inner {
-				background-color: $color__dark;
+				background-color: $color__darkgray2;
 			}
 			.grid-item__thumbnail {
 				position: absolute;

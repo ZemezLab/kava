@@ -4,7 +4,7 @@
 @mixin transition($transition...) {
 	transition: $transition;
 }
-$color__nothumb: #383838;
+$color__nothumb: $color__lightblue;
 
 .posts-list {
 	/*-----------------------
@@ -340,7 +340,7 @@ $color__nothumb: #383838;
 		.posts-list__item.justify-item {
 			&:not(.has-post-thumbnail) .justify-item-inner {
 				border-radius: $border__radius $border__radius;
-				background-color: $color__dark;
+				background-color: $color__darkgray2;
 			}
 			margin-bottom: $grid-gutter-width;
 			right: 0;
@@ -479,7 +479,7 @@ $color__nothumb: #383838;
 		.posts-list__item.justify-item {
 			&:not(.has-post-thumbnail) .justify-item-inner {
 				border-radius: $border__radius $border__radius;
-				background-color: $color__dark;
+				background-color: $color__darkgray2;
 			}
 			margin-bottom: $grid-gutter-width;
 			.justify-item__thumbnail {
@@ -648,7 +648,7 @@ $color__nothumb: #383838;
 		.posts-list__item.justify-item {
 			margin: 0;
 			&:not(.has-post-thumbnail) .justify-item-inner {
-				background-color: $color__dark;
+				background-color: $color__darkgray2;
 			}
 			.justify-item__thumbnail {
 				position: absolute;
@@ -812,12 +812,16 @@ $color__nothumb: #383838;
 		position: relative;
 		.posts-list__item.justify-item {
 			&:not(.has-post-thumbnail) .justify-item-inner {
-				background-color: $color__dark;
+				background-color: $color__darkgray2;
 			}
 			margin-bottom: $grid-gutter-width;
 			right: 0;
 			left: 0;
 			overflow: hidden;
+
+			.entry-footer .entry-meta>* {
+				margin-top: 0;
+			}
 			.justify-item__thumbnail {
 				position: absolute;
 				top: 0;
@@ -947,7 +951,7 @@ $color__nothumb: #383838;
 		position: relative;
 		.posts-list__item.justify-item {
 			&:not(.has-post-thumbnail) .justify-item-inner {
-				background-color: $color__dark;
+				background-color: $color__lightblue;
 			}
 			margin-bottom: $grid-gutter-width;
 			right: 0;
@@ -1099,7 +1103,7 @@ $color__nothumb: #383838;
 		}
 		.posts-list__item.justify-item {
 			&:not(.has-post-thumbnail) .justify-item-inner {
-				background-color: $color__dark;
+				background-color: $color__nothumb;
 			}
 			margin-bottom: 50px;
 			position: relative;
@@ -1116,7 +1120,6 @@ $color__nothumb: #383838;
 				@include media-breakpoint-up(lg) {
 					min-height: 330px;
 				}
-				overflow: hidden;
 				.entry-title {
 					position: absolute;
 					bottom: 20px;
