@@ -18,13 +18,14 @@
 		}
 	}
 	
-	.page-numbers {
+	a.page-numbers,
+	span.page-numbers {
 		display: inline-block;
 		font-size: $wc-pagination-number-fz;
 		line-height: $wc-pagination-number-lh;
 		padding: $wc-pagination-number-inset;
 		text-align: $wc-pagination-number-ta;
-		&:not(.prev):not(.next) {
+		&:not(.prev):not(.next){
 			height: $wc-pagination-number-height;
 			width: $wc-pagination-number-width;
 			border-radius: $wc-pagination-number-border-radius;
@@ -89,7 +90,7 @@
 				line-height: $wc-pagination-number-lh;
 				padding: $wc-pagination-number-inset;
 				text-align: $wc-pagination-number-ta;
-				&:not(.prev):not(.next) {
+				&:not(.prev,.next){
 					height: $wc-pagination-number-height;
 					width: $wc-pagination-number-width;
 					border-radius: $wc-pagination-number-border-radius;
