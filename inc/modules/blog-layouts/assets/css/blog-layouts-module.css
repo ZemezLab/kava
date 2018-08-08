@@ -522,6 +522,10 @@ body:not(.sidebar_enabled) .list-style-v3 .default-item {
           justify-content: center;
 }
 
+.list-style-v9 .default-item:nth-child(odd):not(.has-post-thumbnail) {
+  background-color: #f2f6fb;
+}
+
 .list-style-v9 .default-item .entry-header, .list-style-v9 .default-item .entry-content, .list-style-v9 .default-item .entry-footer {
   margin-left: 5%;
   margin-right: 5%;

@@ -441,6 +441,11 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+
+		&:nth-child(odd):not(.has-post-thumbnail) {
+			background-color: #f2f6fb;
+		}
+
 		.entry {
 			&-header,
 			&-content,
