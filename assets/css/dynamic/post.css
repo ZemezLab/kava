@@ -64,12 +64,14 @@
 }
 
 .invert-hover.has-post-thumbnail .btn,
-.invert-item.has-post-thumbnail .comments-button {
+.invert-item.has-post-thumbnail .comments-button,
+.posts-list--default.list-style-v10 .invert.default-item .comments-button{
 	color: $invert_text_color;
 	background-color: $accent_color;
 }
 .invert-hover.has-post-thumbnail .btn:hover,
-.invert-item.has-post-thumbnail .comments-button:hover {
+.invert-item.has-post-thumbnail .comments-button:hover,
+.posts-list--default.list-style-v10 .invert.default-item .comments-button:hover {
 	color: $link_color;
 	background-color: $invert_text_color;
 }

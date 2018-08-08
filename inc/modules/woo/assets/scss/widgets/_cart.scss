@@ -8,6 +8,10 @@
 		li {
 			position: relative;
 			display: block;
+
+			a:not(.remove) {
+				padding-right: 10px;
+			}
 			
 			.quantity {
 				display: block;
@@ -24,7 +28,7 @@
 	
 	a.remove {
 		position: absolute;
-		right: 0;
+		right: 3px;
 		top: -4px;
 		left: auto;
 		font-size: 18px;

@@ -57,12 +57,18 @@
 				@extend %icon-font-default;
 			}
 			
-			&.icon-next::before {
-				content: $wc-pagination-icon-next;
+			&.icon-next{
+				margin-left: 4px;
+				&::before {
+					content: $wc-pagination-icon-next;
+				}
 			}
 			
-			&.icon-prev::before {
-				content: $wc-pagination-icon-prev;
+			&.icon-prev{
+				margin-right: 4px;
+				&::before {
+					content: $wc-pagination-icon-prev;
+				}
 			}
 			
 		}

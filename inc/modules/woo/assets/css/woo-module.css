@@ -354,9 +354,19 @@ select.orderby {
   font-size: 12px;
 }
 
+.woocommerce-pagination a.page-numbers .nav-icon.icon-next,
+.woocommerce-pagination span.page-numbers .nav-icon.icon-next {
+  margin-left: 4px;
+}
+
 .woocommerce-pagination a.page-numbers .nav-icon.icon-next::before,
 .woocommerce-pagination span.page-numbers .nav-icon.icon-next::before {
   content: "";
+}
+
+.woocommerce-pagination a.page-numbers .nav-icon.icon-prev,
+.woocommerce-pagination span.page-numbers .nav-icon.icon-prev {
+  margin-right: 4px;
 }
 
 .woocommerce-pagination a.page-numbers .nav-icon.icon-prev::before,
@@ -2816,6 +2826,10 @@ ol.commentlist li + li {
   /* Remove item overlay */
 }
 
+.widget_shopping_cart ul li a:not(.remove) {
+  padding-right: 10px;
+}
+
 .widget_shopping_cart ul li .quantity {
   display: block;
 }
@@ -2828,7 +2842,7 @@ ol.commentlist li + li {
 
 .widget_shopping_cart a.remove {
   position: absolute;
-  right: 0;
+  right: 3px;
   top: -4px;
   left: auto;
   font-size: 18px;
