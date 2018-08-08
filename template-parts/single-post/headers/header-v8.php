@@ -12,7 +12,7 @@ $author_block_class = $is_author_block_enabled ? 'with_author_block' : '';
 
 ?>
 
-<div class="single-header-8 invert <?php echo $author_block_class; ?>">
+<div class="single-header-8 invert <?php echo esc_attr( $author_block_class ); ?>">
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 col-lg-8 col-lg-push-2">

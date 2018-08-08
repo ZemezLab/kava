@@ -8,10 +8,10 @@
  */
 
 $has_post_thumbnail = has_post_thumbnail();
-
+$has_post_thumbnail_class = $has_post_thumbnail ? 'invert' : '';
 ?>
 
-<div class="single-header-3 <?php echo $has_post_thumbnail ? 'invert' : '' ?>">
+<div class="single-header-3 <?php echo esc_attr( $has_post_thumbnail_class ); ?>">
 	<?php if ( $has_post_thumbnail ) : ?>
 		<div class="overlay-thumbnail" <?php kava_post_overlay_thumbnail( 'kava-thumb-xl' ); ?>></div>
 	<?php endif; ?>

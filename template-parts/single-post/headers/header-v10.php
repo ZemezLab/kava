@@ -12,7 +12,7 @@ $has_post_thumbnail_class = $has_post_thumbnail ? 'has-post-thumbnail' : '';
 
 ?>
 
-<div class="single-header-10 invert <?php echo $has_post_thumbnail_class; ?>">
+<div class="single-header-10 invert <?php echo esc_attr( $has_post_thumbnail_class ); ?>">
 	<?php kava_post_thumbnail( 'kava-thumb-xl', array( 'link' => false ) ); ?>
 	<div class="container">
 		<div class="row">

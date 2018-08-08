@@ -8,10 +8,10 @@
  */
 
 $has_post_thumbnail = has_post_thumbnail();
-
+$has_post_thumbnail_class = $has_post_thumbnail ? 'invert' : '';
 ?>
 
-<div class="single-header-5 <?php echo $has_post_thumbnail ? 'invert' : '' ?>">
+<div class="single-header-5 <?php echo esc_attr( $has_post_thumbnail_class ); ?>">
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">

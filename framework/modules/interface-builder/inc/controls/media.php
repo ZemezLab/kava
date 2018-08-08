@@ -104,7 +104,7 @@ if ( ! class_exists( 'CX_Control_Media' ) ) {
 										case 'image/gif':
 											$img_src = wp_get_attachment_image_src( $medias_value, 'thumbnail' );
 											$img_src = $img_src[0];
-											$thumb   = '<img  src="' . esc_html( $img_src ) . '" alt="">';
+											$thumb   = '<img  src="' . esc_html( $img_src ) . '" alt="Thumbnail image">';
 										break;
 
 										case 'image/x-icon':
@@ -133,7 +133,7 @@ if ( ! class_exists( 'CX_Control_Media' ) ) {
 												$html .= '</div>';
 											$html .= '</div>';
 											$html .= '<span class="title">' . $media_title . '</span>';
-											$html .= '<a class="cx-remove-image" href="#" title=""><i class="dashicons dashicons-no"></i></a>';
+											$html .= '<a class="cx-remove-image" href="#" title="Remove image"><i class="dashicons dashicons-no"></i></a>';
 										$html .= '</div>';
 									$html .= '</div>';
 								}

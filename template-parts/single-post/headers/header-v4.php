@@ -12,7 +12,7 @@ $invert_class = $has_post_thumbnail ? 'invert' : '';
 
 ?>
 
-<header class="single-header-4 entry-header <?php echo $invert_class ?>">
+<header class="single-header-4 entry-header <?php echo esc_attr( $invert_class ); ?>">
 	<?php if ( $has_post_thumbnail ) : ?>
 		<div class="overlay-thumbnail" <?php kava_post_overlay_thumbnail( 'kava-thumb-xl' ); ?>></div>
 	<?php endif; ?>
