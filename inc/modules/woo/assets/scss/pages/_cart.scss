@@ -244,6 +244,10 @@
 			background-color: $wc-add-to-cart-added-color;
 			width: 100%;
 
+			@media (max-width: 1199px){
+				font-size:12px;
+			}
+			
 			&::before {
 				content: $wc-proceed-to-checkout-button-icon;
 				font-size: calc(#{ $wc-proceed-to-checkout-button-fz} + 5px);

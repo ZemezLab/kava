@@ -7,9 +7,7 @@
 	padding: $wc-button-indents;
 	cursor: pointer;
 	text-align: center;
-	white-space: nowrap;
 	text-transform: uppercase;
-	text-overflow: ellipsis;
 	text-decoration: none;
 	border: $wc-button-border;
 	border-radius: $wc-button-border-radius;
@@ -18,13 +16,11 @@
 	&.product_type_external,
 	&.product_type_simple,
 	&.product_type_variable {
+		padding-top: 10px;
+		padding-bottom: 10px;
 		
 		.button-text {
-			display: inline-block;
-			max-width: 100%;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			vertical-align: bottom;
+			line-height: 1.6;
 		}
 		
 	}
