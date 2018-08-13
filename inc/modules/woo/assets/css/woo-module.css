@@ -1301,6 +1301,12 @@ ul.products.columns--6 li.product {
   width: 100%;
 }
 
+@media (max-width: 1199px) {
+  .woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .checkout-button {
+    font-size: 12px;
+  }
+}
+
 .woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .checkout-button::before {
   content: "";
   font-size: calc(15px + 5px);
