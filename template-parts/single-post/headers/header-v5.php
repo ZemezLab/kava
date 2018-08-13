@@ -46,7 +46,7 @@ $has_post_thumbnail_class = $has_post_thumbnail ? 'invert' : '';
 											'after'   => '</div>'
 										) );
 									?>
-									<div class="post-author__role"><?php echo $author_role[0]; ?></div>
+									<div class="post-author__role"><?php echo wp_kses_post( $author_role[0] ); ?></div>
 								</div>
 								<div class="post-author__avatar"><?php
 									kava_get_post_author_avatar( array(

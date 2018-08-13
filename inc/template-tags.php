@@ -46,7 +46,7 @@ if ( ! function_exists( 'kava_post_excerpt' ) ) :
 		);
 
 		if ( $args['echo'] ) {
-			echo $excerpt_output;
+			echo wp_kses_post( $excerpt_output );
 		} else {
 			return $excerpt_output;
 		}
@@ -92,8 +92,14 @@ if ( ! function_exists( 'kava_posted_on' ) ) :
 					$args['before'] . $args['prefix'] . ' ' . $posted_on . $args['after']
 				);
 
+				$allowed_html = array(
+					'time' => array(
+						'datetime' => true,
+					),
+				);
+
 				if ( $args['echo'] ) {
-					echo $date_output;
+					echo wp_kses( $date_output, kava_kses_post_allowed_html( $allowed_html ) );
 				} else {
 					return $date_output;
 				}
@@ -287,7 +293,7 @@ if ( ! function_exists( 'kava_get_post_author' ) ) :
 		);
 
 		if ( $args['echo'] ) {
-			echo $author_output;
+			echo wp_kses_post( $author_output );
 		} else {
 			return $author_output;
 		}
@@ -313,8 +319,14 @@ if ( ! function_exists( 'kava_get_post_author_avatar' ) ) :
 			get_avatar( get_the_author_meta( 'user_email', $author_id ), $args['size'], '', esc_attr( get_the_author_meta( 'nickname', $author_id ) ) )
 		);
 
+		$allowed_html = array(
+			'img' => array(
+				'srcset' => true,
+			),
+		);
+
 		if ( $args['echo'] ) {
-			echo $avatar_output;
+			echo wp_kses( $avatar_output, kava_kses_post_allowed_html( $allowed_html ) );
 		} else {
 			return $avatar_output;
 		}
@@ -341,7 +353,7 @@ if ( ! function_exists( 'kava_get_author_meta' ) ) :
 		);
 
 		if ( $args['echo'] ) {
-			echo $author_meta_output;
+			echo wp_kses_post( $author_meta_output );
 		} else {
 			return $author_meta_output;
 		}
@@ -447,8 +459,18 @@ function kava_post_thumbnail( $image_size = 'post-thumbnail', $args = array() ) 
 		$thumb
 	);
 
+	$allowed_html = array(
+		'a' => array(
+			'aria-hidden' => true,
+		),
+		'img' => array(
+			'srcset' => true,
+			'sizes'  => true,
+		),
+	);
+
 	if ( $args['echo'] ) {
-		echo $thumb;
+		echo wp_kses( $thumb, kava_kses_post_allowed_html( $allowed_html ) );
 	} else {
 		return $thumb;
 	}
