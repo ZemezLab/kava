@@ -2301,6 +2301,10 @@ ol.commentlist li + li {
   margin-left: 10px;
 }
 
+.woocommerce-product-gallery .zoomImg {
+  background: #ffffff;
+}
+
 .woocommerce-product-gallery--columns-6 li {
   display: block;
   width: calc( (100%/6) - (50px/6));
