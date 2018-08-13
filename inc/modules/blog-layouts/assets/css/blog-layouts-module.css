@@ -4834,6 +4834,7 @@ body:not(.sidebar_enabled) .list-style-v3 .default-item {
 }
 
 .posts-list.posts-list--masonry > .post {
+  display: inline-block;
   width: 100%;
   -webkit-column-break-inside: avoid;
   /* Chrome, Safari, Opera */
