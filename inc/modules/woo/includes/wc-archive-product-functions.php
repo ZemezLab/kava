@@ -7,7 +7,6 @@
 
 add_action( 'woocommerce_before_shop_loop', 'kava_wc_loop_products_panel_open', 15 );
 add_action( 'woocommerce_before_shop_loop', 'kava_wc_loop_products_panel_close', 50 );
-add_filter( 'loop_shop_columns', 'kava_wc_loop_columns' );
 add_filter( 'woocommerce_product_loop_start', 'kava_wc_product_loop_start' );
 
 if ( ! function_exists( 'kava_wc_loop_products_panel_open' ) ) {
@@ -38,23 +37,6 @@ if ( ! function_exists( 'kava_wc_loop_products_panel_close' ) ) {
 		echo '</div>';
 	}
 
-}
-
-if ( ! function_exists( 'kava_wc_loop_columns' ) ) {
-	/**
-	 * Change number or products per row
-	 *
-	 * @return int
-	 */
-	function kava_wc_loop_columns() {
-		$sidebar_position = kava_theme()->customizer->get_value( 'blog_sidebar_position' );
-
-		if ( 'none' === $sidebar_position ) {
-			return 4;
-		}
-
-		return 3;
-	}
 }
 
 if ( ! function_exists( 'kava_wc_product_loop_start' ) ) {
@@ -92,6 +74,14 @@ if ( ! function_exists( 'kava_wc_product_loop_start' ) ) {
 				break;
 			default:
 				break;
+		}
+
+		if( $columns['md'] > $columns['lg'] ){
+			$columns['md'] = $columns['lg'];
+		}
+
+		if( $columns['sm'] > $columns['md'] ){
+			$columns['sm'] = $columns['md'];
 		}
 
 		$columns = apply_filters( 'kava-theme/woo/products_loop_columns', $columns, $context );

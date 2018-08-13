@@ -91,20 +91,19 @@ label.inline input[type="checkbox"] + span::after, .woocommerce-cart table.cart 
   padding: 12px 20px;
   cursor: pointer;
   text-align: center;
-  white-space: nowrap;
   text-transform: uppercase;
-  text-overflow: ellipsis;
   text-decoration: none;
   border: none;
   border-radius: 3px;
 }
 
+.button.product_type_grouped, .button.product_type_external, .button.product_type_simple, .button.product_type_variable {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 .button.product_type_grouped .button-text, .button.product_type_external .button-text, .button.product_type_simple .button-text, .button.product_type_variable .button-text {
-  display: inline-block;
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  vertical-align: bottom;
+  line-height: 1.6;
 }
 
 .button.single_add_to_cart_button, .button.add_to_cart_button, .button.product_type_variable {
