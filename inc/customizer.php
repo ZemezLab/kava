@@ -1203,13 +1203,6 @@ function kava_get_customizer_options() {
 				'field'   => 'checkbox',
 				'type'    => 'control',
 			),
-			'top_panel_search' => array(
-				'title'   => esc_html__( 'Enable search', 'kava' ),
-				'section' => 'header_top_panel',
-				'default' => true,
-				'field'   => 'checkbox',
-				'type'    => 'control',
-			),
 			'top_panel_bg' => array(
 				'title'   => esc_html__( 'Background color', 'kava' ),
 				'section' => 'header_top_panel',

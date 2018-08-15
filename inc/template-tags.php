@@ -623,12 +623,11 @@ function kava_is_top_panel_visible() {
 
 	if ( $top_panel_enable ) {
 		$site_description = ( kava_theme()->customizer->get_value( 'show_tagline' ) && strlen(get_bloginfo( 'description' ) ) > 0 ) ? true : false;
-		$search           = kava_theme()->customizer->get_value( 'top_panel_search' );
 		$social           = kava_theme()->customizer->get_value( 'header_social_links' );
 
 		$conditions = apply_filters(
 			'kava-theme/header/top-panel-visibility-conditions',
-			array( $site_description, $search, $social )
+			array( $site_description, $social )
 		);
 
 		foreach ( $conditions as $condition ) {
