@@ -19,15 +19,22 @@
 	select {
 		width: 100%;
 	}
-	ul:not([class]) {
+	ul {
 		list-style: none;
 		margin-left: 0;
 		li {
 			margin-bottom: 4px;
 		}
 	}
+
+	li > ul,
+	li > ol {
+		margin-top: 4px;
+		margin-left: 1.2em;
+	}
+
 	&_recent_entries {
-		ul:not([class]) {
+		ul {
 			li {
 				margin-bottom: 20px;
 			}
@@ -42,11 +49,6 @@
 		}
 	}
 	&_recent_comments {
-		ul:not([class]) {
-			li {
-				margin-bottom: 20px;
-			}
-		}
 		.recentcomments {
 			margin-bottom: 20px;
 			&:before {

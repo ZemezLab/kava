@@ -31,11 +31,15 @@
 }
 
 /* #Pagination */
-.pagination .page-numbers {
+.pagination .page-numbers,
+.page-links > span,
+.page-links > a {
 	color: $secondary_text_color;
 }
 .pagination a.page-numbers:hover,
-.pagination .page-numbers.current {
+.pagination .page-numbers.current,
+.page-links > a:hover,
+.page-links > span {
 	color: $link_hover_color;
 }
 

@@ -1,8 +1,10 @@
 <?php do_action( 'kava-theme/comments/comment-before' ); ?>
 
+<?php if ( ! empty( kava_comment_author_avatar() ) ) : ?>
 <div class="comment-author vcard">
 	<?php echo kava_comment_author_avatar(); ?>
 </div>
+<?php endif; ?>
 <div class="comment-content-wrapper">
 	<div class="comment-meta">
 		<?php echo kava_get_comment_author_link(); ?>

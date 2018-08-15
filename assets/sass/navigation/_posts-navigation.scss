@@ -40,6 +40,29 @@
 	}
 }
 
+.page-links {
+	> span,
+	> a {
+		@include border-radius;
+		display: inline-block;
+		width: 33px;
+		height: 33px;
+		text-align: center;
+		@include font-size(14/16);
+		line-height: 33px;
+		border: 1px solid $color__background-hr;
+		margin: 5px 5px 5px 0;
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+
+	> span,
+	> a:hover {
+		background-color: $color__background-hr;
+	}
+}
+
 .comment-navigation,
 .posts-navigation {
 	.nav {

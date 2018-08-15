@@ -19,10 +19,11 @@
 	<div class="page-content">
 		<?php
 			the_content();
-
 			wp_link_pages( array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'kava' ),
-				'after'  => '</div>',
+				'before'      => '<div class="page-links">' . esc_html__( 'Pages:', 'kava' ),
+				'after'       => '</div>',
+				'link_before' => '<span>',
+				'link_after'  => '</span>',
 			) );
 		?>
 	</div><!-- .page-content -->
