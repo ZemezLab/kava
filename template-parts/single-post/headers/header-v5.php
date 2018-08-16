@@ -31,6 +31,9 @@ $has_post_thumbnail_class = $has_post_thumbnail ? 'invert' : '';
 								'before'  => '<span class="posted-on">',
 								'after'   => '</span>',
 							) );
+							kava_post_comments( array(
+								'postfix' => __( 'Comment(s)', 'kava' ),
+							) );
 						?></div>
 						<?php if ( kava_theme()->customizer->get_value( 'single_post_author' ) ) : ?>
 							<div class="post-author">

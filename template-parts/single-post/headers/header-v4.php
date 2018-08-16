@@ -48,8 +48,8 @@ $invert_class = $has_post_thumbnail ? 'invert' : '';
 						'prefix'    => '<i class="fa fa-tag" aria-hidden="true"></i>',
 					) );
 					kava_post_comments( array(
-						'prefix'    => '<i class="fa fa-comment-o" aria-hidden="true"></i>',
-						'postfix' => __( 'Comment(s)', 'kava' )
+						'prefix'  => '<i class="fa fa-comment-o" aria-hidden="true"></i>',
+						'postfix' => __( 'Comment(s)', 'kava' ),
 					) );
 				?></div><!-- .entry-meta -->
 			</div>

@@ -209,9 +209,12 @@
 	color: @alpha($invert_text_color, 50%);
 }
 
+.single-header-3 a.comments-button,
 .single-header-10 a.comments-button {
 	border: 1px solid $invert_text_color;
 }
+
+.single-header-3 a.comments-button:hover,
 .single-header-10 a.comments-button:hover {
 	color: $link_color; 
 	background-color: $invert_text_color;

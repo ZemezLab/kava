@@ -141,13 +141,20 @@
 			.entry-title {
 				margin-bottom: 10px;
 			}
+			.entry-header-bottom {
+				margin-top: 40px;
+				@include space-between-content;
+				align-items: center;
+			}
 			.post-author {
 				display: flex;
 				align-items: center;
-				margin-top: 40px;
 				&__avatar {
 					margin-right: 20px;
 				}
+			}
+			.comments-button {
+				background: none;
 			}
 			p {
 				@include media-breakpoint-up(sm) {
@@ -282,11 +289,13 @@
 				}
 				&-meta:not(:empty) {
 					margin-top: 5px;
-					.cat-links,
-					.posted-on {
+					> * {
 						margin-bottom: 30px;
 					}
 				}
+			}
+			.comments-link {
+				vertical-align: baseline;
 			}
 			.post-author {
 				@include media-breakpoint-up(md) {

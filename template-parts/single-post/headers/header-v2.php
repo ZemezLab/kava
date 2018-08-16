@@ -22,6 +22,9 @@
 						kava_posted_on( array(
 							'prefix'  => __( 'Posted', 'kava' ),
 						) );
+						kava_post_comments( array(
+							'postfix' => __( 'Comment(s)', 'kava' ),
+						) );
 					?>
 				</div><!-- .entry-meta -->
 			</header><!-- .entry-header -->
