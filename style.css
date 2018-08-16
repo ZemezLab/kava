@@ -3641,6 +3641,9 @@ body:not(.sidebar_enabled) .post-default {
 /*--------------------------------------------------------------
 ### Post Template
 --------------------------------------------------------------*/
+.post-template-single-layout-2.post-template .site-content {
+  margin-top: 0;
+}
 .post-template-single-layout-2 .single-header-2 {
   margin-top: 40px;
   margin-bottom: 25px;
@@ -3665,6 +3668,9 @@ body:not(.sidebar_enabled) .post-default {
   width: 100%;
   max-width: none;
   max-height: 550px;
+}
+.post-template-single-layout-3.post-template .site-content {
+  margin-top: 0;
 }
 .post-template-single-layout-3 .single-header-3 {
   position: relative;
@@ -3721,6 +3727,9 @@ body:not(.sidebar_enabled) .post-default {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
+}
+.post-template-single-layout-4.post-template .site-content {
+  margin-top: 0;
 }
 .post-template-single-layout-4 .site-content__wrap {
   position: relative;
@@ -3920,8 +3929,14 @@ body:not(.sidebar_enabled) .post-default {
 .post-template-single-layout-6 .posted-on {
   text-align: center;
 }
+.post-template-single-layout-6.post-template .site-content {
+  margin-top: 0;
+}
 .post-template-single-layout-6 .site-content__wrap {
   margin-top: 50px;
+}
+.post-template-single-layout-7.post-template .site-content {
+  margin-top: 0;
 }
 .post-template-single-layout-7 .single-header-7 {
   position: relative;
@@ -3980,6 +3995,9 @@ body:not(.sidebar_enabled) .post-default {
   font-size: 12px;
   font-size: 0.75rem;
 }
+.post-template-single-layout-8.post-template .site-content {
+  margin-top: 0;
+}
 .post-template-single-layout-8 .single-header-8 {
   margin-bottom: 60px;
   padding: 60px 0 0;
@@ -4023,6 +4041,9 @@ body:not(.sidebar_enabled) .post-default {
   margin-top: 35px;
   margin-bottom: 50px;
 }
+.post-template-single-layout-9.post-template .site-content {
+  margin-top: 0;
+}
 .post-template-single-layout-9 .single-header-9 {
   margin-top: 20px;
   margin-bottom: 30px;
@@ -4055,6 +4076,9 @@ body:not(.sidebar_enabled) .post-default {
   margin-bottom: 30px;
   padding: 0;
   border: none;
+}
+.post-template-single-layout-10.post-template .site-content {
+  margin-top: 0;
 }
 .post-template-single-layout-10 .single-header-10 .entry-header {
   border-radius: 4px;

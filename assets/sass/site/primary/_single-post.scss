@@ -86,6 +86,10 @@
 .post-template {
 	//single-layout-2
 	&-single-layout-2 {
+		&.post-template .site-content {
+			margin-top: 0;
+		}
+
 		.single-header-2 {
 			margin-top: 40px;
 			margin-bottom: 25px;
@@ -109,6 +113,10 @@
 		}
 	} //single-layout-3
 	&-single-layout-3 {
+		&.post-template .site-content {
+			margin-top: 0;
+		}
+
 		.single-header-3 {
 			position: relative;
 			margin-bottom: 35px;
@@ -156,6 +164,10 @@
 		}
 	} //single-layout-4
 	&-single-layout-4 {
+		&.post-template .site-content {
+			margin-top: 0;
+		}
+
 		.site-content {
 			&__wrap {
 				position: relative;
@@ -330,6 +342,9 @@
 		.posted-on {
 			text-align: center;
 		}
+		&.post-template .site-content {
+			margin-top: 0;
+		}
 		.site-content {
 			&__wrap {
 				margin-top: 50px;
@@ -337,6 +352,10 @@
 		}
 	} //single-layout-7
 	&-single-layout-7 {
+		&.post-template .site-content {
+			margin-top: 0;
+		}
+
 		.single-header-7 {
 			position: relative;
 			padding: 30px 0;
@@ -385,6 +404,9 @@
 		}
 	} //single-layout-8
 	&-single-layout-8 {
+		&.post-template .site-content {
+			margin-top: 0;
+		}
 		.single-header-8 {
 			margin-bottom: 60px;
 			padding: 60px 0 0;
@@ -431,6 +453,9 @@
 		}
 	} //single-layout-9
 	&-single-layout-9 {
+		&.post-template .site-content {
+			margin-top: 0;
+		}
 		.single-header-9 {
 			margin-top: 20px;
 			margin-bottom: 30px;
@@ -462,6 +487,9 @@
 		}
 	} //single-layout-10
 	&-single-layout-10 {
+		&.post-template .site-content {
+			margin-top: 0;
+		}
 		.single-header-10 {
 			.entry {
 				&-header {
