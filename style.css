@@ -3293,8 +3293,10 @@ span.tags-links {
 .btn-style .post-categories li {
   display: inline-block;
   margin-right: 3px;
+  margin-bottom: 4px;
 }
 .btn-style .post-categories a {
+  display: inline-block;
   padding: 6px 10px;
   border-radius: 4px;
 }

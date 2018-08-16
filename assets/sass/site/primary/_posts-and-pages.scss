@@ -82,8 +82,10 @@ span.tags-links {
 		li {
 			display: inline-block;
 			margin-right: 3px;
+			margin-bottom: 4px;
 		}
 		a {
+			display: inline-block;
 			padding: 6px 10px;
 			@include border-radius();
 		}

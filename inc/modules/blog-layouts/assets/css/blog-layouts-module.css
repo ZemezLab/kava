@@ -2653,6 +2653,7 @@ body:not(.sidebar_enabled) .list-style-v3 .default-item {
 .posts-list.posts-list--grid.list-style-v7 .posts-list__item.grid-item .grid-item-wrap .cat-links li, .posts-list.posts-list--grid.list-style-v6 .posts-list__item.grid-item .grid-item-wrap .cat-links li {
   float: left;
   margin-right: 4px;
+  margin-bottom: 4px;
 }
 
 .posts-list.posts-list--grid.list-style-v7 .posts-list__item.grid-item .grid-item-wrap .cat-links a, .posts-list.posts-list--grid.list-style-v6 .posts-list__item.grid-item .grid-item-wrap .cat-links a {
@@ -3988,6 +3989,7 @@ body:not(.sidebar_enabled) .list-style-v3 .default-item {
 .posts-list.posts-list--vertical-justify.list-style-v5 .posts-list__item.justify-item .justify-item-wrap .cat-links li {
   float: left;
   margin-right: 4px;
+  margin-bottom: 4px;
 }
 
 .posts-list.posts-list--vertical-justify.list-style-v5 .posts-list__item.justify-item .justify-item-wrap .cat-links a {
