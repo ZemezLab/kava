@@ -60,7 +60,9 @@ $has_post_thumbnail_class = $has_post_thumbnail ? 'invert' : '';
 						<?php endif; ?>
 					</div>
 					<?php the_title( '<h1 class="entry-title h2-style">', '</h1>' ); ?>
-					<?php the_excerpt(); ?>
+					<?php if ( has_excerpt() ) :
+						the_excerpt();
+					endif; ?>
 				</header><!-- .entry-header -->
 			</div>
 		</div>

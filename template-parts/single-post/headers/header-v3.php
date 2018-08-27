@@ -25,7 +25,9 @@ $has_post_thumbnail_class = $has_post_thumbnail ? 'invert' : '';
 						'after'     => '</div>',
 					) ); ?>
 					<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-					<?php the_excerpt(); ?>
+					<?php if ( has_excerpt() ) :
+						the_excerpt();
+					endif; ?>
 					<div class="entry-header-bottom">
 						<div class="post-author">
 							<?php if ( kava_theme()->customizer->get_value( 'single_post_author' ) ) : ?>
