@@ -56,7 +56,7 @@ if ( ! function_exists( 'kava_wc_template_loop_product_title' ) ) {
 }
 
 
-if( ! function_exists( 'kava_wc_loop_add_to_cart_link' ) ){
+if ( ! function_exists( 'kava_wc_loop_add_to_cart_link' ) ) {
 
 	/**
 	 *  Override product loop add to cart button
@@ -67,7 +67,7 @@ if( ! function_exists( 'kava_wc_loop_add_to_cart_link' ) ){
 	 *
 	 * @return string
 	 */
-	function kava_wc_loop_add_to_cart_link( $html, $product, $args ){
+	function kava_wc_loop_add_to_cart_link( $html, $product, $args ) {
 		$html = sprintf( '<a href="%s" data-quantity="%s" class="%s" %s><span class="button-text">%s</span></a>',
 			esc_url( $product->add_to_cart_url() ),
 			esc_attr( isset( $args['quantity'] ) ? $args['quantity'] : 1 ),

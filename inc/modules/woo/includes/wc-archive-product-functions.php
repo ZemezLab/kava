@@ -97,7 +97,9 @@ if ( ! function_exists( 'kava_wc_product_loop_start' ) ) {
 			);
 		}
 
-		$ob_get_clean = woocommerce_maybe_show_product_subcategories( $ob_get_clean );
+		if ( apply_filters( 'kava-theme/woo/products-loop-categories/show', true ) ){
+			$ob_get_clean = woocommerce_maybe_show_product_subcategories( $ob_get_clean );
+		}
 
 		return $ob_get_clean;
 	}

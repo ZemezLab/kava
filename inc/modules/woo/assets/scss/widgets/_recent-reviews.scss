@@ -1,6 +1,7 @@
 /**
  * Top rated products widget
  */
+.elementor-widget-wp-widget-woocommerce_recent_reviews,
 .widget_recent_reviews {
 	.product_list_widget {
 		@extend %product-list-widget;
