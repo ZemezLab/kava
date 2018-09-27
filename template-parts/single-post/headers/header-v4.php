@@ -26,7 +26,9 @@ $invert_class = $has_post_thumbnail ? 'invert' : '';
 					'after'     => '</div>'
 				) ); ?>
 				<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-				<?php the_excerpt(); ?>
+				<?php if ( has_excerpt() ) :
+					the_excerpt();
+				endif; ?>
 				<?php if ( kava_theme()->customizer->get_value( 'single_post_author' ) ) : ?>
 					<div class="post-author">
 						<div class="post-author__avatar"><?php
@@ -48,8 +50,8 @@ $invert_class = $has_post_thumbnail ? 'invert' : '';
 						'prefix'    => '<i class="fa fa-tag" aria-hidden="true"></i>',
 					) );
 					kava_post_comments( array(
-						'prefix'    => '<i class="fa fa-comment-o" aria-hidden="true"></i>',
-						'postfix' => __( 'Comment(s)', 'kava' )
+						'prefix'  => '<i class="fa fa-comment-o" aria-hidden="true"></i>',
+						'postfix' => __( 'Comment(s)', 'kava' ),
 					) );
 				?></div><!-- .entry-meta -->
 			</div>

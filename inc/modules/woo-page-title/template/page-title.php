@@ -13,7 +13,7 @@ if ( !is_shop() && !is_product_taxonomy() ){
 
 <header class="woocommerce-products-header container">
 	<?php
-			echo $title;
+			echo wp_kses_post( $title );
 			woocommerce_taxonomy_archive_description();
 			woocommerce_product_archive_description();
 	?>

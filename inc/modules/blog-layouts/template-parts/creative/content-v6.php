@@ -18,7 +18,7 @@
 				$month = get_the_date('m');
 			?>
 			<div class="posted-on">
-				<span class="posted-on__day"><?php echo $day ?></span><span class="posted-on__month">/<?php echo $month ?></span>
+				<span class="posted-on__day"><?php echo esc_html( $day ); ?></span><span class="posted-on__month">/<?php echo esc_html( $month ); ?></span>
 			</div>
 		</div>
 	<?php endif; ?>

@@ -26,6 +26,9 @@ $author_block_enabled = kava_theme()->customizer->get_value( 'single_author_bloc
 						'prefix'  => __( 'Posted', 'kava' ),
 					) );
 				}
+				kava_post_comments( array(
+					'postfix' => __( 'Comment(s)', 'kava' ),
+				) );
 			?>
 		</div><!-- .entry-meta -->
 		<?php the_title( '<h1 class="entry-title h2-style">', '</h1>' ); ?>

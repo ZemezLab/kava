@@ -82,8 +82,10 @@ span.tags-links {
 		li {
 			display: inline-block;
 			margin-right: 3px;
+			margin-bottom: 4px;
 		}
 		a {
+			display: inline-block;
 			padding: 6px 10px;
 			@include border-radius();
 		}
@@ -218,5 +220,18 @@ span.tags-links {
 		&-meta {
 			margin-bottom: 5px;
 		}
+	}
+}
+
+/*--------------------------------------------------------------
+### Not found Section
+--------------------------------------------------------------*/
+.not-found {
+	&.error-404,
+	&.no-results {
+		max-width: 770px;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
 	}
 }

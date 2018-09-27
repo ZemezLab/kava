@@ -30,6 +30,7 @@ if ( ! class_exists( 'Kava_Blog_Layouts_Module' ) ) {
 			'creative'         => array( 'v3','v5','v8' ),
 			'grid'             => array( 'v3','v10' ),
 			'masonry'          => array( 'v3','v5','v6','v7','v10' ),
+			'vertical-justify' => array(),
 		);
 
 		/**
@@ -81,7 +82,7 @@ if ( ! class_exists( 'Kava_Blog_Layouts_Module' ) ) {
 			$this->layout_type  = kava_theme()->customizer->get_value( 'blog_layout_type' );
 			$this->layout_style = kava_theme()->customizer->get_value( 'blog_style' );
 
-			if ( ! empty( $this->sidebar_list[$this->layout_type] ) && $this->is_blog_archive() ) {
+			if ( isset( $this->sidebar_list[$this->layout_type] ) && $this->is_blog_archive() ) {
 				$this->sidebar_enabled = in_array( $this->layout_style, $this->sidebar_list[$this->layout_type] );
 			}
 
@@ -170,7 +171,7 @@ if ( ! class_exists( 'Kava_Blog_Layouts_Module' ) ) {
 			$new_options = array(
 				'blog_layout_type' => array(
 					'title'    => esc_html__( 'Layout', 'kava' ),
-					'priotity' => 1,
+					'priority' => 1,
 					'section'  => 'blog',
 					'default'  => 'default',
 					'field'    => 'select',
@@ -186,7 +187,7 @@ if ( ! class_exists( 'Kava_Blog_Layouts_Module' ) ) {
 				'blog_style' => array(
 					'title'    => esc_html__( 'Style', 'kava' ),
 					'section'  => 'blog',
-					'priotity' => 2,
+					'priority' => 2,
 					'default'  => 'default',
 					'field'    => 'select',
 					'choices'  => array(

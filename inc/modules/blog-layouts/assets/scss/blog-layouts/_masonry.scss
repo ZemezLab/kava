@@ -13,6 +13,7 @@ $color__nothumb: $color__lightblue;
 	/* 4grids */
 	display: block;
 	> .post {
+		display: inline-block;
 		width: 100%;
 		-webkit-column-break-inside: avoid; /* Chrome, Safari, Opera */
 		page-break-inside: avoid; /* Firefox */

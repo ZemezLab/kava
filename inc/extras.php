@@ -213,3 +213,26 @@ function kava_get_post_template_part_slug() {
 function kava_get_post_style() {
 	return apply_filters( 'kava-theme/posts/post-style', false );
 }
+
+/**
+ * Return a list of allowed tags and attributes.
+ *
+ * @param array $additional_allowed_html Additional allowed tags and attributes
+ *
+ * @return array
+ */
+function kava_kses_post_allowed_html( $additional_allowed_html = array() ) {
+	$allowed_html = wp_kses_allowed_html( 'post' );
+
+	if ( ! empty( $additional_allowed_html ) ) {
+		foreach ( $additional_allowed_html as $tag => $attr ) {
+			if ( array_key_exists( $tag, $allowed_html ) ) {
+				$allowed_html[ $tag ] = array_merge( $allowed_html[ $tag ], $attr );
+			} else {
+				$allowed_html[ $tag ] = $attr;
+			}
+		}
+	}
+
+	return $allowed_html;
+}

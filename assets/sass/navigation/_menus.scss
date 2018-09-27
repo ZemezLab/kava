@@ -64,17 +64,19 @@
 
 /* Item submenu arrow */
 
-li.menu-item-has-children {
-	&:before {
-		position: absolute;
-		top: 6px;
-		right: 3px;
-		@include font-awesome-icon;
-		content: '\f107';
-		.menu-item-has-children & {
-			top: 7px;
-			content: '\f105';
-			right: 12px;
+.main-navigation {
+	li.menu-item-has-children {
+		&:before {
+			position: absolute;
+			top: 6px;
+			right: 3px;
+			@include font-awesome-icon;
+			content: '\f107';
+			.menu-item-has-children & {
+				top: 7px;
+				content: '\f105';
+				right: 12px;
+			}
 		}
 	}
 }

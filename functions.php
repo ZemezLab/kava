@@ -119,8 +119,6 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 					get_theme_file_path( 'framework/modules/fonts-manager/cherry-x-fonts-manager.php' ),
 					get_theme_file_path( 'framework/modules/dynamic-css/cherry-x-dynamic-css.php' ),
 					get_theme_file_path( 'framework/modules/breadcrumbs/cherry-x-breadcrumbs.php' ),
-					get_theme_file_path( 'framework/modules/post-meta/cherry-x-post-meta.php' ),
-					get_theme_file_path( 'framework/modules/interface-builder/cherry-x-interface-builder.php' ),
 				)
 			);
 

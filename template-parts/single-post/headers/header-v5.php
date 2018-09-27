@@ -31,6 +31,9 @@ $has_post_thumbnail_class = $has_post_thumbnail ? 'invert' : '';
 								'before'  => '<span class="posted-on">',
 								'after'   => '</span>',
 							) );
+							kava_post_comments( array(
+								'postfix' => __( 'Comment(s)', 'kava' ),
+							) );
 						?></div>
 						<?php if ( kava_theme()->customizer->get_value( 'single_post_author' ) ) : ?>
 							<div class="post-author">
@@ -46,7 +49,7 @@ $has_post_thumbnail_class = $has_post_thumbnail ? 'invert' : '';
 											'after'   => '</div>'
 										) );
 									?>
-									<div class="post-author__role"><?php echo $author_role[0]; ?></div>
+									<div class="post-author__role"><?php echo wp_kses_post( $author_role[0] ); ?></div>
 								</div>
 								<div class="post-author__avatar"><?php
 									kava_get_post_author_avatar( array(
@@ -57,7 +60,9 @@ $has_post_thumbnail_class = $has_post_thumbnail ? 'invert' : '';
 						<?php endif; ?>
 					</div>
 					<?php the_title( '<h1 class="entry-title h2-style">', '</h1>' ); ?>
-					<?php the_excerpt(); ?>
+					<?php if ( has_excerpt() ) :
+						the_excerpt();
+					endif; ?>
 				</header><!-- .entry-header -->
 			</div>
 		</div>

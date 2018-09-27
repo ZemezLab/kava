@@ -1,3 +1,10 @@
+input,
+optgroup,
+select,
+textarea {
+	font-size: $body_font_size{px};
+}
+
 /* #Comment, Contact, Password Forms */
 .comment-form .submit,
 .wpcf7-submit,

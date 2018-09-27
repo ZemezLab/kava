@@ -21,7 +21,7 @@ function kava_rewrite_comment_item( $_comment, $args, $depth ) {
 
 	$tag = ( 'div' === $args['style'] ) ? 'div' : 'li'; ?>
 
-	<<?php echo $tag; ?> <?php comment_class( $args['has_children'] ? 'parent' : '' ); ?> id="comment-<?php comment_ID(); ?>">
+	<<?php echo tag_escape( $tag ); ?> <?php comment_class( $args['has_children'] ? 'parent' : '' ); ?> id="comment-<?php comment_ID(); ?>">
 
 	<article id="div-comment-<?php comment_ID(); ?>" class="comment-body">
 		<?php get_template_part( 'template-parts/comment' ); ?>

@@ -59,11 +59,11 @@ if ( ! class_exists( 'Kava_Woo_Breadcrumbs_Module' ) ) {
 		 * @return bool|array
 		 */
 		public function get_wc_breadcrumbs( $is_custom_breadcrumbs, $args ) {
-			if ( !is_woocommerce() ){
-				return;
+			if ( ! is_woocommerce() ){
+				return $is_custom_breadcrumbs;
 			}
 
-			$wc_breadcrumbs = new Kava_WC_Breadcrumbs( kava_get_breadcrumbs_options() );
+			$wc_breadcrumbs = new Kava_WC_Breadcrumbs( $args );
 
 			return array( 'items' => $wc_breadcrumbs->items, 'page_title' => $wc_breadcrumbs->page_title );
 
