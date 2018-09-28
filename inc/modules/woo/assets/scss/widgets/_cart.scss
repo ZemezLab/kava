@@ -1,6 +1,7 @@
 /**
  * Cart widget
  */
+.elementor-widget-wp-widget-woocommerce_widget_cart,
 .elementor-widget-wp-widget-woocommerce_shopping_cart,
 .widget_shopping_cart {
 	ul {
@@ -17,7 +18,7 @@
 			.quantity {
 				display: block;
 			}
-
+			
 			/* Remove item overlay */
 			.blockOverlay {
 				margin: 0 0 10px 0 !important;
