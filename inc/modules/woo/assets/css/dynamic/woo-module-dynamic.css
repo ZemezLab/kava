@@ -256,13 +256,16 @@ table.woocommerce-table--order-downloads.shop_table tbody tr td.download-file .b
 }
 
 .elementor-widget-wp-widget-woocommerce_shopping_cart .quantity,
+.elementor-widget-wp-widget-woocommerce_widget_cart .quantity,
 .widget_shopping_cart .quantity{
 	color: $secondary_text_color;
 }
 
 .elementor-widget-wp-widget-woocommerce_shopping_cart,
+.elementor-widget-wp-widget-woocommerce_widget_cart,
 .widget_shopping_cart,
 .elementor-widget-wp-widget-woocommerce_shopping_cart a:not(.button),
+.elementor-widget-wp-widget-woocommerce_widget_cart a:not(.button),
 .widget_shopping_cart a:not(.button),
 .elementor-widget-wp-widget-woocommerce_recently_viewed_products a,
 .widget_recently_viewed_products a,
@@ -276,6 +279,7 @@ table.woocommerce-table--order-downloads.shop_table tbody tr td.download-file .b
 }
 
 .elementor-widget-wp-widget-woocommerce_shopping_cart a:not(.button):hover,
+.elementor-widget-wp-widget-woocommerce_widget_cart a:not(.button):hover,
 .widget_shopping_cart a:not(.button):hover,
 .elementor-widget-wp-widget-woocommerce_recently_viewed_products a:hover,
 .widget_recently_viewed_products a:hover,
@@ -289,17 +293,24 @@ table.woocommerce-table--order-downloads.shop_table tbody tr td.download-file .b
 }
 
 .elementor-widget-wp-widget-woocommerce_rating_filter li.chosen:before,
-.widget_rating_filter li.chosen:before,
-.elementor-widget-wp-widget-woocommerce_product_categories li.current-cat:before,
-.widget_product_categories li.current-cat:before{
+.widget_rating_filter li.chosen:before, {
+	background-color: $accent_color;
+	border-color: $accent_color;
+}
+
+.elementor-widget-wp-widget-woocommerce_product_categories li.current-cat a:before,
+.widget_product_categories li.current-cat a:before{
 	background-color: $accent_color;
 	border-color: $accent_color;
 }
 
 .elementor-widget-wp-widget-woocommerce_rating_filter li:after,
-.widget_rating_filter li:after,
-.elementor-widget-wp-widget-woocommerce_product_categories li:after,
-.widget_product_categories li:after{
+.widget_rating_filter li:after{
+	color: $invert_text_color;
+}
+
+.elementor-widget-wp-widget-woocommerce_product_categories li a:after,
+.widget_product_categories li a:after{
 	color: $invert_text_color;
 }
 
@@ -307,24 +318,29 @@ table.woocommerce-table--order-downloads.shop_table tbody tr td.download-file .b
 	color: $primary_text_color;
 }
 
-.elementor-widget-wp-widget-woocommerce_rating_filter .woocommerce-mini-cart__total > strong,
+.elementor-widget-wp-widget-woocommerce_widget_cart .woocommerce-mini-cart__total > strong,
+.elementor-widget-wp-widget-woocommerce_shopping_cart .woocommerce-mini-cart__total > strong,
 .widget_shopping_cart .woocommerce-mini-cart__total > strong,
-.elementor-widget-wp-widget-woocommerce_rating_filter .quantity .amount,
+.elementor-widget-wp-widget-woocommerce_widget_cart .quantity .amount,
+.elementor-widget-wp-widget-woocommerce_shopping_cart .quantity .amount,
 .widget_shopping_cart .quantity .amount{
 	font-weight: $h6_font_weight;
 }
 
-.elementor-widget-wp-widget-woocommerce_rating_filter .woocommerce-mini-cart__total .amount,
+.elementor-widget-wp-widget-woocommerce_widget_cart .woocommerce-mini-cart__total .amount,
+.elementor-widget-wp-widget-woocommerce_shopping_cart .woocommerce-mini-cart__total .amount,
 .widget_shopping_cart .woocommerce-mini-cart__total .amount{
 	font-weight: $h4_font_weight;
 }
 
-.elementor-widget-wp-widget-woocommerce_rating_filter .woocommerce-mini-cart__buttons .wc-forward:not(.checkout),
+.elementor-widget-wp-widget-woocommerce_widget_cart .woocommerce-mini-cart__buttons .wc-forward:not(.checkout),
+.elementor-widget-wp-widget-woocommerce_shopping_cart .woocommerce-mini-cart__buttons .wc-forward:not(.checkout),
 .widget_shopping_cart .woocommerce-mini-cart__buttons .wc-forward:not(.checkout){
 	color: $accent_color;
 	font-weight: $h4_font_weight;
 }
-.elementor-widget-wp-widget-woocommerce_rating_filter .woocommerce-mini-cart__buttons .wc-forward:not(.checkout):hover,
+.elementor-widget-wp-widget-woocommerce_widget_cart .woocommerce-mini-cart__buttons .wc-forward:not(.checkout):hover,
+.elementor-widget-wp-widget-woocommerce_shopping_cart .woocommerce-mini-cart__buttons .wc-forward:not(.checkout):hover,
 .widget_shopping_cart .woocommerce-mini-cart__buttons .wc-forward:not(.checkout):hover{
 	color: $primary_text_color;
 }
