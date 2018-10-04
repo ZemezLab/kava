@@ -33,7 +33,9 @@
 .elementor-widget-wp-widget-woocommerce_product_search button,
 .widget_product_search button,
 .added_to_cart.wc-forward,
-.woocommerce .button {
+.woocommerce .button,
+.elementor-widget-wp-widget-woocommerce_widget_cart .button,
+.elementor-widget-wp-widget-woocommerce_product_search .button {
 	font-style: $button_font_style;
 	font-weight: $button_font_weight;
 	font-size: $button_font_size{px};
