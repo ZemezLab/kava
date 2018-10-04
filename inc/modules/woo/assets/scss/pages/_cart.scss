@@ -21,6 +21,10 @@
 			display: flex;
 			align-items: flex-start;
 			flex-wrap: wrap;
+			
+			.woocommerce-notices-wrapper{
+				width: 100%;
+			}
 
 			.woocommerce-message,
 			.woocommerce-error,
