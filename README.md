@@ -3,6 +3,9 @@ Kava Theme. Get the truly easy-to-use free theme with tons of functionality and 
 
 ## Changelog
 
+### 1.2.2
+- FIX: Version
+
 ### 1.2.1
 - UPD: WooCommerce widget styles
 
