@@ -42,6 +42,34 @@ if ( ! class_exists( 'Kava_Woo_Module' ) ) {
 			add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 
 			add_filter( 'kava-theme/assets-depends/script', array( $this, 'assets_depends_script' ) );
+
+			add_filter( 'kava-theme/customizer/options', array( $this, 'customizer_options' ) );
+		}
+
+		/**
+		 * Add WooCommerce customizer options
+		 *
+		 * @param  array $options Options list
+		 *
+		 * @return array
+		 */
+		public function customizer_options( $options ) {
+
+			$new_options = array(
+				'woocommerce_accent_color' => array(
+					'title'    => esc_html__( 'WooCommerce Accent color', 'kava' ),
+					'section'  => 'color_scheme',
+					'priority' => 10,
+					'default'  => '#27d18b',
+					'field'    => 'hex_color',
+					'type'     => 'control',
+				),
+			);
+
+			$options['options'] = array_merge( $new_options, $options['options'] );
+
+			return $options;
+
 		}
 
 		/**

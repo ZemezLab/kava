@@ -124,7 +124,7 @@ ol.commentlist li .meta{
 	color:  $secondary_text_color;
 }
 
-.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout a:hover{
+.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout a.checkout-button.button:hover{
 	background-color:  $accent_color;
 }
 
@@ -169,7 +169,7 @@ label.inline.woocommerce-form__label{
 	font-weight: $body_font_weight;
 }
 
-.woocommerce-checkout .place-order .button:hover{
+.woocommerce-checkout .place-order button.button:hover{
 	background-color:  $accent_color;
 }
 
@@ -370,4 +370,22 @@ table.woocommerce-table--order-downloads.shop_table tbody tr td.download-file .b
 .woocommerce-store-notice__dismiss-link:hover,
 .woocommerce-store-notice__dismiss-link{
 	color: $invert_text_color;
+}
+
+.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .checkout-button.button ,
+.woocommerce-checkout .place-order button.button,
+.product .button.ajax_add_to_cart.added{
+	background-color: $woocommerce_accent_color;
+}
+
+.elementor-widget-wp-widget-woocommerce_widget_cart .woocommerce-mini-cart__buttons .checkout.button,
+.elementor-widget-wp-widget-woocommerce_shopping_cart .woocommerce-mini-cart__buttons .checkout.button,
+.widget_shopping_cart .woocommerce-mini-cart__buttons .checkout.button {
+	background: $woocommerce_accent_color;
+}
+
+.elementor-widget-wp-widget-woocommerce_widget_cart .woocommerce-mini-cart__buttons .checkout.button:hover,
+.elementor-widget-wp-widget-woocommerce_shopping_cart .woocommerce-mini-cart__buttons .checkout.button:hover,
+.widget_shopping_cart .woocommerce-mini-cart__buttons .checkout.button:hover{
+	background: @alpha($woocommerce_accent_color, 80%);
 }
