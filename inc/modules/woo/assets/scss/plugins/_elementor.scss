@@ -36,3 +36,13 @@
 .elementor-widget-wp-widget-woocommerce_recently_viewed_products{
 	@extend .widget_recently_viewed_products;
 }
+
+.elementor-widget-wc-categories{
+	li.product{
+		max-width: none!important;
+		
+		img{
+			width: 100%;
+		}
+	}
+}
