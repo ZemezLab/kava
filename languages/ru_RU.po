@@ -1,20 +1,20 @@
 # Copyright (C) 2017 Automattic
 # This file is distributed under the GNU General Public License v2 or later.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Kava\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/tags/_s\n"
 "POT-Creation-Date: 2018-11-23 12:53+0200\n"
-"PO-Revision-Date: 2018-05-29 11:17+0200\n"
+"PO-Revision-Date: 2018-11-23 12:53+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: en\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.1.1\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 "X-Poedit-KeywordsList: _e;__;_x;esc_html__;esc_html_e;esc_attr__;esc_attr_e\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -22,689 +22,692 @@ msgstr ""
 
 #: 404.php:27
 msgid "Oops! That page can&rsquo;t be found."
-msgstr ""
+msgstr "Упс! Эта страница не может быть найдена."
 
 #: 404.php:31
 msgid ""
 "It looks like nothing was found at this location. Maybe try one of the links "
 "below or a search?"
 msgstr ""
+"Похоже, в этом месте ничего не было найдено. Пожалуйста, воспользуйтесь "
+"одной из ссылок ниже, или поиском."
 
 #: comments.php:59
 msgid "Comments are closed."
-msgstr ""
+msgstr "Комментарии закрыты."
 
 #: config/menus.php:12
 msgid "Main"
-msgstr ""
+msgstr "Основное меню"
 
 #: config/menus.php:13 inc/customizer.php:1216
 msgid "Footer"
-msgstr ""
+msgstr "Футер"
 
 #: config/menus.php:14
 msgid "Social"
-msgstr ""
+msgstr "Социальное меню"
 
 #: config/sidebars.php:13 inc/customizer.php:1245 inc/customizer.php:1386
 msgid "Sidebar"
-msgstr ""
+msgstr "Боковая панель"
 
 #: config/sidebars.php:24
 msgid "Shop Sidebar"
-msgstr ""
+msgstr "Боковая панель страницы Shop"
 
 #: header.php:26
 msgid "Skip to content"
-msgstr ""
+msgstr "Перейти к контенту"
 
 #: inc/customizer.php:31
 msgid "Show tagline on top panel"
-msgstr ""
+msgstr "Отображать краткое описание на верхней панели"
 
 #: inc/customizer.php:39
 msgid "Show ToTop button"
-msgstr ""
+msgstr "Отображать кнопку ToTop"
 
 #: inc/customizer.php:47
 msgid "Show page preloader"
-msgstr ""
+msgstr "Отображать preloader"
 
 #: inc/customizer.php:55
 msgid "General Site settings"
-msgstr ""
+msgstr "Общие настройки сайта"
 
 #: inc/customizer.php:62
 msgid "Favicon"
-msgstr ""
+msgstr "Фавикон"
 
 #: inc/customizer.php:70 inc/customizer.php:979
 msgid "Breadcrumbs"
-msgstr ""
+msgstr "Навигационная цепочка"
 
 #: inc/customizer.php:76
 msgid "Enable Breadcrumbs"
-msgstr ""
+msgstr "Отображать breadcrumbs"
 
 #: inc/customizer.php:83
 msgid "Enable Breadcrumbs on front page"
-msgstr ""
+msgstr "Отображать breadcrumbs на главной странице"
 
 #: inc/customizer.php:90
 msgid "Enable page title in breadcrumbs area"
-msgstr ""
+msgstr "Отображать заголовок страницы в breadcrumbs"
 
 #: inc/customizer.php:97
 msgid "Show full/minified path"
-msgstr ""
+msgstr "Отображать полный / сокращенный вариант breadcrumbs"
 
 #: inc/customizer.php:102
 msgid "Full"
-msgstr ""
+msgstr "Полный"
 
 #: inc/customizer.php:103
 msgid "Minified"
-msgstr ""
+msgstr "Сокращенный"
 
 #: inc/customizer.php:110
 msgid "Social links"
-msgstr ""
+msgstr "Ссылки на социальные сети"
 
 #: inc/customizer.php:116
 msgid "Show social links in header"
-msgstr ""
+msgstr "Отображать ссылки на социальные сети в хедере"
 
 #: inc/customizer.php:123
 msgid "Show social links in footer"
-msgstr ""
+msgstr "Отображать ссылки на социальные сети в футере"
 
 #: inc/customizer.php:132
 msgid "Page Layout"
-msgstr ""
+msgstr "Макет страницы"
 
 #: inc/customizer.php:138
 msgid "Container type"
-msgstr ""
+msgstr "Тип контейнера"
 
 #: inc/customizer.php:143
 msgid "Boxed"
-msgstr ""
+msgstr "В контейнере"
 
 #: inc/customizer.php:144
 msgid "Fullwidth"
-msgstr ""
+msgstr "Полноэкранный"
 
 #: inc/customizer.php:149
 msgid "Sidebar width"
-msgstr ""
+msgstr "Ширина боковой панели"
 
 #: inc/customizer.php:163
 msgid "Color Scheme"
-msgstr ""
+msgstr "Цветовая схема"
 
 #: inc/customizer.php:164
 msgid "Configure Color Scheme"
-msgstr ""
+msgstr "Настроить цветовую схему"
 
 #: inc/customizer.php:170
 msgid "Accent color"
-msgstr ""
+msgstr "Акцентный цвет"
 
 #: inc/customizer.php:177
 msgid "Primary Text color"
-msgstr ""
+msgstr "Цвет основного текста"
 
 #: inc/customizer.php:184
 msgid "Secondary Text color"
-msgstr ""
+msgstr "Цвет вторичного текста"
 
 #: inc/customizer.php:191
 msgid "Invert Text color"
-msgstr ""
+msgstr "Инвертированный цвет текста"
 
 #: inc/customizer.php:198
 msgid "Link color"
-msgstr ""
+msgstr "Цвет ссылки"
 
 #: inc/customizer.php:205
 msgid "Link hover color"
-msgstr ""
+msgstr "Цвет при наведении курсора"
 
 #: inc/customizer.php:212
 msgid "H1 color"
-msgstr ""
+msgstr "Н1 цвет"
 
 #: inc/customizer.php:219
 msgid "H2 color"
-msgstr ""
+msgstr "Н2 цвет"
 
 #: inc/customizer.php:226
 msgid "H3 color"
-msgstr ""
+msgstr "Н3 цвет"
 
 #: inc/customizer.php:233
 msgid "H4 color"
-msgstr ""
+msgstr "Н4 цвет"
 
 #: inc/customizer.php:240
 msgid "H5 color"
-msgstr ""
+msgstr "Н5 цвет"
 
 #: inc/customizer.php:247
 msgid "H6 color"
-msgstr ""
+msgstr "Н6 цвет"
 
 #: inc/customizer.php:256
 msgid "Typography"
-msgstr ""
+msgstr "Типографика"
 
 #: inc/customizer.php:257
 msgid "Configure typography settings"
-msgstr ""
+msgstr "Настройка параметров типографики"
 
 #: inc/customizer.php:264
 msgid "Body text"
-msgstr ""
+msgstr "Основной текст"
 
 #: inc/customizer.php:270 inc/customizer.php:354 inc/customizer.php:438
 #: inc/customizer.php:522 inc/customizer.php:606 inc/customizer.php:690
 #: inc/customizer.php:774 inc/customizer.php:858 inc/customizer.php:909
 #: inc/customizer.php:985 inc/customizer.php:1060
 msgid "Font Family"
-msgstr ""
+msgstr "Семейство шрифтов"
 
 #: inc/customizer.php:277 inc/customizer.php:361 inc/customizer.php:445
 #: inc/customizer.php:529 inc/customizer.php:613 inc/customizer.php:697
 #: inc/customizer.php:781 inc/customizer.php:865 inc/customizer.php:916
 #: inc/customizer.php:992 inc/customizer.php:1067
 msgid "Font Style"
-msgstr ""
+msgstr "Стиль шрифта"
 
 #: inc/customizer.php:285 inc/customizer.php:369 inc/customizer.php:453
 #: inc/customizer.php:537 inc/customizer.php:621 inc/customizer.php:705
 #: inc/customizer.php:789 inc/customizer.php:873 inc/customizer.php:924
 #: inc/customizer.php:1000 inc/customizer.php:1075
 msgid "Font Weight"
-msgstr ""
+msgstr "Начертание шрифта"
 
 #: inc/customizer.php:293 inc/customizer.php:377 inc/customizer.php:461
 #: inc/customizer.php:545 inc/customizer.php:629 inc/customizer.php:713
 #: inc/customizer.php:797 inc/customizer.php:881 inc/customizer.php:932
 #: inc/customizer.php:1008 inc/customizer.php:1083
 msgid "Font Size, px"
-msgstr ""
+msgstr "Размер шрифта, px"
 
 #: inc/customizer.php:305 inc/customizer.php:389 inc/customizer.php:473
 #: inc/customizer.php:557 inc/customizer.php:641 inc/customizer.php:725
 #: inc/customizer.php:809 inc/customizer.php:944 inc/customizer.php:1020
 #: inc/customizer.php:1095
 msgid "Line Height"
-msgstr ""
+msgstr "Высота строки"
 
 #: inc/customizer.php:306 inc/customizer.php:390 inc/customizer.php:474
 #: inc/customizer.php:558 inc/customizer.php:642 inc/customizer.php:726
 #: inc/customizer.php:810 inc/customizer.php:945 inc/customizer.php:1021
 #: inc/customizer.php:1096
 msgid "Relative to the font-size of the element"
-msgstr ""
+msgstr "Относительно размера шрифта элемента"
 
 #: inc/customizer.php:318 inc/customizer.php:402 inc/customizer.php:486
 #: inc/customizer.php:570 inc/customizer.php:654 inc/customizer.php:738
 #: inc/customizer.php:822 inc/customizer.php:957 inc/customizer.php:1033
 #: inc/customizer.php:1108
 msgid "Letter Spacing, px"
-msgstr ""
+msgstr "Кернинг, px"
 
 #: inc/customizer.php:330 inc/customizer.php:414 inc/customizer.php:498
 #: inc/customizer.php:582 inc/customizer.php:666 inc/customizer.php:750
 #: inc/customizer.php:834 inc/customizer.php:893 inc/customizer.php:969
 #: inc/customizer.php:1045 inc/customizer.php:1120
 msgid "Character Set"
-msgstr ""
+msgstr "Набор символов"
 
 #: inc/customizer.php:338 inc/customizer.php:422 inc/customizer.php:506
 #: inc/customizer.php:590 inc/customizer.php:674 inc/customizer.php:758
 #: inc/customizer.php:842
 msgid "Text Align"
-msgstr ""
+msgstr "Выравнивание текста"
 
 #: inc/customizer.php:348
 msgid "H1 Heading"
-msgstr ""
+msgstr "Н1 заголовок"
 
 #: inc/customizer.php:432
 msgid "H2 Heading"
-msgstr ""
+msgstr "Н2 заголовок"
 
 #: inc/customizer.php:516
 msgid "H3 Heading"
-msgstr ""
+msgstr "Н3 заголовок"
 
 #: inc/customizer.php:600
 msgid "H4 Heading"
-msgstr ""
+msgstr "Н4 заголовок"
 
 #: inc/customizer.php:684
 msgid "H5 Heading"
-msgstr ""
+msgstr "Н5 заголовок"
 
 #: inc/customizer.php:768
 msgid "H6 Heading"
-msgstr ""
+msgstr "Н6 заголовок"
 
 #: inc/customizer.php:852
 msgid "Logo text"
-msgstr ""
+msgstr "Логотип"
 
 #: inc/customizer.php:903
 msgid "Menu"
-msgstr ""
+msgstr "Меню"
 
 #: inc/customizer.php:1054
 msgid "Button"
-msgstr ""
+msgstr "Кнопка"
 
 #: inc/customizer.php:1130
 msgid "Header"
-msgstr ""
+msgstr "Хедер"
 
 #: inc/customizer.php:1137
 msgid "Styles"
-msgstr ""
+msgstr "Стили"
 
 #: inc/customizer.php:1143
 msgid "Background Color"
-msgstr ""
+msgstr "Цвет фона"
 
 #: inc/customizer.php:1150
 msgid "Background Image"
-msgstr ""
+msgstr "Фоновое изображение"
 
 #: inc/customizer.php:1156
 msgid "Background Repeat"
-msgstr ""
+msgstr "Замостить фоновое изображение"
 
 #: inc/customizer.php:1161
 msgid "No Repeat"
-msgstr ""
+msgstr "Без повторения"
 
 #: inc/customizer.php:1162
 msgid "Tile"
-msgstr ""
+msgstr "Замостить"
 
 #: inc/customizer.php:1163
 msgid "Tile Horizontally"
-msgstr ""
+msgstr "Замостить по горизонтали"
 
 #: inc/customizer.php:1164
 msgid "Tile Vertically"
-msgstr ""
+msgstr "Замостить по вертикали"
 
 #: inc/customizer.php:1169
 msgid "Background Position"
-msgstr ""
+msgstr "Положение фона"
 
 #: inc/customizer.php:1174 inc/customizer.php:1639
 msgid "Left"
-msgstr ""
+msgstr "Слева"
 
 #: inc/customizer.php:1175 inc/customizer.php:1637
 msgid "Center"
-msgstr ""
+msgstr "По центру"
 
 #: inc/customizer.php:1176 inc/customizer.php:1640
 msgid "Right"
-msgstr ""
+msgstr "Справа"
 
 #: inc/customizer.php:1181
 msgid "Background Attachment"
-msgstr ""
+msgstr "Прокрутка фона"
 
 #: inc/customizer.php:1186
 msgid "Scroll"
-msgstr ""
+msgstr "Прокручивать фон"
 
 #: inc/customizer.php:1187
 msgid "Fixed"
-msgstr ""
+msgstr "Зафиксировать фон"
 
 #: inc/customizer.php:1194
 msgid "Top Panel"
-msgstr ""
+msgstr "Верхняя панель"
 
 #: inc/customizer.php:1200
 msgid "Enable Top Panel"
-msgstr ""
+msgstr "Отображать верхнюю панель"
 
 #: inc/customizer.php:1207
 msgid "Background color"
-msgstr ""
+msgstr "Цвет фона"
 
 #: inc/customizer.php:1222
 msgid "Copyright text"
-msgstr ""
+msgstr "Текст Copyright"
 
 #: inc/customizer.php:1231
 msgid "Blog Settings"
-msgstr ""
+msgstr "Настройки блога"
 
 #: inc/customizer.php:1238
 msgid "Blog"
-msgstr ""
+msgstr "Блог"
 
 #: inc/customizer.php:1251 inc/customizer.php:1391
 msgid "Sidebar on left side"
-msgstr ""
+msgstr "Боковая панель слева"
 
 #: inc/customizer.php:1252 inc/customizer.php:1392
 msgid "Sidebar on right side"
-msgstr ""
+msgstr "Боковая панель справа"
 
 #: inc/customizer.php:1253 inc/customizer.php:1393
 msgid "No sidebar"
-msgstr ""
+msgstr "Боковая панель отсутствует"
 
 #: inc/customizer.php:1259
 msgid "Navigation type"
-msgstr ""
+msgstr "Тип навигации"
 
 #: inc/customizer.php:1264
 msgid "Navigation"
-msgstr ""
+msgstr "Навигация"
 
 #: inc/customizer.php:1265
 msgid "Pagination"
-msgstr ""
+msgstr "Пагинация"
 
 #: inc/customizer.php:1270
 msgid "Sticky label type"
-msgstr ""
+msgstr "Тип ярлыка sticky публикации"
 
 #: inc/customizer.php:1276
 msgid "Text Label"
-msgstr ""
+msgstr "Текст"
 
 #: inc/customizer.php:1277
 msgid "Font Icon"
-msgstr ""
+msgstr "Иконка"
 
 #: inc/customizer.php:1278
 msgid "Text with Icon"
-msgstr ""
+msgstr "Иконка и текст"
 
 #: inc/customizer.php:1283
 msgid "Featured Post Label"
-msgstr ""
+msgstr "Ярлык для избранной публикации"
 
 #: inc/customizer.php:1284
 msgid "Label for sticky post"
-msgstr ""
+msgstr "Ярлык для sticky публикации"
 
 #: inc/customizer.php:1286
 msgid "Featured"
-msgstr ""
+msgstr "Избранное"
 
 #: inc/customizer.php:1293 inc/customizer.php:1398 inc/customizer.php:1496
 msgid "Show post author"
-msgstr ""
+msgstr "Отображать автора публикации"
 
 #: inc/customizer.php:1301 inc/customizer.php:1405
 msgid "Show publish date"
-msgstr ""
+msgstr "Отображать дату публикации"
 
 #: inc/customizer.php:1309 inc/customizer.php:1412
 msgid "Show categories"
-msgstr ""
+msgstr "Отображать категории"
 
 #: inc/customizer.php:1317 inc/customizer.php:1419
 msgid "Show tags"
-msgstr ""
+msgstr "Отображать теги"
 
 #: inc/customizer.php:1325 inc/customizer.php:1426
 msgid "Show comments"
-msgstr ""
+msgstr "Отображать комментарии"
 
 #: inc/customizer.php:1333
 msgid "Show Excerpt"
-msgstr ""
+msgstr "Отображать открывок из публикации"
 
 #: inc/customizer.php:1341
 msgid "Excerpt Words Count"
-msgstr ""
+msgstr "Количество слов в открывке"
 
 #: inc/customizer.php:1354
 msgid "Read more button type"
-msgstr ""
+msgstr "Тип ярлыка кнопки \"Читать далее\""
 
 #: inc/customizer.php:1360
 msgid "Text"
-msgstr ""
+msgstr "Текст"
 
 #: inc/customizer.php:1361
 msgid "Icon"
-msgstr ""
+msgstr "Иконка"
 
 #: inc/customizer.php:1362
 msgid "Text & Icon"
-msgstr ""
+msgstr "Текст и иконка"
 
 #: inc/customizer.php:1363
 msgid "None"
-msgstr ""
+msgstr "Отсутствует"
 
 #: inc/customizer.php:1368
 msgid "Read more button text"
-msgstr ""
+msgstr "Текст кнопки \"Читать далее\""
 
 #: inc/customizer.php:1370
 msgid "More"
-msgstr ""
+msgstr "Далее"
 
 #: inc/customizer.php:1379
 msgid "Post"
-msgstr ""
+msgstr "Публикация"
 
 #: inc/customizer.php:1433
 msgid "Enable the author block after each post"
-msgstr ""
+msgstr "Отображать информацию об авторе после каждой публикации"
 
 #: inc/customizer.php:1442
 msgid "Related posts block"
-msgstr ""
+msgstr "Блок с похожими публикациями"
 
 #: inc/customizer.php:1449
 msgid "Show related posts block"
-msgstr ""
+msgstr "Отображать блок с похожими публикациями"
 
 #: inc/customizer.php:1456
 msgid "Related posts block title"
-msgstr ""
+msgstr "Заголовок блока с похожими публикациями"
 
 #: inc/customizer.php:1458
 msgid "Related Posts"
-msgstr ""
+msgstr "Похожие публикации"
 
 #: inc/customizer.php:1463
 msgid "Number of post"
-msgstr ""
+msgstr "Количество публикаций"
 
 #: inc/customizer.php:1470 inc/modules/blog-layouts/module.php:173
 msgid "Layout"
-msgstr ""
+msgstr "Макет"
 
 #: inc/customizer.php:1475
 msgid "2 columns"
-msgstr ""
+msgstr "2 колонки"
 
 #: inc/customizer.php:1476
 msgid "3 columns"
-msgstr ""
+msgstr "3 колонки"
 
 #: inc/customizer.php:1477
 msgid "4 columns"
-msgstr ""
+msgstr "4 колонки"
 
 #: inc/customizer.php:1482
 msgid "Show post image"
-msgstr ""
+msgstr "Отображать избранное изображение публикации"
 
 #: inc/customizer.php:1489
 msgid "Show post publish date"
-msgstr ""
+msgstr "Отображать дату публикации"
 
 #: inc/customizer.php:1503
 msgid "Show post title"
-msgstr ""
+msgstr "Отображать название публикации"
 
 #: inc/customizer.php:1510
 msgid "Display excerpt"
-msgstr ""
+msgstr "Отображать отрывок из публикации"
 
 #: inc/customizer.php:1589
 msgid "Body Background Color"
-msgstr ""
+msgstr "Цвет фона сайта"
 
 #: inc/customizer.php:1603
 msgid "Normal"
-msgstr ""
+msgstr "Стандарт"
 
 #: inc/customizer.php:1604
 msgid "Italic"
-msgstr ""
+msgstr "Курсив"
 
 #: inc/customizer.php:1605
 msgid "Oblique"
-msgstr ""
+msgstr "Наклонный"
 
 #: inc/customizer.php:1606 inc/customizer.php:1636
 msgid "Inherit"
-msgstr ""
+msgstr "Наследовать"
 
 #: inc/customizer.php:1618
 msgid "Latin"
-msgstr ""
+msgstr "Latin"
 
 #: inc/customizer.php:1619
 msgid "Greek"
-msgstr ""
+msgstr "Greek"
 
 #: inc/customizer.php:1620
 msgid "Greek Extended"
-msgstr ""
+msgstr "Greek Extended"
 
 #: inc/customizer.php:1621
 msgid "Vietnamese"
-msgstr ""
+msgstr "Vietnamese"
 
 #: inc/customizer.php:1622
 msgid "Cyrillic Extended"
-msgstr ""
+msgstr "Cyrillic Extended"
 
 #: inc/customizer.php:1623
 msgid "Latin Extended"
-msgstr ""
+msgstr "Latin Extended"
 
 #: inc/customizer.php:1624
 msgid "Cyrillic"
-msgstr ""
+msgstr "Cyrillic"
 
 #: inc/customizer.php:1638
 msgid "Justify"
-msgstr ""
+msgstr "По ширине"
 
 #: inc/customizer.php:1705
 #, php-format
 msgid ""
 "&copy; %%year%% Kava | Multipurpose WP Theme with Elementor Page Builder"
 msgstr ""
+"&копировать; %%год%% Kava | Универсальная WP тема для Elementor Page Builder"
 
 #: inc/hooks.php:95
 msgid "Post Thumbnail"
-msgstr ""
+msgstr "Миниатюра публикации"
 
 #: inc/hooks.php:119
 msgid "Submit Comment"
-msgstr ""
+msgstr "Отправить комментарий"
 
 #: inc/hooks.php:121
 msgid "Name"
-msgstr ""
+msgstr "Имя"
 
 #: inc/hooks.php:123
 msgid "E-mail"
-msgstr ""
+msgstr "E-mail"
 
 #: inc/hooks.php:125
 msgid "Website"
-msgstr ""
+msgstr "Сайт"
 
 #: inc/hooks.php:127
 msgid "Comments *"
-msgstr ""
+msgstr "Комментарии *"
 
 #: inc/modules/blog-layouts/module.php:179
 msgid "Listing"
-msgstr ""
+msgstr "Listing"
 
 #: inc/modules/blog-layouts/module.php:180
 msgid "Grid"
-msgstr ""
+msgstr "Grid"
 
 #: inc/modules/blog-layouts/module.php:181
 msgid "Masonry"
-msgstr ""
+msgstr "Masonry"
 
 #: inc/modules/blog-layouts/module.php:182
 msgid "Vertical Justify"
-msgstr ""
+msgstr "Vertical Justify"
 
 #: inc/modules/blog-layouts/module.php:183
 msgid "Creative"
-msgstr ""
+msgstr "Creative"
 
 #: inc/modules/blog-layouts/module.php:188
 msgid "Style"
-msgstr ""
+msgstr "Стиль"
 
 #: inc/modules/blog-layouts/module.php:194
 msgid "Style 1"
-msgstr ""
+msgstr "Стиль 1"
 
 #: inc/modules/blog-layouts/module.php:195
 msgid "Style 2"
-msgstr ""
+msgstr "Стиль 2"
 
 #: inc/modules/blog-layouts/module.php:196
 msgid "Style 3"
-msgstr ""
+msgstr "Стиль 3"
 
 #: inc/modules/blog-layouts/module.php:197
 msgid "Style 4"
-msgstr ""
+msgstr "Стиль 4"
 
 #: inc/modules/blog-layouts/module.php:198
 msgid "Style 5"
-msgstr ""
+msgstr "Стиль 5"
 
 #: inc/modules/blog-layouts/module.php:199
 msgid "Style 6"
-msgstr ""
+msgstr "Стиль 6"
 
 #: inc/modules/blog-layouts/module.php:200
 msgid "Style 7"
-msgstr ""
+msgstr "Стиль 7"
 
 #: inc/modules/blog-layouts/module.php:201
 msgid "Style 8"
-msgstr ""
+msgstr "Стиль 8"
 
 #: inc/modules/blog-layouts/module.php:202
 msgid "Style 9"
-msgstr ""
+msgstr "Стиль 9"
 
 #: inc/modules/blog-layouts/module.php:203
 msgid "Style 10"
-msgstr ""
+msgstr "Стиль 10"
 
 #: inc/modules/blog-layouts/template-parts/creative/content-v10.php:31
 #: inc/modules/blog-layouts/template-parts/creative/content-v3.php:33
@@ -753,7 +756,7 @@ msgstr ""
 #: template-parts/single-post/headers/header-v8.php:24
 #: template-parts/single-post/headers/header-v9.php:26
 msgid "In"
-msgstr ""
+msgstr "В"
 
 #: inc/modules/blog-layouts/template-parts/creative/content-v10.php:41
 #: inc/modules/blog-layouts/template-parts/creative/content-v2.php:42
@@ -776,7 +779,7 @@ msgstr ""
 #: inc/modules/blog-layouts/template-parts/default/content.php:40
 #: template-parts/content.php:40 template-parts/single-post/footer.php:15
 msgid "Tags:"
-msgstr ""
+msgstr "Теги:"
 
 #: inc/modules/blog-layouts/template-parts/creative/content-v2.php:22
 #: inc/modules/blog-layouts/template-parts/creative/content-v3.php:36
@@ -828,7 +831,7 @@ msgstr ""
 #: template-parts/single-post/headers/header-v8.php:27
 #: template-parts/single-post/headers/header-v9.php:29
 msgid "Posted"
-msgstr ""
+msgstr "Опубликовано"
 
 #: inc/modules/blog-layouts/template-parts/creative/content-v3.php:42
 #: inc/modules/blog-layouts/template-parts/creative/content-v5.php:43
@@ -845,7 +848,7 @@ msgstr ""
 #: template-parts/single-post/headers/header-v8.php:34
 #: template-parts/single-post/headers/header-v9.php:32
 msgid "Comment(s)"
-msgstr ""
+msgstr "Комментарии(й)"
 
 #: inc/modules/blog-layouts/template-parts/grid/content-v5.php:50
 #: inc/modules/blog-layouts/template-parts/vertical-justify/content-v10.php:36
@@ -853,36 +856,36 @@ msgstr ""
 #: inc/modules/blog-layouts/template-parts/vertical-justify/content-v8.php:45
 #: inc/modules/blog-layouts/template-parts/vertical-justify/content-v9.php:49
 msgid "comments"
-msgstr ""
+msgstr "комментарии"
 
 #: inc/modules/blog-layouts/template-parts/vertical-justify/content-v10.php:32
 #: inc/modules/blog-layouts/template-parts/vertical-justify/content-v8.php:42
 msgid "Posted "
-msgstr ""
+msgstr "Опубликовано "
 
 #: inc/modules/woo/includes/wc-integration.php:160
 msgid "View your shopping cart"
-msgstr ""
+msgstr "Просмотреть Вашу корзину"
 
 #: inc/modules/woo/includes/wc-integration.php:164
 #, php-format
 msgid "%d"
-msgstr ""
+msgstr "%d"
 
 #: inc/modules/woo/includes/wc-integration.php:195
 msgid "My cart"
-msgstr ""
+msgstr "Моя корзина"
 
 #: inc/modules/woo/includes/wc-integration.php:218
 #: template-parts/content-navigation.php:36
 msgid "Prev"
-msgstr ""
+msgstr "Предыдущий"
 
 #: inc/modules/woo/includes/wc-integration.php:222
 #: template-parts/content-navigation.php:40
 #: template-parts/single-post/post_navigation.php:24
 msgid "Next"
-msgstr ""
+msgstr "Следующий"
 
 #: inc/modules/woo/module.php:60
 msgid "WooCommerce Accent color"
@@ -890,33 +893,33 @@ msgstr ""
 
 #: inc/template-comment.php:178
 msgid "Edit"
-msgstr ""
+msgstr "Редактировать"
 
 #: inc/template-menu.php:27
 msgid "Set main menu"
-msgstr ""
+msgstr "Установить главное меню"
 
 #: inc/template-menu.php:53
 msgid "Set footer menu"
-msgstr ""
+msgstr "Установить меню футера"
 
 #: inc/template-menu.php:94
 msgid "Set social menu"
-msgstr ""
+msgstr "Установить социальное меню"
 
 #: inc/template-tags.php:120
 msgid "By"
-msgstr ""
+msgstr "Используя"
 
 #: inc/template-tags.php:162 inc/template-tags.php:203
 #, php-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: inc/template-tags.php:407 template-parts/content-page.php:38
 #, php-format
 msgid "Edit <span class=\"screen-reader-text\">%s</span>"
-msgstr ""
+msgstr "Редактировать <span class=\"screen-reader-text\">%s</span>"
 
 #: page-templates/fullwidth-content.php:18 template-parts/content-page.php:23
 #: template-parts/single-post/content-audio.php:17
@@ -927,47 +930,53 @@ msgstr ""
 #: template-parts/single-post/content-video.php:17
 #: template-parts/single-post/content.php:15
 msgid "Pages:"
-msgstr ""
+msgstr "Страницы:"
 
 #: search.php:29
 #, php-format
 msgid "Search Results for: %s"
-msgstr ""
+msgstr "Результаты поиска для: %s"
 
 #: searchform.php:10
 msgid "Search for:"
-msgstr ""
+msgstr "Поиск:"
 
 #: template-parts/content-navigation.php:20
 msgid "Older Posts"
-msgstr ""
+msgstr "Прошлые публикации"
 
 #: template-parts/content-navigation.php:24
 msgid "Newer Posts"
-msgstr ""
+msgstr "Новые публикации"
 
 #: template-parts/content-none.php:14
 msgid "Nothing Found"
-msgstr ""
+msgstr "Ничего не найдено"
 
 #: template-parts/content-none.php:25
 #, php-format
 msgid ""
 "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
 msgstr ""
+"Готовы опубликовать Ваш первый пост ? <a href=\"%1$s\">Начните здесь</a>."
 
 #: template-parts/content-none.php:38
 msgid ""
 "Sorry, but nothing matched your search terms. Please try again with some "
 "different keywords."
 msgstr ""
+"Извините, но в ходе поиска не было найдено соответствий Вашим критериям. "
+"Пожалуйста, попробуйте использовать другие ключевые слова."
 
 #: template-parts/content-none.php:44
 msgid ""
 "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
 "searching can help."
-msgstr ""
+msgstr "Кажется, мы не можем найти то, что вы ищите. Воспользуйтесь поиском."
 
 #: template-parts/single-post/post_navigation.php:16
 msgid "Previous"
-msgstr ""
+msgstr "Предыдущая"
+
+#~ msgid "Enable search"
+#~ msgstr "Отображать область поиска"
