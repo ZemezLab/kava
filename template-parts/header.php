@@ -13,7 +13,7 @@
 <div <?php kava_header_class(); ?>>
 	<?php do_action( 'kava-theme/header/before' ); ?>
 	<div class="space-between-content">
-		<div <?php echo kava_site_branding_class(); ?>>
+		<div <?php kava_site_branding_class(); ?>>
 			<?php kava_header_logo(); ?>
 		</div>
 		<?php kava_main_menu(); ?>
