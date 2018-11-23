@@ -3,6 +3,10 @@ Kava Theme. Get the truly easy-to-use free theme with tons of functionality and 
 
 ## Changelog
 
+### 1.2.4
+- ADD: RU localization
+- UPD: styles for elementor pro widgets
+
 ### 1.2.3
 - UPD: New Google fonts for Customizer
 
