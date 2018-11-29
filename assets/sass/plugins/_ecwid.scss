@@ -1,0 +1,101 @@
+html#ecwid_html {
+	body#ecwid_body {
+		/* Horizontal categories styles */
+		.ecwid.horizontal-menu-container.horizontal-desktop {
+			.horizontal-menu.horizontal-menu--desktop {
+				.horizontal-menu-item {
+					margin-right: 10px;
+				}
+			}
+		}
+		.ec-size {
+			&.ecwid-lte-600px {
+				div.ecwid-productBrowser {
+					padding: 0 $grid-gutter-width/2 20px;
+				}
+			}
+			div.ecwid-productBrowser {
+				padding: 0 $grid-gutter-width 20px;
+				background-color: transparent;
+			}
+			.ec-wrapper {
+				.ec-store {
+					.grid__products--medium-items {
+						margin-right: -$grid-gutter-width/2;
+						margin-left: -$grid-gutter-width/2;
+						.grid-product__wrap {
+							padding: $grid-gutter-width/2;
+						}
+					}
+					.product-details-module__content {
+						.product-details__product-description {
+							/* Kava default typography margin */
+							p {
+								margin: 0 0 1em;
+							}
+						}
+					}
+					.grid__sort {
+						margin-bottom: 22px;
+					}
+					.ec-grid {
+						.page-title__name {
+							margin-bottom: 22px;
+						}
+					}
+					.details-product-option--radio {
+						.product-details-module__content {
+							display: flex;
+							flex-direction: row;
+							flex-wrap: wrap;
+							justify-content: flex-start;
+							align-content: flex-start;
+							.form-control--radio {
+								padding: 5px;
+								width: auto;
+							}
+						}
+					}
+					.grid-product__wrap-inner {
+						> *:last-child:not( .grid-product__image ) {
+							padding-top: 6px;
+						}
+					}
+					.grid__products--layout-left {
+						.grid-product__price {
+							padding-top: .1em;
+						}
+					}
+					.form-control {
+						&__button {
+							/* Default kava border-radius styles */
+							@include border-radius();
+						}
+					}
+				}
+			}
+			&.ec-size--l {
+				.ec-wrapper .ec-store {
+					/* Add To Cart small state */
+					.form-control--small {
+						.form-control__button {
+							min-height: 36px;
+						}
+					}
+					/* Add To Cart medium state */
+					.form-control {
+						.form-control__button {
+							min-height: 40px;
+						}
+					}
+					/* Add To Cart large state */
+					.form-control--medium {
+						.form-control__button {
+							min-height: 46px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
