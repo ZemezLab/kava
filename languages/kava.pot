@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Kava\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/tags/_s\n"
-"POT-Creation-Date: 2018-11-23 12:53+0200\n"
+"POT-Creation-Date: 2018-12-05 12:50+0200\n"
 "PO-Revision-Date: 2018-05-29 11:17+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -15,7 +15,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.1.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-KeywordsList: _e;__;_x;esc_html__;esc_html_e;esc_attr__;esc_attr_e\n"
+"X-Poedit-KeywordsList: __;_e;_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"esc_attr__;esc_attr_e;esc_attr_x:1,2c;_ex:1,2c;_n:1,2;_nx:4c,1,2;_n_noop:1,2;"
+"_nx_noop:4c,1,2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: framework\n"
@@ -29,6 +31,14 @@ msgid ""
 "It looks like nothing was found at this location. Maybe try one of the links "
 "below or a search?"
 msgstr ""
+
+#: comments.php:34
+#, php-format
+msgctxt "comments title"
+msgid "One Comment"
+msgid_plural "%1$s Comments"
+msgstr[0] ""
+msgstr[1] ""
 
 #: comments.php:59
 msgid "Comments are closed."
@@ -904,6 +914,12 @@ msgstr ""
 msgid "Set social menu"
 msgstr ""
 
+#: inc/template-tags.php:86
+#, php-format
+msgctxt "post date"
+msgid "%s"
+msgstr ""
+
 #: inc/template-tags.php:120
 msgid "By"
 msgstr ""
@@ -935,7 +951,13 @@ msgid "Search Results for: %s"
 msgstr ""
 
 #: searchform.php:10
+msgctxt "label"
 msgid "Search for:"
+msgstr ""
+
+#: searchform.php:11
+msgctxt "placeholder"
+msgid "Enter keyword search"
 msgstr ""
 
 #: template-parts/content-navigation.php:20
