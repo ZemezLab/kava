@@ -4,3 +4,171 @@ div.wpcf7 .ajax-loader {
 	border-top-color: $accent_color;
 	border-right-color: $accent_color;
 }
+
+/*--------------------------------------------------------------
+## Ecwid Plugin Styles
+--------------------------------------------------------------*/
+
+/* Product Title, Product Price amount */
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid-product__title-inner,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products .grid-product__image ~ .grid-product__price .grid-product__price-amount,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products .grid-product__image ~ .grid-product__title .grid-product__price-amount,
+html#ecwid_html body#ecwid_body .ec-size .ec-store .grid__products--medium-items.grid__products--layout-center .grid-product__price-compare,
+html#ecwid_html body#ecwid_body .ec-size .ec-store .grid__products--medium-items .grid-product__details,
+html#ecwid_html body#ecwid_body .ec-size .ec-store .grid__products--medium-items .grid-product__sku,
+html#ecwid_html body#ecwid_body .ec-size .ec-store .grid__products--medium-items .grid-product__sku-hover,
+html#ecwid_html body#ecwid_body .ec-size .ec-store .grid__products--medium-items .grid-product__tax,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .form__msg,
+html#ecwid_html body#ecwid_body .ec-size.ec-size--l .ec-wrapper .ec-store h1,
+html#ecwid_html body#ecwid_body.page .ec-size .ec-wrapper .ec-store .product-details__product-title,
+html#ecwid_html body#ecwid_body.page .ec-size .ec-wrapper .ec-store .product-details__product-price,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .product-details-module__title,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .ec-cart-summary__row--total .ec-cart-summary__title,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .ec-cart-summary__row--total .ec-cart-summary__price,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__categories * {
+	font-style: $h6_font_style;
+	font-weight: $h6_font_weight;
+	line-height: $h6_line_height;
+	font-family: @font_family( $h6_font_family );
+	letter-spacing: $h6_letter_spacing{px};
+}
+
+html#ecwid_html body#ecwid_body .ecwid .ec-size .ec-wrapper .ec-store .product-details__product-description {
+	font-style: $body_font_style;
+	font-weight: $body_font_weight;
+	font-size: $body_font_size{px};
+	line-height: $body_line_height;
+	font-family: @font_family( $body_font_family );
+	letter-spacing: $body_letter_spacing{px};
+	text-align: $body_text_align;
+	color: $primary_text_color;
+}
+
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid-product__title-inner,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products .grid-product__image ~ .grid-product__price .grid-product__price-amount,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products .grid-product__image ~ .grid-product__title .grid-product__price-amount,
+html#ecwid_html body#ecwid_body .ec-size .ec-store .grid__products--medium-items.grid__products--layout-center .grid-product__price-compare,
+html#ecwid_html body#ecwid_body .ec-size .ec-store .grid__products--medium-items .grid-product__details,
+html#ecwid_html body#ecwid_body .ec-size .ec-store .grid__products--medium-items .grid-product__sku,
+html#ecwid_html body#ecwid_body .ec-size .ec-store .grid__products--medium-items .grid-product__sku-hover,
+html#ecwid_html body#ecwid_body .ec-size .ec-store .grid__products--medium-items .grid-product__tax,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .product-details-module__title,
+html#ecwid_html body#ecwid_body.page .ec-size .ec-wrapper .ec-store .product-details__product-price,
+html#ecwid_html body#ecwid_body.page .ec-size .ec-wrapper .ec-store .product-details__product-title,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .form-control__text,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .form-control__textarea,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .ec-link,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .ec-link:visited,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store input[type="radio"].form-control__radio:checked+.form-control__radio-view::after {
+	color: $link_color;
+}
+
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .ec-link:hover {
+	color: $link_hover_color;
+}
+
+/* Product Title, Price small state */
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products--small-items .grid-product__title-inner,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products--small-items .grid-product__price-hover .grid-product__price-amount,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products--small-items .grid-product__image ~ .grid-product__price .grid-product__price-amount,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products--small-items .grid-product__image ~ .grid-product__title .grid-product__price-amount,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products--small-items.grid__products--layout-center .grid-product__price-compare,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products--small-items .grid-product__details,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products--small-items .grid-product__sku,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products--small-items .grid-product__sku-hover,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products--small-items .grid-product__tax {
+	font-size: @font_size($h6_font_size, multiple, ceil, 0.8)px;
+}
+
+/* Product Title, Price medium state */
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products--medium-items .grid-product__title-inner,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products--medium-items .grid-product__price-hover .grid-product__price-amount,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products--medium-items .grid-product__image ~ .grid-product__price .grid-product__price-amount,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products--medium-items .grid-product__image ~ .grid-product__title .grid-product__price-amount,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products--medium-items.grid__products--layout-center .grid-product__price-compare,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products--medium-items .grid-product__details,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products--medium-items .grid-product__sku,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products--medium-items .grid-product__sku-hover,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products--medium-items .grid-product__tax {
+	font-size: $h6_font_size{px};
+}
+
+/* Product Title, Price large state */
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products--large-items .grid-product__title-inner,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products--large-items .grid-product__price-hover .grid-product__price-amount,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products--large-items .grid-product__image ~ .grid-product__price .grid-product__price-amount,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products--large-items .grid-product__image ~ .grid-product__title .grid-product__price-amount,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products--large-items.grid__products--layout-center .grid-product__price-compare,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products--large-items .grid-product__details,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products--large-items .grid-product__sku,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products--large-items .grid-product__sku-hover,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products--large-items .grid-product__tax {
+	font-size: @font_size($h6_font_size, multiple, ceil, 1.2)px;
+}
+
+
+/* Product Add To Cart button */
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store button {
+	font-style: $button_font_style;
+	font-weight: $button_font_weight;
+	line-height: $button_line_height;
+	font-family: @font_family( $button_font_family );
+	letter-spacing: $button_letter_spacing{px};
+}
+
+/* Product Add To Cart button normal state */
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .form-control--secondary .form-control__button,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .form-control--primary .form-control__button {
+	border-color: $accent_color;
+	background-color: transparent;
+	color: $accent_color;
+}
+
+/* Product Add To Cart button hover state, Product Category active state */
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .form-control--secondary .form-control__button:hover,
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .form-control--primary .form-control__button:hover,
+html#ecwid_html body#ecwid_body .horizontal-menu-container.horizontal-desktop .horizontal-menu-item.horizontal-menu-item--active>a {
+	border-color: $accent_color;
+	background-color: $accent_color;
+	color: $invert_text_color;
+}
+
+/* Black Product Add To Cart button normal state */
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products--appearance-hover .grid-product--dark .form-control--secondary .form-control__button {
+	border-color: $accent_color;
+	background-color: $accent_color;
+	color: $invert_text_color;
+}
+
+/* Black Product Add To Cart button normal state */
+html#ecwid_html body#ecwid_body .ec-size .ec-wrapper .ec-store .grid__products--appearance-hover .grid-product--dark .form-control--secondary .form-control__button:hover {
+	border-color: $invert_text_color;
+	background-color: $invert_text_color;
+	color: $accent_color;
+}
+
+/* Product Add To Cart button small label */
+html#ecwid_html body#ecwid_body .ec-size.ec-size--l .ec-wrapper .ec-store .form-control .form-control__button {
+font-size: @font_size($button_font_size, multiple, ceil, 0.9)px;
+}
+
+/* Product Add To Cart button medium label */
+html#ecwid_html body#ecwid_body .ec-size.ec-size--l .ec-wrapper .ec-store .form-control--small .form-control__button {
+	font-size: $button_font_size{px};
+}
+
+/* Product Add To Cart button large label */
+html#ecwid_html body#ecwid_body .ec-size.ec-size--l .ec-wrapper .ec-store .form-control--medium .form-control__button {
+	font-size: @font_size($button_font_size, multiple, ceil, 1.2)px;
+}
+
+/* Mini Cart icon styles */
+html#ecwid_html body#ecwid_body .ec-minicart__body .ec-minicart__icon .icon-default path[stroke],
+html#ecwid_html body#ecwid_body .ec-minicart__body .ec-minicart__icon .icon-default circle[stroke] {
+	stroke: $link_color;
+}
+
+html#ecwid_html body#ecwid_body .ec-minicart:hover .ec-minicart__body .ec-minicart__icon .icon-default path[stroke],
+html#ecwid_html body#ecwid_body .ec-minicart:hover .ec-minicart__body .ec-minicart__icon .icon-default circle[stroke] {
+	stroke: $link_hover_color;
+}
