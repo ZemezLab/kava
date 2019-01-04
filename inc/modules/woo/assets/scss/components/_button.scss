@@ -97,3 +97,13 @@
 	padding: $wc-button-indents;
 	border-radius: $wc-button-border-radius;
 }
+
+
+.jet-compare-button__container .jet-compare-button__link {
+	@extend .button;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	.jet-compare-button__label {
+		line-height: 1.6;
+	}
+}
