@@ -99,11 +99,24 @@
 }
 
 
-.jet-compare-button__container .jet-compare-button__link {
-	@extend .button;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	.jet-compare-button__label {
-		line-height: 1.6;
+.jet-compare-button__container {
+	.jet-compare-button__link {
+		@extend .button;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		.jet-compare-button__label {
+			line-height: 1.6;
+		}
+	}
+}
+
+.jet-wishlist-button__container {
+	.jet-wishlist-button__link {
+		@extend .button;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		.jet-wishlist-button__label {
+			line-height: 1.6;
+		}
 	}
 }

@@ -36,7 +36,8 @@
 .woocommerce .button,
 .elementor-widget-wp-widget-woocommerce_widget_cart .button,
 .elementor-widget-wp-widget-woocommerce_product_search .button,
-.jet-compare-button__link {
+.jet-compare-button__link,
+.jet-wishlist-button__link {
 	font-style: $button_font_style;
 	font-weight: $button_font_weight;
 	font-size: $button_font_size{px};
@@ -48,13 +49,16 @@
 }
 
 .jet-compare-button__link[data-widget-id=default] .jet-compare-button__plane.jet-compare-button__plane-normal,
-.jet-compare-button__link[data-widget-id=default] .jet-compare-button__plane.jet-compare-button__plane-added {
+.jet-compare-button__link[data-widget-id=default] .jet-compare-button__plane.jet-compare-button__plane-added,
+.jet-wishlist-button__link[data-widget-id=default] .jet-wishlist-button__plane.jet-wishlist-button__plane-normal,
+.jet-wishlist-button__link[data-widget-id=default] .jet-wishlist-button__plane.jet-wishlist-button__plane-added {
 	background-color: $accent_color;
 }
 
 .jet-compare-button__link[data-widget-id=default]:hover .jet-compare-button__plane.jet-compare-button__plane-normal,
 .jet-compare-button__link[data-widget-id=default]:hover .jet-compare-button__plane.jet-compare-button__plane-added,
-.jet-compare-button__link:hover {
+.jet-wishlist-button__link[data-widget-id=default]:hover .jet-wishlist-button__plane.jet-wishlist-button__plane-normal,
+.jet-wishlist-button__link[data-widget-id=default]:hover .jet-wishlist-button__plane.jet-wishlist-button__plane-added {
 	background-color: @lighten($accent_color, 15%);
 }
 
