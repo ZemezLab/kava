@@ -12,7 +12,7 @@ msgstr ""
 "Language-Team: \n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
-"X-Generator: Poedit 2.0.2\n"
+"X-Generator: Poedit 2.1.1\n"
 
 # wpml-name: fc763cb31e9938f37737394681228f83
 msgctxt "list item separator"
