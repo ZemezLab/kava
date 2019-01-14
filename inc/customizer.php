@@ -1239,7 +1239,7 @@ function kava_get_customizer_options() {
 				'panel'           => 'blog_settings',
 				'priority'        => 10,
 				'type'            => 'section',
-				'active_callback' => 'is_home',
+				//'active_callback' => 'is_home',
 			),
 			'blog_sidebar_position' => array(
 				'title'    => esc_html__( 'Sidebar', 'kava' ),
