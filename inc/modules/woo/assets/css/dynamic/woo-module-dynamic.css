@@ -311,7 +311,7 @@ table.woocommerce-table--order-downloads.shop_table tbody tr td.download-file .b
 }
 
 .elementor-widget-wp-widget-woocommerce_rating_filter li.chosen:before,
-.widget_rating_filter li.chosen:before, {
+.widget_rating_filter li.chosen:before {
 	background-color: $accent_color;
 	border-color: $accent_color;
 }
