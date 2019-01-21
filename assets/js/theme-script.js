@@ -65,10 +65,13 @@
 					// Optional parameters
 					loop: true,
 					spaceBetween: 10,
+					autoHeight: true,
 
 					// Navigation arrows
-					nextButton: '.swiper-button-next',
-					prevButton: '.swiper-button-prev',
+					navigation: {
+						nextEl: '.swiper-button-next',
+						prevEl: '.swiper-button-prev'
+					}
 				})
 
 			}

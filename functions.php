@@ -344,7 +344,7 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 				'jquery-swiper',
 				get_theme_file_uri( 'assets/lib/swiper/swiper.jquery.min.js' ),
 				array( 'jquery' ),
-				'3.4.0',
+				'4.3.3',
 				true
 			);
 
@@ -383,7 +383,7 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 				'jquery-swiper',
 				get_theme_file_uri( 'assets/lib/swiper/swiper.min.css' ),
 				array(),
-				'3.4.0'
+				'4.3.3'
 			);
 
 		}
