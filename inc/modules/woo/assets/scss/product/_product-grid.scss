@@ -2,20 +2,36 @@
  * Product grid styles
  */
 .products.products-grid{
-	.added_to_cart,
-	.button,
-	.jet-compare-button__link,
-	.jet-wishlist-button__link {
-		width: 100%;
-	}
-	
-	.product{
-		img{
+	.product {
+		.added_to_cart,
+		.button {
 			width: 100%;
 		}
-	}
-	
-	.star-rating {
-		margin: 30px 0 0 auto;
+		.jet-compare-button__container {
+			margin-top: 10px;
+			margin-bottom: 10px;
+			.jet-compare-button__link {
+				margin: 0;
+				width: 100%;
+			}
+		}
+		.jet-wishlist-button__container {
+			margin-top: 10px;
+			margin-bottom: 10px;
+			.jet-wishlist-button__link {
+				margin: 0;
+				width: 100%;
+			}
+		}
+
+		.product {
+			img {
+				width: 100%;
+			}
+		}
+
+		.star-rating {
+			margin: 30px 0 0 auto;
+		}
 	}
 }

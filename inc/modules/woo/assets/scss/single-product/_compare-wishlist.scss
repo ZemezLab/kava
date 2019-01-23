@@ -1,0 +1,16 @@
+/*
+*
+* Compare & Wishlist Single Page Styles
+*
+*/
+
+.single-product {
+	.jet-compare-button__container,
+	.jet-wishlist-button__container{
+		margin-top: 10px;
+		margin-bottom: 10px;
+		a {
+			width: 100%;
+		}
+	}
+}
