@@ -84,6 +84,20 @@ if ( ! class_exists( 'CX_Customizer' ) ) {
 		protected $fonts;
 
 		/**
+		 * Fonts manager instance
+		 *
+		 * @var object
+		 */
+		protected $fonts_manager = null;
+
+		/**
+		 * Fonts options list
+		 *
+		 * @var array
+		 */
+		protected $fonts_options = array();
+
+		/**
 		 * Module initialization.
 		 *
 		 * @since 1.0.0
@@ -143,11 +157,20 @@ if ( ! class_exists( 'CX_Customizer' ) ) {
 				return;
 			}
 
-			$this->path  = $args['path'];
-			$this->fonts = array();
+			$this->path          = isset( $args['path'] ) ? $args['path'] : false;
+			$this->fonts_manager = isset( $args['fonts_manager'] ) ? $args['fonts_manager'] : false;
+			$this->fonts         = array();
+			$this->prefix        = $this->prepare_prefix( $args['prefix'] );
+			$this->options       = $args['options'];
+			$this->capability    = ! empty( $args['capability'] ) ? $args['capability'] : 'edit_theme_options';
+			$this->type          = ! empty( $args['type'] ) && $this->sanitize_type( $args['type'] ) ? $args['type'] : 'theme_mod';
 
 			// Prepare options after theme activation.
 			add_action( 'after_switch_theme', array( $this, 'add_options' ), 11 );
+
+			if ( ! empty( $this->fonts_manager ) ) {
+				$this->init_fonts_manager();
+			}
 
 			/**
 			 * Fonts are loaded, abort if $args['just_fonts'] set to TRUE
@@ -162,12 +185,66 @@ if ( ! class_exists( 'CX_Customizer' ) ) {
 				return;
 			}
 
-			$this->prefix     = $this->prepare_prefix( $args['prefix'] );
-			$this->capability = ! empty( $args['capability'] ) ? $args['capability'] : 'edit_theme_options';
-			$this->type       = ! empty( $args['type'] ) && $this->sanitize_type( $args['type'] ) ? $args['type'] : 'theme_mod';
-			$this->options    = $args['options'];
-
 			add_action( 'customize_register', array( $this, 'register' ) );
+
+		}
+
+		/**
+		 * Initialize fonts manager if its instance was passed in arguments.
+		 *
+		 * @return void
+		 */
+		public function init_fonts_manager() {
+
+			$this->fonts_manager->set_args( array(
+				'prefix'    => $this->prefix,
+				'single'    => false,
+				'type'      => $this->type,
+				'get_fonts' => array( $this, 'get_fonts' ),
+				'options'   => $this->get_fonts_options()
+			) );
+
+		}
+
+		/**
+		 * Return fonts options list
+		 *
+		 * @return array
+		 */
+		public function get_fonts_options() {
+			array_walk( $this->options, array( $this, '_get_fonts_options' ) );
+			return $this->fonts_options;
+		}
+
+		/**
+		 * Callback for fonts options grabber walker.
+		 *
+		 * @param  array  $item Option data.
+		 * @param  string $key  Option key.
+		 * @return [type]       [description]
+		 */
+		public function _get_fonts_options( $item, $key ) {
+
+			if ( ! isset( $item['field'] ) || 'fonts' !== $item['field'] ) {
+				return;
+			}
+
+			$pairs = array(
+				'style'   => '_font_style',
+				'weight'  => '_font_weight',
+				'charset' => '_character_set',
+			);
+
+			$opt_key = str_replace( '_font_family', '', $key );
+			$data    = array(
+				'family' => $key
+			);
+
+			foreach ( $pairs as $prop => $mod ) {
+				$data[ $prop ] = $opt_key . $mod;
+			}
+
+			$this->fonts_options[ $opt_key ] = $data;
 
 		}
 
