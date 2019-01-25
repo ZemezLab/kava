@@ -35,9 +35,7 @@
 .added_to_cart.wc-forward,
 .woocommerce .button,
 .elementor-widget-wp-widget-woocommerce_widget_cart .button,
-.elementor-widget-wp-widget-woocommerce_product_search .button,
-.jet-compare-button__link,
-.jet-wishlist-button__link {
+.elementor-widget-wp-widget-woocommerce_product_search .button {
 	font-style: $button_font_style;
 	font-weight: $button_font_weight;
 	font-size: $button_font_size{px};
@@ -46,6 +44,16 @@
 	letter-spacing: $button_letter_spacing{px};
 	color: $invert_text_color;
 	background-color: $accent_color;
+}
+
+.jet-compare-button__link,
+.jet-wishlist-button__link {
+	font-style: $button_font_style;
+	font-weight: $button_font_weight;
+	font-size: $button_font_size{px};
+	line-height: $button_line_height;
+	font-family: @font_family( $button_font_family );
+	letter-spacing: $button_letter_spacing{px};
 }
 
 .jet-compare-button__link[data-widget-id=default] .jet-compare-button__plane.jet-compare-button__plane-normal,

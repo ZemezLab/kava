@@ -56,11 +56,17 @@
 		margin: 45px 0 30px;
 	}
 
+	.site-content {
+		label {
+			margin: $wc-label-offset;
+		}
+	}
+
 	label {
 		display: block;
 		font-size: $wc-label-fz;
 		line-height: $wc-label-lh;
-		margin: $wc-label-offset;
+		
 	}
 
 	input.input-text {
