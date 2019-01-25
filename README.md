@@ -3,6 +3,14 @@ Kava Theme. Get the truly easy-to-use free theme with tons of functionality and 
 
 ## Changelog
 
+### 1.2.5
+- ADD: Ecwid compatibility
+- ADD: compatibility with Jet Compare Wishlist
+- ADD: French localization
+- UPD: swiper.js to 4.3.3
+- UPD: CX Customizer module  
+- UPD: woo module styles
+
 ### 1.2.4
 - ADD: RU localization
 - UPD: styles for elementor pro widgets
