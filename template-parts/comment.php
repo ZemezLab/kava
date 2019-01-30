@@ -14,7 +14,7 @@
 		<?php echo kava_get_comment_text(); ?>
 	</div>
 	<div class="reply">
-		<?php echo kava_get_comment_reply_link( array( 'reply_text' => '<i class="fa fa-reply" aria-hidden="true"></i>reply' ) ); ?>
+		<?php echo kava_get_comment_reply_link( array( 'reply_text' => '<i class="fa fa-reply" aria-hidden="true"></i>' . esc_html__( 'reply', 'kava' ) ) ); ?>
 	</div>
 </div>
 
