@@ -8,7 +8,7 @@
 <div class="comment-content-wrapper">
 	<div class="comment-meta">
 		<?php echo kava_get_comment_author_link(); ?>
-		<?php echo kava_get_comment_date( array( 'format' => 'F j, Y \a\t g:ia' ) ); ?>
+		<?php echo kava_get_comment_date(); ?>
 	</div>
 	<div class="comment-content">
 		<?php echo kava_get_comment_text(); ?>

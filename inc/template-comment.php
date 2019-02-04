@@ -82,7 +82,7 @@ function kava_get_comment_author_link( $args = array() ) {
  * @return string $output The comment date of the current comment.
  */
 function kava_get_comment_date( $args = array() ) {
-	$format = get_option( 'date_format' ) . ' ' . get_option( 'time_format' );
+	$format = get_option( 'date_format' ) . ' ' . esc_attr_x( '\a\t', 'time prefix in comment date', 'kava' ) . ' ' . get_option( 'time_format' );
 
 	if ( ! empty( $args['format'] ) ) {
 		$format = esc_attr( $args['format'] );

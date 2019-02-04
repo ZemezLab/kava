@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Kava\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/tags/_s\n"
-"POT-Creation-Date: 2019-01-08 11:56+0200\n"
-"PO-Revision-Date: 2019-01-08 11:56+0200\n"
+"POT-Creation-Date: 2019-02-04 14:35+0200\n"
+"PO-Revision-Date: 2019-02-04 14:35+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -902,6 +902,11 @@ msgstr "Следующий"
 msgid "WooCommerce Accent color"
 msgstr ""
 
+#: inc/template-comment.php:85
+msgctxt "time prefix in comment date"
+msgid "\\a\\t"
+msgstr "\\в"
+
 #: inc/template-comment.php:178
 msgid "Edit"
 msgstr "Редактировать"
@@ -962,6 +967,10 @@ msgstr ""
 #: searchform.php:11
 msgctxt "placeholder"
 msgid "Enter keyword search"
+msgstr "Введите поиск по ключевым словам"
+
+#: template-parts/comment.php:17
+msgid "reply"
 msgstr ""
 
 #: template-parts/content-navigation.php:20
@@ -1000,6 +1009,10 @@ msgstr "Кажется, мы не можем найти то, что вы ищи
 #: template-parts/single-post/post_navigation.php:16
 msgid "Previous"
 msgstr "Предыдущая"
+
+#~ msgctxt "time prefix in date format"
+#~ msgid "\\a\\t"
+#~ msgstr "\\d"
 
 #~ msgid "Enable search"
 #~ msgstr "Отображать область поиска"
