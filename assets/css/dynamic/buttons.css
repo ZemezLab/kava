@@ -32,3 +32,16 @@ input[type='reset']:hover {
 	border-color: $accent_color;
 	background-color: $accent_color;
 }
+
+/* #Totop Button */
+#toTop {
+	padding: $totop_vertical_padding $totop_horizontal_padding;
+	border-radius: $totop_border_radius;
+	background-color: $totop_bg_color;
+	color: $totop_icon_color;
+}
+
+#toTop:hover {
+	background-color: $totop_bg_color_hover;
+	color: $totop_icon_color_hover;
+}

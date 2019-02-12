@@ -35,14 +35,6 @@ function kava_get_customizer_options() {
 				'field'    => 'checkbox',
 				'type'     => 'control',
 			),
-			'totop_visibility' => array(
-				'title'   => esc_html__( 'Show ToTop button', 'kava' ),
-				'section' => 'title_tagline',
-				'priority' => 61,
-				'default' => true,
-				'field'   => 'checkbox',
-				'type'    => 'control',
-			),
 			'page_preloader' => array(
 				'title'    => esc_html__( 'Show page preloader', 'kava' ),
 				'section'  => 'title_tagline',
@@ -156,6 +148,107 @@ function kava_get_customizer_options() {
 				),
 				'sanitize_callback' => 'sanitize_text_field',
 				'type'              => 'control',
+			),
+
+			/** `Page Layout` section */
+			'totop_button' => array(
+				'title'    => esc_html__( 'ToTop button', 'kava' ),
+				'priority' => 60,
+				'type'     => 'section',
+				'panel'    => 'general_settings',
+			),
+
+			'totop_visibility' => array(
+				'title'    => esc_html__( 'Show ToTop button', 'kava' ),
+				'section'  => 'totop_button',
+				'priority' => 61,
+				'default'  => true,
+				'field'    => 'checkbox',
+				'type'     => 'control',
+			),
+			'totop_vertical_padding' => array(
+				'title'       => esc_html__( 'Vertical Padding, px', 'kava' ),
+				'section'     => 'totop_button',
+				'priority'    => 70,
+				'default'     => '0',
+				'field'       => 'number',
+				'input_attrs' => array(
+					'min'  => 0,
+					'max'  => 100,
+					'step' => 1,
+				),
+				'active_callback' => 'kava_is_totop_enable',
+				'type' => 'control',
+			),
+
+			'totop_horizontal_padding' => array(
+				'title'       => esc_html__( 'Horizontal Padding, px', 'kava' ),
+				'section'     => 'totop_button',
+				'priority'    => 71,
+				'default'     => '0',
+				'field'       => 'number',
+				'input_attrs' => array(
+					'min'  => 0,
+					'max'  => 100,
+					'step' => 1,
+				),
+				'active_callback' => 'kava_is_totop_enable',
+				'type' => 'control',
+			),
+
+			'totop_border_radius' => array(
+				'title'       => esc_html__( 'Border Radius, px', 'kava' ),
+				'section'     => 'totop_button',
+				'priority'    => 72,
+				'default'     => '0',
+				'field'       => 'number',
+				'input_attrs' => array(
+					'min'  => 0,
+					'max'  => 200,
+					'step' => 1,
+				),
+				'active_callback' => 'kava_is_totop_enable',
+				'type' => 'control',
+			),
+
+			'totop_bg_color' => array(
+				'title'    => esc_html__( 'Background Color', 'kava' ),
+				'section'  => 'totop_button',
+				'priority' => 73,
+				'default'  => false,
+				'field'    => 'hex_color',
+				'active_callback' => 'kava_is_totop_enable',
+				'type'     => 'control',
+			),
+
+			'totop_icon_color' => array(
+				'title'    => esc_html__( 'Icon Color', 'kava' ),
+				'section'  => 'totop_button',
+				'priority' => 74,
+				'default'  => false,
+				'field'    => 'hex_color',
+				'active_callback' => 'kava_is_totop_enable',
+				'type'     => 'control',
+			),
+
+			'totop_bg_color_hover' => array(
+				'title'    => esc_html__( 'Background Color Hover', 'kava' ),
+				'section'  => 'totop_button',
+				'priority' => 75,
+				'default'  => false,
+				'field'    => 'hex_color',
+				'active_callback' => 'kava_is_totop_enable',
+				'type'     => 'control',
+			),
+
+			'totop_icon_color_hover' => array(
+				'title'    => esc_html__( 'Icon Color Hover', 'kava' ),
+				'section'  => 'totop_button',
+				'priority' => 76,
+				'default'  => false,
+				'field'    => 'hex_color',
+				'active_callback' => 'kava_is_totop_enable',
+				'type'     => 'control',
 			),
 
 			/** `Color Scheme` panel */
@@ -1723,4 +1816,15 @@ function kava_is_blog_sidebar_enabled() {
 function kava_is_blog_read_more_btn_text() {
 	$btn_type = kava_theme()->customizer->get_value( 'blog_read_more_type' );
 	return 'text' === $btn_type || 'text_icon' === $btn_type ? true : false;
+}
+
+/**
+ * Return false if option Enable Totop button is enable.
+ *
+ * @param  object $control Parent control.
+ * @return bool
+ */
+
+function kava_is_totop_enable( $control ) {
+	return kava_is_not_setting( $control, 'totop_visibility', false );
 }
