@@ -35,8 +35,8 @@ input[type='reset']:hover {
 
 /* #Totop Button */
 #toTop {
-	padding: $totop_vertical_padding $totop_horizontal_padding;
-	border-radius: $totop_border_radius;
+	padding: $totop_vertical_padding{px} $totop_horizontal_padding{px};
+	border-radius: $totop_border_radius{px};
 	background-color: $totop_bg_color;
 	color: $totop_icon_color;
 }
