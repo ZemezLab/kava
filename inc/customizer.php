@@ -150,7 +150,7 @@ function kava_get_customizer_options() {
 				'type'              => 'control',
 			),
 
-			/** `Page Layout` section */
+			/** `ToTop button` section */
 			'totop_button' => array(
 				'title'    => esc_html__( 'ToTop button', 'kava' ),
 				'priority' => 60,
@@ -161,7 +161,6 @@ function kava_get_customizer_options() {
 			'totop_visibility' => array(
 				'title'    => esc_html__( 'Show ToTop button', 'kava' ),
 				'section'  => 'totop_button',
-				'priority' => 61,
 				'default'  => true,
 				'field'    => 'checkbox',
 				'type'     => 'control',
@@ -169,7 +168,6 @@ function kava_get_customizer_options() {
 			'totop_vertical_padding' => array(
 				'title'       => esc_html__( 'Vertical Padding, px', 'kava' ),
 				'section'     => 'totop_button',
-				'priority'    => 70,
 				'default'     => '0',
 				'field'       => 'number',
 				'input_attrs' => array(
@@ -177,14 +175,13 @@ function kava_get_customizer_options() {
 					'max'  => 100,
 					'step' => 1,
 				),
-				'active_callback' => 'kava_is_totop_enable',
 				'type' => 'control',
+				'active_callback' => 'kava_is_totop_enable',
 			),
 
 			'totop_horizontal_padding' => array(
 				'title'       => esc_html__( 'Horizontal Padding, px', 'kava' ),
 				'section'     => 'totop_button',
-				'priority'    => 71,
 				'default'     => '0',
 				'field'       => 'number',
 				'input_attrs' => array(
@@ -192,63 +189,58 @@ function kava_get_customizer_options() {
 					'max'  => 100,
 					'step' => 1,
 				),
-				'active_callback' => 'kava_is_totop_enable',
 				'type' => 'control',
+				'active_callback' => 'kava_is_totop_enable',
 			),
 
 			'totop_border_radius' => array(
-				'title'       => esc_html__( 'Border Radius, px', 'kava' ),
-				'section'     => 'totop_button',
-				'priority'    => 72,
-				'default'     => '0',
-				'field'       => 'number',
+				'title'   => esc_html__( 'Border Radius, px', 'kava' ),
+				'section' => 'totop_button',
+				'default' => '0',
+				'field'   => 'number',
 				'input_attrs' => array(
 					'min'  => 0,
 					'max'  => 200,
 					'step' => 1,
 				),
-				'active_callback' => 'kava_is_totop_enable',
 				'type' => 'control',
+				'active_callback' => 'kava_is_totop_enable',
 			),
 
 			'totop_bg_color' => array(
-				'title'    => esc_html__( 'Background Color', 'kava' ),
-				'section'  => 'totop_button',
-				'priority' => 73,
-				'default'  => false,
-				'field'    => 'hex_color',
+				'title'   => esc_html__( 'Background Color', 'kava' ),
+				'section' => 'totop_button',
+				'default' => false,
+				'field'   => 'hex_color',
+				'type'    => 'control',
 				'active_callback' => 'kava_is_totop_enable',
-				'type'     => 'control',
 			),
 
 			'totop_icon_color' => array(
-				'title'    => esc_html__( 'Icon Color', 'kava' ),
-				'section'  => 'totop_button',
-				'priority' => 74,
-				'default'  => false,
-				'field'    => 'hex_color',
+				'title'   => esc_html__( 'Icon Color', 'kava' ),
+				'section' => 'totop_button',
+				'default' => false,
+				'field'   => 'hex_color',
+				'type'    => 'control',
 				'active_callback' => 'kava_is_totop_enable',
-				'type'     => 'control',
 			),
 
 			'totop_bg_color_hover' => array(
-				'title'    => esc_html__( 'Background Color Hover', 'kava' ),
-				'section'  => 'totop_button',
-				'priority' => 75,
-				'default'  => false,
-				'field'    => 'hex_color',
+				'title'   => esc_html__( 'Background Color Hover', 'kava' ),
+				'section' => 'totop_button',
+				'default' => false,
+				'field'   => 'hex_color',
+				'type'    => 'control',
 				'active_callback' => 'kava_is_totop_enable',
-				'type'     => 'control',
 			),
 
 			'totop_icon_color_hover' => array(
-				'title'    => esc_html__( 'Icon Color Hover', 'kava' ),
-				'section'  => 'totop_button',
-				'priority' => 76,
-				'default'  => false,
-				'field'    => 'hex_color',
+				'title'   => esc_html__( 'Icon Color Hover', 'kava' ),
+				'section' => 'totop_button',
+				'default' => false,
+				'field'   => 'hex_color',
+				'type'    => 'control',
 				'active_callback' => 'kava_is_totop_enable',
-				'type'     => 'control',
 			),
 
 			/** `Color Scheme` panel */
