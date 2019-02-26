@@ -20,6 +20,9 @@ add_filter( 'image_size_names_choose', 'kava_image_size_names_choose' );
 // Modify a comment form.
 add_filter( 'comment_form_defaults', 'kava_modify_comment_form' );
 
+// Modify fonts list.
+add_filter( 'cx_customizer/fonts_list', 'kava_modify_fonts_list' );
+
 
 /**
  * Adds the meta viewport to the header.
@@ -127,4 +130,22 @@ function kava_modify_comment_form( $args ) {
 	$args['comment_field'] = '<p class="comment-form-comment"><textarea id="comment" class="comment-form__field" name="comment" placeholder="' . esc_attr__( 'Comments *', 'kava' ) . '" cols="45" rows="7" aria-required="true" required="required"></textarea></p>';
 
 	return $args;
+}
+
+/**
+ * Modify fonts list.
+ *
+ * @param  array $fonts Fonts List.
+ * @return array
+ */
+function kava_modify_fonts_list( $fonts = array() ) {
+
+	$fonts = array_merge(
+		array(
+			'-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif' => esc_html__( 'Default System Font', 'kava' ),
+		),
+		$fonts
+	);
+
+	return $fonts;
 }
