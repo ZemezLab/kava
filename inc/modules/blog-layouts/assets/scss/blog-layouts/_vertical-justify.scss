@@ -17,13 +17,15 @@ $color__nothumb: $color__lightblue;
 		margin-left: -$grid-gutter-width / 2;
 		flex-flow: row wrap;
 		>.post {
-			flex: 1 0 calc(100%/3 - #{$grid-gutter-width});
+			flex: 1 0;
+			flex-basis: calc(100%/3 - #{$grid-gutter-width});
 			max-width: calc(100%/3 - #{$grid-gutter-width});
 			margin-right: $grid-gutter-width / 2;
 			margin-left: $grid-gutter-width / 2;
 			&:nth-child(7n + 2),
 			&:nth-child(7n + 3) {
-				flex: 1 0 calc(100%/1.5 - #{$grid-gutter-width});
+				flex: 1 0;
+				flex-basis: calc(100%/1.5 - #{$grid-gutter-width});
 				max-width: calc(100%/1.5 - #{$grid-gutter-width});
 			}
 		}
@@ -33,50 +35,58 @@ $color__nothumb: $color__lightblue;
 		&.list-style-v4>.post,
 		&.list-style-v5>.post {
 			@include media-breakpoint-down(md) {
-				flex: 1 0 calc(100%/2 - #{$grid-gutter-width});
+				flex: 1 0;
+				flex-basis: calc(100%/2 - #{$grid-gutter-width});
 				max-width: calc(100%/2 - #{$grid-gutter-width});
 				&:nth-child(7n + 2),
 				&:nth-child(7n + 3) {
-					flex: 1 0 calc(100%/2 - #{$grid-gutter-width});
+					flex: 1 0;
+					flex-basis: calc(100%/2 - #{$grid-gutter-width});
 					max-width: calc(100%/2 - #{$grid-gutter-width});
 				}
 			}
 			@include media-breakpoint-down(xs) {
-				flex: 1 0 calc(100% - #{$grid-gutter-width});
+				flex: 1 0;
+				flex-basis: calc(100% - #{$grid-gutter-width});
 				max-width: calc(100% - #{$grid-gutter-width});
 				&:nth-child(7n + 2),
 				&:nth-child(7n + 3) {
-					flex: 1 0 calc(100% - #{$grid-gutter-width});
+					flex: 1 0;
+					flex-basis: calc(100% - #{$grid-gutter-width});
 					max-width: calc(100% - #{$grid-gutter-width});
 				}
 			}
 		}
 		&.list-style-v6>.post {
-			flex: 1 0 calc(100%/3);
+			flex: 1 0;
+			flex-basis: calc(100%/3);
 			max-width: calc(100%/3);
 			&:nth-child(7n + 2),
 			&:nth-child(7n + 3) {
-				flex: 1 0 calc(100%/1.5);
+				flex: 1 0;
+				flex-basis: calc(100%/1.5);
 				max-width: calc(100%/1.5);
 			}
 			@include media-breakpoint-down(md) {
-				flex: 1 0 calc(100%/2);
+				flex: 1 0;
+				flex-basis: calc(100%/2);
 				max-width: calc(100%/2);
 				margin-right: $grid-gutter-width / 2;
 				margin-left: $grid-gutter-width / 2;
 				&:nth-child(7n + 2),
 				&:nth-child(7n + 3) {
-					flex: 1 0 calc(100%/2);
+					flex: 1 0;
+					flex-basis: calc(100%/2);
 					max-width: calc(100%/2);
 				}
 			}
 			@include media-breakpoint-down(xs) {
-				flex: 1 0 calc(100%);
-				max-width: calc(100%);
+				flex: 1 0 100%;
+				max-width: 100%;
 				&:nth-child(7n + 2),
 				&:nth-child(7n + 3) {
-					flex: 1 0 calc(100%);
-					max-width: calc(100%);
+					flex: 1 0 100%;
+					max-width: 100%;
 				}
 			}
 		}
@@ -85,37 +95,43 @@ $color__nothumb: $color__lightblue;
 		&.list-style-v8>.post,
 		&.list-style-v9>.post,
 		&.list-style-v10>.post {
-			flex: 1 0 calc(100%/4 - #{$grid-gutter-width});
+			flex: 1 0;
+			flex-basis: calc(100%/4 - #{$grid-gutter-width});
 			max-width: calc(100%/4 - #{$grid-gutter-width});
 			margin-right: $grid-gutter-width / 2;
 			margin-left: $grid-gutter-width / 2;
 			&:nth-child(7n + 3),
 			&:nth-child(7n + 4),
 			&:nth-child(7n + 8) {
-				flex: 1 0 calc(100%/2 - #{$grid-gutter-width});
+				flex: 1 0;
+				flex-basis: calc(100%/2 - #{$grid-gutter-width});
 				max-width: calc(100%/2 - #{$grid-gutter-width});
 			}
 			@include media-breakpoint-down(md) {
-				flex: 1 0 calc(100%/2 - #{$grid-gutter-width});
+				flex: 1 0;
+				flex-basis: calc(100%/2 - #{$grid-gutter-width});
 				max-width: calc(100%/2 - #{$grid-gutter-width});
 				margin-right: $grid-gutter-width / 2;
 				margin-left: $grid-gutter-width / 2;
 				&:nth-child(7n + 3),
 				&:nth-child(7n + 4),
 				&:nth-child(7n + 8) {
-					flex: 1 0 calc(100%/2 - #{$grid-gutter-width});
+					flex: 1 0;
+					flex-basis: calc(100%/2 - #{$grid-gutter-width});
 					max-width: calc(100%/2 - #{$grid-gutter-width});
 				}
 			}
 			@include media-breakpoint-down(xs) {
-				flex: 1 0 calc(100% - #{$grid-gutter-width});
+				flex: 1 0;
+				flex-basis: calc(100% - #{$grid-gutter-width});
 				max-width: calc(100% - #{$grid-gutter-width});
 				margin-right: $grid-gutter-width / 2;
 				margin-left: $grid-gutter-width / 2;
 				&:nth-child(7n + 3),
 				&:nth-child(7n + 4),
 				&:nth-child(7n + 8) {
-					flex: 1 0 calc(100% - #{$grid-gutter-width});
+					flex: 1 0;
+					flex-basis: calc(100% - #{$grid-gutter-width});
 					max-width: calc(100% - #{$grid-gutter-width});
 				}
 			}
