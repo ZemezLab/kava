@@ -3,6 +3,12 @@ Kava Theme. Get the truly easy-to-use free theme with tons of functionality and 
 
 ## Changelog
 
+### 1.2.6
+- ADD: `Default System Font` to font control
+- ADD: customizer options for ToTop button
+- ADD: ability creating custom 404 page
+- FIX: strings translation
+
 ### 1.2.5
 - ADD: Ecwid compatibility
 - ADD: compatibility with Jet Compare Wishlist

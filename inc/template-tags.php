@@ -323,6 +323,7 @@ if ( ! function_exists( 'kava_get_post_author_avatar' ) ) :
 			'img' => array(
 				'srcset' => true,
 			),
+			'noscript' => array(),
 		);
 
 		if ( $args['echo'] ) {
@@ -467,6 +468,7 @@ function kava_post_thumbnail( $image_size = 'post-thumbnail', $args = array() ) 
 			'srcset' => true,
 			'sizes'  => true,
 		),
+		'noscript' => array(),
 	);
 
 	if ( $args['echo'] ) {
