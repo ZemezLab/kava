@@ -262,3 +262,11 @@
 		}
 	}
 }
+
+.wc-credit-card-form.wc-payment-form{
+	display:flex;
+}
+
+#stripe-payment-data > *{
+	margin-top:10px;
+}
