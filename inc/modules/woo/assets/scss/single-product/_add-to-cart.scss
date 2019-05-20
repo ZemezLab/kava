@@ -54,7 +54,7 @@
 	.quantity {
 		margin-bottom: 20px;
 	
-		label{
+		label:not(.screen-reader-text){
 			clip: auto;
 			position: relative !important;
 			top: 0;
