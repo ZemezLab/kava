@@ -44,7 +44,19 @@ if ( ! class_exists( 'Kava_Woo_Module' ) ) {
 			add_filter( 'kava-theme/assets-depends/script', array( $this, 'assets_depends_script' ) );
 
 			add_filter( 'kava-theme/customizer/options', array( $this, 'customizer_options' ) );
+
+			add_filter( 'cx_customizer/core_sections', array(  $this, 'kava_customizer_core_sections' ) );
 		}
+
+		/**
+		 * Add WooCommerce customizer sections
+		*/
+
+		public function kava_customizer_core_sections( $sections ) {
+			$sections[] = 'woocommerce_settings';
+			return $sections;
+		}
+
 
 		/**
 		 * Add WooCommerce customizer options
@@ -63,6 +75,30 @@ if ( ! class_exists( 'Kava_Woo_Module' ) ) {
 					'default'  => '#27d18b',
 					'field'    => 'hex_color',
 					'type'     => 'control',
+				),
+
+				/** `Woocommerce Settings` panel */
+				'woocommerce_settings' => array(
+					'title'           => esc_html__( 'WooCommerce Options', 'woostroid2' ),
+					'priority'        => 200,
+					'type'            => 'panel',
+				),
+				'single_product_layout' => array(
+					'title'    => esc_html__( 'Single product layout', 'kava' ),
+					'panel'    => 'woocommerce_settings',
+					'priority' => 1,
+					'type'     => 'section',
+				),
+				'single_product_container_type' => array(
+					'title'   => esc_html__( 'Single product container type', 'kava' ),
+					'section' => 'single_product_layout',
+					'default' => 'fullwidth',
+					'field'   => 'select',
+					'choices' => array(
+						'boxed'     => esc_html__( 'Boxed', 'kava' ),
+						'fullwidth' => esc_html__( 'Fullwidth', 'kava' ),
+					),
+					'type' => 'control',	 
 				),
 			);
 

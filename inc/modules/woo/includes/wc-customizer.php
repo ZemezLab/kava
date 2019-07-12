@@ -24,3 +24,4 @@ if ( ! function_exists( 'kava_set_wc_dynamic_css_options' ) ) {
 
 }
 add_filter( 'kava-theme/dynamic_css/options', 'kava_set_wc_dynamic_css_options' );
+

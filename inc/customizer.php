@@ -1620,6 +1620,7 @@ function kava_get_customizer_options() {
 				'field'   => 'checkbox',
 				'type'    => 'control',
 			), */
+
 	) ) );
 }
 

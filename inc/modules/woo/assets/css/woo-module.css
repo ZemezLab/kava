@@ -1111,7 +1111,6 @@ ul.products.columns--6 li.product {
         font-size: 14px; }
       .woocommerce-cart table.cart tr td.actions > .button, .woocommerce-cart table.cart tr .jet-compare-button__container td.actions > .jet-compare-button__link, .jet-compare-button__container .woocommerce-cart table.cart tr td.actions > .jet-compare-button__link, .woocommerce-cart table.cart tr .jet-wishlist-button__container td.actions > .jet-wishlist-button__link, .jet-wishlist-button__container .woocommerce-cart table.cart tr td.actions > .jet-wishlist-button__link {
         float: none;
-        background: transparent;
         font-size: 14px;
         font-weight: 400;
         text-transform: none;
@@ -1167,6 +1166,7 @@ ul.products.columns--6 li.product {
     padding: 15px 5px 21px;
     margin-top: 18px;
     background-color: #27d18b;
+    color: #ffffff;
     width: 100%; }
     @media (max-width: 1199px) {
       .woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .checkout-button {
@@ -1175,6 +1175,8 @@ ul.products.columns--6 li.product {
       content: "";
       font-size: calc(15px + 5px);
       padding-right: 5px; }
+    .woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .checkout-button:hover {
+      background-color: rgba(39, 209, 139, 0.8); }
   .woocommerce-cart .cart-collaterals table {
     border: none; }
     .woocommerce-cart .cart-collaterals table tr {
@@ -1863,9 +1865,6 @@ ol.commentlist {
     padding-right: 15px; }
   .woocommerce-tabs .panel.woocommerce-Tabs-panel--reviews .woocommerce-Reviews-title {
     margin: 20px 0; }
-  @media (min-width: 768px) {
-    .woocommerce-tabs .panel.woocommerce-Tabs-panel--reviews .woocommerce-Reviews {
-      max-width: 70%; } }
   .woocommerce-tabs .tabs {
     list-style: none;
     margin: 75px 0 30px 0; }
@@ -1899,6 +1898,11 @@ ol.commentlist {
   .woocommerce-Tabs-panel--description.panel p {
     font-size: 18px;
     line-height: inherit; }
+
+.site-content__wrap:not(.container) .woocommerce-tabs .woocommerce-Tabs-panel:not(:nth-child(2)) {
+  max-width: 1200px;
+  margin-right: auto;
+  margin-left: auto; }
 
 /**
  * Single Product Thumbnails

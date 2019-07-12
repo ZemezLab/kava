@@ -28,12 +28,6 @@
 		.woocommerce-Reviews-title {
 			margin: 20px 0;
 		}
-		
-		.woocommerce-Reviews {
-			@media (min-width: 768px) {
-				max-width: 70%;
-			}
-		}
 	}
 	
 	//  woocommerce tabs list
@@ -91,5 +85,15 @@
 	p {
 		font-size: $wc-tabs-description-fz;
 		line-height: $wc-tabs-description-lh;
+	}
+}
+
+.site-content__wrap:not(.container){
+	.woocommerce-tabs{
+		.woocommerce-Tabs-panel:not(:nth-child(2)){
+			max-width: $container-width;
+			margin-right: auto;
+			margin-left: auto;
+		}
 	}
 }

@@ -27,4 +27,6 @@
 
 	Kava_Woo_Module.init();
 
+	$("div[id='tab-description']:not(:has(.elementor))") .addClass('container'); 
+
 }(jQuery));

@@ -151,7 +151,6 @@
 
 					> .button {
 						float: none;
-						background: transparent;
 						font-size: 14px;
 						font-weight: 400;
 						text-transform: none;
@@ -246,6 +245,7 @@
 			padding: $wc-proceed-to-checkout-button-inset;
 			margin-top: 18px;
 			background-color: $wc-add-to-cart-added-color;
+			color: $wc-messages-icon-info-color;
 			width: 100%;
 
 			@media (max-width: 1199px){
@@ -257,6 +257,9 @@
 				font-size: calc(#{ $wc-proceed-to-checkout-button-fz} + 5px);
 				@extend %icon-font-default;
 				padding-right: 5px;
+			}
+			&:hover{
+				background-color: rgba( $wc-add-to-cart-added-color, 0.8);
 			}
 		}
 
