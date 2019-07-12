@@ -1110,6 +1110,7 @@ ul.products.columns--6 li.product {
       .woocommerce-cart table.cart tr td.actions label {
         font-size: 14px; }
       .woocommerce-cart table.cart tr td.actions > .button, .woocommerce-cart table.cart tr .jet-compare-button__container td.actions > .jet-compare-button__link, .jet-compare-button__container .woocommerce-cart table.cart tr td.actions > .jet-compare-button__link, .woocommerce-cart table.cart tr .jet-wishlist-button__container td.actions > .jet-wishlist-button__link, .jet-wishlist-button__container .woocommerce-cart table.cart tr td.actions > .jet-wishlist-button__link {
+        background: transparent;
         float: none;
         font-size: 14px;
         font-weight: 400;
