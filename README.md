@@ -3,6 +3,12 @@ Kava Theme. Get the truly easy-to-use free theme with tons of functionality and 
 
 ## Changelog
 
+### 1.2.7
+- ADD: `Show Page Title` option
+- FIX: `Justify Layout` in IE
+- FIX: compatibility with WP Rocket
+- FIX: minor woo issue
+
 ### 1.2.6
 - ADD: `Default System Font` to font control
 - ADD: customizer options for ToTop button

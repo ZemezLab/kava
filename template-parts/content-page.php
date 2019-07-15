@@ -13,7 +13,7 @@
 
 	<?php
 	$show_page_title = kava_theme()->customizer->get_value( 'show_page_title' );
-	
+
 	if ( filter_var( $show_page_title, FILTER_VALIDATE_BOOLEAN ) ) : ?>
 		<header class="page-header">
 			<?php the_title( '<h1 class="page-title">', '</h1>' ); ?>
