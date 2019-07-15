@@ -79,7 +79,7 @@ if ( ! class_exists( 'Kava_Woo_Module' ) ) {
 
 				/** `Woocommerce Settings` panel */
 				'woocommerce_settings' => array(
-					'title'           => esc_html__( 'WooCommerce Options', 'woostroid2' ),
+					'title'           => esc_html__( 'WooCommerce Options', 'kava' ),
 					'priority'        => 200,
 					'type'            => 'panel',
 				),
