@@ -149,6 +149,13 @@ function kava_get_customizer_options() {
 				'sanitize_callback' => 'sanitize_text_field',
 				'type'              => 'control',
 			),
+			'show_page_title' => array(
+				'title'    => esc_html__( 'Show Page Title', 'kava' ),
+				'section'  => 'page_layout',
+				'default'  => true,
+				'field'    => 'checkbox',
+				'type'     => 'control',
+			),
 
 			/** `ToTop button` section */
 			'totop_button' => array(
