@@ -424,7 +424,7 @@ select.orderby {
  * Rating
  */
 .star-rating {
-  width: 6.5em;
+  width: 8em;
   height: 12px;
   font-size: 12px;
   color: #fdbc32;
@@ -459,7 +459,7 @@ select.orderby {
 
 .stars {
   display: inline-block;
-  width: calc(6.5em + 1em);
+  width: calc(8em + 1em);
   height: 12px;
   font-size: 12px;
   overflow: hidden;
