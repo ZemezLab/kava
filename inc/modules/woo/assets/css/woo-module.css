@@ -424,7 +424,7 @@ select.orderby {
  * Rating
  */
 .star-rating {
-  width: 8em;
+  width: 6.5em;
   height: 12px;
   font-size: 12px;
   color: #fdbc32;
@@ -459,7 +459,7 @@ select.orderby {
 
 .stars {
   display: inline-block;
-  width: calc(8em + 1em);
+  width: calc(6.5em + 1em);
   height: 12px;
   font-size: 12px;
   overflow: hidden;
@@ -479,6 +479,8 @@ select.orderby {
       color: #fdbc32; }
     .stars a + a {
       margin-left: 3px; }
+      .comment-form-rating .stars a + a {
+        margin: 0; }
     .stars a::before {
       letter-spacing: 4px;
       content: "";

@@ -77,6 +77,9 @@
 		
 		& + a {
 			margin-left: 3px;
+			.comment-form-rating & {
+				margin: 0;
+			}
 		}
 
 		&::before {
