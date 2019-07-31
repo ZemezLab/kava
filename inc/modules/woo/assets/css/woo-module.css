@@ -479,6 +479,8 @@ select.orderby {
       color: #fdbc32; }
     .stars a + a {
       margin-left: 3px; }
+      .comment-form-rating .stars a + a {
+        margin: 0; }
     .stars a::before {
       letter-spacing: 4px;
       content: "";
