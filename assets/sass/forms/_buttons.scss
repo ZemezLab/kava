@@ -17,7 +17,7 @@ input[type='submit'] {
 }
 
 // Button icon styles
-.btn-icon {
+.posts-list .btn-icon {
 	&:before {
 		@include font-awesome-icon;
 		@include font-size(35/16);
