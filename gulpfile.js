@@ -1,13 +1,122 @@
 'use strict';
 
-let gulp = require('gulp'),
-	checktextdomain = require('gulp-checktextdomain');
+var gulp            = require( 'gulp' ),
+	rename          = require( 'gulp-rename' ),
+	notify          = require( 'gulp-notify' ),
+	autoprefixer    = require( 'gulp-autoprefixer' ),
+	sass            = require( 'gulp-sass' ),
+	plumber         = require( 'gulp-plumber' ),
+	rtlcss          = require( 'gulp-rtlcss' ),
+	livereload      = require( 'gulp-livereload' ),
+	checktextdomain = require( 'gulp-checktextdomain' );
 
-gulp.task( 'checktextdomain', () => {
-	return gulp.src( ['**/*.php', '!cherry-framework/**/*.php'] )
+var sass_settings = {
+	outputStyle: 'nested',
+	linefeed:    'crlf',
+	indentType:  'tab',
+	indentWidth: 1
+};
+
+function CSS_Task( args ) {
+	return gulp.src( args['src'] )
+		.pipe(
+			plumber( {
+				errorHandler: function( error ) {
+					console.log( '=================ERROR=================' );
+					console.log( error.message );
+					this.emit( 'end' );
+				}
+			} )
+		)
+		.pipe( sass( sass_settings ) )
+		.pipe( autoprefixer( {
+			browsers: ['last 10 versions'],
+			cascade:  false
+		} ) )
+		.pipe( rename( args['output_file'] ) )
+		.pipe( gulp.dest( args['output_dir'] ) )
+		.pipe( notify( 'Compile ' + args['output_file'] + '. Done!' ) )
+		.pipe( livereload() );
+}
+
+function RTL_CSS_Task( args ) {
+	return gulp.src( args['src'] )
+		.pipe(
+			plumber( {
+				errorHandler: function( error ) {
+					console.log( '=================ERROR=================' );
+					console.log( error.message );
+					this.emit( 'end' );
+				}
+			} )
+		)
+		.pipe( sass( sass_settings ) )
+		.pipe( autoprefixer( {
+			browsers: ['last 10 versions'],
+			cascade:  false
+		} ) )
+		.pipe( rtlcss() )
+		.pipe( rename( args['output_file'] ) )
+		.pipe( gulp.dest( args['output_dir'] ) )
+		.pipe( notify( 'Compile ' + args['output_file'] + '. Done!' ) )
+		.pipe( livereload() );
+}
+
+gulp.task( 'css', function() {
+	CSS_Task( {
+		src:         './assets/sass/style.scss',
+		output_dir:  './',
+		output_file: 'style.css'
+	} );
+} );
+
+gulp.task( 'blog_layouts_module', function() {
+	CSS_Task( {
+		src:         './inc/modules/blog-layouts/assets/scss/blog-layouts-module.scss',
+		output_dir:  './inc/modules/blog-layouts/assets/css/',
+		output_file: 'blog-layouts-module.css'
+	} );
+} );
+
+gulp.task( 'woo_module', function() {
+	CSS_Task( {
+		src:         './inc/modules/woo/assets/scss/woo-module.scss',
+		output_dir:  './inc/modules/woo/assets/css/',
+		output_file: 'woo-module.css'
+	} )
+} );
+
+gulp.task( 'woo_module_rtl', function() {
+	RTL_CSS_Task( {
+		src:         './inc/modules/woo/assets/scss/woo-module.scss',
+		output_dir:  './inc/modules/woo/assets/css/',
+		output_file: 'woo-module-rtl.css'
+	} )
+} );
+
+gulp.task( 'watch', function() {
+	//livereload.listen();
+
+	gulp.watch( './assets/sass/**',                          ['css'] );
+	gulp.watch( './inc/modules/blog-layouts/assets/scss/**', ['blog_layouts_module'] );
+	gulp.watch( './inc/modules/woo/assets/scss/**',          ['woo_module', 'woo_module_rtl'] );
+
+} );
+
+// default
+gulp.task( 'default', [
+	'css',
+	'blog_layouts_module',
+	'woo_module',
+	'woo_module_rtl',
+	'watch'
+] );
+
+gulp.task( 'checktextdomain', function() {
+	return gulp.src( ['**/*.php', '!framework/**/*.php'] )
 		.pipe( checktextdomain( {
 			text_domain: 'kava',
-			keywords:    [
+			keywords: [
 				'__:1,2d',
 				'_e:1,2d',
 				'_x:1,2c,3d',
