@@ -23,6 +23,15 @@ add_filter( 'comment_form_defaults', 'kava_modify_comment_form' );
 // Modify fonts list.
 add_filter( 'cx_customizer/fonts_list', 'kava_modify_fonts_list' );
 
+// Breadcrumbs visibility on specific page/post
+add_filter( 'kava-theme/breadcrumbs/breadcrumbs-visibillity', 'kava_breadcrumbs_visibillity' );
+
+// Disable site content container on specific page/post
+add_filter( 'kava-theme/site-content/container-enabled', 'kava_disable_site_content_container', 20 );
+
+// Set default single post template
+add_filter( 'get_post_metadata', 'kava_set_default_single_post_template', 10, 4 );
+
 
 /**
  * Adds the meta viewport to the header.
@@ -91,7 +100,7 @@ function kava_enqueue_misc( $depends ) {
 /**
  * Add image sizes for media gallery
  *
- * @param  array $classes Existing classes.
+ * @param  array $image_sizes
  * @return array
  */
 function kava_image_size_names_choose( $image_sizes ) {
@@ -148,4 +157,105 @@ function kava_modify_fonts_list( $fonts = array() ) {
 	);
 
 	return $fonts;
+}
+
+/**
+ * Breadcrumbs visibility on specific page/post
+ *
+ * @param $visibillity
+ *
+ * @return bool
+ */
+function kava_breadcrumbs_visibillity( $visibillity ) {
+	$post_id = get_the_ID();
+
+	$enable_breadcrumbs = get_post_meta( $post_id, 'kava_extra_enable_breadcrumbs', true );
+
+	if ( ! filter_var( $enable_breadcrumbs, FILTER_VALIDATE_BOOLEAN ) ) {
+		$visibillity = false;
+	}
+
+	return $visibillity;
+}
+
+/**
+ * Disable site content container
+ *
+ * @param  boolean $enabled
+ * @return boolean
+ */
+function kava_disable_site_content_container( $enabled = true ) {
+	$disable_content_container_archive_cpt = kava_settings()->get( 'disable_content_container_archive_cpt' );
+	$disable_content_container_single_cpt  = kava_settings()->get( 'disable_content_container_single_cpt' );
+
+	$post_type = get_post_type();
+
+	if ( is_archive() && isset( $disable_content_container_archive_cpt[ $post_type ] )
+	     && filter_var( $disable_content_container_archive_cpt[ $post_type ], FILTER_VALIDATE_BOOLEAN )
+	) {
+		return false;
+	}
+
+	if ( is_search() && isset( $disable_content_container_archive_cpt['search_results'] )
+	     && filter_var( $disable_content_container_archive_cpt['search_results'], FILTER_VALIDATE_BOOLEAN )
+	) {
+		return false;
+	}
+
+	if ( is_singular() && isset( $disable_content_container_single_cpt[ $post_type ] )
+	     && filter_var( $disable_content_container_single_cpt[ $post_type ], FILTER_VALIDATE_BOOLEAN )
+	) {
+		return false;
+	}
+
+	if ( is_404() && isset( $disable_content_container_single_cpt['404_page'] )
+	     && filter_var( $disable_content_container_single_cpt['404_page'], FILTER_VALIDATE_BOOLEAN )
+	) {
+		return false;
+	}
+
+	return $enabled;
+}
+
+/**
+ * Set default single post template.
+ *
+ * @param $value
+ * @param $post_id
+ * @param $meta_key
+ * @param $single
+ *
+ * @return mixed
+ */
+function kava_set_default_single_post_template( $value, $post_id, $meta_key, $single ) {
+
+	if ( is_admin() ) {
+		return $value;
+	}
+
+	if ( ! is_singular( 'post' ) ) {
+		return $value;
+	}
+
+	if ( '_wp_page_template' !== $meta_key ) {
+		return $value;
+	}
+
+	remove_filter( 'get_post_metadata', 'kava_set_default_single_post_template', 10 );
+
+	$current_template = get_post_meta( $post_id, '_wp_page_template', true );
+
+	add_filter( 'get_post_metadata', 'kava_set_default_single_post_template', 10, 4 );
+
+	if ( '' !== $current_template && 'default' !== $current_template ) {
+		return $value;
+	}
+
+	$global_post_template = kava_settings()->get( 'single_post_template', 'default' );
+
+	if ( empty( $global_post_template ) || 'default' === $global_post_template ) {
+		return $value;
+	}
+
+	return $global_post_template;
 }

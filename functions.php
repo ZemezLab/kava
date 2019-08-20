@@ -289,11 +289,7 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 			require_once get_theme_file_path( 'inc/classes/class-widget-area.php' );
 			require_once get_theme_file_path( 'inc/classes/class-post-formats.php' );
 			require_once get_theme_file_path( 'inc/classes/class-post-meta.php' );
-
-			/**
-			 * Dashboard.
-			 */
-			require_once get_theme_file_path( 'inc/dashboard/settings.php' );
+			require_once get_theme_file_path( 'inc/classes/class-settings.php' );
 
 			/**
 			 * Functions.

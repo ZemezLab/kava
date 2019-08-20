@@ -232,9 +232,13 @@ if ( ! class_exists( 'Kava_Blog_Layouts_Module' ) ) {
 		 *
 		 * @return boolean
 		 */
-		public function disable_site_content_container() {
+		public function disable_site_content_container( $enabled ) {
 
-			return $this->fullwidth_enabled;
+			if ( $this->is_blog_archive() ) {
+				return $this->fullwidth_enabled;
+			}
+
+			return $enabled;
 
 		}
 
