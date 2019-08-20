@@ -12,7 +12,7 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		 * A reference to an instance of this class.
 		 *
 		 * @since 1.0.0
-		 * @var   object
+		 * @var   Kava_Theme_Setup
 		 */
 		private static $instance = null;
 
@@ -47,6 +47,39 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		public $version;
 
 		/**
+		 * Framework component
+		 *
+		 * @since  1.0.0
+		 * @access public
+		 * @var    object
+		 */
+		public $framework;
+
+		/**
+		 * Holder for current Customizer module instance.
+		 *
+		 * @since 1.0.0
+		 * @var   CX_Customizer
+		 */
+		public $customizer = null;
+
+		/**
+		 * Holder for current Dynamic CSS module instance.
+		 *
+		 * @since 1.0.0
+		 * @var   CX_Dynamic_CSS
+		 */
+		public $dynamic_css = null;
+
+		/**
+		 * Holder for current Breadcrumbs module instance.
+		 *
+		 * @since 1.0.0
+		 * @var   CX_Dynamic_CSS
+		 */
+		public $breadcrumbs = null;
+
+		/**
 		 * Sets up needed actions/filters for the theme to initialize.
 		 *
 		 * @since 1.0.0
@@ -58,13 +91,13 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 			$this->version = $theme_obj->get( 'Version' );
 
 			// Load the theme modules.
-			add_action( 'after_setup_theme', array( $this, 'kava_framework_loader' ), -20 );
+			add_action( 'after_setup_theme', array( $this, 'framework_loader' ), -20 );
 
 			// Initialization of customizer.
-			add_action( 'after_setup_theme', array( $this, 'kava_customizer' ) );
+			add_action( 'after_setup_theme', array( $this, 'init_customizer' ) );
 
 			// Initialization of breadcrumbs module
-			add_action( 'wp_head', array( $this, 'kava_breadcrumbs' ) );
+			add_action( 'wp_head', array( $this, 'init_breadcrumbs' ) );
 
 			// Language functions and translations setup.
 			add_action( 'after_setup_theme', array( $this, 'l10n' ), 2 );
@@ -79,7 +112,7 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 			add_action( 'after_setup_theme', array( $this, 'load_modules' ), 5 );
 
 			// Init properties.
-			add_action( 'wp_head', array( $this, 'kava_init_properties' ) );
+			add_action( 'wp_head', array( $this, 'init_theme_properties' ) );
 
 			// Register public assets.
 			add_action( 'wp_enqueue_scripts', array( $this, 'register_assets' ), 9 );
@@ -89,6 +122,9 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 
 			// Enqueue styles.
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ), 10 );
+
+			// Enqueue admin assets.
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_assets' ) );
 
 			// Maybe register Elementor Pro locations.
 			add_action( 'elementor/theme/register_locations', array( $this, 'elementor_locations' ) );
@@ -109,16 +145,18 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		 *
 		 * @since  1.0.0
 		 */
-		public function kava_framework_loader() {
+		public function framework_loader() {
 
 			require get_theme_file_path( 'framework/loader.php' );
 
-			new Kava_CX_Loader(
+			$this->framework = new Kava_CX_Loader(
 				array(
 					get_theme_file_path( 'framework/modules/customizer/cherry-x-customizer.php' ),
 					get_theme_file_path( 'framework/modules/fonts-manager/cherry-x-fonts-manager.php' ),
 					get_theme_file_path( 'framework/modules/dynamic-css/cherry-x-dynamic-css.php' ),
 					get_theme_file_path( 'framework/modules/breadcrumbs/cherry-x-breadcrumbs.php' ),
+					get_theme_file_path( 'framework/modules/post-meta/cherry-x-post-meta.php' ),
+					get_theme_file_path( 'framework/modules/interface-builder/cherry-x-interface-builder.php' ),
 				)
 			);
 
@@ -129,7 +167,7 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		 *
 		 * @since 1.0.0
 		 */
-		public function kava_customizer() {
+		public function init_customizer() {
 
 			$this->customizer = new CX_Customizer( kava_get_customizer_options() );
 			$this->dynamic_css = new CX_Dynamic_CSS( kava_get_dynamic_css_options() );
@@ -141,10 +179,8 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		 *
 		 * @since 1.0.0
 		 */
-		public function kava_breadcrumbs() {
-
+		public function init_breadcrumbs() {
 			$this->breadcrumbs = new CX_Breadcrumbs( kava_get_breadcrumbs_options() );
-
 		}
 
 		/**
@@ -152,7 +188,7 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		 *
 		 * @since 1.0.0
 		 */
-		public function kava_init_properties() {
+		public function init_theme_properties() {
 
 			$this->is_blog = is_home() || ( is_archive() && ! is_tax() && ! is_post_type_archive() ) ? true : false;
 
@@ -251,6 +287,13 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 			 * Classes.
 			*/
 			require_once get_theme_file_path( 'inc/classes/class-widget-area.php' );
+			require_once get_theme_file_path( 'inc/classes/class-post-formats.php' );
+			require_once get_theme_file_path( 'inc/classes/class-post-meta.php' );
+
+			/**
+			 * Dashboard.
+			 */
+			require_once get_theme_file_path( 'inc/dashboard/settings.php' );
 
 			/**
 			 * Functions.
@@ -273,14 +316,12 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		 * @return string
 		 */
 		public function modules_base() {
-
 			return 'inc/modules/';
-
 		}
 
 		/**
 		 * Returns module class by name
-		 * @return [type] [description]
+		 * @return string
 		 */
 		public function get_module_class( $name ) {
 
@@ -306,6 +347,12 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 
 		}
 
+		/**
+		 * Load theme and child theme module
+		 *
+		 * @param string $module
+		 * @param array  $childs
+		 */
 		public function load_module( $module = '', $childs = array() ) {
 
 			if ( ! file_exists( get_theme_file_path( $this->modules_base() . $module . '/module.php' ) ) ) {
@@ -465,7 +512,24 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		}
 
 		/**
+		 * Enqueue admin assets
+		 *
+		 * @return void
+		 */
+		public function enqueue_admin_assets() {
+			wp_enqueue_style(
+				'kava-theme-admin-css',
+				get_parent_theme_file_uri( 'assets/css/admin.css' ),
+				false,
+				$this->version()
+			);
+		}
+
+		/**
 		 * Do Elementor or Jet Theme Core location
+		 *
+		 * @param string $location
+		 * @param string $fallback
 		 *
 		 * @return bool
 		 */
@@ -507,9 +571,9 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		}
 
 		/**
-		 * Register Elemntor Pro locations
+		 * Register Elementor Pro locations
 		 *
-		 * @return [type] [description]
+		 * @param object $elementor_theme_manager
 		 */
 		public function elementor_locations( $elementor_theme_manager ) {
 
@@ -527,7 +591,7 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		 * Returns the instance.
 		 *
 		 * @since  1.0.0
-		 * @return object
+		 * @return Kava_Theme_Setup
 		 */
 		public static function get_instance() {
 
@@ -543,15 +607,13 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 }
 
 /**
- * Returns instanse of main theme configuration class.
+ * Returns instance of main theme configuration class.
  *
  * @since  1.0.0
- * @return object
+ * @return Kava_Theme_Setup
  */
 function kava_theme() {
-
 	return Kava_Theme_Setup::get_instance();
-
 }
 
 kava_theme();

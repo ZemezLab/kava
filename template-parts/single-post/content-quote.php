@@ -9,7 +9,7 @@
 
 ?>
 
-<?php do_action( 'kava_extra_post_format_quote' ); ?>
+<?php do_action( 'kava_post_format_quote' ); ?>
 
 <div class="entry-content">
 	<?php the_content(); ?>

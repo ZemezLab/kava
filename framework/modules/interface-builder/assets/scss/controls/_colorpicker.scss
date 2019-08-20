@@ -1,0 +1,50 @@
+
+$font_size: 14px;
+
+.cx-ui-colorpicker-wrapper {
+
+	.wp-picker-container {
+		padding: 3px;
+		border-radius: 3px;
+
+		.wp-color-result-text {
+			line-height: 18px;
+			text-align: right;
+			display: none;
+		}
+
+		.wp-color-result {
+			width: 60px;
+			height: 26px;
+			padding: 0;
+			border: none;
+			margin: 0;
+			box-shadow: inset 0 0 0 3px white;
+			border: 1px solid #d5dadf;
+
+			&:focus {
+				border: 1px solid #9ba7b3;
+				outline: none;
+			}
+
+			&:after {
+				display: none;
+			}
+		}
+
+		.wp-picker-input-wrap {
+			margin: 1px 0;
+		}
+
+		&.wp-picker-active {
+			.wp-color-result {
+				margin-right: 6px;
+			}
+		}
+
+		.iris-picker {
+			position: absolute;
+			z-index: 999;
+		}
+	}
+}

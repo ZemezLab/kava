@@ -11,13 +11,18 @@ var gulp            = require( 'gulp' ),
 	checktextdomain = require( 'gulp-checktextdomain' );
 
 var sass_settings = {
-	outputStyle: 'nested',
+	outputStyle: 'expanded',
 	linefeed:    'crlf',
 	indentType:  'tab',
 	indentWidth: 1
 };
 
 function CSS_Task( args ) {
+
+	if ( undefined !== args['sass_settings'] && 'object' === typeof (args['sass_settings']) ) {
+		sass_settings = Object.assign( {}, sass_settings, args['sass_settings'] );
+	}
+
 	return gulp.src( args['src'] )
 		.pipe(
 			plumber( {
@@ -40,6 +45,11 @@ function CSS_Task( args ) {
 }
 
 function RTL_CSS_Task( args ) {
+
+	if ( undefined !== args['sass_settings'] && 'object' === typeof (args['sass_settings']) ) {
+		sass_settings = Object.assign( {}, sass_settings, args['sass_settings'] );
+	}
+
 	return gulp.src( args['src'] )
 		.pipe(
 			plumber( {
@@ -74,7 +84,10 @@ gulp.task( 'blog_layouts_module', function() {
 	CSS_Task( {
 		src:         './inc/modules/blog-layouts/assets/scss/blog-layouts-module.scss',
 		output_dir:  './inc/modules/blog-layouts/assets/css/',
-		output_file: 'blog-layouts-module.css'
+		output_file: 'blog-layouts-module.css',
+		sass_settings: {
+			outputStyle: 'compressed'
+		}
 	} );
 } );
 
@@ -82,7 +95,10 @@ gulp.task( 'woo_module', function() {
 	CSS_Task( {
 		src:         './inc/modules/woo/assets/scss/woo-module.scss',
 		output_dir:  './inc/modules/woo/assets/css/',
-		output_file: 'woo-module.css'
+		output_file: 'woo-module.css',
+		sass_settings: {
+			outputStyle: 'compressed'
+		}
 	} )
 } );
 
@@ -90,16 +106,31 @@ gulp.task( 'woo_module_rtl', function() {
 	RTL_CSS_Task( {
 		src:         './inc/modules/woo/assets/scss/woo-module.scss',
 		output_dir:  './inc/modules/woo/assets/css/',
-		output_file: 'woo-module-rtl.css'
+		output_file: 'woo-module-rtl.css',
+		sass_settings: {
+			outputStyle: 'compressed'
+		}
 	} )
+} );
+
+gulp.task( 'admin_css', function() {
+	CSS_Task( {
+		src:         './assets/sass/admin.scss',
+		output_dir:  './assets/css/',
+		output_file: 'admin.css',
+		sass_settings: {
+			outputStyle: 'compressed'
+		}
+	} );
 } );
 
 gulp.task( 'watch', function() {
 	//livereload.listen();
 
-	gulp.watch( './assets/sass/**',                          ['css'] );
-	gulp.watch( './inc/modules/blog-layouts/assets/scss/**', ['blog_layouts_module'] );
-	gulp.watch( './inc/modules/woo/assets/scss/**',          ['woo_module', 'woo_module_rtl'] );
+	gulp.watch( ['./assets/sass/**', '!./assets/sass/admin.scss'], ['css'] );
+	gulp.watch( './inc/modules/blog-layouts/assets/scss/**',       ['blog_layouts_module'] );
+	gulp.watch( './inc/modules/woo/assets/scss/**',                ['woo_module', 'woo_module_rtl'] );
+	gulp.watch( './assets/sass/admin.scss',                        ['admin_css'] );
 
 } );
 
@@ -109,6 +140,7 @@ gulp.task( 'default', [
 	'blog_layouts_module',
 	'woo_module',
 	'woo_module_rtl',
+	'admin_css',
 	'watch'
 ] );
 

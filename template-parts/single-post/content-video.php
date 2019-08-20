@@ -9,7 +9,7 @@
 
 ?>
 
-<?php do_action( 'kava_extra_post_format_video' ); ?>
+<?php do_action( 'kava_post_format_video' ); ?>
 
 <div class="entry-content">
 	<?php the_content(); ?>

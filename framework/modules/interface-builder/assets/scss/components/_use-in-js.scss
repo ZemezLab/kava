@@ -1,0 +1,17 @@
+.cx-ui-kit{
+	button{
+		*{
+			pointer-events: none;
+		}
+	}
+}
+.cx-component{
+	&__content{
+		.cx-settings__content{
+			display: none;
+			&.show{
+				display: inherit;
+			}
+		}
+	}
+}

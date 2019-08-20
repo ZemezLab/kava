@@ -1,0 +1,13 @@
+.cx-ui-stepper{
+	position: relative;
+	max-width: 100px;
+	input[type=number]{
+		@include input();
+	}
+
+}
+.cx-ui-stepper-input{
+	min-width: 70px;
+	max-width: 70px;
+	text-align: left;
+}

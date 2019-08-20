@@ -9,7 +9,7 @@
 
 ?>
 
-<?php do_action( 'kava_extra_post_format_gallery', array( 'size' => 'kava-thumb-l' ) ); ?>
+<?php do_action( 'kava_post_format_gallery', array( 'size' => 'kava-thumb-l' ) ); ?>
 
 <div class="entry-content">
 	<?php the_content(); ?>

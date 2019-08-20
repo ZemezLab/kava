@@ -34,7 +34,7 @@ if ( ! defined( 'WPINC' ) ) {
 if ( ! class_exists( 'Kava_CX_Loader' ) ) {
 
 	/**
-	 * Define Kava_CX_Loader class
+	 * Define CX_Loader class
 	 */
 	class Kava_CX_Loader {
 
@@ -58,6 +58,13 @@ if ( ! class_exists( 'Kava_CX_Loader' ) ) {
 		 * @var array
 		 */
 		private $modules_slugs = array();
+
+		/**
+		 * Included modules paths and URLs
+		 *
+		 * @var array
+		 */
+		private $included_modules = array();
 
 		/**
 		 * Loads latest versions of all modules passed into modules array
@@ -93,7 +100,7 @@ if ( ! class_exists( 'Kava_CX_Loader' ) ) {
 
 		/**
 		 * Include latest versions of modules in current loader instance.
-		 * All available version preiously stored by 'store_versions' methods of each loader instance.
+		 * All available version previously stored by 'store_versions' methods of each loader instance.
 		 *
 		 * @return boolean
 		 */
@@ -110,7 +117,22 @@ if ( ! class_exists( 'Kava_CX_Loader' ) ) {
 				$path = $this->get_latest_version_path( $modules_data[ $slug ] );
 
 				if ( file_exists( $path ) ) {
+
+					$dir = pathinfo( $path, PATHINFO_DIRNAME );
+
+					$url = str_replace(
+						'\\',
+						'/',
+						str_replace( untrailingslashit( ABSPATH ), esc_url( site_url() ), $dir )
+					);
+
+					$this->included_modules[ $slug ] = array(
+						'path' => trailingslashit( $dir ),
+						'url'  => apply_filters( 'cx_include_module_url', trailingslashit( $url ), $path ),
+					);
+
 					require_once $path;
+
 				}
 
 			}
@@ -120,14 +142,26 @@ if ( ! class_exists( 'Kava_CX_Loader' ) ) {
 		}
 
 		/**
+		 * Retrieve path and URL of included module directory
+		 *
+		 * @param  string $file Module file.
+		 * @return bool|array
+		 */
+		public function get_included_module_data( $file ) {
+
+			return isset( $this->included_modules[ $file ] ) ? $this->included_modules[ $file ] : false;
+
+		}
+
+		/**
 		 * Select latest version path from all available.
 		 *
-		 * @param  array  $module_versions All available vaerions paths for selected module
+		 * @param  array  $module_versions All available versions paths for selected module
 		 * @return string Module path.
 		 */
 		private function get_latest_version_path( array $module_versions = array() ) {
 
-			// Immediately return path if array contain sinle element.
+			// Immediately return path if array contain single element.
 			if ( 1 === count( $module_versions ) ) {
 				$module_versions = array_values( $module_versions );
 				return $module_versions[0];
