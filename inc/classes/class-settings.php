@@ -48,6 +48,14 @@ if ( ! class_exists( 'Kava_Settings' ) ) {
 		public $settings = null;
 
 		/**
+		 * Available Modules array
+		 *
+		 * @access public
+		 * @var    array
+		 */
+		public $available_modules = array();
+
+		/**
 		 * Init page
 		 */
 		public function __construct() {
@@ -58,8 +66,8 @@ if ( ! class_exists( 'Kava_Settings' ) ) {
 
 			add_action( 'admin_enqueue_scripts', array( $this, 'init_interface_builder' ), 0 );
 
-			add_action( 'admin_menu', array( $this, 'register_page' ), 99 );
-			add_action( 'init', array( $this, 'save' ), 40 );
+			add_action( 'admin_menu',    array( $this, 'register_page' ), 99 );
+			add_action( 'init',          array( $this, 'save' ), 40 );
 			add_action( 'admin_notices', array( $this, 'saved_notice' ) );
 		}
 
@@ -293,7 +301,33 @@ if ( ! class_exists( 'Kava_Settings' ) ) {
 		 */
 		public function get_controls_list( $parent = 'settings_top' ) {
 
+			$disabled_modules = apply_filters( 'kava-theme/disabled-modules', array() );
+
+			foreach ( kava_get_allowed_modules() as $module => $childs ) {
+				if ( ! in_array( $module, $disabled_modules ) ) {
+					$this->available_modules[ $module ] = ucwords( str_replace( '-', ' ', $module ) );
+				}
+			}
+
+			$default_available_modules = array();
+
+			foreach ( $this->available_modules as $key => $value ) {
+				$default_available_modules[ $key ] = 'true';
+			}
+
 			$controls = array(
+				'available_modules' => array(
+					'type'        => 'checkbox',
+					'id'          => 'available_modules',
+					'name'        => 'available_modules',
+					'value'       => $this->get( 'available_modules', $default_available_modules ),
+					'options'     => $this->available_modules,
+					'parent'      => $parent,
+					'title'       => esc_html__( 'Available Theme Modules', 'kava' ),
+					'description' => esc_html__( 'List of modules that will be available', 'kava' ),
+					'class'       => 'kava_extra_settings_form__checkbox-group'
+				),
+
 				'disable_content_container_archive_cpt' => array(
 					'type'        => 'checkbox',
 					'id'          => 'disable_content_container_archive_cpt',
