@@ -157,6 +157,7 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 					get_theme_file_path( 'framework/modules/breadcrumbs/cherry-x-breadcrumbs.php' ),
 					get_theme_file_path( 'framework/modules/post-meta/cherry-x-post-meta.php' ),
 					get_theme_file_path( 'framework/modules/interface-builder/cherry-x-interface-builder.php' ),
+					get_theme_file_path( 'framework/modules/vue-ui/cherry-x-vue-ui.php' ),
 				)
 			);
 
