@@ -56,6 +56,11 @@
 		}
 	}
 
+	.kava-settings-page__group-controls + .kava-settings-page__title-wrap,
+	.kava-settings-page__group-controls + .cx-vui-component {
+		border-top: 1px solid #ececec;
+	}
+
 }
 
 #adminmenu {
