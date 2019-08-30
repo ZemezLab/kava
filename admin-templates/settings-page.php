@@ -27,7 +27,7 @@
 							class="kava-settings-page__group-control"
 							v-for="(option, index) in pageOptions.disable_content_container_archive_cpt.options">
 							<cx-vui-switcher
-								:key="index"
+								:key="`archive_cpt-${index}`"
 								:name="`disable_content_container_archive_cpt-${option.value}`"
 								:label="option.label"
 								:wrapper-css="[ 'equalwidth' ]"
@@ -49,7 +49,7 @@
 							class="kava-settings-page__group-control"
 							v-for="(option, index) in pageOptions.disable_content_container_single_cpt.options">
 							<cx-vui-switcher
-								:key="index"
+								:key="`single_cpt-${index}`"
 								:name="`disable_content_container_single_cpt-${option.value}`"
 								:label="option.label"
 								:wrapper-css="[ 'equalwidth' ]"

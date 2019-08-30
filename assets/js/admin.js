@@ -20,13 +20,13 @@
 
 		watch: {
 			pageOptions: {
-				handler( options ) {
+				handler: function( options ) {
 					var prepared = {};
 
 					for ( var option in options ) {
 
 						if ( options.hasOwnProperty( option ) ) {
-							prepared[ option ] = options[option]['value'];
+							prepared[option] = options[option]['value'];
 						}
 					}
 
@@ -52,7 +52,7 @@
 					dataType: 'json',
 					data: {
 						options: self.preparedOptions,
-						action: 'save_settings'
+						action: 'kava_save_theme_settings'
 					},
 					beforeSend: function( jqXHR, ajaxSettings ) {
 						if ( null !== self.ajaxSaveHandler ) {
@@ -62,24 +62,23 @@
 					success: function( response, textStatus, jqXHR ) {
 						self.savingStatus = false;
 
-						if ( 'success' === response.status ) {
+						if ( response.success ) {
 							self.$CXNotice.add( {
-								message: response.message,
+								message: response.data.message,
 								type: 'success',
 								duration: 3000
 							} );
-						}
-
-						if ( 'error' === response.status ) {
+						} else {
 							self.$CXNotice.add( {
-								message: response.message,
+								message: response.data.message,
 								type: 'error',
 								duration: 3000
 							} );
 						}
+
 					}
 				} );
-			},
+			}
 		}
 	} );
 

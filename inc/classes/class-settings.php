@@ -55,6 +55,8 @@ if ( ! class_exists( 'Kava_Settings' ) ) {
 		 */
 		public $settings_page_config = array();
 
+		private $ajax_action = 'kava_save_theme_settings';
+
 		/**
 		 * Init page
 		 */
@@ -67,7 +69,7 @@ if ( ! class_exists( 'Kava_Settings' ) ) {
 			add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ), 0 );
 			add_action( 'admin_menu',            array( $this, 'register_page' ), 99 );
 
-			add_action( 'wp_ajax_save_settings', array( $this, 'save_settings' ) );
+			add_action( "wp_ajax_{$this->ajax_action}", array( $this, 'save_settings' ) );
 		}
 
 		/**
@@ -185,7 +187,7 @@ if ( ! class_exists( 'Kava_Settings' ) ) {
 				),
 				'settingsData' => array(
 					'disable_content_container_archive_cpt' => array(
-						'value'   => $this->get( 'disable_content_container_single_cpt', $default_disable_container_archive_cpt ),
+						'value'   => $this->get( 'disable_content_container_archive_cpt', $default_disable_container_archive_cpt ),
 						'options' => $this->prepare_options_list( $this->get_post_types( true ) ),
 					),
 					'disable_content_container_single_cpt' => array(
@@ -201,100 +203,43 @@ if ( ! class_exists( 'Kava_Settings' ) ) {
 		}
 
 		public function save_settings() {
-			if ( ! isset( $_REQUEST['page'] ) || $this->key !== $_REQUEST['page'] ) {
-				return;
-			}
 
-			if ( ! isset( $_REQUEST['action'] ) || 'save_settings' !== $_REQUEST['action'] ) {
+			if ( ! isset( $_REQUEST['action'] ) || $this->ajax_action !== $_REQUEST['action'] || empty( $_REQUEST['options'] ) ) {
+				wp_send_json_error( array(
+					'message' => esc_html__( 'Server Error', 'kava' )
+				) );
 				return;
 			}
 
 			if ( ! current_user_can( 'manage_options' ) ) {
-
 				wp_send_json_error( array(
-					'message' => 'current_user_can'
+					'message' => esc_html__( 'Sorry! You cannot change options.', 'kava' )
 				) );
 
-				return ;
+				return;
 			}
 
 			$current = get_option( $this->key, array() );
 
-		}
+			if ( is_wp_error( $current ) ) {
+				wp_send_json_error( array(
+					'message' => esc_html__( 'Server Error', 'kava' )
+				) );
 
-		/**
-		 * Returns parent-independent controls list
-		 *
-		 * @param string $parent
-		 *
-		 * @return array
-		 */
-		public function get_controls_list( $parent = 'settings_top' ) {
-
-			$disabled_modules = apply_filters( 'kava-theme/disabled-modules', array() );
-
-			foreach ( kava_get_allowed_modules() as $module => $childs ) {
-				if ( ! in_array( $module, $disabled_modules ) ) {
-					$this->available_modules[ $module ] = ucwords( str_replace( '-', ' ', $module ) );
-				}
+				return;
 			}
 
-			$default_available_modules = array();
+			$options = $_REQUEST['options'];
 
-			foreach ( $this->available_modules as $key => $value ) {
-				$default_available_modules[ $key ] = 'true';
+			foreach ( $options as $key => $value ) {
+				$current[ $key ] = is_array( $value ) ? $value : esc_attr( $value );
 			}
 
-			$controls = array(
-				'available_modules' => array(
-					'type'        => 'checkbox',
-					'id'          => 'available_modules',
-					'name'        => 'available_modules',
-					'value'       => $this->get( 'available_modules', $default_available_modules ),
-					'options'     => $this->available_modules,
-					'parent'      => $parent,
-					'title'       => esc_html__( 'Available Theme Modules', 'kava' ),
-					'description' => esc_html__( 'List of modules that will be available', 'kava' ),
-					'class'       => 'kava_extra_settings_form__checkbox-group'
-				),
+			update_option( $this->key, $current );
 
-				'disable_content_container_archive_cpt' => array(
-					'type'        => 'checkbox',
-					'id'          => 'disable_content_container_archive_cpt',
-					'name'        => 'disable_content_container_archive_cpt',
-					'parent'      => $parent,
-					'value'       => $this->get( 'disable_content_container_archive_cpt' ),
-					'options'     => $this->get_post_types( true ),
-					'title'       => esc_html__( 'Disable Container of Content on Archive Pages', 'kava' ),
-					'description' => esc_html__( 'List of CPT that will be a disabled container of content', 'kava' ),
-					'class'       => 'kava_extra_settings_form__checkbox-group'
-				),
-
-				'disable_content_container_single_cpt' => array(
-					'type'        => 'checkbox',
-					'id'          => 'disable_content_container_single_cpt',
-					'name'        => 'disable_content_container_single_cpt',
-					'parent'      => $parent,
-					'value'       => $this->get( 'disable_content_container_single_cpt' ),
-					'options'     => $this->get_post_types(),
-					'title'       => esc_html__( 'Disable Container of Content on Singular Pages', 'kava' ),
-					'description' => esc_html__( 'List of CPT that will be a disabled container of content', 'kava' ),
-					'class'       => 'kava_extra_settings_form__checkbox-group'
-				),
-
-				'single_post_template' => array(
-					'type'    => 'select',
-					'id'      => 'single_post_template',
-					'name'    => 'single_post_template',
-					'parent'  => $parent,
-					'value'   => $this->get( 'single_post_template', 'default' ),
-					'options' => $this->get_single_post_templates(),
-					'title'   => esc_html__( 'Default Single Post Template', 'kava' ),
-				),
-			);
-
-			return apply_filters( 'kava-extra/settings-page/controls-list', $controls );
-
+			wp_send_json_success( array(
+				'message' => esc_html__( 'Settings have been saved', 'kava' )
+			) );
 		}
 
 		/**
