@@ -52,7 +52,7 @@
 					dataType: 'json',
 					data: {
 						options: self.preparedOptions,
-						action: 'kava_save_theme_settings'
+						action: settingsPageConfig.action
 					},
 					beforeSend: function( jqXHR, ajaxSettings ) {
 						if ( null !== self.ajaxSaveHandler ) {

@@ -55,6 +55,11 @@ if ( ! class_exists( 'Kava_Settings' ) ) {
 		 */
 		public $settings_page_config = array();
 
+		/**
+		 * Ajax action
+		 *
+		 * @var string
+		 */
 		private $ajax_action = 'kava_save_theme_settings';
 
 		/**
@@ -181,6 +186,7 @@ if ( ! class_exists( 'Kava_Settings' ) ) {
 			$default_disable_container_single_cpt  = $this->prepare_default_values_list( $this->get_post_types(), 'false' );
 
 			$this->settings_page_config = array(
+				'action'   => $this->ajax_action,
 				'messages' => array(
 					'saveSuccess' => esc_html__( 'Saved', 'kava' ),
 					'saveError'   => esc_html__( 'Error', 'kava' ),
