@@ -44,9 +44,9 @@ if ( ! class_exists( 'Kava_Settings' ) ) {
 		 * Available Modules array
 		 *
 		 * @access public
-		 * @var    array
+		 * @var    null
 		 */
-		public $available_modules = array();
+		public $available_modules = null;
 
 		/**
 		 * Page config
@@ -184,6 +184,7 @@ if ( ! class_exists( 'Kava_Settings' ) ) {
 
 			$default_disable_container_archive_cpt = $this->prepare_default_values_list( $this->get_post_types( true ), 'false' );
 			$default_disable_container_single_cpt  = $this->prepare_default_values_list( $this->get_post_types(), 'false' );
+			$default_available_modules             = $this->prepare_default_values_list( $this->get_available_modules(), 'true' );
 
 			$this->settings_page_config = array(
 				'action'   => $this->ajax_action,
@@ -203,6 +204,10 @@ if ( ! class_exists( 'Kava_Settings' ) ) {
 					'single_post_template' => array(
 						'value'   => $this->get( 'single_post_template', 'default' ),
 						'options' => $this->prepare_options_list( $this->get_single_post_templates() ),
+					),
+					'available_modules' => array(
+						'value'   => $this->get( 'available_modules', $default_available_modules ),
+						'options' => $this->prepare_options_list( $this->get_available_modules() ),
 					),
 				),
 			);
@@ -343,6 +348,28 @@ if ( ! class_exists( 'Kava_Settings' ) ) {
 			$templates = array_merge( $default_template, $templates );
 
 			return $templates;
+		}
+
+		/**
+		 * Get available modules.
+		 *
+		 * @return array
+		 */
+		public function get_available_modules() {
+
+			if (  null === $this->available_modules ) {
+
+				$this->available_modules = array();
+				$disabled_modules        = apply_filters( 'kava-theme/disabled-modules', array() );
+
+				foreach ( kava_get_allowed_modules() as $module => $childs ) {
+					if ( ! in_array( $module, $disabled_modules ) ) {
+						$this->available_modules[ $module ] = ucwords( str_replace( '-', ' ', $module ) );
+					}
+				}
+			}
+
+			return $this->available_modules;
 		}
 
 		/**

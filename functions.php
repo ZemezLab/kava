@@ -334,14 +334,16 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		 */
 		public function load_modules() {
 
-			$disabled_modules = apply_filters( 'kava-theme/disabled-modules', array() );
+			$available_modules = kava_settings()->get( 'available_modules' );
 
 			foreach ( kava_get_allowed_modules() as $module => $childs ) {
-				if ( ! in_array( $module, $disabled_modules ) ) {
+
+				$enabled = isset( $available_modules[ $module ] ) ? $available_modules[ $module ] : false;
+
+				if ( filter_var( $enabled, FILTER_VALIDATE_BOOLEAN ) || ! $available_modules ) {
 					$this->load_module( $module, $childs );
 				}
 			}
-
 		}
 
 		/**

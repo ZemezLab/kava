@@ -14,7 +14,7 @@
 
 				<cx-vui-tabs-panel
 					name="layout-settings"
-					label="<?php _e( 'Layout settings', 'kava' ); ?>"
+					label="<?php esc_html_e( 'Layout settings', 'kava' ); ?>"
 					key="layout-settings">
 
 					<div class="kava-settings-page__title-wrap">
@@ -69,6 +69,30 @@
 						:options-list="pageOptions.single_post_template.options"
 						v-model="pageOptions.single_post_template.value">
 					</cx-vui-select>
+
+				</cx-vui-tabs-panel>
+
+				<cx-vui-tabs-panel
+					name="available-modules"
+					label="<?php esc_html_e( 'Available modules', 'kava' ); ?>"
+					key="available-modules">
+
+					<div class="kava-settings-page__group-controls">
+						<div
+							class="kava-settings-page__group-control"
+							v-for="(option, index) in pageOptions.available_modules.options">
+							<cx-vui-switcher
+								:key="`available_module-${index}`"
+								:name="`available_module-${option.value}`"
+								:label="option.label"
+								:wrapper-css="[ 'equalwidth' ]"
+								return-true="true"
+								return-false="false"
+								v-model="pageOptions.available_modules.value[option.value]"
+							>
+							</cx-vui-switcher>
+						</div>
+					</div>
 
 				</cx-vui-tabs-panel>
 			</cx-vui-tabs>
