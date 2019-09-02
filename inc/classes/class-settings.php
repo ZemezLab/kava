@@ -209,6 +209,9 @@ if ( ! class_exists( 'Kava_Settings' ) ) {
 						'value'   => $this->get( 'available_modules', $default_available_modules ),
 						'options' => $this->prepare_options_list( $this->get_available_modules() ),
 					),
+					'cache_dynamic_css' => array(
+						'value' => $this->get( 'cache_dynamic_css', 'false' ),
+					),
 				),
 			);
 		}

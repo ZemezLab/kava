@@ -291,6 +291,7 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 			require_once get_theme_file_path( 'inc/classes/class-post-formats.php' );
 			require_once get_theme_file_path( 'inc/classes/class-post-meta.php' );
 			require_once get_theme_file_path( 'inc/classes/class-settings.php' );
+			require_once get_theme_file_path( 'inc/classes/class-dynamic-css-file.php' );
 
 			/**
 			 * Functions.
