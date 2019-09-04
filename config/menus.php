@@ -10,7 +10,7 @@ function kava_register_menus() {
 
 	register_nav_menus( array(
 		'main'   => esc_html__( 'Main', 'kava' ),
-		'footer' => esc_html__( 'Footer', 'kava' ),
+		//'footer' => esc_html__( 'Footer', 'kava' ),
 		'social' => esc_html__( 'Social', 'kava' ),
 	) );
 }
