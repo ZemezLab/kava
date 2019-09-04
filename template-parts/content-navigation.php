@@ -7,6 +7,8 @@
 
 do_action( 'kava-theme/blog/posts-navigation-before' );
 
+echo '<div class="posts-list-navigation">';
+
 $navigation_type = kava_theme()->customizer->get_value( 'blog_navigation_type' );
 
 switch ( $navigation_type ) {
@@ -44,6 +46,6 @@ switch ( $navigation_type ) {
 		break;
 }
 
-
+echo '</div>';
 
 do_action( 'kava-theme/blog/posts-navigation-after' );

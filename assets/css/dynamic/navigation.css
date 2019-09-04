@@ -18,36 +18,36 @@
 }
 
 /* #Post navigation */
-.post-navigation i {
+.post-navigation-container i {
 	color: $secondary_text_color;
 }
-.post-navigation .nav-links a:hover .post-title,
-.post-navigation .nav-links a:hover .nav-text {
+.post-navigation-container .nav-links a:hover .post-title,
+.post-navigation-container .nav-links a:hover .nav-text {
 	color: $link_color;
 }
 
-.post-navigation .nav-links a:hover i {
+.post-navigation-container .nav-links a:hover i {
 	color: $link_hover_color;
 }
 
 /* #Pagination */
-.pagination .page-numbers,
+.posts-list-navigation .pagination .page-numbers,
 .page-links > span,
 .page-links > a {
 	color: $secondary_text_color;
 }
-.pagination a.page-numbers:hover,
-.pagination .page-numbers.current,
+.posts-list-navigation .pagination a.page-numbers:hover,
+.posts-list-navigation .pagination .page-numbers.current,
 .page-links > a:hover,
 .page-links > span {
 	color: $link_hover_color;
 }
 
-.pagination .next,
-.pagination .prev {
+.posts-list-navigation .pagination .next,
+.posts-list-navigation .pagination .prev {
 	color: $link_color;
 }
-.pagination .next:hover,
-.pagination .prev:hover {
+.posts-list-navigation .pagination .next:hover,
+.posts-list-navigation .pagination .prev:hover {
 	color: $link_hover_color;
 }

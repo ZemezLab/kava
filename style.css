@@ -2340,37 +2340,35 @@ body.admin-bar .mobile-menu .menu {
 ## Posts navigation
 --------------------------------------------------------------*/
 .comment-navigation,
-.posts-navigation,
-.pagination {
+.posts-list-navigation {
 	overflow: hidden;
 	padding-top: 40px;
 	border-top: 1px solid #ebeced;
 }
 
 .comment-navigation .nav-links,
-.posts-navigation .nav-links,
-.pagination .nav-links {
+.posts-list-navigation .nav-links {
 	font-weight: 400;
 }
 
-.pagination .page-numbers {
+.posts-list-navigation .pagination .page-numbers {
 	outline: none;
 	margin-right: 7px;
 }
 
-.pagination .page-numbers:last-child {
+.posts-list-navigation .pagination .page-numbers:last-child {
 	margin-right: 0;
 }
 
-.pagination .page-numbers.prev {
+.posts-list-navigation .pagination .page-numbers.prev {
 	margin-right: 20px;
 }
 
-.pagination .page-numbers.next {
+.posts-list-navigation .pagination .page-numbers.next {
 	margin-left: 10px;
 }
 
-.pagination .page-numbers:not(.prev):not(.next):not(.dots) {
+.posts-list-navigation .pagination .page-numbers:not(.prev):not(.next):not(.dots) {
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
 	display: inline-block;
@@ -2381,7 +2379,7 @@ body.admin-bar .mobile-menu .menu {
 	border: 1px solid #ebeced;
 }
 
-.pagination .page-numbers:not(.prev):not(.next):not(.dots):hover, .pagination .page-numbers:not(.prev):not(.next):not(.dots).current {
+.posts-list-navigation .pagination .page-numbers:not(.prev):not(.next):not(.dots):hover, .posts-list-navigation .pagination .page-numbers:not(.prev):not(.next):not(.dots).current {
 	background-color: #ebeced;
 }
 
@@ -2411,49 +2409,49 @@ body.admin-bar .mobile-menu .menu {
 }
 
 .comment-navigation .nav-previous,
-.posts-navigation .nav-previous {
+.posts-list-navigation .posts-navigation .nav-previous {
 	float: left;
 	width: 50%;
 }
 
 .comment-navigation .nav-previous i,
-.posts-navigation .nav-previous i {
+.posts-list-navigation .posts-navigation .nav-previous i {
 	margin-right: 2px;
 }
 
 .comment-navigation .nav-next,
-.posts-navigation .nav-next {
+.posts-list-navigation .posts-navigation .nav-next {
 	float: right;
 	text-align: right;
 	width: 50%;
 }
 
 .comment-navigation .nav-next i,
-.posts-navigation .nav-next i {
+.posts-list-navigation .posts-navigation .nav-next i {
 	margin-left: 2px;
 }
 
-.posts-list--creative.list-style-default + .navigation,
-.posts-list--default.list-style-v9 + .navigation,
-.posts-list--grid.list-style-v9 + .navigation,
-.posts-list--vertical-justify.list-style-v6 + .navigation {
+.posts-list--creative.list-style-default + .posts-list-navigation,
+.posts-list--default.list-style-v9 + .posts-list-navigation,
+.posts-list--grid.list-style-v9 + .posts-list-navigation,
+.posts-list--vertical-justify.list-style-v6 + .posts-list-navigation {
 	border: none;
 	margin-top: 0;
 }
 
-.posts-list--creative.list-style-default + .navigation .nav-links,
-.posts-list--default.list-style-v9 + .navigation .nav-links,
-.posts-list--creative.list-style-v2 + .navigation .nav-links,
-.posts-list--grid.list-style-v4 + .navigation .nav-links,
-.posts-list--grid.list-style-v5 + .navigation .nav-links,
-.posts-list--grid.list-style-v9 + .navigation .nav-links,
-.posts-list--masonry.list-style-v4 + .navigation .nav-links,
-.posts-list--masonry.list-style-v9 + .navigation .nav-links,
-.posts-list--vertical-justify.list-style-v4 + .navigation .nav-links,
-.posts-list--vertical-justify.list-style-v5 + .navigation .nav-links,
-.posts-list--vertical-justify.list-style-v6 + .navigation .nav-links,
-.posts-list--vertical-justify.list-style-v9 + .navigation .nav-links,
-.posts-list--vertical-justify.list-style-v10 + .navigation .nav-links {
+.posts-list--creative.list-style-default + .posts-list-navigation .nav-links,
+.posts-list--default.list-style-v9 + .posts-list-navigation .nav-links,
+.posts-list--creative.list-style-v2 + .posts-list-navigation .nav-links,
+.posts-list--grid.list-style-v4 + .posts-list-navigation .nav-links,
+.posts-list--grid.list-style-v5 + .posts-list-navigation .nav-links,
+.posts-list--grid.list-style-v9 + .posts-list-navigation .nav-links,
+.posts-list--masonry.list-style-v4 + .posts-list-navigation .nav-links,
+.posts-list--masonry.list-style-v9 + .posts-list-navigation .nav-links,
+.posts-list--vertical-justify.list-style-v4 + .posts-list-navigation .nav-links,
+.posts-list--vertical-justify.list-style-v5 + .posts-list-navigation .nav-links,
+.posts-list--vertical-justify.list-style-v6 + .posts-list-navigation .nav-links,
+.posts-list--vertical-justify.list-style-v9 + .posts-list-navigation .nav-links,
+.posts-list--vertical-justify.list-style-v10 + .posts-list-navigation .nav-links {
 	max-width: 1200px;
 	margin-left: auto;
 	margin-right: auto;
@@ -2461,40 +2459,40 @@ body.admin-bar .mobile-menu .menu {
 	padding-right: 0.9375rem;
 }
 
-.post-navigation {
+.post-navigation-container {
 	overflow: hidden;
 	margin: 45px 0 40px;
 	padding-bottom: 45px;
 	border-bottom: 1px solid #ebeced;
 }
 
-.post-navigation .nav-links {
+.post-navigation-container .nav-links {
 	font-weight: 400;
 }
 
-.post-navigation .nav-links .post-title {
+.post-navigation-container .nav-links .post-title {
 	margin: 0;
 }
 
 @media (max-width: 639px) {
-	.post-navigation .nav-links .post-title {
+	.post-navigation-container .nav-links .post-title {
 		font-size: 16px;
 		font-size: 1rem;
 	}
 }
 
-.post-navigation .nav-links i {
+.post-navigation-container .nav-links i {
 	position: absolute;
 	top: 32px;
 }
 
 @media (min-width: 640px) {
-	.post-navigation .nav-links i {
+	.post-navigation-container .nav-links i {
 		top: 35px;
 	}
 }
 
-.post-navigation .nav-text {
+.post-navigation-container .nav-text {
 	margin-bottom: 10px;
 	font-size: 11px;
 	font-size: 0.6875rem;
@@ -2502,47 +2500,47 @@ body.admin-bar .mobile-menu .menu {
 	text-transform: uppercase;
 }
 
-.post-navigation .nav-previous, .post-navigation .nav-next {
+.post-navigation-container .nav-previous, .post-navigation-container .nav-next {
 	position: relative;
 }
 
 @media (min-width: 640px) {
-	.post-navigation .nav-previous, .post-navigation .nav-next {
+	.post-navigation-container .nav-previous, .post-navigation-container .nav-next {
 		width: 50%;
 	}
 }
 
-.post-navigation .nav-previous {
+.post-navigation-container .nav-previous {
 	padding: 0 15px 0 35px;
 }
 
 @media (min-width: 640px) {
-	.post-navigation .nav-previous {
+	.post-navigation-container .nav-previous {
 		float: left;
 	}
 }
 
-.post-navigation .nav-previous i {
+.post-navigation-container .nav-previous i {
 	left: 0;
 }
 
-.post-navigation .nav-next {
+.post-navigation-container .nav-next {
 	text-align: right;
 	padding: 0 35px 0 15px;
 }
 
 @media (min-width: 640px) {
-	.post-navigation .nav-next {
+	.post-navigation-container .nav-next {
 		float: right;
 	}
 }
 
-.post-navigation .nav-next i {
+.post-navigation-container .nav-next i {
 	right: 0;
 }
 
 @media (max-width: 639px) {
-	.post-navigation .nav-previous + .nav-next {
+	.post-navigation-container .nav-previous + .nav-next {
 		margin-top: 30px;
 	}
 }

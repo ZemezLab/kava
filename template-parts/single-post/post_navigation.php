@@ -7,6 +7,8 @@
  * @package Kava
  */
 
+echo '<div class="post-navigation-container">';
+
 the_post_navigation( array(
 	'prev_text' => sprintf( '
 		<div class="screen-reader-text">%1$s</div>
@@ -25,3 +27,5 @@ the_post_navigation( array(
 		'%title'
 	),
 ) );
+
+echo '</div>';

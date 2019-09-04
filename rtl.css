@@ -45,25 +45,25 @@ https://codex.wordpress.org/Right-to-Left_Language_Support
 /* navigation */
 
 .comment-navigation .nav-previous,
-.posts-navigation .nav-previous {
+.posts-list-navigation .posts-navigation .nav-previous {
 	float: right;
 }
 
 .comment-navigation .nav-next,
-.posts-navigation .nav-next {
+.posts-list-navigation .posts-navigation .nav-next {
 	float: left;
 	text-align: left;
 }
 
 .comment-navigation .nav-previous i,
-.posts-navigation .nav-previous i,
+.posts-list-navigation .posts-navigation .nav-previous i,
 .comment-navigation .nav-next i,
 .posts-navigation .nav-next i {
 	transform: rotate(180deg);
 }
 
 @media (min-width: 640px) {
-	.post-navigation .nav-previous {
+	.post-navigation-container .nav-previous {
 		text-align: left;
 	}
 }

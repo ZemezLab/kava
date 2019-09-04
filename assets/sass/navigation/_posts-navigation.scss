@@ -1,41 +1,44 @@
 .comment-navigation,
-.posts-navigation,
-.pagination {
+.posts-list-navigation {
 	overflow: hidden;
 	padding-top: 40px;
 	border-top: 1px solid $color__background-hr;
-	.nav {
-		&-links {
-			font-weight: 400;
-		}
+
+	.nav-links {
+		font-weight: 400;
 	}
 }
 
-.pagination {
-	.page-numbers {
-		outline: none;
-		margin-right: 7px;
-		&:last-child {
-			margin-right: 0;
+.posts-list-navigation {
+	.pagination {
+		.page-numbers {
+			outline: none;
+			margin-right: 7px;
+
+			&:last-child {
+				margin-right: 0;
+			}
+
+			&.prev {
+				margin-right: 20px;
+			}
+
+			&.next {
+				margin-left: 10px;
+			}
 		}
-		&.prev {
-			margin-right: 20px;
-		}
-		&.next {
-			margin-left: 10px;
-		}
-	}
-	.page-numbers:not(.prev):not(.next):not(.dots) {
-		@include border-radius;
-		display: inline-block;
-		width: 33px;
-		height: 33px;
-		text-align: center;
-		line-height: 33px;
-		border: 1px solid $color__background-hr;
-		&:hover,
-		&.current {
-			background-color: $color__background-hr;
+		.page-numbers:not(.prev):not(.next):not(.dots) {
+			@include border-radius;
+			display: inline-block;
+			width: 33px;
+			height: 33px;
+			text-align: center;
+			line-height: 33px;
+			border: 1px solid $color__background-hr;
+			&:hover,
+			&.current {
+				background-color: $color__background-hr;
+			}
 		}
 	}
 }
@@ -64,7 +67,7 @@
 }
 
 .comment-navigation,
-.posts-navigation {
+.posts-list-navigation .posts-navigation {
 	.nav {
 		&-previous {
 			float: left;
@@ -84,7 +87,7 @@
 	}
 }
 
-.navigation {
+.posts-list-navigation {
 	.posts-list--creative.list-style-default+&,
 	.posts-list--default.list-style-v9+&,
 	.posts-list--grid.list-style-v9+&,
@@ -115,11 +118,12 @@
 	}
 }
 
-.post-navigation {
+.post-navigation-container {
 	overflow: hidden;
 	margin: 45px 0 40px;
 	padding-bottom: 45px;
 	border-bottom: 1px solid $color__background-hr;
+
 	.nav {
 		&-links {
 			font-weight: 400;
