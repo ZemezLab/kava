@@ -465,6 +465,10 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 				true
 			);
 
+			wp_localize_script( 'kava-theme-script', 'kavaConfig', array(
+				'toTop' => kava_theme()->customizer->get_value( 'totop_visibility' ),
+			) );
+
 			// Threaded Comments.
 			if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 				wp_enqueue_script( 'comment-reply' );

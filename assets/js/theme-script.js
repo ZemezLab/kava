@@ -13,7 +13,7 @@
 			this.swiperInit();
 		},
 
-		page_preloader_init: function(self) {
+		page_preloader_init: function() {
 
 			if ($('.page-preloader-cover')[0]) {
 				$('.page-preloader-cover').delay(500).fadeTo(500, 0, function() {
@@ -23,12 +23,40 @@
 		},
 
 		toTopInit: function() {
-			if ($.isFunction(jQuery.fn.UItoTop)) {
-				$().UItoTop({
-					text: '',
-					scrollSpeed: 600
-				});
+			if ( undefined === window.kavaConfig.toTop || ! window.kavaConfig.toTop ) {
+				return;
 			}
+
+			this.toTop();
+		},
+
+		toTop: function( options ) {
+			var defaults = {
+					buttonID:    'toTop',
+					min:         200,
+					inDelay:     600,
+					outDelay:    400,
+					scrollSpeed: 600,
+					easingType:  'linear'
+				},
+				settings = $.extend( defaults, options ),
+				buttonSelector = '#' + settings.buttonID;
+
+			$( 'body' ).append( '<div id="' + settings.buttonID + '" role="button"></div>' );
+
+			$( buttonSelector ).hide().on( 'click.KavaThemeToTop', function() {
+				$( 'html, body' ).animate( { scrollTop: 0 }, settings.scrollSpeed, settings.easingType );
+				return false;
+			} );
+
+			$( window ).scroll( function() {
+				var scrollTop = $( window ).scrollTop();
+
+				if ( scrollTop > settings.min )
+					$( buttonSelector ).fadeIn( settings.inDelay );
+				else
+					$( buttonSelector ).fadeOut( settings.outDelay );
+			} );
 		},
 
 		responsiveMenuInit: function() {

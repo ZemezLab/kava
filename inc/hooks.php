@@ -11,9 +11,6 @@ add_action( 'wp_head', 'kava_meta_viewport', 0 );
 // Additional body classes.
 add_filter( 'body_class', 'kava_extra_body_classes' );
 
-// Enqueue sticky menu if required.
-add_filter( 'kava-theme/assets-depends/script', 'kava_enqueue_misc' );
-
 // Additional image sizes for media gallery.
 add_filter( 'image_size_names_choose', 'kava_image_size_names_choose' );
 
@@ -79,22 +76,6 @@ function kava_extra_body_classes( $classes ) {
 	}
 
 	return array_merge( $classes, $options_based_classes );
-}
-
-/**
- * Add misc to theme script dependencies if required.
- *
- * @param  array $depends Default dependencies.
- * @return array
- */
-function kava_enqueue_misc( $depends ) {
-	$totop_visibility = kava_theme()->customizer->get_value( 'totop_visibility' );
-
-	if ( $totop_visibility ) {
-		$depends[] = 'jquery-totop';
-	}
-
-	return $depends;
 }
 
 /**

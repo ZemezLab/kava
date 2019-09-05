@@ -1872,6 +1872,9 @@ dd {
 	bottom: 15px;
 	right: -999em;
 	z-index: 999;
+	-webkit-transition: color 0.3s, background-color 0.3s;
+	-o-transition: color 0.3s, background-color 0.3s;
+	transition: color 0.3s, background-color 0.3s;
 }
 
 #toTop:before {
