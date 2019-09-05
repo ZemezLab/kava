@@ -14,7 +14,7 @@
 
 				<cx-vui-tabs-panel
 					name="layout-settings"
-					label="<?php esc_html_e( 'Layout settings', 'kava' ); ?>"
+					label="<?php esc_html_e( 'Layout', 'kava' ); ?>"
 					key="layout-settings">
 
 					<div class="kava-settings-page__title-wrap">
@@ -103,8 +103,38 @@
 
 				<cx-vui-tabs-panel
 					name="misc-settings"
-					label="<?php esc_html_e( 'Misc settings', 'kava' ); ?>"
+					label="<?php esc_html_e( 'Misc', 'kava' ); ?>"
 					key="misc-settings">
+
+					<cx-vui-switcher
+						name="enqueue_theme_styles"
+						label="<?php esc_html_e( 'Enable Theme Styles', 'kava' ); ?>"
+						:wrapper-css="[ 'equalwidth' ]"
+						return-true="true"
+						return-false="false"
+						v-model="pageOptions.enqueue_theme_styles.value"
+					>
+					</cx-vui-switcher>
+
+					<cx-vui-switcher
+						name="enqueue_theme_js_scripts"
+						label="<?php esc_html_e( 'Enable Theme JS Scripts', 'kava' ); ?>"
+						:wrapper-css="[ 'equalwidth' ]"
+						return-true="true"
+						return-false="false"
+						v-model="pageOptions.enqueue_theme_js_scripts.value"
+					>
+					</cx-vui-switcher>
+
+					<cx-vui-switcher
+						name="enqueue_dynamic_css"
+						label="<?php esc_html_e( 'Enable Dynamic CSS', 'kava' ); ?>"
+						:wrapper-css="[ 'equalwidth' ]"
+						return-true="true"
+						return-false="false"
+						v-model="pageOptions.enqueue_dynamic_css.value"
+					>
+					</cx-vui-switcher>
 
 					<cx-vui-switcher
 						name="cache_dynamic_css"
@@ -114,6 +144,7 @@
 						return-true="true"
 						return-false="false"
 						v-model="pageOptions.cache_dynamic_css.value"
+						<!--:conditions="[{compare:'equal',input:'enqueue_dynamic_css',value:'true'}]"-->
 					>
 					</cx-vui-switcher>
 

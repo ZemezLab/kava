@@ -432,7 +432,7 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 			 * @since 1.0.0
 			 * @var   array
 			 */
-			$scripts_depends = 	apply_filters( 'kava-theme/assets-depends/script', array(
+			$scripts_depends = apply_filters( 'kava-theme/assets-depends/script', array(
 				'jquery'
 			) );
 
@@ -440,17 +440,21 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 				array_push( $scripts_depends, 'magnific-popup', 'jquery-swiper' );
 			}
 
-			wp_enqueue_script(
-				'kava-theme-script',
-				get_theme_file_uri( 'assets/js/theme-script.js' ),
-				$scripts_depends,
-				$this->version(),
-				true
-			);
+			$enqueue_js_scripts = kava_settings()->get( 'enqueue_theme_js_scripts', true );
 
-			wp_localize_script( 'kava-theme-script', 'kavaConfig', array(
-				'toTop' => kava_theme()->customizer->get_value( 'totop_visibility' ),
-			) );
+			if ( filter_var( $enqueue_js_scripts, FILTER_VALIDATE_BOOLEAN ) ) {
+				wp_enqueue_script(
+					'kava-theme-script',
+					get_theme_file_uri( 'assets/js/theme-script.js' ),
+					$scripts_depends,
+					$this->version(),
+					true
+				);
+
+				wp_localize_script( 'kava-theme-script', 'kavaConfig', array(
+					'toTop' => kava_theme()->customizer->get_value( 'totop_visibility' ),
+				) );
+			}
 
 			// Threaded Comments.
 			if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -487,15 +491,25 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 				$this->version()
 			);
 
-			if ( is_rtl() ) {
+			$enqueue_styles = kava_settings()->get( 'enqueue_theme_styles', true );
+
+			if ( filter_var( $enqueue_styles, FILTER_VALIDATE_BOOLEAN ) ) {
 				wp_enqueue_style(
-					'rtl',
-					get_theme_file_uri( 'rtl.css' ),
-					false,
+					'kava-theme-main-style',
+					get_theme_file_uri( 'theme.css' ),
+					array( 'kava-theme-style' ),
 					$this->version()
 				);
-			}
 
+				if ( is_rtl() ) {
+					wp_enqueue_style(
+						'kava-theme-main-rtl-style',
+						get_theme_file_uri( 'theme-rtl.css' ),
+						false,
+						$this->version()
+					);
+				}
+			}
 		}
 
 		/**

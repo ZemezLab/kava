@@ -209,6 +209,15 @@ if ( ! class_exists( 'Kava_Settings' ) ) {
 						'value'   => $this->get( 'available_modules', $default_available_modules ),
 						'options' => $this->prepare_options_list( $this->get_available_modules() ),
 					),
+					'enqueue_theme_styles' => array(
+						'value' => $this->get( 'enqueue_theme_styles', 'true' ),
+					),
+					'enqueue_theme_js_scripts' => array(
+						'value' => $this->get( 'enqueue_theme_js_scripts', 'true' ),
+					),
+					'enqueue_dynamic_css' => array(
+						'value' => $this->get( 'enqueue_dynamic_css', 'true' ),
+					),
 					'cache_dynamic_css' => array(
 						'value' => $this->get( 'cache_dynamic_css', 'false' ),
 					),

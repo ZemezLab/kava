@@ -80,6 +80,14 @@ gulp.task( 'css', function() {
 	} );
 } );
 
+gulp.task( 'css_theme', function() {
+	CSS_Task( {
+		src:         './assets/sass/theme.scss',
+		output_dir:  './',
+		output_file: 'theme.css'
+	} );
+} );
+
 gulp.task( 'blog_layouts_module', function() {
 	CSS_Task( {
 		src:         './inc/modules/blog-layouts/assets/scss/blog-layouts-module.scss',
@@ -127,7 +135,7 @@ gulp.task( 'admin_css', function() {
 gulp.task( 'watch', function() {
 	//livereload.listen();
 
-	gulp.watch( ['./assets/sass/**', '!./assets/sass/admin.scss'], ['css'] );
+	gulp.watch( ['./assets/sass/**', '!./assets/sass/admin.scss'], ['css', 'css_theme'] );
 	gulp.watch( './inc/modules/blog-layouts/assets/scss/**',       ['blog_layouts_module'] );
 	gulp.watch( './inc/modules/woo/assets/scss/**',                ['woo_module', 'woo_module_rtl'] );
 	gulp.watch( './assets/sass/admin.scss',                        ['admin_css'] );
@@ -137,6 +145,7 @@ gulp.task( 'watch', function() {
 // default
 gulp.task( 'default', [
 	'css',
+	'css_theme',
 	'blog_layouts_module',
 	'woo_module',
 	'woo_module_rtl',
