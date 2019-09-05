@@ -395,22 +395,6 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 				true
 			);
 
-			wp_register_script(
-				'jquery-totop',
-				get_theme_file_uri( 'assets/js/jquery.ui.totop.min.js' ),
-				array( 'jquery' ),
-				'1.2.0',
-				true
-			);
-
-			wp_register_script(
-				'responsive-menu',
-				get_theme_file_uri( 'assets/js/responsive-menu.js' ),
-				array(),
-				'1.0.0',
-				true
-			);
-
 			// register style
 			wp_register_style(
 				'font-awesome',
@@ -449,8 +433,7 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 			 * @var   array
 			 */
 			$scripts_depends = 	apply_filters( 'kava-theme/assets-depends/script', array(
-				'jquery',
-				'responsive-menu'
+				'jquery'
 			) );
 
 			if ( $this->is_blog || is_singular( 'post' ) ) {
