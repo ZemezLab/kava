@@ -74,8 +74,13 @@
 
 				<cx-vui-tabs-panel
 					name="available-modules"
-					label="<?php esc_html_e( 'Available modules', 'kava' ); ?>"
+					label="<?php esc_html_e( 'Modules', 'kava' ); ?>"
 					key="available-modules">
+
+					<div class="kava-settings-page__title-wrap">
+						<div class="cx-vui-subtitle"><?php esc_html_e( 'Available Modules', 'kava' ); ?></div>
+						<div class="cx-vui-component__desc"><?php esc_html_e( 'Enable/disable additional Kava features', 'kava' ); ?></div>
+					</div>
 
 					<div class="kava-settings-page__group-controls">
 						<div
