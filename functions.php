@@ -266,11 +266,6 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 			// Enable default title tag.
 			add_theme_support( 'title-tag' );
 
-			// Enable post formats.
-			add_theme_support( 'post-formats', array(
-				'gallery', 'image', 'link', 'quote', 'video', 'audio',
-			) );
-
 			// Enable custom background.
 			add_theme_support( 'custom-background', array( 'default-color' => 'ffffff', ) );
 
@@ -302,7 +297,6 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 			 * Classes.
 			*/
 			require_once get_theme_file_path( 'inc/classes/class-widget-area.php' );
-			require_once get_theme_file_path( 'inc/classes/class-post-formats.php' );
 			require_once get_theme_file_path( 'inc/classes/class-post-meta.php' );
 			require_once get_theme_file_path( 'inc/classes/class-settings.php' );
 			require_once get_theme_file_path( 'inc/classes/class-dynamic-css-file.php' );
@@ -353,9 +347,9 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 
 			foreach ( kava_get_allowed_modules() as $module => $childs ) {
 
-				$enabled = isset( $available_modules[ $module ] ) ? $available_modules[ $module ] : false;
+				$enabled = isset( $available_modules[ $module ] ) ? $available_modules[ $module ] : true;
 
-				if ( filter_var( $enabled, FILTER_VALIDATE_BOOLEAN ) || ! $available_modules ) {
+				if ( filter_var( $enabled, FILTER_VALIDATE_BOOLEAN ) ) {
 					$this->load_module( $module, $childs );
 				}
 			}
@@ -383,7 +377,6 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 			$instance = new $class( $childs );
 
 			$this->modules[ $instance->module_id() ] = $instance;
-
 		}
 
 		/**
@@ -392,45 +385,13 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		 * @since 1.0.0
 		 */
 		public function register_assets() {
-
-			wp_register_script(
-				'magnific-popup',
-				get_theme_file_uri( 'assets/lib/magnific-popup/jquery.magnific-popup.min.js' ),
-				array( 'jquery' ),
-				'1.1.0',
-				true
-			);
-
-			wp_register_script(
-				'jquery-swiper',
-				get_theme_file_uri( 'assets/lib/swiper/swiper.jquery.min.js' ),
-				array( 'jquery' ),
-				'4.3.3',
-				true
-			);
-
-			// register style
+			// Register style
 			wp_register_style(
 				'font-awesome',
 				get_theme_file_uri( 'assets/lib/font-awesome/font-awesome.min.css' ),
 				array(),
 				'4.7.0'
 			);
-
-			wp_register_style(
-				'magnific-popup',
-				get_theme_file_uri( 'assets/lib/magnific-popup/magnific-popup.min.css' ),
-				array(),
-				'1.1.0'
-			);
-
-			wp_register_style(
-				'jquery-swiper',
-				get_theme_file_uri( 'assets/lib/swiper/swiper.min.css' ),
-				array(),
-				'4.3.3'
-			);
-
 		}
 
 		/**
@@ -449,10 +410,6 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 			$scripts_depends = apply_filters( 'kava-theme/assets-depends/script', array(
 				'jquery'
 			) );
-
-			if ( $this->is_blog || is_singular( 'post' ) ) {
-				array_push( $scripts_depends, 'magnific-popup', 'jquery-swiper' );
-			}
 
 			$enqueue_js_scripts = kava_settings()->get( 'enqueue_theme_js_scripts', true );
 
@@ -493,10 +450,6 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 			$styles_depends = apply_filters( 'kava-theme/assets-depends/styles', array(
 				'font-awesome',
 			) );
-
-			if ( $this->is_blog || is_singular( 'post' ) ) {
-				array_push($styles_depends, 'magnific-popup', 'jquery-swiper');
-			}
 
 			wp_enqueue_style(
 				'kava-theme-style',

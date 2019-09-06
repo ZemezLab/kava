@@ -186,6 +186,11 @@ if ( ! class_exists( 'Kava_Settings' ) ) {
 			$default_disable_container_single_cpt  = $this->prepare_default_values_list( $this->get_post_types(), 'false' );
 			$default_available_modules             = $this->prepare_default_values_list( $this->get_available_modules(), 'true' );
 
+			$available_modules_value = array_merge(
+				$default_available_modules,
+				$this->get( 'available_modules', array() )
+			);
+
 			$this->settings_page_config = array(
 				'action'   => $this->ajax_action,
 				'messages' => array(
@@ -206,7 +211,7 @@ if ( ! class_exists( 'Kava_Settings' ) ) {
 						'options' => $this->prepare_options_list( $this->get_single_post_templates() ),
 					),
 					'available_modules' => array(
-						'value'   => $this->get( 'available_modules', $default_available_modules ),
+						'value'   => $available_modules_value,
 						'options' => $this->prepare_options_list( $this->get_available_modules() ),
 					),
 					'enable_theme_customize_options' => array(

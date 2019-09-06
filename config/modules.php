@@ -15,6 +15,7 @@ if ( ! function_exists( 'kava_get_allowed_modules' ) ) {
 		return apply_filters( 'kava-theme/allowed-modules', array(
 			'blog-layouts'    => array(),
 			'crocoblock'      => array(),
+			'post-formats'    => array(),
 			'woo'             => array(
 				'woo-breadcrumbs' => array(),
 				'woo-page-title'  => array(),
