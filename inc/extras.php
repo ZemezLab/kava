@@ -8,21 +8,6 @@
  */
 
 /**
- * Sidebar position
- */
-add_filter( 'theme_mod_sidebar_position', 'kava_set_post_meta_value' );
-
-/**
- * Container type
- */
-add_filter( 'theme_mod_container_type', 'kava_set_post_meta_value' );
-
-/**
- * Header layout type
- */
-add_filter( 'theme_mod_header_layout_type', 'kava_set_header_layout_value' );
-
-/**
  * Set post specific meta value.
  *
  * @param  string $value Default meta-value.
@@ -43,21 +28,6 @@ function kava_set_post_meta_value( $value ) {
 	}
 
 	return $meta_value;
-}
-
-/**
- * Set header layout meta value.
- *
- * @param  string $value Default meta-value.
- * @return string
- */
-function kava_set_header_layout_value( $value ) {
-
-	if ( wp_is_mobile() ) {
-		return 'mobile';
-	}
-
-	return kava_set_post_meta_value( $value );
 }
 
 /**
