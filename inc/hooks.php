@@ -150,13 +150,13 @@ function kava_modify_fonts_list( $fonts = array() ) {
 function kava_breadcrumbs_visibillity( $visibillity ) {
 	$post_id = get_the_ID();
 
-	$enable_breadcrumbs = get_post_meta( $post_id, 'kava_extra_enable_breadcrumbs', true );
+	$meta_value = get_post_meta( $post_id, 'kava_extra_enable_breadcrumbs', true );
 
-	if ( ! filter_var( $enable_breadcrumbs, FILTER_VALIDATE_BOOLEAN ) ) {
-		$visibillity = false;
+	if ( ! $meta_value || 'inherit' === $meta_value ) {
+		return $visibillity;
 	}
 
-	return $visibillity;
+	return filter_var( $meta_value, FILTER_VALIDATE_BOOLEAN );
 }
 
 /**

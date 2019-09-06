@@ -241,10 +241,15 @@ if ( ! class_exists( 'Kava_Post_Meta' ) ) {
 				'builder_cb'    => array( $this, 'get_interface_builder' ),
 				'fields'        => array(
 					'kava_extra_enable_breadcrumbs' => array(
-						'type'        => 'switcher',
+						'type'        => 'select',
 						'title'       => esc_html__( 'Use Breadcrumbs', 'kava' ),
-						'description' => esc_html__( 'Breadcrumbs enable global settings redefining.', 'kava' ),
-						'value'       => true,
+						'description' => esc_html__( 'Enable Breadcrumbs global settings redefining.', 'kava' ),
+						'value'       => 'inherit',
+						'options'     => array(
+							'inherit' => esc_html__( 'Inherit', 'kava' ),
+							'true'    => esc_html__( 'Enable', 'kava' ),
+							'false'   => esc_html__( 'Disable', 'kava' ),
+						),
 					),
 				),
 			) );

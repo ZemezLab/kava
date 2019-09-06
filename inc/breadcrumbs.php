@@ -18,11 +18,6 @@ function kava_get_breadcrumbs_options() {
 	 *
 	 * @since 1.0.0
 	 */
-
-	/* 'show_on_front'     => kava_theme()->customizer->get_value( 'breadcrumbs_front_visibillity' ),
-	'show_title'        => kava_theme()->customizer->get_value( 'breadcrumbs_page_title' ),
-	'path_type'         => kava_theme()->customizer->get_value( 'breadcrumbs_path_type' ), */
-
 	return apply_filters( 'kava-theme/breadcrumbs/options' , array(
 		'show_browse'       => false,
 		'show_on_front'     => kava_theme()->customizer->get_value( 'breadcrumbs_front_visibillity' ),

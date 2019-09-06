@@ -21,7 +21,7 @@ if ( ! $breadcrumbs_visibillity ) {
 
 $breadcrumbs_front_visibillity = kava_theme()->customizer->get_value( 'breadcrumbs_front_visibillity' );
 
-if ( !$breadcrumbs_front_visibillity && is_front_page() ) {
+if ( ! $breadcrumbs_front_visibillity && is_front_page() ) {
 	return;
 }
 
