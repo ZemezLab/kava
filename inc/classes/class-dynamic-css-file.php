@@ -81,9 +81,13 @@ if ( ! class_exists( 'Kava_Dynamic_CSS_File' ) ) {
 				return $this->is_cache_dynamic_css;
 			}
 
-			$cache_dynamic_css = kava_settings()->get( 'cache_dynamic_css', 'false' );
+			$enqueue_dynamic_css = kava_settings()->get( 'enqueue_dynamic_css', 'true' );
+			$cache_dynamic_css   = kava_settings()->get( 'cache_dynamic_css', 'false' );
 
-			$this->is_cache_dynamic_css = filter_var( $cache_dynamic_css, FILTER_VALIDATE_BOOLEAN ) && ! is_customize_preview();
+			$this->is_cache_dynamic_css =
+				filter_var( $enqueue_dynamic_css, FILTER_VALIDATE_BOOLEAN )
+				&& filter_var( $cache_dynamic_css, FILTER_VALIDATE_BOOLEAN )
+				&& ! is_customize_preview();
 
 			return $this->is_cache_dynamic_css;
 		}

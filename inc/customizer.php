@@ -1766,7 +1766,7 @@ function kava_get_dynamic_css_options() {
 		'type'          => 'theme_mod',
 		'parent_handles' => array(
 			'css' => 'kava-theme-style',
-			'js'  => 'kava-theme-js',
+			'js'  => 'kava-theme-script',
 		),
 		'css_files'      => array(
 			get_theme_file_path( 'assets/css/dynamic.css' ),

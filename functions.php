@@ -93,8 +93,8 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 			// Load the theme modules.
 			add_action( 'after_setup_theme', array( $this, 'framework_loader' ), -20 );
 
-			// Initialization of customizer.
-			add_action( 'after_setup_theme', array( $this, 'init_customizer' ) );
+			// Init properties.
+			add_action( 'wp_head', array( $this, 'init_theme_properties' ) );
 
 			// Initialization of breadcrumbs module
 			add_action( 'wp_head', array( $this, 'init_breadcrumbs' ) );
@@ -111,8 +111,8 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 			// Load theme modules.
 			add_action( 'after_setup_theme', array( $this, 'load_modules' ), 5 );
 
-			// Init properties.
-			add_action( 'wp_head', array( $this, 'init_theme_properties' ) );
+			// Initialization of customizer.
+			add_action( 'after_setup_theme', array( $this, 'init_customizer' ) );
 
 			// Register public assets.
 			add_action( 'wp_enqueue_scripts', array( $this, 'register_assets' ), 9 );
@@ -170,8 +170,22 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		 */
 		public function init_customizer() {
 
-			$this->customizer = new CX_Customizer( kava_get_customizer_options() );
-			$this->dynamic_css = new CX_Dynamic_CSS( kava_get_dynamic_css_options() );
+			$enable_customize_options = kava_settings()->get( 'enable_theme_customize_options', true );
+			$enqueue_dynamic_css      = kava_settings()->get( 'enqueue_dynamic_css', true );
+
+			// Init CX_Customizer
+			$customizer_options = kava_get_customizer_options();
+
+			if ( ! filter_var( $enable_customize_options, FILTER_VALIDATE_BOOLEAN ) ) {
+				$customizer_options['just_fonts'] = true;
+			}
+
+			$this->customizer = new CX_Customizer( $customizer_options );
+
+			// Init CX_Dynamic_CSS
+			if ( filter_var( $enqueue_dynamic_css, FILTER_VALIDATE_BOOLEAN ) ) {
+				$this->dynamic_css = new CX_Dynamic_CSS( kava_get_dynamic_css_options() );
+			}
 
 		}
 

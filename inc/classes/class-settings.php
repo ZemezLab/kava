@@ -209,6 +209,9 @@ if ( ! class_exists( 'Kava_Settings' ) ) {
 						'value'   => $this->get( 'available_modules', $default_available_modules ),
 						'options' => $this->prepare_options_list( $this->get_available_modules() ),
 					),
+					'enable_theme_customize_options' => array(
+						'value' => $this->get( 'enable_theme_customize_options', 'true' ),
+					),
 					'enqueue_theme_styles' => array(
 						'value' => $this->get( 'enqueue_theme_styles', 'true' ),
 					),
@@ -374,9 +377,15 @@ if ( ! class_exists( 'Kava_Settings' ) ) {
 				$this->available_modules = array();
 				$disabled_modules        = apply_filters( 'kava-theme/disabled-modules', array() );
 
+				$modules_labels_map = array(
+					'woo' => 'WooCommerce',
+				);
+
 				foreach ( kava_get_allowed_modules() as $module => $childs ) {
 					if ( ! in_array( $module, $disabled_modules ) ) {
-						$this->available_modules[ $module ] = ucwords( str_replace( '-', ' ', $module ) );
+						$this->available_modules[ $module ] = isset( $modules_labels_map[ $module ] ) ?
+							$modules_labels_map[ $module ] :
+							ucwords( str_replace( '-', ' ', $module ) );
 					}
 				}
 			}

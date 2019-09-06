@@ -107,6 +107,16 @@
 					key="misc-settings">
 
 					<cx-vui-switcher
+						name="enable_theme_customize_options"
+						label="<?php esc_html_e( 'Enable Theme Customize Options', 'kava' ); ?>"
+						:wrapper-css="[ 'equalwidth' ]"
+						return-true="true"
+						return-false="false"
+						v-model="pageOptions.enable_theme_customize_options.value"
+					>
+					</cx-vui-switcher>
+
+					<cx-vui-switcher
 						name="enqueue_theme_styles"
 						label="<?php esc_html_e( 'Enable Theme Styles', 'kava' ); ?>"
 						:wrapper-css="[ 'equalwidth' ]"
@@ -144,7 +154,7 @@
 						return-true="true"
 						return-false="false"
 						v-model="pageOptions.cache_dynamic_css.value"
-						<!--:conditions="[{compare:'equal',input:'enqueue_dynamic_css',value:'true'}]"-->
+						:conditions="[{compare:'equal',input:pageOptions.enqueue_dynamic_css.value,value:'true'}]"
 					>
 					</cx-vui-switcher>
 
