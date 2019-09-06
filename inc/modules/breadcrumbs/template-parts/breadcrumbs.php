@@ -8,11 +8,6 @@
  */
 
 $breadcrumbs_visibillity = kava_theme()->customizer->get_value( 'breadcrumbs_visibillity' );
-
-/**
- * [$breadcrumbs_visibillity description]
- * @var [type]
- */
 $breadcrumbs_visibillity = apply_filters( 'kava-theme/breadcrumbs/breadcrumbs-visibillity', $breadcrumbs_visibillity );
 
 if ( ! $breadcrumbs_visibillity ) {

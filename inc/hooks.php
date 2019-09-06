@@ -20,9 +20,6 @@ add_filter( 'comment_form_defaults', 'kava_modify_comment_form' );
 // Modify fonts list.
 add_filter( 'cx_customizer/fonts_list', 'kava_modify_fonts_list' );
 
-// Breadcrumbs visibility on specific page/post
-add_filter( 'kava-theme/breadcrumbs/breadcrumbs-visibillity', 'kava_breadcrumbs_visibillity' );
-
 // Disable site content container on specific page/post
 add_filter( 'kava-theme/site-content/container-enabled', 'kava_disable_site_content_container', 20 );
 
@@ -138,25 +135,6 @@ function kava_modify_fonts_list( $fonts = array() ) {
 	);
 
 	return $fonts;
-}
-
-/**
- * Breadcrumbs visibility on specific page/post
- *
- * @param $visibillity
- *
- * @return bool
- */
-function kava_breadcrumbs_visibillity( $visibillity ) {
-	$post_id = get_the_ID();
-
-	$meta_value = get_post_meta( $post_id, 'kava_extra_enable_breadcrumbs', true );
-
-	if ( ! $meta_value || 'inherit' === $meta_value ) {
-		return $visibillity;
-	}
-
-	return filter_var( $meta_value, FILTER_VALIDATE_BOOLEAN );
 }
 
 /**

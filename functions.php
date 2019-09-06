@@ -72,14 +72,6 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		public $dynamic_css = null;
 
 		/**
-		 * Holder for current Breadcrumbs module instance.
-		 *
-		 * @since 1.0.0
-		 * @var   CX_Dynamic_CSS
-		 */
-		public $breadcrumbs = null;
-
-		/**
 		 * Sets up needed actions/filters for the theme to initialize.
 		 *
 		 * @since 1.0.0
@@ -95,9 +87,6 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 
 			// Init properties.
 			add_action( 'wp_head', array( $this, 'init_theme_properties' ) );
-
-			// Initialization of breadcrumbs module
-			add_action( 'wp_head', array( $this, 'init_breadcrumbs' ) );
 
 			// Language functions and translations setup.
 			add_action( 'after_setup_theme', array( $this, 'l10n' ), 2 );
@@ -187,15 +176,6 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 				$this->dynamic_css = new CX_Dynamic_CSS( kava_get_dynamic_css_options() );
 			}
 
-		}
-
-		/**
-		 * Run initialization of breadcrumbs.
-		 *
-		 * @since 1.0.0
-		 */
-		public function init_breadcrumbs() {
-			$this->breadcrumbs = new CX_Breadcrumbs( kava_get_breadcrumbs_options() );
 		}
 
 		/**
@@ -310,7 +290,6 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 			require_once get_theme_file_path( 'inc/template-related-posts.php' );
 			require_once get_theme_file_path( 'inc/extras.php' );
 			require_once get_theme_file_path( 'inc/customizer.php' );
-			require_once get_theme_file_path( 'inc/breadcrumbs.php' );
 			require_once get_theme_file_path( 'inc/context.php' );
 			require_once get_theme_file_path( 'inc/hooks.php' );
 

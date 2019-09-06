@@ -27,5 +27,5 @@
 	<header id="masthead" <?php echo kava_get_container_classes( 'site-header' ); ?>>
 		<?php kava_theme()->do_location( 'header', 'template-parts/header' ); ?>
 	</header><!-- #masthead -->
-	<?php get_template_part( 'template-parts/breadcrumbs' ); ?>
+	<?php do_action( 'kava-theme/site/breadcrumbs-area' ); ?>
 	<div id="content" <?php echo kava_get_container_classes( 'site-content' ); ?>>
