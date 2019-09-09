@@ -1630,7 +1630,6 @@ function kava_is_sticky_icon( $control ) {
 	return kava_is_not_setting( $control, 'blog_sticky_type', 'label' );
 }
 
-
 /**
  * Move native `site_icon` control (based on WordPress core) into custom section.
  *
@@ -1720,7 +1719,6 @@ function kava_get_font_weight() {
  *
  * @return array
  */
-
 function kava_get_dynamic_css_options() {
 	return apply_filters( 'kava-theme/dynamic_css/options', array(
 		'prefix'        => 'kava',
@@ -1767,7 +1765,6 @@ function kava_get_default_footer_copyright() {
 function kava_is_blog_sidebar_enabled() {
 	return apply_filters( 'kava-theme/customizer/blog-sidebar-enabled', true );
 }
-
 
 /**
  * Return true if option Read More button type is text type. Otherwise - return false.

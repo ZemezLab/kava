@@ -73,7 +73,7 @@ if ( ! function_exists( 'kava_wc_wrapper_before' ) ) {
 	 */
 	function kava_wc_wrapper_before() {
 		?>
-			<div <?php kava_get_single_product_container_classes() ?>>
+			<div <?php kava_content_class() ?>>
 			<div class="row">
 			<div id="primary" <?php kava_primary_content_class(); ?>>
 			<main id="main" class="site-main">
@@ -113,26 +113,6 @@ if ( ! function_exists( 'kava_wc_sidebar_after' ) ) {
 	}
 }
 add_action( 'woocommerce_sidebar', 'kava_wc_sidebar_after', 99 );
-
-/**
- * Single product layout classes.
- */
-if ( ! function_exists( 'kava_get_single_product_container_classes' ) ) {
-		function kava_get_single_product_container_classes( $classes = null, $fullwidth = false ) {
-			if ( $classes ) {
-				$classes .= ' ';
-			}
-			$classes .= 'site-content__wrap ';
-			if ( ! apply_filters( 'kava-theme/site/fullwidth', $fullwidth ) ) {
-				$layout_type = kava_theme()->customizer->get_value( 'single_product_container_type' );
-				if ( 'boxed' == $layout_type ) {
-					$classes .= 'container';
-				}
-			}
-		echo 'class="' . apply_filters( 'kava-theme/site-content/content-classes', $classes ) . '"';
-	}
-}
-
 
 /**
  * Sample implementation of the WooCommerce Mini Cart.

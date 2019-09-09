@@ -51,7 +51,6 @@ if ( ! class_exists( 'Kava_Woo_Module' ) ) {
 		/**
 		 * Add WooCommerce customizer sections
 		*/
-
 		public function kava_customizer_core_sections( $sections ) {
 			$sections[] = 'woocommerce_settings';
 			return $sections;
@@ -75,30 +74,6 @@ if ( ! class_exists( 'Kava_Woo_Module' ) ) {
 					'default'  => '#27d18b',
 					'field'    => 'hex_color',
 					'type'     => 'control',
-				),
-
-				/** `Woocommerce Settings` panel */
-				'woocommerce_settings' => array(
-					'title'           => esc_html__( 'WooCommerce Options', 'kava' ),
-					'priority'        => 200,
-					'type'            => 'panel',
-				),
-				'single_product_layout' => array(
-					'title'    => esc_html__( 'Single product layout', 'kava' ),
-					'panel'    => 'woocommerce_settings',
-					'priority' => 1,
-					'type'     => 'section',
-				),
-				'single_product_container_type' => array(
-					'title'   => esc_html__( 'Single product container type', 'kava' ),
-					'section' => 'single_product_layout',
-					'default' => 'fullwidth',
-					'field'   => 'select',
-					'choices' => array(
-						'boxed'     => esc_html__( 'Boxed', 'kava' ),
-						'fullwidth' => esc_html__( 'Fullwidth', 'kava' ),
-					),
-					'type' => 'control',	 
 				),
 			);
 
