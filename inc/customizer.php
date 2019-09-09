@@ -52,55 +52,15 @@ function kava_get_customizer_options() {
 			/** `Favicon` section */
 			'favicon' => array(
 				'title'       => esc_html__( 'Favicon', 'kava' ),
-				'priority'    => 25,
+				'priority'    => 10,
 				'panel'       => 'general_settings',
 				'type'        => 'section',
-			),
-
-			/** `Breadcrumbs` section */
-			'breadcrumbs' => array(
-				'title'    => esc_html__( 'Breadcrumbs', 'kava' ),
-				'priority' => 30,
-				'type'     => 'section',
-				'panel'    => 'general_settings',
-			),
-			'breadcrumbs_visibillity' => array(
-				'title'   => esc_html__( 'Enable Breadcrumbs', 'kava' ),
-				'section' => 'breadcrumbs',
-				'default' => true,
-				'field'   => 'checkbox',
-				'type'    => 'control',
-			),
-			'breadcrumbs_front_visibillity' => array(
-				'title'   => esc_html__( 'Enable Breadcrumbs on front page', 'kava' ),
-				'section' => 'breadcrumbs',
-				'default' => false,
-				'field'   => 'checkbox',
-				'type'    => 'control',
-			),
-			'breadcrumbs_page_title' => array(
-				'title'   => esc_html__( 'Enable page title in breadcrumbs area', 'kava' ),
-				'section' => 'breadcrumbs',
-				'default' => false,
-				'field'   => 'checkbox',
-				'type'    => 'control',
-			),
-			'breadcrumbs_path_type' => array(
-				'title'   => esc_html__( 'Show full/minified path', 'kava' ),
-				'section' => 'breadcrumbs',
-				'default' => 'minified',
-				'field'   => 'select',
-				'choices' => array(
-					'full'     => esc_html__( 'Full', 'kava' ),
-					'minified' => esc_html__( 'Minified', 'kava' ),
-				),
-				'type'    => 'control',
 			),
 
 			/** `Social links` section */
 			'social_links' => array(
 				'title'    => esc_html__( 'Social links', 'kava' ),
-				'priority' => 50,
+				'priority' => 40,
 				'type'     => 'section',
 				'panel'    => 'general_settings',
 			),
@@ -122,7 +82,7 @@ function kava_get_customizer_options() {
 			/** `Page Layout` section */
 			'page_layout' => array(
 				'title'    => esc_html__( 'Page Layout', 'kava' ),
-				'priority' => 55,
+				'priority' => 20,
 				'type'     => 'section',
 				'panel'    => 'general_settings',
 			),
@@ -1068,10 +1028,11 @@ function kava_get_customizer_options() {
 
 			/** `Breadcrumbs` section */
 			'breadcrumbs_typography' => array(
-				'title'       => esc_html__( 'Breadcrumbs', 'kava' ),
-				'priority'    => 50,
-				'panel'       => 'typography',
-				'type'        => 'section',
+				'title'           => esc_html__( 'Breadcrumbs', 'kava' ),
+				'priority'        => 50,
+				'panel'           => 'typography',
+				'type'            => 'section',
+				'active_callback' => '__false',
 			),
 			'breadcrumbs_font_family' => array(
 				'title'   => esc_html__( 'Font Family', 'kava' ),

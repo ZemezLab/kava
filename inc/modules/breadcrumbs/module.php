@@ -50,6 +50,9 @@ if ( ! class_exists( 'Kava_Breadcrumbs_Module' ) ) {
 		 * @return void
 		 */
 		public function filters() {
+			// Customizer options
+			add_filter( 'kava-theme/customizer/options', array( $this, 'add_customizer_options' ) );
+
 			// Breadcrumbs visibility on specific page/post
 			add_filter( 'kava-theme/breadcrumbs/breadcrumbs-visibillity', array( $this, 'breadcrumbs_visibility' ) );
 		}
@@ -64,10 +67,62 @@ if ( ! class_exists( 'Kava_Breadcrumbs_Module' ) ) {
 		}
 
 		/**
-		 * Print Breadcrumbs area.
+		 * Add breadcrumbs options to the customizer
+		 *
+		 * @param array $options
+		 *
+		 * @return array
 		 */
-		public function print_breadcrumbs_area() {
-			get_template_part( 'inc/modules/breadcrumbs/template-parts/breadcrumbs' );
+		public function add_customizer_options( $options = array() ) {
+
+			$breadcrumbs_options = array(
+				/** `Breadcrumbs` section */
+				'breadcrumbs' => array(
+					'title'    => esc_html__( 'Breadcrumbs', 'kava' ),
+					'priority' => 30,
+					'type'     => 'section',
+					'panel'    => 'general_settings',
+				),
+				'breadcrumbs_visibillity' => array(
+					'title'   => esc_html__( 'Enable Breadcrumbs', 'kava' ),
+					'section' => 'breadcrumbs',
+					'default' => true,
+					'field'   => 'checkbox',
+					'type'    => 'control',
+				),
+				'breadcrumbs_front_visibillity' => array(
+					'title'   => esc_html__( 'Enable Breadcrumbs on front page', 'kava' ),
+					'section' => 'breadcrumbs',
+					'default' => false,
+					'field'   => 'checkbox',
+					'type'    => 'control',
+				),
+				'breadcrumbs_page_title' => array(
+					'title'   => esc_html__( 'Enable page title in breadcrumbs area', 'kava' ),
+					'section' => 'breadcrumbs',
+					'default' => false,
+					'field'   => 'checkbox',
+					'type'    => 'control',
+				),
+				'breadcrumbs_path_type' => array(
+					'title'   => esc_html__( 'Show full/minified path', 'kava' ),
+					'section' => 'breadcrumbs',
+					'default' => 'minified',
+					'field'   => 'select',
+					'choices' => array(
+						'full'     => esc_html__( 'Full', 'kava' ),
+						'minified' => esc_html__( 'Minified', 'kava' ),
+					),
+					'type'    => 'control',
+				),
+			);
+
+			$options['options'] = array_merge( $options['options'], $breadcrumbs_options );
+
+			unset( $options['options']['breadcrumbs_typography']['active_callback'] );
+			//$options['options']['breadcrumbs_typography']['active_callback'] = '__true';
+
+			return $options;
 		}
 
 		/**
@@ -76,8 +131,7 @@ if ( ! class_exists( 'Kava_Breadcrumbs_Module' ) ) {
 		 * @since  1.0.0
 		 * @return array
 		 */
-
-		function get_breadcrumbs_options() {
+		public function get_breadcrumbs_options() {
 			/**
 			 * Filter a holder for breadcrumbs options.
 			 *
@@ -99,6 +153,13 @@ if ( ! class_exists( 'Kava_Breadcrumbs_Module' ) ) {
 					'target'    => 'breadcrumbs_item_target',
 				),
 			) );
+		}
+
+		/**
+		 * Print Breadcrumbs area.
+		 */
+		public function print_breadcrumbs_area() {
+			get_template_part( 'inc/modules/breadcrumbs/template-parts/breadcrumbs' );
 		}
 
 		/**
@@ -135,7 +196,7 @@ if ( ! class_exists( 'Kava_Breadcrumbs_Module' ) ) {
 		 *
 		 * @return bool
 		 */
-		function breadcrumbs_visibility( $visibility ) {
+		public function breadcrumbs_visibility( $visibility ) {
 			$post_id = get_the_ID();
 
 			$meta_value = get_post_meta( $post_id, 'kava_extra_enable_breadcrumbs', true );
