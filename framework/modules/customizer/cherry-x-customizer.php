@@ -1,8 +1,8 @@
 <?php
 /**
- * Module to work with standard WordPress cutomizer
+ * Module to work with standard WordPress customizer
  *
- * Version: 1.0.1
+ * Version: 1.0.2
  */
 
 // If this file is called directly, abort.
@@ -101,7 +101,7 @@ if ( ! class_exists( 'CX_Customizer' ) ) {
 		 * Module initialization.
 		 *
 		 * @since 1.0.0
-		 * @param array $args Aguments.
+		 * @param array $args Arguments.
 		 */
 
 		/*
@@ -354,8 +354,8 @@ if ( ! class_exists( 'CX_Customizer' ) ) {
 		 * Add a customize control.
 		 *
 		 * @since 1.0.0
-		 * @since 1.1.8 Added a `dropdown-pages` support.
-		 * @param numder $id Settings ID.
+		 * @since 1.0.2  Added a `cropped_image` support.
+		 * @param number $id Settings ID.
 		 * @param array  $args Control arguments.
 		 */
 		public function add_control( $id, $args ) {
@@ -455,6 +455,19 @@ if ( ! class_exists( 'CX_Customizer' ) ) {
 
 				case 'file':
 						$control_class = 'WP_Customize_Upload_Control';
+					break;
+
+				case 'cropped_image':
+					$control_class = 'WP_Customize_Cropped_Image_Control';
+
+					$cropped_args = ( isset( $args['cropped_args'] ) ) ? $args['cropped_args'] : array();
+					$control_args = wp_parse_args( array(
+						'width'         => ( isset( $cropped_args['width'] ) )       ? esc_attr( $cropped_args['width'] ) : 150,
+						'height'        => ( isset( $cropped_args['height'] ) )      ? esc_attr( $cropped_args['height'] ) : 150,
+						'flex-width'    => ( isset( $cropped_args['flex-width'] ) )  ? $cropped_args['flex-width'] : false,
+						'flex-height'   => ( isset( $cropped_args['flex-height'] ) ) ? $cropped_args['flex-height'] : false,
+						'button_labels' => ( isset( $cropped_args['labels'] ) )      ? $cropped_args['labels'] : array(),
+					), $control_args );
 					break;
 
 				default:
@@ -867,6 +880,19 @@ if ( ! class_exists( 'CX_Customizer' ) ) {
 		 *                                       otherwise, the setting default.
 		 */
 		public function sanitize_number( $number, $setting ) {
+			return $this->sanitize_range( $number, $setting );
+		}
+
+		/**
+		 * Cropped image sanitization callback.
+		 *
+		 * @since  1.0.2
+		 * @param  int                  $number  Number to check within the numeric range defined by the setting.
+		 * @param  WP_Customize_Setting $setting Setting instance.
+		 * @return int|string                    The number, if it is zero or greater and falls within the defined range;
+		 *                                       otherwise, the setting default.
+		 */
+		public function sanitize_cropped_image( $number, $setting ) {
 			return $this->sanitize_range( $number, $setting );
 		}
 

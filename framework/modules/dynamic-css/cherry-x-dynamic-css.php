@@ -2,7 +2,7 @@
 /**
  * Module allows to work with dynamically generated CSS.
  *
- * Version: 1.0.0
+ * Version: 1.0.1
  */
 
 // If this file is called directly, abort.
@@ -48,7 +48,7 @@ if ( ! class_exists( 'CX_Dynamic_CSS' ) ) {
 		/**
 		 * Collector instance holder
 		 *
-		 * @since 1.2.0
+		 * @since 1.0.0
 		 * @var   object
 		 */
 		public $collector = null;
@@ -56,7 +56,7 @@ if ( ! class_exists( 'CX_Dynamic_CSS' ) ) {
 		/**
 		 * Reserved words list
 		 *
-		 * @since 1.4.0
+		 * @since 1.0.0
 		 * @var   array
 		 */
 		public $css_reserved = array(
@@ -87,9 +87,9 @@ if ( ! class_exists( 'CX_Dynamic_CSS' ) ) {
 		}
 
 		/**
-		 * Initalize dynamic CSS with fallback compatibility.
+		 * Initialize dynamic CSS with fallback compatibility.
 		 *
-		 * @since  1.3.0
+		 * @since  1.0.0
 		 * @return void
 		 */
 		public function init_dynamic_css() {
@@ -110,7 +110,7 @@ if ( ! class_exists( 'CX_Dynamic_CSS' ) ) {
 		/**
 		 * Adds inline CSS into queue
 		 *
-		 * @since  1.3.0
+		 * @since  1.0.0
 		 * @return void
 		 */
 		public function add_inline_css() {
@@ -119,9 +119,9 @@ if ( ! class_exists( 'CX_Dynamic_CSS' ) ) {
 		}
 
 		/**
-		 * Initalize CSS collector class
+		 * Initialize CSS collector class
 		 *
-		 * @since  1.2.0
+		 * @since  1.0.0
 		 * @return bool
 		 */
 		public function init_collector() {
@@ -149,7 +149,7 @@ if ( ! class_exists( 'CX_Dynamic_CSS' ) ) {
 		/**
 		 * Add new style to collector
 		 *
-		 * @since  1.2.0
+		 * @since  1.0.0
 		 * @param  string $selector CSS selector to add styles for.
 		 * @param  array  $style    Styles array to add.
 		 * @param  array  $media    Media breakpoints.
@@ -161,7 +161,7 @@ if ( ! class_exists( 'CX_Dynamic_CSS' ) ) {
 				return;
 			}
 
-			self::$collector->add_style( $selector, $style, $media );
+			$this->collector->add_style( $selector, $style, $media );
 		}
 
 		/**
@@ -304,7 +304,7 @@ if ( ! class_exists( 'CX_Dynamic_CSS' ) ) {
 		}
 
 		/**
-		 * Get avaliable functions into array
+		 * Get available functions into array
 		 *
 		 * @since  1.0.0
 		 * @return array  dynamic CSS variables
@@ -360,7 +360,7 @@ if ( ! class_exists( 'CX_Dynamic_CSS' ) ) {
 		/**
 		 * Returns complied dynamic CSS string.
 		 *
-		 * @since  1.3.0
+		 * @since  1.0.0
 		 * @return string|bool false
 		 */
 		public function get_inline_css() {
@@ -374,7 +374,7 @@ if ( ! class_exists( 'CX_Dynamic_CSS' ) ) {
 			/**
 			 * Filter CSS reserved words list
 			 *
-			 * @since 1.4.0
+			 * @since 1.0.0
 			 * @var   array
 			 */
 			$this->css_reserved = apply_filters( 'cx_dynamic_css/reserved_words_list', $this->css_reserved );

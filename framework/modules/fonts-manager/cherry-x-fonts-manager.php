@@ -2,7 +2,7 @@
 /**
  * Module allows to load Google fonts.
  *
- * Version: 1.0.0
+ * Version: 1.0.1
  */
 
 // If this file is called directly, abort.
@@ -79,7 +79,7 @@ if ( ! class_exists( 'CX_Fonts_Manager' ) ) {
 				'prefix'    => '',
 				'single'    => false,
 				'type'      => 'theme_mod',
-				'get_fonts' => false,
+				'get_fonts' => '',
 				'options'   => array(),
 			) );
 
@@ -193,6 +193,15 @@ if ( ! class_exists( 'CX_Fonts_Manager' ) ) {
 			if ( empty( $this->fonts_data ) ) {
 				return false;
 			}
+
+			/**
+			 * Filter fonts data.
+			 *
+			 * @since 1.0.1
+			 * @param array $this->fonts_data Fonts data.
+			 * @param array $this->args       module arguments.
+			 */
+			$this->fonts_data = apply_filters( 'cx_fonts_manager/fonts_data', $this->fonts_data, $this->args );
 
 			foreach ( $this->fonts_data as $family => $data ) {
 				$styles = implode( ',', array_unique( array_filter( $data['style'] ) ) );
