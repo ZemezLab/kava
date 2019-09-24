@@ -149,7 +149,7 @@ function kava_disable_site_content_container( $enabled = true ) {
 
 	$post_type = get_post_type();
 
-	if ( is_archive() && isset( $disable_content_container_archive_cpt[ $post_type ] )
+	if ( ( is_archive() || ( is_home() && 'post' === $post_type ) ) && isset( $disable_content_container_archive_cpt[ $post_type ] )
 	     && filter_var( $disable_content_container_archive_cpt[ $post_type ], FILTER_VALIDATE_BOOLEAN )
 	) {
 		return false;

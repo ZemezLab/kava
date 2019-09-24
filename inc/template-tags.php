@@ -505,9 +505,10 @@ if ( ! function_exists( 'kava_get_page_preloader' ) ) :
  * @return void
  */
 function kava_get_page_preloader() {
-	$page_preloader = kava_theme()->customizer->get_value( 'page_preloader' );
+	$page_preloader  = kava_theme()->customizer->get_value( 'page_preloader' );
+	$enable_theme_js = kava_settings()->get( 'enqueue_theme_js_scripts', true );
 
-	if ( $page_preloader ) {
+	if ( $page_preloader && filter_var( $enable_theme_js, FILTER_VALIDATE_BOOLEAN ) ) {
 		echo  apply_filters(
 			'kava-theme/page/preloader',
 			'<div class="page-preloader-cover">

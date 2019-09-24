@@ -29,7 +29,10 @@
 		</div><!-- .entry-meta -->
 	</header><!-- .entry-header -->
 
-	<?php kava_post_thumbnail( 'kava-thumb-l' ); ?>
+	<?php
+		$thumb_size = 'none' === kava_theme()->sidebar_position ? 'kava-thumb-l' : 'kava-thumb-m-2';
+		kava_post_thumbnail( $thumb_size );
+	?>
 
 	<?php kava_post_excerpt(); ?>
 
