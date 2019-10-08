@@ -20,6 +20,7 @@
 </head>
 
 <body <?php body_class(); ?>>
+<?php kava_body_open(); ?>
 <?php do_action( 'kava-theme/site/page-start' ); ?>
 <?php kava_get_page_preloader(); ?>
 <div id="page" class="site">
