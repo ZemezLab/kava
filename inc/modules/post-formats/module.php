@@ -74,8 +74,8 @@ if ( ! class_exists( 'Kava_Post_Formats_Module' ) ) {
 			);
 
 			wp_register_script(
-				'jquery-swiper',
-				get_theme_file_uri( 'assets/lib/swiper/swiper.jquery.min.js' ),
+				'swiper',
+				get_theme_file_uri( 'assets/lib/swiper/swiper.min.js' ),
 				array( 'jquery' ),
 				'4.3.3',
 				true
@@ -89,7 +89,7 @@ if ( ! class_exists( 'Kava_Post_Formats_Module' ) ) {
 			);
 
 			wp_register_style(
-				'jquery-swiper',
+				'swiper',
 				get_theme_file_uri( 'assets/lib/swiper/swiper.min.css' ),
 				array(),
 				'4.3.3'
@@ -105,7 +105,7 @@ if ( ! class_exists( 'Kava_Post_Formats_Module' ) ) {
 		 */
 		public function add_depends_scripts( $depends_scripts = array() ) {
 			if ( is_singular( 'post' ) ) {
-				array_push( $depends_scripts, 'magnific-popup', 'jquery-swiper' );
+				array_push( $depends_scripts, 'magnific-popup', 'swiper' );
 			}
 
 			return $depends_scripts;
@@ -120,7 +120,7 @@ if ( ! class_exists( 'Kava_Post_Formats_Module' ) ) {
 		 */
 		public function add_depends_styles( $depends_styles = array() ) {
 			if ( is_singular( 'post' ) ) {
-				array_push( $depends_styles, 'magnific-popup', 'jquery-swiper' );
+				array_push( $depends_styles, 'magnific-popup', 'swiper' );
 			}
 
 			return $depends_styles;
