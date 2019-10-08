@@ -30,8 +30,8 @@
 					padding-left: 30px;
 				}
 			}
-
-			input {
+			
+			input:not([type='checkbox']) {
 				width: 100%;
 			}
 		}
@@ -53,8 +53,8 @@
 			.woocommerce-form__label-for-checkbox {
 				margin-left: 10px;
 			}
-
-			input {
+			
+			input:not([type='checkbox']) {
 				width: 100%;
 			}
 		}
