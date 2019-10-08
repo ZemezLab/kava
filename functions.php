@@ -529,9 +529,7 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 				return;
 			}
 
-			$elementor_theme_manager->register_location( 'header' );
-			$elementor_theme_manager->register_location( 'footer' );
-
+			$elementor_theme_manager->register_all_core_location();
 		}
 
 		/**
