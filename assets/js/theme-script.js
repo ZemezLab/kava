@@ -194,14 +194,6 @@ var Kava_Theme_JS;
 					type: 'image'
 				});
 
-				$(".gallery > .gallery-item a").filter("[href$='.png'],[href$='.jpg']").magnificPopup({
-					type: 'image',
-					gallery: {
-						enabled: true,
-						navigateByImgClick: true
-					}
-				});
-
 			}
 		},
 

@@ -385,13 +385,13 @@ if ( ! class_exists( 'Kava_Post_Formats_Module' ) ) {
 				}
 
 				echo sprintf(
-					'<div class="swiper-container">
-						<div class="swiper-wrapper">
-							%s
-						</div>
-						<div class="swiper-button-prev"></div>
-						<div class="swiper-button-next"></div>
-					</div>',
+					'<div class="post-format-gallery-wrapper">
+								<div class="swiper-container">
+									<div class="swiper-wrapper">%s</div>
+									<div class="swiper-button-prev"></div>
+									<div class="swiper-button-next"></div>
+								</div>
+							</div>',
 					$images
 				);
 			}

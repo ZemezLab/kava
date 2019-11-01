@@ -2001,6 +2001,10 @@ body:not(.sidebar_enabled) .post-default {
 }
 
 /* Gallery Post Format */
+.post-format-gallery-wrapper {
+	margin-bottom: 26px;
+}
+
 .post_format-post-format-gallery .post-thumbnail {
 	display: block;
 	margin-bottom: 26px;
