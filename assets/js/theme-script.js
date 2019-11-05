@@ -1,7 +1,7 @@
 // Responsive menu
-const kavaResponsiveMenu = (options = {}) => {
-
-	const defaults = {
+var kavaResponsiveMenu = function kavaResponsiveMenu() {
+	var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	var defaults = {
 		wrapper: '.main-navigation',
 		menu: '.menu',
 		threshold: 640, // Minimal menu width,
@@ -10,25 +10,29 @@ const kavaResponsiveMenu = (options = {}) => {
 		mobileMenuToggleButtonClass: 'mobile-menu-toggle-button',
 		toggleButtonTemplate: '<i class="mobile-menu-close fa fa-bars" aria-hidden="true"></i><i class="mobile-menu-open fa fa-times" aria-hidden="true"></i>'
 	};
-	options = Object.assign(defaults, options);
 
-	const wrapper = options.wrapper.nodeType ?
+	if ( typeof Object.assign !== 'function' ) {
+		options = jQuery.extend( {}, defaults, options );
+	} else {
+		options = Object.assign( defaults, options );
+	}
+
+	var wrapper = options.wrapper.nodeType ?
 		options.wrapper :
 		document.querySelector(options.wrapper);
 
-	const menu = options.menu.nodeType ?
+	var menu = options.menu.nodeType ?
 		options.menu :
 		document.querySelector(options.menu);
 
-	let toggleButton,
+	var toggleButton,
 		toggleButtonOpenBlock,
 		toggleButtonCloseBlock,
 		isMobileMenu,
 		isMobileMenuOpen;
 
 	// series
-
-	const init = [
+	var init = [
 		addToggleButton,
 		checkScreenWidth,
 		addResizeHandler
@@ -52,7 +56,6 @@ const kavaResponsiveMenu = (options = {}) => {
 	}
 
 	// menu switchers
-
 	function switchToMobileMenu() {
 		wrapper.classList.add(options.mobileMenuClass);
 		toggleButton.style.display = "block";
@@ -67,7 +70,6 @@ const kavaResponsiveMenu = (options = {}) => {
 	}
 
 	// mobile menu toggle
-
 	function mobileMenuToggle() {
 		if (isMobileMenuOpen) {
 			hideMenu();
@@ -92,9 +94,8 @@ const kavaResponsiveMenu = (options = {}) => {
 	}
 
 	// resize helpers
-
 	function checkScreenWidth() {
-		let currentMobileMenuStatus = window.innerWidth < options.threshold ? true : false;
+		var currentMobileMenuStatus = window.innerWidth < options.threshold ? true : false;
 
 		if (isMobileMenu !== currentMobileMenuStatus) {
 			isMobileMenu = currentMobileMenuStatus;
@@ -111,11 +112,12 @@ const kavaResponsiveMenu = (options = {}) => {
 	}
 
 	// general helpers
-
 	function runSeries(functions) {
-		functions.forEach(func => func());
+		functions.forEach( function( func ) {
+			return func();
+		} );
 	}
-}
+};
 
 var Kava_Theme_JS;
 
