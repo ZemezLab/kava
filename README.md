@@ -3,6 +3,10 @@ Kava Theme. Get the truly easy-to-use free theme with tons of functionality and 
 
 ## Changelog
 
+### 2.0.0
+- ADD: New Dashboard
+- ADD: multiple performance improvements and bug fixes
+
 ### 1.2.7
 - ADD: `Show Page Title` option
 - FIX: `Justify Layout` in IE
