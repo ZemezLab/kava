@@ -2,7 +2,7 @@
 /**
  * Module to work with standard WordPress customizer
  *
- * Version: 1.0.2
+ * Version: 1.0.3
  */
 
 // If this file is called directly, abort.
