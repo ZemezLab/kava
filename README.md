@@ -3,6 +3,13 @@ Kava Theme. Get the truly easy-to-use free theme with tons of functionality and 
 
 ## Changelog
 
+### 2.0.1
+- UPD: Google fonts collection
+
+### 2.0.0
+- ADD: New Dashboard
+- ADD: multiple performance improvements and bug fixes
+
 ### 1.2.7
 - ADD: `Show Page Title` option
 - FIX: `Justify Layout` in IE
@@ -20,7 +27,7 @@ Kava Theme. Get the truly easy-to-use free theme with tons of functionality and 
 - ADD: compatibility with Jet Compare Wishlist
 - ADD: French localization
 - UPD: swiper.js to 4.3.3
-- UPD: CX Customizer module  
+- UPD: CX Customizer module
 - UPD: woo module styles
 
 ### 1.2.4
