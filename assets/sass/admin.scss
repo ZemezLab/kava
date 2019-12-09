@@ -75,9 +75,16 @@
 		}
 
 		div.wp-menu-image {
-			@media (min-width: 961px) {
+			position: static;
+			width: 45px;
+
+			.folded & {
+				width: 35px;
+			}
+
+			@media (min-width: 783px) and (max-width: 960px) {
 				.auto-fold & {
-					width: 45px;
+					width: 35px;
 				}
 			}
 		}
