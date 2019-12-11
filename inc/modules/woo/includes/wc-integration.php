@@ -144,7 +144,12 @@ if ( ! function_exists( 'kava_wc_cart_link_fragment' ) ) {
 		return $fragments;
 	}
 }
-add_filter( 'add_to_cart_fragments', 'kava_wc_cart_link_fragment' );
+
+if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '3.0.0', '>=' ) ) {
+	add_filter( 'woocommerce_add_to_cart_fragments', 'kava_wc_cart_link_fragment' );
+} else {
+	add_filter( 'add_to_cart_fragments', 'kava_wc_cart_link_fragment' );
+}
 
 if ( ! function_exists( 'kava_wc_cart_link' ) ) {
 	/**
