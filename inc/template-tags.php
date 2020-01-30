@@ -472,7 +472,7 @@ function kava_post_thumbnail( $image_size = 'post-thumbnail', $args = array() ) 
 	);
 
 	if ( $args['echo'] ) {
-		echo wp_kses( $thumb, kava_kses_post_allowed_html( $allowed_html ) );
+		echo $thumb;
 	} else {
 		return $thumb;
 	}
