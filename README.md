@@ -3,6 +3,10 @@ Kava Theme. Get the truly easy-to-use free theme with tons of functionality and 
 
 ## Changelog
 
+### 2.0.2
+- UPD: stop using deprecated Woo hooks
+- FIX: minor conflicts with third-party plugins
+
 ### 2.0.1
 - UPD: Google fonts collection
 
