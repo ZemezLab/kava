@@ -211,7 +211,7 @@
 // payment methods
 .wc_payment_methods {
 	li {
-		* {
+		> * {
 			display: inline-block;
 		}
 
