@@ -63,7 +63,7 @@
 	}
 
 	label {
-		display: block;
+		display: inline;
 		font-size: $wc-label-fz;
 		line-height: $wc-label-lh;
 		
@@ -211,10 +211,6 @@
 // payment methods
 .wc_payment_methods {
 	li {
-		> * {
-			display: inline-block;
-		}
-
 		.payment_box {
 			padding: 20px;
 			border-radius: 4px;
