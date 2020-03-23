@@ -339,6 +339,23 @@
 				}
 			}
 		}
+
+		.cross-sells .products {
+			margin-bottom: 0;
+
+			li {
+				@include media-breakpoint-only(sm) {
+					flex: 0 0 50%;
+					max-width: 50%;
+				}
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+
+		}
+
 	}
 }
 

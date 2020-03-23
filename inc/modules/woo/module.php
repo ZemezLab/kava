@@ -89,6 +89,7 @@ if ( ! class_exists( 'Kava_Woo_Module' ) ) {
 		 * @return void
 		 */
 		public function includes() {
+			require_once get_theme_file_path( 'inc/modules/woo/includes/wc-cart-functions.php' );
 			require_once get_theme_file_path( 'inc/modules/woo/includes/wc-content-product-functions.php' );
 			require_once get_theme_file_path( 'inc/modules/woo/includes/wc-single-product-functions.php' );
 			require_once get_theme_file_path( 'inc/modules/woo/includes/wc-archive-product-functions.php' );
