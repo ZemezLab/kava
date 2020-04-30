@@ -123,7 +123,7 @@ if ( ! class_exists( 'Kava_CX_Loader' ) ) {
 					$url = str_replace(
 						'\\',
 						'/',
-						str_replace( untrailingslashit( ABSPATH ), esc_url( site_url() ), $dir )
+						str_replace( wp_normalize_path( WP_CONTENT_DIR ), content_url(), wp_normalize_path( $dir ) )
 					);
 
 					$this->included_modules[ $slug ] = array(
