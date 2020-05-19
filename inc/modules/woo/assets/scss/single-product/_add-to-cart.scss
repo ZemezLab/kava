@@ -81,6 +81,21 @@
 		&.disabled {
 			opacity: .3;
 		}
+
+		&.loading {
+			&:before {
+				content: $wc-add-to-cart-loading-icon;
+				@include spin-animation;
+			}
+		}
+
+		&.added {
+			background-color: $wc-add-to-cart-added-color;
+
+			&:before {
+				content: $wc-add-to-cart-added-icon;
+			}
+		}
 	}
 }
 
