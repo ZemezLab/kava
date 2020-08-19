@@ -188,15 +188,15 @@ function kava_disable_site_content_container( $enabled = true ) {
  */
 function kava_set_default_single_post_template( $value, $post_id, $meta_key, $single ) {
 
+	if ( '_wp_page_template' !== $meta_key ) {
+		return $value;
+	}
+
 	if ( is_admin() ) {
 		return $value;
 	}
 
 	if ( ! is_singular( 'post' ) ) {
-		return $value;
-	}
-
-	if ( '_wp_page_template' !== $meta_key ) {
 		return $value;
 	}
 
