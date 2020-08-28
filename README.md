@@ -3,6 +3,14 @@ Kava Theme. Get the truly easy-to-use free theme with tons of functionality and 
 
 ## Changelog
 
+### 2.1.0
+- ADD: an ability enable/disable children modules
+- ADD: Spinner animation while ajax loading
+- UPD: prevent notices in some rare cases
+- UPD: Google fonts collection
+- FIX: Cart page Cross Sell products grid styles
+- FIX: payment stripe fields styles
+
 ### 2.0.2
 - UPD: stop using deprecated Woo hooks
 - FIX: minor conflicts with third-party plugins
