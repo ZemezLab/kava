@@ -39,20 +39,23 @@ class Kava_WC_Breadcrumbs extends CX_Breadcrumbs {
 	 * Add single product trail items
 	 */
 	private function add_single_product() {
-		$terms = false;
-		if ( function_exists( 'wc_get_product_terms' ) ) {
-			global $post;
-			$terms = wc_get_product_terms(
-				$post->ID,
-				'product_cat',
-				array( 'orderby' => 'parent', 'order' => 'DESC' )
-			);
+		if ( 'minified' !== $this->args['path_type'] ) {
+			$terms = false;
+			if ( function_exists( 'wc_get_product_terms' ) ) {
+				global $post;
+				$terms = wc_get_product_terms(
+					$post->ID,
+					'product_cat',
+					array( 'orderby' => 'parent', 'order' => 'DESC' )
+				);
+			}
+			if ( $terms ) {
+				$main_term = apply_filters( 'kava-theme/woo/breadcrumbs/main_term', $terms[0], $terms );
+				$this->term_ancestors( $main_term->term_id, 'product_cat' );
+				$this->_add_item( 'link_format', $main_term->name, get_term_link( $main_term ) );
+			}
 		}
-		if ( $terms ) {
-			$main_term = apply_filters( 'kava-theme/woo/breadcrumbs/main_term', $terms[0], $terms );
-			$this->term_ancestors( $main_term->term_id, 'product_cat' );
-			$this->_add_item( 'link_format', $main_term->name, get_term_link( $main_term ) );
-		}
+
 		$this->_add_item( 'target_format', get_the_title( $post->ID ) );
 		$this->page_title = get_the_title( $post->ID );
 	}
@@ -63,6 +66,9 @@ class Kava_WC_Breadcrumbs extends CX_Breadcrumbs {
 	 * @param string $taxonomy
 	 */
 	private function term_ancestors( $term_id, $taxonomy ) {
+		if ( 'minified' === $this->args['path_type'] ) {
+			return;
+		}
 		$ancestors = get_ancestors( $term_id, $taxonomy );
 		$ancestors = array_reverse( $ancestors );
 		foreach ( $ancestors as $ancestor ) {
