@@ -49,6 +49,14 @@ if ( ! class_exists( 'Kava_Settings' ) ) {
 		public $available_modules = null;
 
 		/**
+		 * Available Modules Conditions array
+		 *
+		 * @access public
+		 * @var    null
+		 */
+		public $available_modules_conditions = array();
+
+		/**
 		 * Page config
 		 *
 		 * @var array
@@ -214,6 +222,7 @@ if ( ! class_exists( 'Kava_Settings' ) ) {
 						'value'   => $available_modules_value,
 						'options' => $this->prepare_options_list( $this->get_available_modules() ),
 					),
+					'available_modules_conditions' => $this->available_modules_conditions,
 					'enable_theme_customize_options' => array(
 						'value' => $this->get( 'enable_theme_customize_options', 'true' ),
 					),
@@ -378,24 +387,41 @@ if ( ! class_exists( 'Kava_Settings' ) ) {
 		public function get_available_modules() {
 
 			if (  null === $this->available_modules ) {
-
 				$this->available_modules = array();
-				$disabled_modules        = apply_filters( 'kava-theme/disabled-modules', array() );
 
-				$modules_labels_map = array(
-					'woo' => 'WooCommerce',
-				);
-
-				foreach ( kava_get_allowed_modules() as $module => $childs ) {
-					if ( ! in_array( $module, $disabled_modules ) ) {
-						$this->available_modules[ $module ] = isset( $modules_labels_map[ $module ] ) ?
-							$modules_labels_map[ $module ] :
-							ucwords( str_replace( '-', ' ', $module ) );
-					}
-				}
+				$this->parse_available_modules( kava_get_allowed_modules() );
 			}
 
 			return $this->available_modules;
+		}
+
+		public function parse_available_modules( $modules = array(), $parent = null ) {
+
+			$disabled_modules = apply_filters( 'kava-theme/disabled-modules', array() );
+
+			$modules_labels_map = array(
+				'woo' => 'WooCommerce',
+			);
+
+			foreach ( $modules as $module => $childs ) {
+				if ( ! in_array( $module, $disabled_modules ) ) {
+					$this->available_modules[ $module ] = isset( $modules_labels_map[ $module ] ) ?
+						$modules_labels_map[ $module ] :
+						ucwords( str_replace( '-', ' ', $module ) );
+
+					if ( ! empty( $parent ) ) {
+						$this->available_modules_conditions[ $module ] = array(
+							'compare' => 'equal',
+							'input'   => $parent,
+							'value'   => 'true',
+						);
+					}
+
+					if ( ! empty( $childs ) ) {
+						$this->parse_available_modules( $childs, $module );
+					}
+				}
+			}
 		}
 
 		/**

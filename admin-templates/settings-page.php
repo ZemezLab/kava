@@ -94,6 +94,13 @@
 								return-true="true"
 								return-false="false"
 								v-model="pageOptions.available_modules.value[option.value]"
+								:conditions="pageOptions.available_modules_conditions[option.value] ? [
+									{
+										compare: pageOptions.available_modules_conditions[option.value].compare,
+										input: pageOptions.available_modules.value[pageOptions.available_modules_conditions[option.value].input],
+										value: pageOptions.available_modules_conditions[option.value].value,
+									}
+								] : []"
 							>
 							</cx-vui-switcher>
 						</div>

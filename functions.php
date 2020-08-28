@@ -321,16 +321,8 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		 * @return void
 		 */
 		public function load_modules() {
-
-			$available_modules = kava_settings()->get( 'available_modules' );
-
 			foreach ( kava_get_allowed_modules() as $module => $childs ) {
-
-				$enabled = isset( $available_modules[ $module ] ) ? $available_modules[ $module ] : true;
-
-				if ( filter_var( $enabled, FILTER_VALIDATE_BOOLEAN ) ) {
-					$this->load_module( $module, $childs );
-				}
+				$this->load_module( $module, $childs );
 			}
 		}
 
@@ -341,6 +333,13 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		 * @param array  $childs
 		 */
 		public function load_module( $module = '', $childs = array() ) {
+
+			$available_modules = kava_settings()->get( 'available_modules' );
+			$enabled = isset( $available_modules[ $module ] ) ? $available_modules[ $module ] : true;
+
+			if ( ! filter_var( $enabled, FILTER_VALIDATE_BOOLEAN ) ) {
+				return;
+			}
 
 			if ( ! file_exists( get_theme_file_path( $this->modules_base() . $module . '/module.php' ) ) ) {
 				return;

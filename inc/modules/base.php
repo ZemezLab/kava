@@ -69,7 +69,7 @@ if ( ! class_exists( 'Kava_Module_Base' ) ) {
 		 */
 		public function is_enabled() {
 
-			if( null === $this->condition_cb() ) {
+			if ( null === $this->condition_cb() ) {
 				return true;
 			} else {
 				return $this->condition_cb();
