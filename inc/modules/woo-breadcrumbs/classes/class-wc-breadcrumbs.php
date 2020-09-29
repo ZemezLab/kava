@@ -39,10 +39,10 @@ class Kava_WC_Breadcrumbs extends CX_Breadcrumbs {
 	 * Add single product trail items
 	 */
 	private function add_single_product() {
+		global $post;
 		if ( 'minified' !== $this->args['path_type'] ) {
 			$terms = false;
 			if ( function_exists( 'wc_get_product_terms' ) ) {
-				global $post;
 				$terms = wc_get_product_terms(
 					$post->ID,
 					'product_cat',
