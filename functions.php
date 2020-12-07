@@ -561,3 +561,5 @@ function kava_theme() {
 }
 
 kava_theme();
+
+require_once 'tourware.php';

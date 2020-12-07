@@ -1,0 +1,68 @@
+.travel-itinerary {
+    min-height: 1px;
+}
+
+.travel-itinerary-content {
+    margin-top: 12px;
+    position: relative;
+}
+
+.travel-itinerary-brick {
+    position: relative;
+    display: block;
+    clear: both;
+    margin-bottom: 20px;
+    padding: 15px;
+    float: left;
+    width: 100%;
+}
+
+.travel-itinerary-brick-content {
+    /*display: none;*/
+}
+
+.travel-itinerary-brick-content.show {
+    display: block;
+}
+
+.travel-itinerary-brick-head .brick-day {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+.travel-itinerary-brick-head .brick-title {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.travel-itinerary-brick .show-more {
+    right: 10px;
+    top: 10px;
+    position: absolute;
+    font-size: 25px;
+}
+
+.travel-itinerary-brick .itinerary-accommodation {
+    -webkit-transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    overflow: hidden;
+    /*display: none;*/
+}
+.travel-itinerary-brick .collapsed + .itinerary-accommodation {
+    max-height: 0;
+}
+.travel-itinerary-brick .open + .itinerary-accommodation {
+    max-height: 999px;
+}
+.travel-itinerary-brick .itinerary-accommodation .tour-acc-img {
+    float: left;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+@media (min-width: 992px) {
+    .travel-itinerary {
+        /*padding: 35px;*/
+    }
+}

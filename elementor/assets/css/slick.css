@@ -1,0 +1,67 @@
+.slick-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 0;
+    font-size: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    background-color: #ec5849;
+    padding: 0;
+    text-transform: none;
+    letter-spacing: 0;
+}
+.slick-arrow:before {
+    font-family: eicons;
+    font-size: 18px;
+}
+.slick-arrow.slick-next:before {
+    content: "\e87d";
+}
+.slick-arrow.slick-prev:before {
+    content: "\e87e";
+}
+.slick-arrow.slick-disabled {
+    display: none;
+}
+.slick-arrow.slick-next {
+    right: -70px;
+}
+.slick-arrow.slick-prev {
+    left: -70px;
+}
+.slick-dots {
+    position: absolute;
+    bottom: -10px;
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+    height: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.slick-dots li {
+    display: inline-block;
+}
+
+.slick-dots li.slick-active button {
+    background-color: #bbb;
+}
+.slick-dots button {
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+    border-radius: 50%;
+    display: inline-block;
+    background: #eee;
+    border: 0;
+    color: transparent;
+    padding: 0;
+}

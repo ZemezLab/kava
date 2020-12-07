@@ -1,0 +1,61 @@
+.travel-services {
+    padding: 0 15px;
+}
+.travel-services-table {
+    margin: 0;
+    border: 1px dotted #efefef;
+    border-left: 0;
+    border-right: 0;
+    float: left;
+    width: 100%;
+}
+.travel-services-table tr,
+.travel-services-table td {
+    border: 1px dotted #efefef;
+    border-left: 0;
+    border-right: 0;
+    padding: 15px 10px 15px 0;
+    vertical-align: top;
+}
+
+.travel-services-table td:first-of-type {
+    font-weight: bold;
+}
+.travel-services-table ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.travel-services-table li {
+    line-height: 30px;
+    display: flex;
+    align-items: baseline;
+}
+.travel-services-table li .icon {
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+
+@media (min-width: 992px) {
+    .travel-services {
+        padding: 0 35px;
+    }
+}
+@media (min-width: 768px) {
+    .travel-services-table td:first-of-type {
+        width: 215px;
+    }
+}
+@media (max-width: 767px) {
+    .travel-services-table tr {
+        border: 1px solid #ccc;
+    }
+
+    .travel-services-table td {
+        display: block;
+        width: 100%;
+        border: 0;
+        padding: 15px;
+    }
+}

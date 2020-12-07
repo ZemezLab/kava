@@ -1,0 +1,7 @@
+{
+  "name": "typischtouristik/midoffice-wordpress-plugin",
+  "require": {
+    "cloudinary/cloudinary_php": "^1.13",
+    "pipedrive/pipedrive": "^1.0"
+  }
+}

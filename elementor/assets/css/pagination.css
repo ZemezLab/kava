@@ -1,0 +1,55 @@
+.tyto-pagination {
+    float: left;
+    width: 100%;
+}
+.tyto-pagination li .page-numbers {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.tyto-pagination {
+    margin-top: 10px;
+}
+
+.tyto-pagination ul.page-numbers {
+    list-style: none;
+    padding: 0;
+}
+
+.tyto-pagination li {
+    display: inline-block;
+}
+
+.tyto-pagination li .page-numbers {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: #333;
+    border: 1px solid rgba(0, 0, 0, 0);
+}
+
+.tyto-pagination li .page-numbers:not(.current):not(.dots):hover {
+    border-color: #ccc;
+    color: #888;
+}
+
+.tyto-pagination li .page-numbers.current {
+    color: #fff;
+    cursor: pointer;
+    background-color: #ec5849;
+}
+
+.tyto-pagination .prev:before {
+    content: "\f3d2";
+    font-family: "Ionicons";
+}
+
+.tyto-pagination .next:before {
+    content: "\f3d3";
+    font-family: "Ionicons";
+}
