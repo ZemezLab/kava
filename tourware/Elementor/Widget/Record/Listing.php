@@ -1,58 +1,123 @@
 <?php
-namespace ElementorTyto\Widgets;
-use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
-use Elementor\Group_Control_Typography;
-use Elementor\Widget_Base;
-use Elementor\Controls_Manager;
-use Elementor\Plugin;
-use \Tourware\Elementor\Loader as TytoConstructor; // @todo: ugly
+
+namespace Tourware\Elementor\Widget\Record;
+
+use Tourware\Elementor\Widget;
+use Tourware\Elementor\Loader;
+use \Elementor\Core\Kits\Documents\Tabs\Global_Typography;
+use \Elementor\Group_Control_Typography;
+use \Elementor\Controls_Manager;
+use \Elementor\Plugin;
 use \Elementor\Core\Schemes as Schemes;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-} // Exit if accessed directly
+/**
+ * Record Listing for Travels and Accommodations.
+ *
+ * @package Tourware\Elementor\Widget\Record
+ */
+class Listing extends Widget {
 
-class Widget_Advanced_Tyto_List extends Widget_Base {
+    /**
+     * @return string
+     */
+    public function get_name() {
+        return 'advanced-tyto-list';
+    }
+
+    /**
+     * @return string
+     */
+    public function get_title() {
+        return __( 'Record Listing' );
+    }
+
+    /**
+     * @return string
+     */
+    public function get_icon() {
+        return 'eicon-post-list';
+    }
+
+    /**
+     * @return string[]
+     */
+    public function get_categories() {
+        return [ 'tyto' ];
+    }
 
     public function __construct( $data = [], $args = null ) {
-        $skins_path = get_theme_file_path() . '/elementor/skins/';
-        $skins      = glob( $skins_path . '*.php' );
-
-        foreach ( $skins as $key ) {
-            if ( file_exists( $key ) ) {
-                require_once $key;
-            }
-        }
-
         parent::__construct($data, $args);
-//        add_action( 'elementor/preview/enqueue_scripts', [ $this, '_enqueue_preview_scripts' ] );
+
+        $this->add_render_attribute(
+            '_wrapper', 'class', [
+                'tourware-widget'
+            ]
+        );
+
         $this->_enqueue_styles();
     }
 
-	public function get_name() {
-		return 'advanced-tyto-list';
-	}
+    protected function render( $instance = [] ) {
+        $settings = $this->get_settings();
+        $args = $this->getQueryArgs();
+        unset($args['s']);
+        $query = new \WP_Query( $args );
+        $tiny_slider_id = uniqid( 'advanced-tyto-list-id-' );
+        $this->renderCarousel( $tiny_slider_id, $settings['layout'], $settings['col'], $settings['col_tablet'], $settings['col_mobile'] );
+        $tiny_slider_data = $this->carouselOptions( $settings['layout'], $settings['col'], $settings['col_tablet'], $settings['col_mobile'] );
+        $classes          = 'tours-layout-' . $settings['layout'] . ' ht-grid ht-grid-' . $settings['col'] . ' ht-grid-tablet-' . $settings['col_tablet'] . ' ht-grid-mobile-' . $settings['col_mobile'];
+        $layout_name      = 'carousel' == $settings['layout'] ? 'not-real-slider' : ''; ?>
+        <div class="advanced-tyto-list <?php echo esc_attr( $settings['design'] );  ?>" <?php if ($settings['adv_list_id']) echo 'id="'.$settings['adv_list_id'].'"'?>>
+            <div class="<?php echo $classes ?>">
+                <div class="tours-content <?php echo esc_attr( $layout_name ); echo $this->get_id();?> "
+                     id="<?php echo esc_attr( $tiny_slider_id ); ?>" <?php echo wp_kses_post( $tiny_slider_data ); ?>>
+                    <?php
+                    if ($query->found_posts == 0 && $settings['advanced_search'] == 'yes' && $settings['search_not_found']) {
+                        echo '<h4 style="margin: 20px auto;">'.$settings['search_not_found'].'</h4>';
+                    } else {
+                        while ( $query->have_posts() ):
+                            $query->the_post();
+                            $item_data = json_decode(get_post_meta(get_the_ID(), 'tytorawdata', true));
+                            Loader::renderListItem($item_data, $settings);
+                        endwhile;
+                        wp_reset_postdata();
+                    } ?>
+                </div>
+            </div>
+            <?php if ($settings['pagi'] == 'infinity_scroll') { ?>
+                <div class="loader">
+                    <div class="lds-ring" style="display: none"><div></div><div></div><div></div><div></div></div>
+                </div>
+            <?php } ?>
+            <?php
+            if ( 'none' !== $settings['pagi'] && 'grid' == $settings['layout'] ) $this->renderPagination( $query, $settings );
+            if ($settings['pagi'] == 'infinity_scroll')
+                wp_enqueue_script('adv-list-infinity-scroll', \Tourware\Elementor\Loader::getElementorWidgetsFolderUri() . $this->get_name().'/assets/js/infinity-scroll.js', ['jquery', 'throttle-debounce']);
+            wp_reset_postdata(); ?>
+        </div>
 
-	public function get_title() {
-		return __( 'Advanced Tyto List' );
-	}
+        <?php
+    }
 
-	public function get_icon() {
-		return 'eicon-post-list';
-	}
+    public function _enqueue_styles() {
+        wp_enqueue_script('throttle-debounce', \Tourware\Elementor\Loader::getElementorWidgetsFolderUri() . $this->get_name().'/assets/js/jquery-throttle-debounce.js', ['jquery']);
+        wp_enqueue_script($this->get_name().'-js', \Tourware\Elementor\Loader::getElementorWidgetsFolderUri() . '/assets/js/script.js', ['jquery', 'throttle-debounce']);
+        wp_localize_script($this->get_name().'-js', 'TytoAjaxVars',
+            array(
+                'ajaxurl' => admin_url('admin-ajax.php'),
+            )
+        );
+        wp_enqueue_script('lazysizes-script');
+    }
 
-	public function get_categories() {
-		return [ 'tyto' ];
-	}
-
-	protected function _register_controls() {
+    protected function _register_controls() {
         /* CONTENT */
-		$this->sectionLayout();
-		$this->sectionQueryAndCardLayout();
+        $this->sectionLayout();
+        $this->sectionQueryAndCardLayout();
 
-		/* STYLE */
+        /* STYLE */
         $this->sectionAttributes();
-		$this->sectionArrows();
+        $this->sectionArrows();
         $this->sectionDots();
 
         /* LIST ID */
@@ -85,22 +150,22 @@ class Widget_Advanced_Tyto_List extends Widget_Base {
         ]);
 
         $this->end_controls_section();
-	}
+    }
 
-	private function sectionLayout() {
-		$this->start_controls_section( 't_layout', array(
-			'label' => esc_html__( 'Layout' ),
-		) );
+    private function sectionLayout() {
+        $this->start_controls_section( 't_layout', array(
+            'label' => esc_html__( 'Layout' ),
+        ) );
 
-		$this->add_control( 'layout', array(
-			'type'    => Controls_Manager::SELECT,
-			'label'   => esc_html__( 'Layout' ),
-			'default' => 'grid',
-			'options' => array(
-				'grid'     => esc_html__( 'Grid' ),
-				'carousel' => esc_html__( 'Carousel' ),
-			),
-		) );
+        $this->add_control( 'layout', array(
+            'type'    => Controls_Manager::SELECT,
+            'label'   => esc_html__( 'Layout' ),
+            'default' => 'grid',
+            'options' => array(
+                'grid'     => esc_html__( 'Grid' ),
+                'carousel' => esc_html__( 'Carousel' ),
+            ),
+        ) );
 
         $this->add_control( 'design', array(
             'type'    => Controls_Manager::SELECT,
@@ -115,43 +180,43 @@ class Widget_Advanced_Tyto_List extends Widget_Base {
             ),
         ) );
 
-		$this->add_responsive_control( 'col', array(
-			'type'           => Controls_Manager::SELECT,
-			'label'          => esc_html__( 'Columns', 'tyto' ),
-			'default'        => 3,
-			'tablet_default' => 2,
-			'mobile_default' => 1,
-			'options'        => array(
-				1 => 1,
-				2 => 2,
-				3 => 3,
-				4 => 4,
-				5 => 5,
-			),
-		) );
+        $this->add_responsive_control( 'col', array(
+            'type'           => Controls_Manager::SELECT,
+            'label'          => esc_html__( 'Columns', 'tyto' ),
+            'default'        => 3,
+            'tablet_default' => 2,
+            'mobile_default' => 1,
+            'options'        => array(
+                1 => 1,
+                2 => 2,
+                3 => 3,
+                4 => 4,
+                5 => 5,
+            ),
+        ) );
 
-		$this->add_control( 'per_page', array(
-			'type'    => Controls_Manager::NUMBER,
-			'label'   => esc_html__( 'Posts Per Page' ),
-			'default' => 6,
-			'min'     => - 1,
-			'max'     => 100,
-		) );
+        $this->add_control( 'per_page', array(
+            'type'    => Controls_Manager::NUMBER,
+            'label'   => esc_html__( 'Posts Per Page' ),
+            'default' => 6,
+            'min'     => - 1,
+            'max'     => 100,
+        ) );
 
-		$this->add_control( 'pagi', array(
-			'type'         => Controls_Manager::SELECT,
-			'label'        => esc_html__( 'Pagination', 'tyto' ),
-			'default'      => 'none',
-			'options'      => [
-			    'none' => esc_html__( 'None', 'tyto' ),
-			    'numbers' => esc_html__( 'Numbers', 'tyto' ),
-			    'load_more' => esc_html__( 'Load More', 'tyto' ),
-			    'infinity_scroll' => esc_html__( 'Infinity Scroll', 'tyto' ),
+        $this->add_control( 'pagi', array(
+            'type'         => Controls_Manager::SELECT,
+            'label'        => esc_html__( 'Pagination', 'tyto' ),
+            'default'      => 'none',
+            'options'      => [
+                'none' => esc_html__( 'None', 'tyto' ),
+                'numbers' => esc_html__( 'Numbers', 'tyto' ),
+                'load_more' => esc_html__( 'Load More', 'tyto' ),
+                'infinity_scroll' => esc_html__( 'Infinity Scroll', 'tyto' ),
             ],
-			'condition'    => array(
-				'layout' => 'grid'
-			)
-		) );
+            'condition'    => array(
+                'layout' => 'grid'
+            )
+        ) );
 
         $this->add_control( 'arrows', array(
             'type'         => Controls_Manager::SWITCHER,
@@ -201,16 +266,16 @@ class Widget_Advanced_Tyto_List extends Widget_Base {
             )
         ) );
 
-		$this->end_controls_section();
-	}
+        $this->end_controls_section();
+    }
 
-	private function sectionQueryAndCardLayout() {
-		$this->start_controls_section( 't_query', array(
-			'label'     => esc_html__( 'Query', 'tyto' ),
-			'condition' => array(
-				't_layout.per_page!' => 0
-			),
-		) );
+    private function sectionQueryAndCardLayout() {
+        $this->start_controls_section( 't_query', array(
+            'label'     => esc_html__( 'Query', 'tyto' ),
+            'condition' => array(
+                't_layout.per_page!' => 0
+            ),
+        ) );
 
         $this->add_control( 'show_protected', array(
             'type'         => Controls_Manager::SWITCHER,
@@ -221,91 +286,91 @@ class Widget_Advanced_Tyto_List extends Widget_Base {
             'return_value' => 'yes'
         ) );
 
-		$this->add_control( 'item_types', array(
-			'type'     => Controls_Manager::SELECT2,
-			'label'    => esc_html__( 'Item types' ),
-			'multiple' => true,
-			'options'  => array(
-				'tytotravels'        => esc_html__( 'Travels' ),
-				'tytoaccommodations' => esc_html__( 'Accommodations' ),
+        $this->add_control( 'item_types', array(
+            'type'     => Controls_Manager::SELECT2,
+            'label'    => esc_html__( 'Item types' ),
+            'multiple' => true,
+            'options'  => array(
+                'tytotravels'        => esc_html__( 'Travels' ),
+                'tytoaccommodations' => esc_html__( 'Accommodations' ),
 
-			),
-		) );
+            ),
+        ) );
 
-		$tags = [];
-		if ($tyto_tags = get_option('tyto_tags', false)) $tags = wp_list_pluck($tyto_tags, 'name', 'id');
+        $tags = [];
+        if ($tyto_tags = get_option('tyto_tags', false)) $tags = wp_list_pluck($tyto_tags, 'name', 'id');
 
-		$this->add_control( 'item_tags', array(
-			'type'     => Controls_Manager::SELECT2,
-			'label'    => esc_html__( 'Item tags' ),
-			'multiple' => true,
-			'options'  => $tags,
-		) );
+        $this->add_control( 'item_tags', array(
+            'type'     => Controls_Manager::SELECT2,
+            'label'    => esc_html__( 'Item tags' ),
+            'multiple' => true,
+            'options'  => $tags,
+        ) );
 
         $theme = wp_get_theme();
         if ($theme->parent() == 'Goto' )
             $dest_post_type = 'ht_dest';
         else
             $dest_post_type = 'tytodestinations';
-		$destinations_args = array(
-			'post_type'           => $dest_post_type,
-			'post_status'         => 'publish',
-			'ignore_sticky_posts' => 1,
-			'posts_per_page'      => - 1,
-		);
-		$dest_q            = new \WP_Query( $destinations_args );
-		$output            = wp_list_pluck( $dest_q->posts, 'post_title', 'ID' );
-		$this->add_control( 'destinations', array(
-			'type'     => Controls_Manager::SELECT2,
-			'label'    => esc_html__( 'Destinations' ),
-			'multiple' => true,
-			'options'  => $output,
-			'default'  => get_post_type( get_the_ID() ) == $dest_post_type ? array( get_the_ID() ) : []
-		) );
+        $destinations_args = array(
+            'post_type'           => $dest_post_type,
+            'post_status'         => 'publish',
+            'ignore_sticky_posts' => 1,
+            'posts_per_page'      => - 1,
+        );
+        $dest_q            = new \WP_Query( $destinations_args );
+        $output            = wp_list_pluck( $dest_q->posts, 'post_title', 'ID' );
+        $this->add_control( 'destinations', array(
+            'type'     => Controls_Manager::SELECT2,
+            'label'    => esc_html__( 'Destinations' ),
+            'multiple' => true,
+            'options'  => $output,
+            'default'  => get_post_type( get_the_ID() ) == $dest_post_type ? array( get_the_ID() ) : []
+        ) );
 
-		$regions_args = array(
-			'post_type'           => 'tytoregions',
-			'post_status'         => 'publish',
-			'ignore_sticky_posts' => 1,
-			'posts_per_page'      => - 1,
-		);
+        $regions_args = array(
+            'post_type'           => 'tytoregions',
+            'post_status'         => 'publish',
+            'ignore_sticky_posts' => 1,
+            'posts_per_page'      => - 1,
+        );
 
-		$reg_q  = new \WP_Query( $regions_args );
-		$output = wp_list_pluck( $reg_q->posts, 'post_title', 'ID' );
-		$this->add_control( 'regions', array(
-			'type'     => Controls_Manager::SELECT2,
-			'label'    => esc_html__( 'Regions' ),
-			'multiple' => true,
-			'options'  => $output,
-			'default'  => get_post_type( get_the_ID() ) == 'tytoregions' ? array( get_the_ID() ) : []
-		) );
+        $reg_q  = new \WP_Query( $regions_args );
+        $output = wp_list_pluck( $reg_q->posts, 'post_title', 'ID' );
+        $this->add_control( 'regions', array(
+            'type'     => Controls_Manager::SELECT2,
+            'label'    => esc_html__( 'Regions' ),
+            'multiple' => true,
+            'options'  => $output,
+            'default'  => get_post_type( get_the_ID() ) == 'tytoregions' ? array( get_the_ID() ) : []
+        ) );
 
-		$this->add_control( 'orderby', array(
-			'type'    => Controls_Manager::SELECT,
-			'label'   => esc_html__( 'Order By', 'tyto' ),
-			'default' => 'date',
-			'options' => array(
+        $this->add_control( 'orderby', array(
+            'type'    => Controls_Manager::SELECT,
+            'label'   => esc_html__( 'Order By', 'tyto' ),
+            'default' => 'date',
+            'options' => array(
                 'priority' => esc_html__( 'Priority', 'tyto' ),
-				'date'     => esc_html__( 'Date', 'tyto' ),
-				'title'    => esc_html__( 'Title', 'tyto' ),
-				'ID'       => esc_html__( 'ID', 'tyto' ),
-				'author'   => esc_html__( 'Author', 'tyto' ),
-				'rand'     => esc_html__( 'Random', 'tyto' ),
-				'modified' => esc_html__( 'Modified', 'tyto' ),
-			),
-		) );
+                'date'     => esc_html__( 'Date', 'tyto' ),
+                'title'    => esc_html__( 'Title', 'tyto' ),
+                'ID'       => esc_html__( 'ID', 'tyto' ),
+                'author'   => esc_html__( 'Author', 'tyto' ),
+                'rand'     => esc_html__( 'Random', 'tyto' ),
+                'modified' => esc_html__( 'Modified', 'tyto' ),
+            ),
+        ) );
 
-		$this->add_control( 'order', array(
-			'type'    => Controls_Manager::SELECT,
-			'label'   => esc_html__( 'Order', 'tyto' ),
-			'default' => 'DESC',
-			'options' => array(
-				'ASC'  => esc_html__( 'ASC', 'tyto' ),
-				'DESC' => esc_html__( 'DESC', 'tyto' ),
-			),
-		) );
+        $this->add_control( 'order', array(
+            'type'    => Controls_Manager::SELECT,
+            'label'   => esc_html__( 'Order', 'tyto' ),
+            'default' => 'DESC',
+            'options' => array(
+                'ASC'  => esc_html__( 'ASC', 'tyto' ),
+                'DESC' => esc_html__( 'DESC', 'tyto' ),
+            ),
+        ) );
 
-		$this->end_controls_section();
+        $this->end_controls_section();
 
         $this->start_controls_section( 'card_layout', array(
             'label' => esc_html__( 'Card Layout' ),
@@ -492,17 +557,17 @@ class Widget_Advanced_Tyto_List extends Widget_Base {
         );
 
         $this->end_controls_section();
-	}
+    }
 
-	protected function sectionArrows() {
-		$this->start_controls_section( 'd_arrows', array(
-			'label'     => esc_html__( 'Arrows', 'tyto' ),
-			'tab' => Controls_Manager::TAB_STYLE,
-			'condition' => array(
-				'd_layout.layout' => 'carousel',
-				'd_layout.arrows' => 'yes',
-			),
-		) );
+    protected function sectionArrows() {
+        $this->start_controls_section( 'd_arrows', array(
+            'label'     => esc_html__( 'Arrows', 'tyto' ),
+            'tab' => Controls_Manager::TAB_STYLE,
+            'condition' => array(
+                'd_layout.layout' => 'carousel',
+                'd_layout.arrows' => 'yes',
+            ),
+        ) );
 
         $this->add_control( 'arrows', array(
             'type'         => Controls_Manager::SWITCHER,
@@ -516,99 +581,99 @@ class Widget_Advanced_Tyto_List extends Widget_Base {
             )
         ) );
 
-		$this->add_control( 'arrows_size', array(
-			'type'       => Controls_Manager::SLIDER,
-			'label'      => esc_html__( 'Size', 'tyto' ),
-			'default'    => array(
-				'size' => 40
-			),
-			'range'      => array(
-				'px' => array(
-					'min'  => 1,
-					'max'  => 200,
-					'step' => 1
-				),
-			),
-			'size_units' => array( 'px' ),
-			'selectors'  => array(
-				'{{WRAPPER}} .tns-controls [data-controls]' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
-			),
-		) );
+        $this->add_control( 'arrows_size', array(
+            'type'       => Controls_Manager::SLIDER,
+            'label'      => esc_html__( 'Size', 'tyto' ),
+            'default'    => array(
+                'size' => 40
+            ),
+            'range'      => array(
+                'px' => array(
+                    'min'  => 1,
+                    'max'  => 200,
+                    'step' => 1
+                ),
+            ),
+            'size_units' => array( 'px' ),
+            'selectors'  => array(
+                '{{WRAPPER}} .tns-controls [data-controls]' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+            ),
+        ) );
 
-		$this->add_control( 'arrows_position', array(
-			'type'       => Controls_Manager::SLIDER,
-			'label'      => esc_html__( 'Horizontal Pisition', 'tyto' ),
-			'default'    => array(
-				'size' => - 50
-			),
-			'range'      => array(
-				'px' => array(
-					'min'  => - 200,
-					'max'  => 200,
-					'step' => 1
-				),
-			),
-			'size_units' => array( 'px' ),
-			'selectors'  => array(
-				'{{WRAPPER}} .tns-controls [data-controls="next"]' => 'right: {{SIZE}}{{UNIT}};',
-				'{{WRAPPER}} .tns-controls [data-controls="prev"]' => 'left: {{SIZE}}{{UNIT}};',
-			),
-		) );
+        $this->add_control( 'arrows_position', array(
+            'type'       => Controls_Manager::SLIDER,
+            'label'      => esc_html__( 'Horizontal Pisition', 'tyto' ),
+            'default'    => array(
+                'size' => - 50
+            ),
+            'range'      => array(
+                'px' => array(
+                    'min'  => - 200,
+                    'max'  => 200,
+                    'step' => 1
+                ),
+            ),
+            'size_units' => array( 'px' ),
+            'selectors'  => array(
+                '{{WRAPPER}} .tns-controls [data-controls="next"]' => 'right: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .tns-controls [data-controls="prev"]' => 'left: {{SIZE}}{{UNIT}};',
+            ),
+        ) );
 
-		$this->add_control( 'arrows_color', array(
-			'type'      => Controls_Manager::COLOR,
-			'label'     => esc_html__( 'Color', 'tyto' ),
-			'default'   => '#fff',
-			'selectors' => array(
-				'{{WRAPPER}} .tns-controls [data-controls]' => 'color: {{VALUE}};'
-			),
-		) );
+        $this->add_control( 'arrows_color', array(
+            'type'      => Controls_Manager::COLOR,
+            'label'     => esc_html__( 'Color', 'tyto' ),
+            'default'   => '#fff',
+            'selectors' => array(
+                '{{WRAPPER}} .tns-controls [data-controls]' => 'color: {{VALUE}};'
+            ),
+        ) );
 
-		$this->add_control( 'arrows_bg', array(
-			'type'      => Controls_Manager::COLOR,
-			'label'     => esc_html__( 'Background color', 'tyto' ),
-			'default'   => '#aaa',
-			'selectors' => array(
-				'{{WRAPPER}} .tns-controls [data-controls]' => 'background-color: {{VALUE}};'
-			),
-		) );
+        $this->add_control( 'arrows_bg', array(
+            'type'      => Controls_Manager::COLOR,
+            'label'     => esc_html__( 'Background color', 'tyto' ),
+            'default'   => '#aaa',
+            'selectors' => array(
+                '{{WRAPPER}} .tns-controls [data-controls]' => 'background-color: {{VALUE}};'
+            ),
+        ) );
 
-		$this->add_control( 'arrows_tablet', array(
-			'type'         => Controls_Manager::SWITCHER,
-			'label'        => esc_html__( 'Hide on Tablet', 'tyto' ),
-			'default'      => 'yes',
-			'label_on'     => esc_html__( 'Yes', 'tyto' ),
-			'label_off'    => esc_html__( 'No', 'tyto' ),
-			'return_value' => 'yes',
-			'condition'    => array(
-				'layout' => 'carousel',
-			)
-		) );
+        $this->add_control( 'arrows_tablet', array(
+            'type'         => Controls_Manager::SWITCHER,
+            'label'        => esc_html__( 'Hide on Tablet', 'tyto' ),
+            'default'      => 'yes',
+            'label_on'     => esc_html__( 'Yes', 'tyto' ),
+            'label_off'    => esc_html__( 'No', 'tyto' ),
+            'return_value' => 'yes',
+            'condition'    => array(
+                'layout' => 'carousel',
+            )
+        ) );
 
-		$this->add_control( 'arrows_mobile', array(
-			'type'         => Controls_Manager::SWITCHER,
-			'label'        => esc_html__( 'Hide on Mobile', 'tyto' ),
-			'default'      => 'yes',
-			'label_on'     => esc_html__( 'Yes', 'tyto' ),
-			'label_off'    => esc_html__( 'No', 'tyto' ),
-			'return_value' => 'yes',
-			'condition'    => array(
-				'layout' => 'carousel'
-			)
-		) );
+        $this->add_control( 'arrows_mobile', array(
+            'type'         => Controls_Manager::SWITCHER,
+            'label'        => esc_html__( 'Hide on Mobile', 'tyto' ),
+            'default'      => 'yes',
+            'label_on'     => esc_html__( 'Yes', 'tyto' ),
+            'label_off'    => esc_html__( 'No', 'tyto' ),
+            'return_value' => 'yes',
+            'condition'    => array(
+                'layout' => 'carousel'
+            )
+        ) );
 
-		$this->end_controls_section();
-	}
+        $this->end_controls_section();
+    }
 
-	protected function sectionDots() {
-		$this->start_controls_section( 'd_dots', array(
-			'label'     => esc_html__( 'Dots', 'tyto' ),
-			'tab' => Controls_Manager::TAB_STYLE,
-			'condition' => array(
-				'd_layout.layout' => 'carousel',
-				'd_layout.dots'   => 'yes',
-			),
-		) );
+    protected function sectionDots() {
+        $this->start_controls_section( 'd_dots', array(
+            'label'     => esc_html__( 'Dots', 'tyto' ),
+            'tab' => Controls_Manager::TAB_STYLE,
+            'condition' => array(
+                'd_layout.layout' => 'carousel',
+                'd_layout.dots'   => 'yes',
+            ),
+        ) );
 
         $this->add_control( 'dots', array(
             'type'         => Controls_Manager::SWITCHER,
@@ -622,75 +687,75 @@ class Widget_Advanced_Tyto_List extends Widget_Base {
             )
         ) );
 
-		$this->add_responsive_control( 'd_align', array(
-			'type'           => Controls_Manager::CHOOSE,
-			'label'          => esc_html__( 'Alignment', 'tyto' ),
-			'options'        => array(
-				'left'   => array(
-					'title' => esc_html__( 'Left', 'tyto' ),
-					'icon'  => 'fa fa-align-left'
-				),
-				'center' => array(
-					'title' => esc_html__( 'Center', 'tyto' ),
-					'icon'  => 'fa fa-align-center'
-				),
-				'right'  => array(
-					'title' => esc_html__( 'Right', 'tyto' ),
-					'icon'  => 'fa fa-align-right'
-				),
-			),
-			'default'        => 'center',
-			'tablet_default' => 'center',
-			'mobile_default' => 'center',
-			'selectors'      => array(
-				'{{WRAPPER}} .tns-nav' => 'text-align: {{VALUE}};'
-			),
-		) );
+        $this->add_responsive_control( 'd_align', array(
+            'type'           => Controls_Manager::CHOOSE,
+            'label'          => esc_html__( 'Alignment', 'tyto' ),
+            'options'        => array(
+                'left'   => array(
+                    'title' => esc_html__( 'Left', 'tyto' ),
+                    'icon'  => 'fa fa-align-left'
+                ),
+                'center' => array(
+                    'title' => esc_html__( 'Center', 'tyto' ),
+                    'icon'  => 'fa fa-align-center'
+                ),
+                'right'  => array(
+                    'title' => esc_html__( 'Right', 'tyto' ),
+                    'icon'  => 'fa fa-align-right'
+                ),
+            ),
+            'default'        => 'center',
+            'tablet_default' => 'center',
+            'mobile_default' => 'center',
+            'selectors'      => array(
+                '{{WRAPPER}} .tns-nav' => 'text-align: {{VALUE}};'
+            ),
+        ) );
 
-		$this->add_control( 'dots_bg', array(
-			'type'      => Controls_Manager::COLOR,
-			'label'     => esc_html__( 'Background color', 'tyto' ),
-			'default'   => 'rgba( 255, 255, 255, 0.3 )',
-			'selectors' => array(
-				'{{WRAPPER}} .tns-nav button' => 'background-color: {{VALUE}};'
-			),
-		) );
+        $this->add_control( 'dots_bg', array(
+            'type'      => Controls_Manager::COLOR,
+            'label'     => esc_html__( 'Background color', 'tyto' ),
+            'default'   => 'rgba( 255, 255, 255, 0.3 )',
+            'selectors' => array(
+                '{{WRAPPER}} .tns-nav button' => 'background-color: {{VALUE}};'
+            ),
+        ) );
 
-		$this->add_control( 'dots_active_bg', array(
-			'type'      => Controls_Manager::COLOR,
-			'label'     => esc_html__( 'Current background color', 'tyto' ),
-			'default'   => '#eeeeee',
-			'selectors' => array(
-				'{{WRAPPER}} .tns-nav button.tns-nav-active' => 'background-color: {{VALUE}};'
-			),
-		) );
+        $this->add_control( 'dots_active_bg', array(
+            'type'      => Controls_Manager::COLOR,
+            'label'     => esc_html__( 'Current background color', 'tyto' ),
+            'default'   => '#eeeeee',
+            'selectors' => array(
+                '{{WRAPPER}} .tns-nav button.tns-nav-active' => 'background-color: {{VALUE}};'
+            ),
+        ) );
 
-		$this->add_control( 'dots_tablet', array(
-			'type'         => Controls_Manager::SWITCHER,
-			'label'        => esc_html__( 'Hide on Tablet', 'tyto' ),
-			'default'      => 'yes',
-			'label_on'     => esc_html__( 'Yes', 'tyto' ),
-			'label_off'    => esc_html__( 'No', 'tyto' ),
-			'return_value' => 'yes',
-			'condition'    => array(
-				'layout' => 'carousel',
-			)
-		) );
+        $this->add_control( 'dots_tablet', array(
+            'type'         => Controls_Manager::SWITCHER,
+            'label'        => esc_html__( 'Hide on Tablet', 'tyto' ),
+            'default'      => 'yes',
+            'label_on'     => esc_html__( 'Yes', 'tyto' ),
+            'label_off'    => esc_html__( 'No', 'tyto' ),
+            'return_value' => 'yes',
+            'condition'    => array(
+                'layout' => 'carousel',
+            )
+        ) );
 
-		$this->add_control( 'dots_mobile', array(
-			'type'         => Controls_Manager::SWITCHER,
-			'label'        => esc_html__( 'Hide on Mobile', 'tyto' ),
-			'default'      => 'yes',
-			'label_on'     => esc_html__( 'Yes', 'tyto' ),
-			'label_off'    => esc_html__( 'No', 'tyto' ),
-			'return_value' => 'yes',
-			'condition'    => array(
-				'layout' => 'carousel'
-			)
-		) );
+        $this->add_control( 'dots_mobile', array(
+            'type'         => Controls_Manager::SWITCHER,
+            'label'        => esc_html__( 'Hide on Mobile', 'tyto' ),
+            'default'      => 'yes',
+            'label_on'     => esc_html__( 'Yes', 'tyto' ),
+            'label_off'    => esc_html__( 'No', 'tyto' ),
+            'return_value' => 'yes',
+            'condition'    => array(
+                'layout' => 'carousel'
+            )
+        ) );
 
-		$this->end_controls_section();
-	}
+        $this->end_controls_section();
+    }
 
     protected function sectionAttributes() {
         if (class_exists('Goto_Kirki')) {
@@ -1117,80 +1182,37 @@ class Widget_Advanced_Tyto_List extends Widget_Base {
         $this->end_controls_section();
     }
 
+    public function renderCarousel( $tiny_slider_id, $layout, $col_desktop, $col_tablet, $col_mobile ) {
+        $settings = $this->get_settings_for_display();
 
-	protected function render( $instance = [] ) {
-        $settings = $this->get_settings();
-		$args = $this->getQueryArgs();
-		unset($args['s']);
-		$query = new \WP_Query( $args );
-		$tiny_slider_id = uniqid( 'advanced-tyto-list-id-' );
-		$this->renderCarousel( $tiny_slider_id, $settings['layout'], $settings['col'], $settings['col_tablet'], $settings['col_mobile'] );
-		$tiny_slider_data = $this->carouselOptions( $settings['layout'], $settings['col'], $settings['col_tablet'], $settings['col_mobile'] );
-		$classes          = 'tours-layout-' . $settings['layout'] . ' ht-grid ht-grid-' . $settings['col'] . ' ht-grid-tablet-' . $settings['col_tablet'] . ' ht-grid-mobile-' . $settings['col_mobile'];
-		$layout_name      = 'carousel' == $settings['layout'] ? 'not-real-slider' : ''; ?>
-        <div class="advanced-tyto-list <?php echo esc_attr( $settings['design'] );  ?>" <?php if ($settings['adv_list_id']) echo 'id="'.$settings['adv_list_id'].'"'?>>
-            <div class="<?php echo $classes ?>">
-                <div class="tours-content <?php echo esc_attr( $layout_name ); echo $this->get_id();?> "
-                     id="<?php echo esc_attr( $tiny_slider_id ); ?>" <?php echo wp_kses_post( $tiny_slider_data ); ?>>
-					<?php
-                    if ($query->found_posts == 0 && $settings['advanced_search'] == 'yes' && $settings['search_not_found']) {
-                        echo '<h4 style="margin: 20px auto;">'.$settings['search_not_found'].'</h4>';
-                    } else {
-                        while ( $query->have_posts() ):
-                            $query->the_post();
-                            $item_data = json_decode(get_post_meta(get_the_ID(), 'tytorawdata', true));
-                            TytoConstructor::renderListItem($item_data, $settings);
-                        endwhile;
-                        wp_reset_postdata();
-                    } ?>
-                </div>
-            </div>
-            <?php if ($settings['pagi'] == 'infinity_scroll') { ?>
-                <div class="loader">
-                    <div class="lds-ring" style="display: none"><div></div><div></div><div></div><div></div></div>
-                </div>
-            <?php } ?>
-            <?php
-            if ( 'none' !== $settings['pagi'] && 'grid' == $settings['layout'] ) $this->renderPagination( $query, $settings );
-            if ($settings['pagi'] == 'infinity_scroll')
-                wp_enqueue_script('adv-list-infinity-scroll', \Tourware\Elementor\Loader::getElementorWidgetsFolderUri() . $this->get_name().'/assets/js/infinity-scroll.js', ['jquery', 'throttle-debounce']);
-            wp_reset_postdata(); ?>
-        </div>
+        if ( 'carousel' != $layout ) {
+            return;
+        }
 
-		<?php
-	}
-
-	public function renderCarousel( $tiny_slider_id, $layout, $col_desktop, $col_tablet, $col_mobile ) {
-		$settings = $this->get_settings_for_display();
-
-		if ( 'carousel' != $layout ) {
-			return;
-		}
-
-		/*ENQUEUE SCRIPT AND STYLE*/
-		wp_enqueue_style( 'tiny-slider' );
-		wp_enqueue_script( 'tiny-slider-js' );
+        /*ENQUEUE SCRIPT AND STYLE*/
+        wp_enqueue_style( 'tiny-slider' );
+        wp_enqueue_script( 'tiny-slider-js' );
 
 
-		/*GET TINY SLIDER OPTIONS*/
-		$arrows        = 'yes' == $settings['arrows'] ? 1 : 0;
-		$arrows_tablet = 'yes' == $settings['arrows'] && 'yes' == $settings['arrows_tablet'] ? 0 : 1;
-		$arrows_mobile = 'yes' == $settings['arrows'] && 'yes' == $settings['arrows_mobile'] ? 0 : 1;
-		$dots          = 'yes' == $settings['dots'] ? 1 : 0;
-		$dots_tablet   = 'yes' == $settings['dots'] && 'yes' == $settings['dots_tablet'] ? 0 : 1;
-		$dots_mobile   = 'yes' == $settings['dots'] && 'yes' == $settings['dots_mobile'] ? 0 : 1;
+        /*GET TINY SLIDER OPTIONS*/
+        $arrows        = 'yes' == $settings['arrows'] ? 1 : 0;
+        $arrows_tablet = 'yes' == $settings['arrows'] && 'yes' == $settings['arrows_tablet'] ? 0 : 1;
+        $arrows_mobile = 'yes' == $settings['arrows'] && 'yes' == $settings['arrows_mobile'] ? 0 : 1;
+        $dots          = 'yes' == $settings['dots'] ? 1 : 0;
+        $dots_tablet   = 'yes' == $settings['dots'] && 'yes' == $settings['dots_tablet'] ? 0 : 1;
+        $dots_mobile   = 'yes' == $settings['dots'] && 'yes' == $settings['dots_mobile'] ? 0 : 1;
 
-		$autoplay = $settings['autoplay'] == 'yes' ? 1 : 0;
-		$autoplayTimeout = $settings['autoplay_timeout']['size'] ? $autoplayTimeout = $settings['autoplay_timeout']['size'] : 0;
-		$loop = $settings['autoplay'] == 'yes' ? 1 : 0;
-		$slide_by_mob = $settings['autoplay'] == 'yes' ? $col_mobile : 1;
-		$slide_by_tab = $settings['autoplay'] == 'yes' ? $col_tablet : 1;
-		$slide_by_desk = $settings['autoplay'] == 'yes' ? $col_desktop : 1;
-		$speed = $settings['autoplay'] == 'yes' ? 1000 : 300;
+        $autoplay = $settings['autoplay'] == 'yes' ? 1 : 0;
+        $autoplayTimeout = $settings['autoplay_timeout']['size'] ? $autoplayTimeout = $settings['autoplay_timeout']['size'] : 0;
+        $loop = $settings['autoplay'] == 'yes' ? 1 : 0;
+        $slide_by_mob = $settings['autoplay'] == 'yes' ? $col_mobile : 1;
+        $slide_by_tab = $settings['autoplay'] == 'yes' ? $col_tablet : 1;
+        $slide_by_desk = $settings['autoplay'] == 'yes' ? $col_desktop : 1;
+        $speed = $settings['autoplay'] == 'yes' ? 1000 : 300;
 
-		wp_add_inline_script(
-			'tiny-slider-js',
-			"document.addEventListener( 'DOMContentLoaded', function(){
+        wp_add_inline_script(
+            'tiny-slider-js',
+            "document.addEventListener( 'DOMContentLoaded', function(){
                 var _arr        = 1 == {$arrows} ? true : false,
 					_arr_tablet = _arr && 1 == {$arrows_tablet} ? true : false,
 					_arr_mobile = _arr && 1 == {$arrows_mobile} ? true : false,
@@ -1229,40 +1251,40 @@ class Widget_Advanced_Tyto_List extends Widget_Base {
                     }
                 });
             } );",
-			'after'
-		);
-		?>
-	<?php }
+            'after'
+        );
+        ?>
+    <?php }
 
-	/*RENDER CAROUSEL FOR FRONT-END VIEW*/
+    /*RENDER CAROUSEL FOR FRONT-END VIEW*/
 
-	protected function carouselOptions( $layout, $col_desktop, $col_tablet, $col_mobile ) {
-		$settings = $this->get_settings_for_display();
+    protected function carouselOptions( $layout, $col_desktop, $col_tablet, $col_mobile ) {
+        $settings = $this->get_settings_for_display();
 
-		if ( 'carousel' != $layout ) {
-			return '';
-		}
+        if ( 'carousel' != $layout ) {
+            return '';
+        }
 
-		$options = array(
-			"items"      => intval( $col_mobile ),
-			"controls"   => 'yes' == $settings['arrows'] && 'yes' != $settings['arrows_mobile'] ? true : false,
-			"nav"        => 'yes' == $settings['dots'] && 'yes' != $settings['dots_mobile'] ? true : false,
-			"autoHeight" => true,
+        $options = array(
+            "items"      => intval( $col_mobile ),
+            "controls"   => 'yes' == $settings['arrows'] && 'yes' != $settings['arrows_mobile'] ? true : false,
+            "nav"        => 'yes' == $settings['dots'] && 'yes' != $settings['dots_mobile'] ? true : false,
+            "autoHeight" => true,
             'slideBy' => $col_mobile,
-			"responsive" => array(
-				768  => array(
-					"items"    => intval( $col_tablet ),
-					"controls" => 'yes' == $settings['arrows'] && 'yes' != $settings['arrows_tablet'] ? true : false,
-					"nav"      => 'yes' == $settings['dots'] && 'yes' != $settings['dots_tablet'] ? true : false,
+            "responsive" => array(
+                768  => array(
+                    "items"    => intval( $col_tablet ),
+                    "controls" => 'yes' == $settings['arrows'] && 'yes' != $settings['arrows_tablet'] ? true : false,
+                    "nav"      => 'yes' == $settings['dots'] && 'yes' != $settings['dots_tablet'] ? true : false,
                     'slideBy' => $col_tablet
-				),
-				1024 => array(
-					"items"    => intval( $col_desktop ),
-					"controls" => 'yes' == $settings['arrows'] ? true : false,
-					"nav"      => 'yes' == $settings['dots'] ? true : false,
+                ),
+                1024 => array(
+                    "items"    => intval( $col_desktop ),
+                    "controls" => 'yes' == $settings['arrows'] ? true : false,
+                    "nav"      => 'yes' == $settings['dots'] ? true : false,
                     'slideBy' => $col_desktop
-				),
-			),
+                ),
+            ),
             'autoplay' => $settings['autoplay'] == 'yes' ? 1 : 0,
             'autoplayTimeout' => $settings['autoplay_timeout']['size'] ? $autoplayTimeout = $settings['autoplay_timeout']['size'] : 0,
             'autoplayButton' => 0,
@@ -1270,35 +1292,23 @@ class Widget_Advanced_Tyto_List extends Widget_Base {
             'loop' => $settings['autoplay'] == 'yes' ? 1 : 0,
             'speed' => $settings['autoplay'] == 'yes' ? 1000 : 300,
 
-		);
+        );
 
-		$tiny_slider_data = "data-tiny-slider='" . json_encode( $options ) . "'";
+        $tiny_slider_data = "data-tiny-slider='" . json_encode( $options ) . "'";
 
-		return $tiny_slider_data;
-	}
+        return $tiny_slider_data;
+    }
 
     protected function renderPagination($query, $settings) {
-            $args = $this->getQueryArgs();
+        $args = $this->getQueryArgs();
         ob_start();
-        TytoConstructor::renderListPagination($query, $settings);
+        Loader::renderListPagination($query, $settings);
         $r = ob_get_clean(); ?>
-            <nav class="tyto-pagination" data-args="<?php echo esc_attr(json_encode($args)) ?>" data-post_id="<?php echo get_the_ID() ?>">
+        <nav class="tyto-pagination" data-args="<?php echo esc_attr(json_encode($args)) ?>" data-post_id="<?php echo get_the_ID() ?>">
             <span class="screen-reader-text"><?php esc_html_e('Posts pagination', 'goto'); ?></span>
             <?php echo wp_kses_post($r); ?>
         </nav>
         <?php
-    }
-
-	public function _enqueue_styles() {
-        wp_enqueue_style($this->get_name(), \Tourware\Elementor\Loader::getElementorWidgetsFolderUri() . $this->get_name().'/assets/css/styles.css');
-        wp_enqueue_script('throttle-debounce', \Tourware\Elementor\Loader::getElementorWidgetsFolderUri() . $this->get_name().'/assets/js/jquery-throttle-debounce.js', ['jquery']);
-        wp_enqueue_script($this->get_name().'-js', \Tourware\Elementor\Loader::getElementorWidgetsFolderUri() . '/assets/js/script.js', ['jquery', 'throttle-debounce']);
-        wp_localize_script($this->get_name().'-js', 'TytoAjaxVars',
-            array(
-                'ajaxurl' => admin_url('admin-ajax.php'),
-            )
-        );
-        wp_enqueue_script('lazysizes-script');
     }
 
     protected function getQueryArgs() {
@@ -1341,7 +1351,7 @@ class Widget_Advanced_Tyto_List extends Widget_Base {
             if (isset($_GET['keywords']) )  $search_str = $_GET['keywords'];
             else $search_str = get_query_var('s');
 
-            if ($search_str) $post_ids = TytoConstructor::getPostIDsByKeywords($search_str);
+            if ($search_str) $post_ids = Loader::getPostIDsByKeywords($search_str);
             $args['post__in'] = $post_ids;
         }
         if (!empty($search_tag) && !is_admin()) {
@@ -1405,4 +1415,3 @@ class Widget_Advanced_Tyto_List extends Widget_Base {
     }
 
 }
-Plugin::instance()->widgets_manager->register_widget_type( new Widget_Advanced_Tyto_List() );

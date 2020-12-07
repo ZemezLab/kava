@@ -138,7 +138,7 @@ class Loader {
         $elements_manager->add_category(
             'tyto',
             array(
-                'title' => esc_html__( 'Tyto' )
+                'title' => esc_html__( 'tourware' )
             )
         );
     }
