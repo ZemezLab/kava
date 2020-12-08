@@ -485,14 +485,16 @@ class Loader {
         echo $r;
     }
 
+    /**
+     * @param \Tourware\Model\Travel $item_data
+     * @param $settings
+     */
     public static function renderListItem($item_data, $settings) {
         $post = get_post(get_the_ID());
         $img_width = $img_height = 1200 / $settings['col'];
         /*VARIABLES*/
 
         $title = $post->post_title;
-        $title = $item_data->getTitle();
-        $pax = $item_data->getPaxMin();
 
         if ($settings['title_length']) {
             if (strlen($title) > $settings['title_length']['size']) {
@@ -547,26 +549,17 @@ class Loader {
             $categories_str = implode(', ', $categories);
         }
 
-        if (isset($item_data->images) && isset($item_data->images[0]->image)) {
-            if(strpos($item_data->images[0]->image, 'unsplash')){
-                $unsplash_img_array = explode('?', $item_data->images[0]->image);
-                $img_src = $unsplash_img_array[0].'?fm=jpg&crop=focalpoint&fit=crop&w='.$img_width;
-            } else {
-                $img_options = array(
-                    "secure" => true,
-                    "width" => $img_width,
-                    "height" => $img_height,
-                    "crop" => "thumb"
-                );
-                $img_file = $item_data->images[0]->image;
-                $img_src = \Cloudinary::cloudinary_url($img_file, $img_options);
-            }
-
+        if ($item_data->hasFeaturedImageUri()) {
+            $img_src = $item_data->getFeaturedImageUri([
+                'secure' => true,
+                'width' => $img_width,
+                'height' => $img_height,
+                'crop' => "thumb"
+            ]);
         } else {
             $img_src = 'https://via.placeholder.com/' . $img_width . 'x' . $img_height;
         }
 
-//					    get_template_part('elementor/widget/advanced-tyto-list/designs/'.$settings['design']);
         include self::getElementorFolder() . '/designs/'.$settings['design'].'.php';
     }
 

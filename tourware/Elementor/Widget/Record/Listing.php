@@ -85,7 +85,7 @@ class Listing extends Widget
                             $item_data = json_decode(get_post_meta(get_the_ID(), 'tytorawdata', true));
 
                             // @todo: check for item type
-                            $record = new \Tourware\Model\Travel(get_the_ID(), $item_data);
+                            $record = new \Tourware\Model\Travel($item_data, get_the_ID());
                             Loader::renderListItem($record, $settings);
                         endwhile;
                         wp_reset_postdata();
