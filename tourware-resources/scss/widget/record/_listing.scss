@@ -78,7 +78,7 @@
 }
 
 .advanced-tyto-list .tour-label {
-  background-color: #e83f53;
+  background-color: var(--e-global-color-primary);
   color: #fff;
   position: absolute;
   top: 33px;
@@ -326,7 +326,7 @@
   position: absolute;
   bottom: 20px;
   left: 0;
-  background: #FF4A52;
+  background: var(--e-global-color-primary);
   padding: 3px 10px 2px 10px;
   color: #fff;
   font-weight: 700;

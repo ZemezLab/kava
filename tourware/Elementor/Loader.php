@@ -31,7 +31,8 @@ class Loader {
      * @since 1.2.0
      * @access public
      */
-    public function __construct() {
+    public function __construct()
+    {
         // Register widgets
         add_action( 'elementor/widgets/widgets_registered', [ $this, 'register_widgets' ] );
         // Register widget scripts
@@ -67,7 +68,8 @@ class Loader {
      *
      * @return Loader An instance of the class.
      */
-    public static function getInstance() {
+    public static function getInstance()
+    {
         if ( is_null( self::$_instance ) ) {
             self::$_instance = new self();
         }
@@ -75,15 +77,18 @@ class Loader {
         return self::$_instance;
     }
 
-    public static function getElementorFolder() {
+    public static function getElementorFolder()
+    {
         return get_theme_file_path() . '/elementor/';
     }
 
-    public static function getElementorFolderUri() {
+    public static function getElementorFolderUri()
+    {
         return get_theme_file_uri() . '/elementor/';
     }
 
-    public static function getElementorWidgetsFolderUri() {
+    public static function getElementorWidgetsFolderUri()
+    {
         return get_theme_file_uri() . '/elementor/widgets/';
     }
 
@@ -484,7 +489,11 @@ class Loader {
         $post = get_post(get_the_ID());
         $img_width = $img_height = 1200 / $settings['col'];
         /*VARIABLES*/
+
         $title = $post->post_title;
+        $title = $item_data->getTitle();
+        $pax = $item_data->getPaxMin();
+
         if ($settings['title_length']) {
             if (strlen($title) > $settings['title_length']['size']) {
                 $title = substr($title, 0, $settings['title_length']['size']).'...';
