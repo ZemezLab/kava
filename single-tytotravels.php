@@ -4,12 +4,13 @@
  *
  * @package Kava
  */
+
 global $post;
+
 if (post_password_required()) {
     get_template_part('template-parts/tyto/content/s-login');
     die;
 }
-
 get_header();
 
 set_query_var('option_type', 'tour');
