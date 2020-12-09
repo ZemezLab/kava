@@ -2,9 +2,6 @@
 
 namespace Tourware;
 
-use \Tourware\Contracts\Model\Displayable;
-use \Tourware\Contracts\Model\Imageable;
-
 abstract class Model
 {
     /**
@@ -28,13 +25,28 @@ abstract class Model
         $this->rawData = $rawData;
     }
 
+    /**
+     * @param $name
+     * @return string
+     */
     public function __get($name)
     {
         return $this->rawData->$name;
     }
 
+    /**
+     * @param $name
+     * @return bool
+     */
     public function __isset($name) {
         return isset($this->rawData->$name);
+    }
+
+    /**
+     * @return object
+     */
+    public function getRawData() {
+        return $this->rawData;
     }
 
 }

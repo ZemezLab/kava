@@ -494,16 +494,16 @@ class Loader {
         $img_width = $img_height = 1200 / $settings['col'];
         /*VARIABLES*/
 
-        $title = $post->post_title;
+        $title = $item_data->getTitle();
 
         if ($settings['title_length']) {
             if (strlen($title) > $settings['title_length']['size']) {
                 $title = substr($title, 0, $settings['title_length']['size']).'...';
             }
         }
-        $price = $item_data->price;
-        $days = $item_data->itinerary ? array_sum(array_column($item_data->itinerary, 'days')) : 0;
-        $persons = ($item_data->paxMin ? $item_data->paxMin.'-' : '').$item_data->paxMax;
+        $price = $item_data->getPrice();
+        $days = $item_data->getItineraryDayAmount();
+        $persons = ($item_data->getPaxMin() ? $item_data->getPaxMin().'-' : '').$item_data->getPaxMax();
         $destination = $item_data->_destination;
         $stars = 0;
         if (get_post_type(get_the_ID()) == 'tytoaccommodations') {
@@ -549,16 +549,12 @@ class Loader {
             $categories_str = implode(', ', $categories);
         }
 
-        if ($item_data->hasFeaturedImageUri()) {
-            $img_src = $item_data->getFeaturedImageUri([
-                'secure' => true,
-                'width' => $img_width,
-                'height' => $img_height,
-                'crop' => "thumb"
-            ]);
-        } else {
-            $img_src = 'https://via.placeholder.com/' . $img_width . 'x' . $img_height;
-        }
+        $img_src = $item_data->getFeaturedImageUri([
+            'secure' => true,
+            'width' => $img_width,
+            'height' => $img_height,
+            'crop' => 'thumb'
+        ]);
 
         include self::getElementorFolder() . '/designs/'.$settings['design'].'.php';
     }

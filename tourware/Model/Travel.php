@@ -4,17 +4,19 @@ namespace Tourware\Model;
 
 use Tourware\Contracts\Model\Displayable;
 use Tourware\Contracts\Model\Imageable;
+use Tourware\Traits\HasImages;
 use Tourware\Model;
 
 class Travel extends Model implements Displayable, Imageable
 {
+    use HasImages;
 
     /**
      * @return string
      */
     public function getTitle()
     {
-        return $this->rawData->title;
+        return $this->getRawData()->title;
     }
 
     /**
@@ -26,38 +28,44 @@ class Travel extends Model implements Displayable, Imageable
     }
 
     /**
-     * Checks if at least one image exists and can be used as a featured image.
-     *
-     * @return bool
+     * @return string
      */
-    public function hasFeaturedImageUri()
+    public function getPrice()
     {
-        return (isset($this->rawData->images) && isset($this->rawData->images[0]));
+        return $this->getRawData()->price;
     }
 
     /**
-     * Returns specified feature image or the first image coming from tourware.
-     *
-     * @param array $options
-     * @return string
-     * @throws \Exception
+     * @return int
      */
-    public function getFeaturedImageUri(array $options = array())
+    public function getPaxMin()
     {
-        if (!array_key_exists('width', $options)) {
-            throw new \Exception('No image width speficied.');
-        }
+        return intval($this->getRawData()->paxMin);
+    }
 
-        if (isset($this->rawData->images) && isset($this->rawData->images[0])) {
-            $firstImageIdentifier = $this->rawData->images[0]->image;
+    /**
+     * @return int
+     */
+    public function getPaxMax()
+    {
+        return intval($this->getRawData()->paxMax);
+    }
 
-            if (strpos($firstImageIdentifier, 'unsplash')) {
-                $parts = explode('?', $firstImageIdentifier);
-                return $parts[0] . '?fm=jpg&crop=focalpoint&fit=crop&w=' . $options['width'];
-            }
+    /**
+     * @return array
+     */
+    public function getItinerary()
+    {
+        return $this->getRawData()->itinerary ? $this->getRawData()->itinerary : array();
+    }
 
-            return \Cloudinary::cloudinary_url($firstImageIdentifier, $options);
-        }
+    /**
+     * @return int
+     */
+    public function getItineraryDayAmount()
+    {
+        $itinerary = $this->getItinerary();
+        return $itinerary ? array_sum(array_column($itinerary, 'days')) : 0;
     }
 
 }
