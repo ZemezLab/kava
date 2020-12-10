@@ -60,9 +60,17 @@ class Travel extends Model implements Displayable, Imageable
     }
 
     /**
+     * @return array
+     */
+    public function getDates()
+    {
+        return $this->getRawData()->dates ? $this->getRawData()->dates : array();
+    }
+
+    /**
      * @return int
      */
-    public function getItineraryDayAmount()
+    public function getItineraryLength()
     {
         $itinerary = $this->getItinerary();
         return $itinerary ? array_sum(array_column($itinerary, 'days')) : 0;

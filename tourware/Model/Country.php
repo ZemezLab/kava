@@ -6,5 +6,4 @@ use Tourware\Model;
 
 class Country extends Model
 {
-
 }

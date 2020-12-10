@@ -63,6 +63,7 @@ class Listing extends Widget
     }
 
     protected function render( $instance = [] ) {
+        $repository = \Tourware\Repository\Travel::getInstance();
         $settings = $this->get_settings();
         $args = $this->getQueryArgs();
         unset($args['s']);
@@ -82,10 +83,9 @@ class Listing extends Widget
                     } else {
                         while ( $query->have_posts() ):
                             $query->the_post();
-                            $item_data = json_decode(get_post_meta(get_the_ID(), 'tytorawdata', true));
 
                             // @todo: check for item type
-                            $record = new \Tourware\Model\Travel($item_data, get_the_ID());
+                            $record = $repository->findOneByPostId(get_the_ID());
                             Loader::renderListItem($record, $settings);
                         endwhile;
                         wp_reset_postdata();

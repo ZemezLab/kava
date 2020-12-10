@@ -501,8 +501,9 @@ class Loader {
                 $title = substr($title, 0, $settings['title_length']['size']).'...';
             }
         }
+
         $price = $item_data->getPrice();
-        $days = $item_data->getItineraryDayAmount();
+        $days = $item_data->getItineraryLength();
         $persons = ($item_data->getPaxMin() ? $item_data->getPaxMin().'-' : '').$item_data->getPaxMax();
         $destination = $item_data->_destination;
         $stars = 0;

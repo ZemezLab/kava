@@ -43,7 +43,7 @@ trait HasImages
             }
 
             return \Cloudinary::cloudinary_url($firstImageIdentifier, $options);
-        } else {
+        } else { // @todo: check if there is a real featured image in the wordpress post
             return 'https://via.placeholder.com/' . $options['width'] . 'x' . $options['height'];
         }
     }
