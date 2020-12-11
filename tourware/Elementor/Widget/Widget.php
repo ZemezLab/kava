@@ -1,6 +1,6 @@
 <?php
 
-namespace Tourware\Elementor;
+namespace Tourware\Elementor\Widget;
 
 abstract class Widget extends \Elementor\Widget_Base
 {
