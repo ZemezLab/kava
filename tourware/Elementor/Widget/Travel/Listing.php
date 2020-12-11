@@ -2,7 +2,7 @@
 
 namespace Tourware\Elementor\Widget\Travel;
 
-class Listing extends \Tourware\Elementor\Widget\Record\Listing
+class Listing extends \Tourware\Elementor\Widget\Abstract\Listing
 {
 
     /**

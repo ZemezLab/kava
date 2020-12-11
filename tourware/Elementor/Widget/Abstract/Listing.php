@@ -50,7 +50,13 @@ class Listing extends Widget
         return [ 'tyto' ];
     }
 
-    public function __construct( $data = [], $args = null ) {
+    protected function getPostTypeName()
+    {
+        return 'tytotravels';
+    }
+
+    public function __construct( $data = [], $args = null )
+    {
         parent::__construct($data, $args);
 
         $this->add_render_attribute(
@@ -62,8 +68,16 @@ class Listing extends Widget
         $this->_enqueue_styles();
     }
 
-    protected function render( $instance = [] ) {
-        $repository = \Tourware\Repository\Travel::getInstance();
+    protected function render( $instance = [] )
+    {
+        if ('tytotravels' === $this->getPostTypeName()) {
+            $repository = \Tourware\Repository\Travel::getInstance();
+        }
+
+        if ('tytoaccommodations' === $this->getPostTypeName()) {
+            $repository = \Tourware\Repository\Accommodation::getInstance();
+        }
+
         $settings = $this->get_settings();
         $args = $this->getQueryArgs();
         unset($args['s']);
@@ -305,17 +319,6 @@ class Listing extends Widget
             'label_on'     => esc_html__( 'Yes' ),
             'label_off'    => esc_html__( 'No' ),
             'return_value' => 'yes'
-        ) );
-
-        $this->add_control( 'item_types', array(
-            'type'     => Controls_Manager::SELECT2,
-            'label'    => esc_html__( 'Item types' ),
-            'multiple' => true,
-            'options'  => array(
-                'tytotravels'        => esc_html__( 'Travels' ),
-                'tytoaccommodations' => esc_html__( 'Accommodations' ),
-
-            ),
         ) );
 
         $tags = [];
@@ -1338,12 +1341,8 @@ class Listing extends Widget
         $paged = is_front_page() ? get_query_var( 'page' ) : get_query_var( 'paged' );
         $paged = $paged ? intval( $paged ) : 1;
 
-        $item_types = empty( $settings['item_types'] ) ? array(
-            'tytotravels',
-            'tytoaccommodations'
-        ) : $settings['item_types'];
         $args       = array(
-            'post_type'           => $item_types,
+            'post_type'           => $this->getPostTypeName(),
             'ignore_sticky_posts' => 1,
             'post_status'         => 'publish',
             'posts_per_page'      => $settings['per_page'],
