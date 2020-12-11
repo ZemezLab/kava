@@ -28,5 +28,13 @@ class Listing extends \Tourware\Elementor\Widget\Listing\AbstractListing
     {
         return 'tytoaccommodations';
     }
+//
+    /**
+     * @return string
+     */
+    protected function getRecordTypeName()
+    {
+        return 'accommodation';
+    }
 
 }

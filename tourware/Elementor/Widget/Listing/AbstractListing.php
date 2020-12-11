@@ -40,6 +40,15 @@ abstract class AbstractListing extends \Tourware\Elementor\Widget\Widget
         throw new \Exception('Needs to be implemented.');
     }
 
+    /**
+     * @throws \Exception
+     * @return string
+     */
+    protected function getRecordTypeName()
+    {
+        throw new \Exception('Needs to be implemented.');
+    }
+
     protected function render( $instance = [] )
     {
         if ('tytotravels' === $this->getPostTypeName()) {
@@ -58,7 +67,9 @@ abstract class AbstractListing extends \Tourware\Elementor\Widget\Widget
         $this->renderCarousel( $tiny_slider_id, $settings['layout'], $settings['col'], $settings['col_tablet'], $settings['col_mobile'] );
         $tiny_slider_data = $this->carouselOptions( $settings['layout'], $settings['col'], $settings['col_tablet'], $settings['col_mobile'] );
         $classes          = 'tours-layout-' . $settings['layout'] . ' ht-grid ht-grid-' . $settings['col'] . ' ht-grid-tablet-' . $settings['col_tablet'] . ' ht-grid-mobile-' . $settings['col_mobile'];
-        $layout_name      = 'carousel' == $settings['layout'] ? 'not-real-slider' : ''; ?>
+        $layout_name      = 'carousel' == $settings['layout'] ? 'not-real-slider' : '';
+        echo 'tourware-resources/layouts/'.$this->getRecordTypeName().'/listing/template.php';
+        include_once 'tourware-resources/layouts/'.$this->getRecordTypeName().'/listing/template.php'; ?>
         <div class="advanced-tyto-list <?php echo esc_attr( $settings['design'] );  ?>" <?php if ($settings['adv_list_id']) echo 'id="'.$settings['adv_list_id'].'"'?>>
             <div class="<?php echo $classes ?>">
                 <div class="tours-content <?php echo esc_attr( $layout_name ); echo $this->get_id();?> "
@@ -89,9 +100,7 @@ abstract class AbstractListing extends \Tourware\Elementor\Widget\Widget
                 wp_enqueue_script('adv-list-infinity-scroll', \Tourware\Elementor\Loader::getElementorWidgetsFolderUri() . $this->get_name().'/assets/js/infinity-scroll.js', ['jquery', 'throttle-debounce']);
             wp_reset_postdata(); ?>
         </div>
-
-        <?php
-    }
+    <?php }
 
     public function _enqueue_styles() {
         wp_enqueue_script('throttle-debounce', \Tourware\Elementor\Loader::getElementorWidgetsFolderUri() . $this->get_name().'/assets/js/jquery-throttle-debounce.js', ['jquery']);
