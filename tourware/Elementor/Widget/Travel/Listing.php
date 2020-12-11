@@ -21,4 +21,9 @@ class Listing extends \Tourware\Elementor\Widget\Record\Listing
         return __( 'Travel Listing' );
     }
 
+    protected function getPostTypeName()
+    {
+        return 'tytotravels';
+    }
+
 }

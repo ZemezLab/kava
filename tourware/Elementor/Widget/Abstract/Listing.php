@@ -1,6 +1,6 @@
 <?php
 
-namespace Tourware\Elementor\Widget\Record;
+namespace Tourware\Elementor\Widget\Abstract;
 
 use Tourware\Elementor\Widget;
 use Tourware\Elementor\Loader;

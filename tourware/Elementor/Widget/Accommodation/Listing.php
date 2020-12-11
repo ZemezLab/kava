@@ -2,7 +2,7 @@
 
 namespace Tourware\Elementor\Widget\Accommodation;
 
-class Listing extends \Tourware\Elementor\Widget\Record\Listing
+class Listing extends \Tourware\Elementor\Widget\Abstract\Listing
 {
 
     /**
@@ -21,4 +21,11 @@ class Listing extends \Tourware\Elementor\Widget\Record\Listing
         return __( 'Accommodation Listing' );
     }
 
+    /**
+     * @return string
+     */
+    protected function getPostTypeName()
+    {
+        return 'tytoaccommodations';
+    }
 }
