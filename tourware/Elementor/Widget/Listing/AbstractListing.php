@@ -49,6 +49,11 @@ abstract class AbstractListing extends \Tourware\Elementor\Widget\Widget
         throw new \Exception('Needs to be implemented.');
     }
 
+    public function getResourcesFolder()
+    {
+        return get_theme_file_path() . '/tourware-resources/';
+    }
+
     protected function render( $instance = [] )
     {
         if ('tytotravels' === $this->getPostTypeName()) {
@@ -68,8 +73,7 @@ abstract class AbstractListing extends \Tourware\Elementor\Widget\Widget
         $tiny_slider_data = $this->carouselOptions( $settings['layout'], $settings['col'], $settings['col_tablet'], $settings['col_mobile'] );
         $classes          = 'tours-layout-' . $settings['layout'] . ' ht-grid ht-grid-' . $settings['col'] . ' ht-grid-tablet-' . $settings['col_tablet'] . ' ht-grid-mobile-' . $settings['col_mobile'];
         $layout_name      = 'carousel' == $settings['layout'] ? 'not-real-slider' : '';
-//        echo 'tourware-resources/layouts/'.$this->getRecordTypeName().'/listing/template.php';
-//        include_once 'tourware-resources/layouts/'.$this->getRecordTypeName().'/listing/template.php'; ?>
+        include_once $this->getResourcesFolder() . '/layouts/'.$this->getRecordTypeName().'/listing/template.php'; ?>
         <div class="advanced-tyto-list <?php echo esc_attr( $settings['design'] );  ?>" <?php if ($settings['adv_list_id']) echo 'id="'.$settings['adv_list_id'].'"'?>>
             <div class="<?php echo $classes ?>">
                 <div class="tours-content <?php echo esc_attr( $layout_name ); echo $this->get_id();?> "
