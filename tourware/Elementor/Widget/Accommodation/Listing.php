@@ -2,7 +2,7 @@
 
 namespace Tourware\Elementor\Widget\Accommodation;
 
-class Listing extends \Tourware\Elementor\Widget\Abstract\Listing
+class Listing extends \Tourware\Elementor\Widget\Listing\AbstractListing
 {
 
     /**
@@ -28,4 +28,5 @@ class Listing extends \Tourware\Elementor\Widget\Abstract\Listing
     {
         return 'tytoaccommodations';
     }
+
 }

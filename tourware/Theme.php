@@ -37,7 +37,7 @@ class Theme
         add_action( 'elementor/widgets/widgets_registered', function() {
 //            Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Record\Listing() );
             Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Travel\Listing() );
-//            Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Accommodation\Listing() );
+            Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Accommodation\Listing() );
         } );
 
         return $this;
