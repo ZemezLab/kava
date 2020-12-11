@@ -1,6 +1,7 @@
 <?php
 
 require_once 'vendor/autoload.php';
+require_once 'tourware/Theme.php';
 
 spl_autoload_register(function ($class) {
     $file = str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
