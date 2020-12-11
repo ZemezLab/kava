@@ -40,19 +40,6 @@ abstract class AbstractListing extends \Tourware\Elementor\Widget\Widget
         throw new \Exception('Needs to be implemented.');
     }
 
-    public function __construct( $data = [], $args = null )
-    {
-        parent::__construct($data, $args);
-
-        $this->add_render_attribute(
-            '_wrapper', 'class', [
-                'tourware-widget'
-            ]
-        );
-
-        $this->_enqueue_styles();
-    }
-
     protected function render( $instance = [] )
     {
         if ('tytotravels' === $this->getPostTypeName()) {
