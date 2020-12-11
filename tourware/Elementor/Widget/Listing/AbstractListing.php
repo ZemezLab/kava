@@ -10,7 +10,7 @@ use \Elementor\Controls_Manager;
 use \Elementor\Plugin;
 use \Elementor\Core\Schemes as Schemes;
 
-class AbstractListing extends \Tourware\Elementor\Widget\Widget
+abstract class AbstractListing extends \Tourware\Elementor\Widget\Widget
 {
 
     /**
