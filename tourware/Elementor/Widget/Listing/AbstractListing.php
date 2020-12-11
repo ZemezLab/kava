@@ -13,38 +13,31 @@ use \Elementor\Core\Schemes as Schemes;
 class AbstractListing extends \Tourware\Elementor\Widget\Widget
 {
 
+    /**
+     * @throws \Exception
+     * @return string
+     */
     public function get_name()
     {
-        return 'advanced-tyto-list';
+        throw new \Exception('Needs to be implemented.');
     }
 
     /**
+     * @throws \Exception
      * @return string
      */
     public function get_title()
     {
-        return __( 'Record Listing' );
+        throw new \Exception('Needs to be implemented.');
     }
 
     /**
+     * @throws \Exception
      * @return string
      */
-    public function get_icon()
-    {
-        return 'eicon-post-list';
-    }
-
-    /**
-     * @return string[]
-     */
-    public function get_categories()
-    {
-        return [ 'tyto' ];
-    }
-
     protected function getPostTypeName()
     {
-        return 'tytotravels';
+        throw new \Exception('Needs to be implemented.');
     }
 
     public function __construct( $data = [], $args = null )
