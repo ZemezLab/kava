@@ -1,9 +1,13 @@
 <?php
 
-namespace Tourware\Customizers;
+namespace Tourware\Customizer;
 
 use Tourware\Customizer;
 
+/**
+ * Class Typography
+ * @package Tourware\Customizer
+ */
 class Typography extends Customizer
 {
 

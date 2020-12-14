@@ -2,11 +2,15 @@
 
 namespace Tourware\Model;
 
-use Tourware\Contracts\Model\Displayable;
-use Tourware\Contracts\Model\Imageable;
-use Tourware\Traits\HasImages;
+use Tourware\Contract\Model\Displayable;
+use Tourware\Contract\Model\Imageable;
+use Tourware\Mixin\HasImages;
 use Tourware\Model;
 
+/**
+ * Class Accommodation
+ * @package Tourware\Model
+ */
 class Accommodation extends Model implements Displayable, Imageable
 {
     use HasImages;

@@ -79,17 +79,17 @@ class Loader {
 
     public static function getElementorFolder()
     {
-        return get_theme_file_path() . '/elementor/'; // @todo: get rid of this!
+        return get_parent_theme_file_path() . '/elementor/'; // @todo: get rid of this!
     }
 
     public static function getElementorFolderUri()
     {
-        return get_theme_file_uri() . '/elementor/'; // @todo: get rid of this!
+        return get_parent_theme_file_uri() . '/elementor/'; // @todo: get rid of this!
     }
 
     public static function getElementorWidgetsFolderUri()
     {
-        return get_theme_file_uri() . '/elementor/widgets/'; // @todo: get rid of this!
+        return get_parent_theme_file_uri() . '/elementor/widgets/'; // @todo: get rid of this!
     }
 
     /**
@@ -165,7 +165,7 @@ class Loader {
      * @access private
      */
     private function include_widgets_files() {
-        $widgets_path = get_theme_file_path() . '/elementor/widgets/';
+        $widgets_path = get_parent_theme_file_path() . '/elementor/widgets/';
         $widgets      = glob( $widgets_path . '*.php' );
 
         foreach ( $widgets as $key ) {
@@ -174,7 +174,7 @@ class Loader {
             }
         }
 
-        $widgets_path = get_theme_file_path() . '/elementor/widgets/*/';
+        $widgets_path = get_parent_theme_file_path() . '/elementor/widgets/*/';
         $widgets      = glob( $widgets_path . '*.php' );
         foreach ( $widgets as $key ) {
             if ( file_exists( $key ) ) {
@@ -184,7 +184,7 @@ class Loader {
     }
 
     private function include_dynamic_tags_files() {
-        $widgets_path = get_theme_file_path() . '/elementor/dynamic_tags/';
+        $widgets_path = get_parent_theme_file_path() . '/elementor/dynamic_tags/';
         $widgets      = glob( $widgets_path . '*.php' );
 
         foreach ( $widgets as $key ) {
@@ -193,7 +193,7 @@ class Loader {
             }
         }
 
-        $widgets_path = get_theme_file_path() . '/elementor/dynamic_tags/*/';
+        $widgets_path = get_parent_theme_file_path() . '/elementor/dynamic_tags/*/';
         $widgets      = glob( $widgets_path . '*.php' );
         foreach ( $widgets as $key ) {
             if ( file_exists( $key ) ) {
@@ -224,7 +224,7 @@ class Loader {
     }
 
     public function enqueue_editor() {
-        wp_enqueue_style('tyto-elementor-editor-css', get_theme_file_path() . '/elementor/assets/css/editor.css');
+        wp_enqueue_style('tyto-elementor-editor-css', get_parent_theme_file_path() . '/elementor/assets/css/editor.css');
     }
 
     public function enqueue_styles() {

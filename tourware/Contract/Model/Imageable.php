@@ -1,7 +1,11 @@
 <?php
 
-namespace Tourware\Contracts\Model;
+namespace Tourware\Contract\Model;
 
+/**
+ * Interface Imageable
+ * @package Tourware\Contract\Model
+ */
 interface Imageable
 {
 

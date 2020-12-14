@@ -1,3 +1,9 @@
+<?php
+/**
+ * Name: tourware Layout 1
+ */
+?>
+
 <div class="ht-grid-item">
     <div class="tour-item">
         <?php /*HEAD*/ ?>

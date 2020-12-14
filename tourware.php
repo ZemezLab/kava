@@ -6,7 +6,7 @@ require_once 'tourware/Theme.php';
 spl_autoload_register(function ($class) {
     $file = str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
     $file = lcfirst($file);
-    $file = get_theme_file_path() . '/' . $file;
+    $file = get_parent_theme_file_path() . '/' . $file;
 
     if (file_exists($file)) {
         require $file;

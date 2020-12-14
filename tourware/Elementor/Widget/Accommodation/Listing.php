@@ -2,6 +2,10 @@
 
 namespace Tourware\Elementor\Widget\Accommodation;
 
+/**
+ * Class Listing
+ * @package Tourware\Elementor\Widget\Accommodation
+ */
 class Listing extends \Tourware\Elementor\Widget\Listing\AbstractListing
 {
 

@@ -1,9 +1,13 @@
 <?php
 
-namespace Tourware\Customizers\Page;
+namespace Tourware\Customizer\Page;
 
 use Tourware\Customizer;
 
+/**
+ * Class Header
+ * @package Tourware\Customizer\Page
+ */
 class Header extends Customizer
 {
 

@@ -7,7 +7,7 @@ class Path
 
     public static function getResourcesFolder()
     {
-        return get_theme_file_path() . '/tourware-resources/';
+        return get_parent_theme_file_path() . '/tourware-resources/';
     }
 
 }

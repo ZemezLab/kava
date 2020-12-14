@@ -2,6 +2,7 @@
 
 namespace Tourware\Elementor\Widget\Listing;
 
+use Funkyproject\ReflectionFile;
 use Tourware\Elementor\Widget;
 use Tourware\Elementor\Loader; // @todo: ugly
 use \Elementor\Core\Kits\Documents\Tabs\Global_Typography;
@@ -142,17 +143,24 @@ abstract class AbstractListing extends \Tourware\Elementor\Widget\Widget
             ),
         ) );
 
+        $layouts = [];
+
+        foreach (glob(\Tourware\Path::getResourcesFolder() . 'layouts/travel/listing/layout*.php') as $layout) {
+            $code = file_get_contents($layout);
+            $name = basename($layout, '.php');
+
+            if (preg_match_all('/\s\*\sName:\s(.*)/', $code, $matches)){
+                $name = str_replace(' * Name: ', '', $matches[0]);
+            }
+
+            $layouts[$layout] = $name;
+        }
+
         $this->add_control( 'template', array(
             'type'    => Controls_Manager::SELECT,
             'label'   => esc_html__( 'Template' ),
             'default' => 'grid',
-            'options' => array(
-                'layout-1'     => esc_html__( 'tourware Layout 1' ),
-                'layout-2'     => esc_html__( 'tourware Layout 2' ),
-                'layout-3'     => esc_html__( 'tourware Layout 3' ),
-                'layout-4'     => esc_html__( 'tourware Layout 4' ),
-                'my-custom-layout'     => esc_html__( 'Meine Welt Reisen my-custom-layout' ), // get from child theme via glob
-            ),
+            'options' => $layouts,
         ) );
 
         $this->add_control( 'design', array(

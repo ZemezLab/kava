@@ -1,9 +1,13 @@
 <?php
 
-namespace Tourware\Customizers\Travel;
+namespace Tourware\Customizer\Travel;
 
 use Tourware\Customizer;
 
+/**
+ * Class Single
+ * @package Tourware\Customizer\Travel
+ */
 class Single extends Customizer
 {
 

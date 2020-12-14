@@ -1,6 +1,6 @@
 <?php
 
-namespace Tourware\Traits;
+namespace Tourware\Mixin;
 
 trait HasImages
 {

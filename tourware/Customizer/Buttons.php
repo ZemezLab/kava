@@ -1,9 +1,13 @@
 <?php
 
-namespace Tourware\Customizers;
+namespace Tourware\Customizer;
 
 use Tourware\Customizer;
 
+/**
+ * Class Buttons
+ * @package Tourware\Customizer
+ */
 class Buttons extends Customizer
 {
 
