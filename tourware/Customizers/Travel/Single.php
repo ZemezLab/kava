@@ -11,7 +11,7 @@ class Single extends Customizer
     {
         return array(
             'single_tour' => array(
-                'title' => esc_html__('Single Tour', 'kava'),
+                'title' => esc_html__('Single Travel', 'kava'),
                 'priority' => 70,
                 'type' => 'panel',
             ),
