@@ -49,11 +49,6 @@ abstract class AbstractListing extends \Tourware\Elementor\Widget\Widget
         throw new \Exception('Needs to be implemented.');
     }
 
-    public function getResourcesFolder()
-    {
-        return get_theme_file_path() . '/tourware-resources/';
-    }
-
     protected function render( $instance = [] )
     {
         if ('tytotravels' === $this->getPostTypeName()) {
@@ -73,17 +68,20 @@ abstract class AbstractListing extends \Tourware\Elementor\Widget\Widget
         $tiny_slider_data = $this->carouselOptions( $settings['layout'], $settings['col'], $settings['col_tablet'], $settings['col_mobile'] );
         $classes          = 'tours-layout-' . $settings['layout'] . ' ht-grid ht-grid-' . $settings['col'] . ' ht-grid-tablet-' . $settings['col_tablet'] . ' ht-grid-mobile-' . $settings['col_mobile'];
         $layout_name      = 'carousel' == $settings['layout'] ? 'not-real-slider' : '';
-        include_once $this->getResourcesFolder() . '/layouts/'.$this->getRecordTypeName().'/listing/template.php'; ?>
-    <?php }
+
+        include_once \Tourware\Path::getResourcesFolder() . '/layouts/' . $this->getRecordTypeName() . '/listing/template.php';
+    }
 
     public function _enqueue_styles() {
-        wp_enqueue_script('throttle-debounce', \Tourware\Elementor\Loader::getElementorWidgetsFolderUri() . $this->get_name().'/assets/js/jquery-throttle-debounce.js', ['jquery']);
-        wp_enqueue_script($this->get_name().'-js', \Tourware\Elementor\Loader::getElementorWidgetsFolderUri() . '/assets/js/script.js', ['jquery', 'throttle-debounce']);
+        wp_enqueue_script('throttle-debounce', \Tourware\Path::getResourcesFolder() . 'js/widget/abstract/listing/jquery-throttle-debounce.js', ['jquery']);
+        wp_enqueue_script('tourware-widget-abstract-listing-js', \Tourware\Path::getResourcesFolder() . 'js/widget/abstract/listing/script.js', ['jquery', 'throttle-debounce']);
+
         wp_localize_script($this->get_name().'-js', 'TytoAjaxVars',
             array(
                 'ajaxurl' => admin_url('admin-ajax.php'),
             )
         );
+
         wp_enqueue_script('lazysizes-script');
     }
 

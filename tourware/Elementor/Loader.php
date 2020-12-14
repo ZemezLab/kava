@@ -79,17 +79,17 @@ class Loader {
 
     public static function getElementorFolder()
     {
-        return get_theme_file_path() . '/elementor/';
+        return get_theme_file_path() . '/elementor/'; // @todo: get rid of this!
     }
 
     public static function getElementorFolderUri()
     {
-        return get_theme_file_uri() . '/elementor/';
+        return get_theme_file_uri() . '/elementor/'; // @todo: get rid of this!
     }
 
     public static function getElementorWidgetsFolderUri()
     {
-        return get_theme_file_uri() . '/elementor/widgets/';
+        return get_theme_file_uri() . '/elementor/widgets/'; // @todo: get rid of this!
     }
 
     /**
@@ -104,11 +104,6 @@ class Loader {
         /* GRID */
         wp_register_style('tyto-grid', self::getElementorFolderUri() . '/assets/css/grid.css');
         wp_register_style('tyto-pagination', self::getElementorFolderUri() . '/assets/css/pagination.css');
-
-        /* FONTS */
-        wp_register_style('tyto-ionicons', self::getElementorFolderUri() . '/assets/css/fonts-ionicons.css');
-        wp_register_style('font-material', 'https://fonts.googleapis.com/icon?family=Material+Icons');
-        wp_register_style('font-material-outlined', 'https://fonts.googleapis.com/icon?family=Material+Icons+Outlined');
 
         /* SLICK SLIDER */
         wp_register_script('slick-script', self::getElementorFolderUri() . '/assets/js/slick.min.js', array('jquery'), false, true);

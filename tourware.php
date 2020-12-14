@@ -109,12 +109,6 @@ function tyto_scripts()
         'font-awesome',
     ) );
 
-    wp_enqueue_style(
-        'custom-style',
-        get_stylesheet_directory_uri() . '/assets/css/custom.css',
-        $styles_depends
-    );
-
     wp_register_style(
         'login-register',
         get_stylesheet_directory_uri().'/assets/css/login-register.css',

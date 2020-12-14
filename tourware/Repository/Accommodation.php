@@ -4,7 +4,7 @@ namespace Tourware\Repository;
 
 use Tourware\Model\Travel as Model;
 
-class Accommodation
+class Accommodation extends Repository
 {
 
     private static $instance = null;

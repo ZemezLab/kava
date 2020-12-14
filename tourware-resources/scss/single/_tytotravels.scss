@@ -1,0 +1,513 @@
+/* ATTRIBUTES */
+.tour-desc {
+  justify-content: flex-start;
+  width: auto;
+  float: none;
+  margin-right: -.5%;
+  margin-left: -.5%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-box-align: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.tour-desc-item {
+  flex-basis: 24%;
+  text-align: center;
+  align-self: stretch;
+  margin-right: .5%;
+  margin-left: .5%;
+  background: #fff;
+  min-height: 90px;
+  margin-bottom: 30px;
+  flex-direction: column;
+  padding: 15px;
+}
+.tour-desc-icon {
+  font-size: 28px;
+}
+.tour-desc-text {
+  margin-top: 5px;
+}
+
+/* MAIN INFO TABLE */
+.tour-table-info {
+  border: 1px dotted #efefef;
+  border-left: 0;
+  border-right: 0;
+  margin: 35px 0 0 0;
+}
+.tour-table-info tr,
+.tour-table-info td {
+  border: 1px dotted #efefef;
+  border-left: 0;
+  border-right: 0;
+  padding: 15px 10px 15px 0;
+  vertical-align: top;
+}
+
+.tour-table-info td:first-of-type {
+  font-weight: 700;
+}
+.tour-table-info tr td {
+  display: block;
+  float: left;
+  width: 100%;
+  border-top: 0;
+}
+.tour-table-info ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.tour-table-info li {
+  line-height: 30px;
+  display: flex;
+  align-items: baseline;
+}
+.tour-table-info [class*="editor-icon"] {
+  font-size: 0;
+}
+.tour-table-info [class*="editor-icon"]:before {
+  font-size: 16px;
+  margin-right: 10px;
+}
+.tour-table-info .highlights li .fa-star:before {
+  margin-right: 10px;
+}
+.tour-table-info .notes li {
+  margin-left: 20px;
+  list-style: disc;
+  display: list-item;
+}
+@media (min-width: 768px) {
+  .tour-table-info tr:first-of-type,
+  .tour-table-info td:first-of-type {
+    width: 215px;
+  }
+}
+@media (max-width: 767px) {
+  .tour-table-info tr {
+    padding: 0;
+    border: none;
+  }
+  .tour-table-info td {
+    display: block;
+    width: 100%;
+    border: 0;
+    padding: 10px 0;
+  }
+  .tour-table-info td:first-of-type {
+    border-bottom: 1px solid #f7f7f7;
+  }
+  .tour-table-info [class*="editor-icon"]:before {
+    font-size: 14px;
+  }
+}
+/* ITINERARY & ACCOMMODATIONS */
+.tour-accommodations,
+.tour-accordion {
+  margin-top: 12px;
+  position: relative;
+  padding-left: 20px;
+  line-height: 24px;
+}
+.tour-accommodations:before,
+.tour-accordion:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 1px;
+  top: 5px;
+  bottom: 5px;
+  border-left: 1px dashed #ddd;
+}
+.tour-acc-item {
+  position: relative;
+  display: block;
+  clear: both;
+}
+.tour-acc-item + .tour-acc-item {
+  margin-top: 20px;
+}
+.tour-acc-item:first-of-type:before {
+  font-size: 12px;
+  position: absolute;
+  left: -25px;
+  top: 4px;
+  z-index: 2;
+  color: #fff;
+}
+.tour-accommodations .tour-acc-item:before,
+.tour-accommodations .tour-acc-item:last-of-type:before,
+.tour-accommodations .tour-acc-item:after {
+  font-weight: bold;
+  font-size: 12px;
+  color: #fff;
+  position: absolute;
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  text-align: center;
+  left: -31px;
+}
+.tour-accommodations .tour-acc-item:before,
+.tour-accommodations .tour-acc-item:last-of-type:before {
+  content: "\e90d";
+  font-family: "gotoicon";
+  z-index: 2;
+  top: 2px;
+}
+.tour-accommodations .tour-acc-item:after {
+  top: 2px;
+  content: '';
+}
+.tour-acc-gallery:not(.tns-slider) {
+  height: 0;
+  max-height: 0;
+  overflow: hidden;
+}
+.tour-acc-gallery-wrapper,
+.tour-acc-gallery {
+  float: left;
+  width: 100%;
+}
+.tour-acc-gallery-wrapper {
+  margin-bottom: 25px;
+}
+.tour-acc-gallery-wrapper .tns-controls {
+  margin-top: -15px;
+}
+.tour-acc-gallery-wrapper .tns-controls [data-controls] {
+  width: 30px;
+  height: 30px;
+}
+.tour-acc-gallery-wrapper .tns-controls [data-controls=prev] {
+  left: 10px;
+}
+.tour-acc-gallery-wrapper .tns-controls [data-controls=next] {
+  right: 10px;
+}
+.tour-acc-gallery .slide-item {
+  position: relative;
+  display: -webkit-inline-flex;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  height: 200px;
+}
+.tour-acc-gallery .slide-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.tour-accommodations .tour-acc-item .tour-acc-info {
+  float: left;
+  width: 100%;
+  margin: 0 0 10px;
+}
+.tour-accommodations .tour-acc-item .tour-acc-content {
+  margin: 10px 0 25px;
+}
+
+.tour-accordion .tour-acc-item:first-of-type:before {
+  content: "\e90d";
+  font-family: "gotoicon";
+}
+
+.tour-acc-item:last-of-type:before {
+  font-size: 17px;
+  position: absolute;
+  left: -22px;
+  top: 4px;
+  z-index: 2;
+  color: #fff;
+}
+.tour-accordion .tour-acc-item:last-of-type:before {
+  content: "\f42c";
+  font-family: "ionicons";
+}
+.tour-accordion .tour-acc-item:first-of-type:after,
+.tour-accordion .tour-acc-item:last-of-type:after {
+  content: '';
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  position: absolute;
+  top: 4px;
+  left: -30px;
+}
+.tour-accordion .tour-acc-item:not(:first-of-type):not(:last-of-type):before,
+.tour-accordion .tour-acc-item:not(:first-of-type):not(:last-of-type):after {
+  content: '';
+  border-radius: 50%;
+  position: absolute;
+}
+.tour-accordion .tour-acc-item:not(:first-of-type):not(:last-of-type):before {
+  background: #fff;
+  width: 6px;
+  height: 6px;
+  left: -23px;
+  top: 9px;
+  z-index: 2;
+}
+.tour-accordion .tour-acc-item:not(:first-of-type):not(:last-of-type):after {
+  width: 16px;
+  height: 16px;
+  left: -28px;
+  top: 4px;
+}
+.tour-acc-head {
+  cursor: pointer;
+  line-height: 26px;
+  user-select: none;
+  letter-spacing: .2px;
+  padding-right: 15px;
+  margin: 25px 0 15px
+}
+.tour-acc-item:first-child .tour-acc-head {
+  margin-top: 0;
+}
+.tour-acc-item:last-child .tour-acc-head {
+  margin: 0;
+}
+.tour-acc-item .tour-acc-content {
+  display: none;
+  margin: 18px 0 30px;
+}
+.tour-acc-item .tour-acc-content.show {
+  display: block;
+}
+
+.tour-acc-content .tour-acc-text {
+  float: left;
+  width: 100%;
+}
+.tour-accordion .tour-acc-head:after {
+  position: absolute;
+  content: '\f078';
+  font-family: FontAwesome;
+  right: 0;
+  top: 0;
+  color: #c0c0c0;
+  transition: all .5s;
+  font-size: .75em;
+}
+.tour-accordion .tour-acc-item .tour-acc-head.active:after {
+  transform: rotate(180deg);
+  color: #666666;
+}
+.tour-acc-content img,
+.tour-acc-content .tour-acc-img {
+  max-width: 250px;
+  max-height: 190px;
+  float: left;
+  margin-right: 12px;
+  padding-top: 6px;
+}
+.tour-acc-content .tour-acc-text p:last-child {
+  margin-bottom: 0;
+}
+.itinerary-accommodation .date,
+.itinerary-accommodation .meal {
+  font-size: .9rem;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.tour-acc-content .itinerary-accommodation {
+  margin-top: 20px;
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  padding: 1rem 1.25rem;
+  float: left;
+  width: 100%;
+}
+.tour-acc-content .itinerary-accommodation img {
+  float: left;
+  max-width: 200px;
+  max-height: 160px;
+  width: auto;
+  margin-right: 12px;
+  margin-bottom: 0;
+  box-sizing: border-box;
+}
+@media (max-width: 767px) {
+  .tour-acc-content .tour-acc-img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: none;
+  }
+}
+
+/* MAP */
+.tour-right-sidebar .tour-map {
+  width: 100%;
+  min-height: 150px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  float: left;
+}
+#map .show-map {
+  display: inline-block;
+  width: auto;
+  padding-left: 35px;
+  padding-right: 35px;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 80%;
+  height: 45px;
+  cursor: pointer;
+  text-align: center;
+  line-height: 43px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+/* TRAVEL DATES & PRICES */
+.termine-header__list {
+  display: flex;
+  background: #f5f5f5;
+  font-size: 16px;
+  line-height: 26px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.termine-header__item:nth-child(1),
+.termine-body__item:nth-child(1) {
+  width: 5%;
+  border-right: 1px solid #e2e6e7;
+}
+.termine-header__item:nth-child(2),
+.termine-header__item:nth-child(3),
+.termine-body__item:nth-child(2),
+.termine-body__item:nth-child(3) {
+  width: 15.1%;
+  border-right: 1px solid #e2e6e7;
+}
+.termine-header__item:nth-child(4),
+.termine-body__item:nth-child(4),
+.termine-header__item:nth-child(5),
+.termine-body__item:nth-child(5){
+  width: 15.8%;
+  border-right: 1px solid #e2e6e7;
+}
+.termine-header__item:nth-child(6),
+.termine-body__item:nth-child(6) {
+  width: 38.2%;
+}
+.termine-header__item,
+.termine-body__item {
+  padding: 8px;
+  box-sizing: border-box;
+}
+.termine-body__list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.termine-body__list:nth-child(even) {
+  background: #f5f5f5;
+}
+.termine-body__item {
+  display: flex;
+  align-items: center;
+}
+.termine-body__caption,
+.termine-body__value .select-title,
+.termine-body__item--select-mobile {
+  display: none;
+}
+.termine-body__value--last {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.termine-body__value--last a.more {
+  margin-left: auto;
+  padding: 2px 10px;
+  line-height: 27px;
+  height: 33px;
+  width: auto;
+}
+.dates-row {
+  cursor: pointer;
+}
+.dates-row input[type="radio"] {
+  display: none;
+}
+.dates-row.active input[type="radio"] + i.far:before,
+.dates-row input[type="radio"]:checked + i.far:before {
+  content: '\f058';
+}
+.dates-row.active {
+  font-weight: bold;
+}
+@media (max-width: 767px) {
+  .termine-header__list {
+    display: none;
+  }
+  .termine-body__list {
+    flex-direction: column;
+    margin-bottom: 15px;
+    padding: 4px 8px;
+    border: 1px solid #E2E6E7;
+    border-bottom: 3px solid #E2E6E7;
+  }
+  .termine-body__item:nth-child(n) {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #E2E6E7;
+    padding: 8px 4px;
+  }
+  .termine-body__caption {
+    display: block;
+    width: 50%;
+    font-weight: 700;
+  }
+  .termine-body__value,
+  .termine-body__value--last {
+    width: 50%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .termine-body__value .select-title {
+    display: inline-block;
+  }
+  .termine-body__item:last-child {
+    border-bottom: 0;
+  }
+  .termine-body__item--select {
+    display: none;
+  }
+  .termine-body__item--select-mobile {
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+    display: block;
+    border: 1px solid #E2E6E7;
+  }
+  .termine-body__list:nth-child(even) {
+    background: transparent;
+  }
+}
+
+/* SIDEBAR */
+.tour-right-sidebar .dates > div {
+  padding: .5rem 1rem;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 10px;
+}

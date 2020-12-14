@@ -24,8 +24,13 @@
         </div>
     <?php } ?>
     <?php
-    if ( 'none' !== $settings['pagi'] && 'grid' == $settings['layout'] ) $this->renderPagination( $query, $settings );
-    if ($settings['pagi'] == 'infinity_scroll')
-        wp_enqueue_script('adv-list-infinity-scroll', \Tourware\Elementor\Loader::getElementorWidgetsFolderUri() . $this->get_name().'/assets/js/infinity-scroll.js', ['jquery', 'throttle-debounce']);
+    if ( 'none' !== $settings['pagi'] && 'grid' == $settings['layout'] ) {
+        $this->renderPagination($query, $settings);
+    }
+
+    if ($settings['pagi'] == 'infinity_scroll') {
+        wp_enqueue_script('adv-list-infinity-scroll', \Tourware\Path::getResourcesFolder() . 'js/widget/abstract/listing/infinity-scroll.js', ['jquery', 'throttle-debounce']);
+    }
+
     wp_reset_postdata(); ?>
 </div>
