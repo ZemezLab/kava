@@ -16,7 +16,7 @@ class Travel extends Model implements Displayable, Imageable
      */
     public function getTitle()
     {
-        return $this->getRawData()->title;
+        return $this->getRawProperty('title');
     }
 
     /**
@@ -24,7 +24,7 @@ class Travel extends Model implements Displayable, Imageable
      */
     public function getTeaser()
     {
-        return substr($this->rawData->description,0, 250);
+        return substr($this->getRawProperty('description'),0, 250);
     }
 
     /**
@@ -32,7 +32,7 @@ class Travel extends Model implements Displayable, Imageable
      */
     public function getPrice()
     {
-        return $this->getRawData()->price;
+        return floatval($this->getRawProperty('price'));
     }
 
     /**
@@ -40,7 +40,7 @@ class Travel extends Model implements Displayable, Imageable
      */
     public function getPaxMin()
     {
-        return intval($this->getRawData()->paxMin);
+        return intval($this->getRawProperty('paxMin'));
     }
 
     /**
@@ -48,7 +48,7 @@ class Travel extends Model implements Displayable, Imageable
      */
     public function getPaxMax()
     {
-        return intval($this->getRawData()->paxMax);
+        return intval($this->getRawProperty('paxMax'));
     }
 
     /**
@@ -56,7 +56,8 @@ class Travel extends Model implements Displayable, Imageable
      */
     public function getItinerary()
     {
-        return $this->getRawData()->itinerary ? $this->getRawData()->itinerary : array();
+        $itinerary = $this->getRawProperty('itinerary');
+        return $itinerary ? $itinerary : array();
     }
 
     /**
@@ -64,7 +65,8 @@ class Travel extends Model implements Displayable, Imageable
      */
     public function getDates()
     {
-        return $this->getRawData()->dates ? $this->getRawData()->dates : array();
+        $dates = $this->getRawProperty('dates');
+        return $dates ? $dates : array();
     }
 
     /**

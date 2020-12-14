@@ -35,10 +35,17 @@ class Theme
         } );
 
         add_action( 'elementor/widgets/widgets_registered', function() {
-//            Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Record\Listing() );
             Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Travel\Listing() );
             Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Accommodation\Listing() );
         } );
+
+        add_filter( 'kava-theme/customizer/options', array(new Customizers\Typography(), 'register'), 99 );
+        add_filter( 'kava-theme/customizer/options', array(new Customizers\Page\Header(), 'register'), 99 );
+        add_filter( 'kava-theme/customizer/options', array(new Customizers\Buttons(), 'register'), 99 );
+        add_filter( 'kava-theme/customizer/options', array(new Customizers\Travel\Single(), 'register'), 99 );
+        add_filter( 'kava-theme/customizer/options', array(new Customizers\Travel\Sidebar(), 'register'), 99 );
+        add_filter( 'kava-theme/customizer/options', array(new Customizers\Accommodation\Single(), 'register'), 99 );
+        add_filter( 'kava-theme/customizer/options', array(new Customizers\Brick\Single(), 'register'), 99 );
 
         return $this;
     }

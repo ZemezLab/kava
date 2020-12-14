@@ -4,6 +4,7 @@ namespace Tourware;
 
 abstract class Model
 {
+
     /**
      * @var object
      */
@@ -31,7 +32,7 @@ abstract class Model
      */
     public function __get($name)
     {
-        return $this->rawData->$name;
+        return $this->getRawProperty($name);
     }
 
     /**
@@ -47,6 +48,16 @@ abstract class Model
      */
     public function getRawData() {
         return $this->rawData;
+    }
+
+    /**
+     * @param $name
+     * @return string
+     */
+    protected function getRawProperty($name)
+    {
+        $data = $this->getRawData();
+        return isset($data->$name) ? $data->$name : '';
     }
 
 }

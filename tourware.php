@@ -22,6 +22,116 @@ $theme->run();
 
 // legacy stuff
 
+
+// Brick customizer
+function tyto_single_brick_header_layout_1() { return get_theme_mod('single_brick_header_layout', 'layout-1') == 'layout-1'; }
+function tyto_single_brick_header_layout_3() { return get_theme_mod('single_brick_header_layout', 'layout-1') == 'layout-3'; }
+function tyto_single_brick_header_video_autoplay() {
+    return tyto_single_brick_header_layout_1() && get_theme_mod('brick_header_video', true) == true;
+}
+function tyto_single_brick_show_share_button() { return get_theme_mod('brick_share_button', true) == true; }
+
+//related (sidebar)
+function tyto_single_brick_show_related_sidebar() { return get_theme_mod('brick_related_show_sidebar', true) == true; }
+function tyto_single_brick_related_show_excerpt_sidebar() {
+    return tyto_single_brick_show_related_sidebar() && get_theme_mod('brick_related_show_excerpt', true) == true;
+}
+function tyto_single_brick_group_related_sidebar() {
+    return tyto_single_brick_show_related_sidebar() && get_theme_mod('brick_group_related', false) == true;
+}
+function tyto_single_brick_dont_group_related_sidebar() {
+    return tyto_single_brick_show_related_sidebar() && get_theme_mod('brick_group_related', false) == false;
+}
+//related (content)
+function tyto_single_brick_show_related_content() { return get_theme_mod('brick_related_show_content', true) == true; }
+function tyto_single_brick_related_show_excerpt_content() {
+    return tyto_single_brick_show_related_content() && get_theme_mod('brick_related_show_excerpt_content', true) == true;
+}
+function tyto_single_brick_group_related_content() {
+    return tyto_single_brick_show_related_content() && get_theme_mod('brick_group_related_content', false) == true;
+}
+function tyto_single_brick_dont_group_related_content() {
+    return tyto_single_brick_show_related_content() && get_theme_mod('brick_group_related_content', false) == false;
+}
+
+// Page Header Customizer
+function tyto_header_menu_header_btn() { return get_theme_mod('header_btn', false) == true; }
+function tyto_header_menu_header_btn_page() {
+    return get_theme_mod('header_btn', false) == true && get_theme_mod('header_btn_link_type', 'page') == 'page';
+}
+function tyto_header_is_bottom_aligned() { return get_theme_mod('header_vertical_align', 'center') == 'flex-end'; }
+function tyto_show_login_button() { return get_theme_mod('tyto_show_login_button', false); }
+function tyto_show_registration_link() {
+    return get_theme_mod('tyto_show_login_button', false) &&  get_theme_mod('tyto_show_registration_link', false);
+}
+
+// Single Travel Customizer
+function tyto_single_tour_header_layout_1() { return get_theme_mod('single_tour_header_layout', 'layout-1') == 'layout-1'; }
+function tyto_single_tour_header_layout_3() { return get_theme_mod('single_tour_header_layout', 'layout-1') == 'layout-3'; }
+function tyto_single_tour_header_video_autoplay() {
+    return tyto_single_tour_header_layout_1() && get_theme_mod('tour_header_video', true) == true;
+}
+function tyto_single_tour_show_attributes() { return get_theme_mod('tour_attributes', true) == true; }
+function tyto_single_tour_show_share_button() { return get_theme_mod('tour_share_button', true) == true; }
+
+function tyto_single_tour_show_accommodations() { return get_theme_mod('tour_show_accommodations', false) == true; }
+
+//related (sidebar)
+function tyto_single_tour_show_related_sidebar() { return get_theme_mod('tour_related_show_sidebar', true) == true; }
+function tyto_single_tour_related_show_excerpt_sidebar() {
+    return tyto_single_tour_show_related_sidebar() && get_theme_mod('tour_related_show_excerpt', true) == true;
+}
+function tyto_single_tour_group_related_sidebar() {
+    return tyto_single_tour_show_related_sidebar() && get_theme_mod('tour_group_related', false) == true;
+}
+function tyto_single_tour_dont_group_related_sidebar() {
+    return tyto_single_tour_show_related_sidebar() && get_theme_mod('tour_group_related', false) == false;
+}
+//related (content)
+function tyto_single_tour_show_related_content() { return get_theme_mod('tour_related_show_content', true) == true; }
+function tyto_single_tour_related_show_excerpt_content() {
+    return tyto_single_tour_show_related_content() && get_theme_mod('tour_related_show_excerpt_content', true) == true;
+}
+function tyto_single_tour_group_related_content() {
+    return tyto_single_tour_show_related_content() && get_theme_mod('tour_group_related_content', false) == true;
+}
+function tyto_single_tour_dont_group_related_content() {
+    return tyto_single_tour_show_related_content() && get_theme_mod('tour_group_related_content', false) == false;
+}
+function tyto_tour_show_map_preview() { return get_theme_mod('tour_show_map_preview', true); }
+function tyto_single_tour_show_price() { return get_theme_mod('tour_show_price', true); }
+
+// Single Accommodation Customizer
+function tyto_single_accommodation_header_layout_1() { return get_theme_mod('single_accommodation_header_layout', 'layout-1') == 'layout-1'; }
+function tyto_single_accommodation_header_layout_3() { return get_theme_mod('single_accommodation_header_layout', 'layout-1') == 'layout-3'; }
+function tyto_single_accommodation_header_video_autoplay() {
+    return tyto_single_accommodation_header_layout_1() && get_theme_mod('accommodation_header_video', true) == true;
+}
+function tyto_single_accommodation_show_share_button() { return get_theme_mod('accommodation_share_button', true) == true; }
+
+//related (sidebar)
+function tyto_single_accommodation_show_related_sidebar() { return get_theme_mod('accommodation_related_show_sidebar', true) == true; }
+function tyto_single_accommodation_related_show_excerpt_sidebar() {
+    return tyto_single_accommodation_show_related_sidebar() && get_theme_mod('accommodation_related_show_excerpt', true) == true;
+}
+function tyto_single_accommodation_group_related_sidebar() {
+    return tyto_single_accommodation_show_related_sidebar() && get_theme_mod('accommodation_group_related', false) == true;
+}
+function tyto_single_accommodation_dont_group_related_sidebar() {
+    return tyto_single_accommodation_show_related_sidebar() && get_theme_mod('accommodation_group_related', false) == false;
+}
+//related (content)
+function tyto_single_accommodation_show_related_content() { return get_theme_mod('accommodation_related_show_content', true) == true; }
+function tyto_single_accommodation_related_show_excerpt_content() {
+    return tyto_single_accommodation_show_related_content() && get_theme_mod('accommodation_related_show_excerpt_content', true) == true;
+}
+function tyto_single_accommodation_group_related_content() {
+    return tyto_single_accommodation_show_related_content() && get_theme_mod('accommodation_group_related_content', false) == true;
+}
+function tyto_single_accommodation_dont_group_related_content() {
+    return tyto_single_accommodation_show_related_content() && get_theme_mod('accommodation_group_related_content', false) == false;
+}
+
 /**
  * Child functions and definitions.
  */
@@ -744,30 +854,6 @@ function tyto_get_all_itinerary_accommodations($record) {
     }
 
     return $accommodations;
-}
-
-function tyto_update_theme_mods($options) {
-    $mods = get_theme_mods();
-
-    foreach ( $options as $id => $option ) {
-//        print_r($option);
-
-        if ( 'control' != $option['type'] ) {
-            continue;
-        }
-
-        if ( isset( $mods[ $id ] ) ) {
-            continue;
-        }
-
-        $mods[ $id ] = tyto_get_default_theme_mod_value( $options, $id );
-    }
-    $theme = get_option( 'stylesheet' );
-    update_option( "theme_mods_$theme", $mods );
-}
-
-function tyto_get_default_theme_mod_value($options, $id) {
-    return isset( $options[ $id ]['default'] ) ? $options[ $id ]['default'] : null;
 }
 
 add_action( 'after_setup_theme', function(){
