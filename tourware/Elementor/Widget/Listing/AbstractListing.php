@@ -2,7 +2,6 @@
 
 namespace Tourware\Elementor\Widget\Listing;
 
-use Funkyproject\ReflectionFile;
 use Tourware\Elementor\Widget;
 use Tourware\Elementor\Loader; // @todo: ugly
 use \Elementor\Core\Kits\Documents\Tabs\Global_Typography;
@@ -10,8 +9,9 @@ use \Elementor\Group_Control_Typography;
 use \Elementor\Controls_Manager;
 use \Elementor\Plugin;
 use \Elementor\Core\Schemes as Schemes;
+use Tourware\Path;
 
-abstract class AbstractListing extends \Tourware\Elementor\Widget\Widget
+abstract class AbstractListing extends Widget
 {
 
     /**
@@ -143,25 +143,7 @@ abstract class AbstractListing extends \Tourware\Elementor\Widget\Widget
             ),
         ) );
 
-        $layouts = [];
-
-        foreach (glob(\Tourware\Path::getResourcesFolder() . 'layouts/travel/listing/layout*.php') as $layout) {
-            $code = file_get_contents($layout);
-            $name = basename($layout, '.php');
-
-            if (preg_match_all('/\s\*\sName:\s(.*)/', $code, $matches)){
-                $name = str_replace(' * Name: ', '', $matches[0]);
-            }
-
-            $layouts[$layout] = $name;
-        }
-
-        $this->add_control( 'template', array(
-            'type'    => Controls_Manager::SELECT,
-            'label'   => esc_html__( 'Template' ),
-            'default' => 'grid',
-            'options' => $layouts,
-        ) );
+        $this->addControl(new \Tourware\Elementor\Control\LayoutSelector());
 
         $this->add_control( 'design', array(
             'type'    => Controls_Manager::SELECT,

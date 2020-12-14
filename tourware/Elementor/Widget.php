@@ -1,6 +1,8 @@
 <?php
 
-namespace Tourware\Elementor\Widget;
+namespace Tourware\Elementor;
+
+use Tourware\Elementor\Control;
 
 abstract class Widget extends \Elementor\Widget_Base
 {
@@ -37,6 +39,11 @@ abstract class Widget extends \Elementor\Widget_Base
     public function get_categories()
     {
         return [ 'tyto' ];
+    }
+
+    public function addControl(Control $control)
+    {
+        $this->add_control( $control->getId(), $control->getConfig() );
     }
 
 }
