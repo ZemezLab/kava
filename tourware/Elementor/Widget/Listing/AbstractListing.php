@@ -145,19 +145,6 @@ abstract class AbstractListing extends Widget
 
         $this->addControl(new \Tourware\Elementor\Control\LayoutSelector('travel/listing'));
 
-        $this->add_control( 'design', array(
-            'type'    => Controls_Manager::SELECT,
-            'label'   => esc_html__( 'Card Design' ),
-            'default' => 'goto',
-            'options' => array(
-                'clean'     => esc_html__( 'Clean' ),
-                'goto'      => esc_html__( 'Goto' ),
-                'voyage'    => esc_html__( 'Voyage' ),
-                'grand-tour'    => esc_html__( 'Grand Tour' ),
-                'colibri'    => esc_html__( 'Colibri' ),
-            ),
-        ) );
-
         $this->add_responsive_control( 'col', array(
             'type'           => Controls_Manager::SELECT,
             'label'          => esc_html__( 'Columns', 'tyto' ),

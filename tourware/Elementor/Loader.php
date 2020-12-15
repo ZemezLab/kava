@@ -4,6 +4,7 @@ namespace Tourware\Elementor;
 
 use Elementor\Plugin;
 use ElementorTyto\Widgets\Widget_Advanced_Tyto_List;
+use Tourware\Path;
 
 /**
  * Class Loader
@@ -552,8 +553,13 @@ class Loader {
             'crop' => 'thumb'
         ]);
 
-        if ($settings['template'] !== 'none') {
-            include $settings['template'];
+
+        $parts = explode('##', $settings['template']);
+
+        if ($parts[0] === 'tourware') {
+            include Path::getResourcesFolder() . 'layouts/' . $parts[1] . '/' . $parts[2] . '.php';
+        } else {
+            include Path::getChildResourcesFolder() . 'layouts/' . $parts[1] . '/' . $parts[2] . '.php';
         }
     }
 

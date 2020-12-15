@@ -32,13 +32,15 @@ class LayoutSelector extends Control
 
         foreach (glob(\Tourware\Path::getResourcesFolder() . 'layouts/' . $this->widgetPathPart . '/layout*.php') as $layout) {
             $code = file_get_contents($layout);
-            $name = basename($layout, '.php');
+            $basename = basename($layout, '.php');
 
             if (preg_match_all('/\s\*\sName:\s(.*)/', $code, $matches)){
                 $name = str_replace(' * Name: ', '', $matches[0]);
+            } else {
+                $name = $basename;
             }
 
-            $layouts[$layout] = $name;
+            $layouts['tourware##' . $this->widgetPathPart . '##' . $basename] = $name;
         }
 
         if (Path::getChildResourcesFolder() !== Path::getResourcesFolder()) {
@@ -50,7 +52,7 @@ class LayoutSelector extends Control
                     $name = str_replace(' * Name: ', '', $matches[0]);
                 }
 
-                $layouts[$layout] = $name;
+                $layouts['child##' . $this->widgetPathPart . '##' .$name ] = $name;
             }
         }
 
