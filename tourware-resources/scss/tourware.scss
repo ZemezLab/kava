@@ -1,9 +1,5 @@
-.elementor-widget {
-
-  @import "widget/search";
-  @import "widget/abstract/listing";
-
-}
+@import "widget/search";
+@import "widget/abstract/listing";
 
 // Single Views
 @import "single/tytotravels";

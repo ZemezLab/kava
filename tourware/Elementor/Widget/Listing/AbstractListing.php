@@ -143,7 +143,7 @@ abstract class AbstractListing extends Widget
             ),
         ) );
 
-        $this->addControl(new \Tourware\Elementor\Control\LayoutSelector());
+        $this->addControl(new \Tourware\Elementor\Control\LayoutSelector('travel/listing'));
 
         $this->add_control( 'design', array(
             'type'    => Controls_Manager::SELECT,

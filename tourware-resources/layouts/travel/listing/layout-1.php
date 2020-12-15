@@ -17,8 +17,8 @@
                 <?php } else { ?>
                     class="tns-lazy tns-lazy-img"
                 <?php } ?>
-                    data-src="<?php echo $img_src ?>"
-                    alt="<?php esc_html_e($title) ?>">
+                        data-src="<?php echo $img_src ?>"
+                        alt="<?php esc_html_e($title) ?>">
             </a>
             <?php if (isset($badge) && !empty($badge)) { ?>
                 <span class="tour-label"><?php esc_html_e($badge) ?></span>

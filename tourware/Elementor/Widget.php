@@ -16,12 +16,6 @@ abstract class Widget extends \Elementor\Widget_Base
     {
         parent::__construct($data, $args);
 
-        $this->add_render_attribute(
-            '_wrapper', 'class', [
-                'tourware-widget'
-            ]
-        );
-
         $this->_enqueue_styles();
     }
 

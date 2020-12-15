@@ -1,3 +1,9 @@
+<?php
+/**
+ * Name: tourware Layout 2
+ */
+?>
+
 <?php if ($item_data->tags) {
     foreach ($item_data->tags as $tag) {
         if ($tag->name == 'mit Flug')

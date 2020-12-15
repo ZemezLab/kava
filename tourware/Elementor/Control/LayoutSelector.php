@@ -13,11 +13,24 @@ class LayoutSelector extends Control
     protected $type = Controls_Manager::SELECT;
     protected $label = 'Template';
 
+    protected $widgetPathPart;
+
+    public function __construct($widgetPathPart)
+    {
+        if (!$widgetPathPart) {
+            throw new \Exception('$widgetPathPart is missing');
+        }
+
+        $this->widgetPathPart = $widgetPathPart;
+    }
+
     public function getConfig()
     {
-        $layouts = [];
+        $layouts = [
+            'none' => __('None', 'tourware')
+        ];
 
-        foreach (glob(\Tourware\Path::getResourcesFolder() . 'layouts/travel/listing/layout*.php') as $layout) {
+        foreach (glob(\Tourware\Path::getResourcesFolder() . 'layouts/' . $this->widgetPathPart . '/layout*.php') as $layout) {
             $code = file_get_contents($layout);
             $name = basename($layout, '.php');
 
@@ -29,7 +42,7 @@ class LayoutSelector extends Control
         }
 
         if (Path::getChildResourcesFolder() !== Path::getResourcesFolder()) {
-            foreach (glob(\Tourware\Path::getChildResourcesFolder() . 'layouts/travel/listing/*.php') as $layout) {
+            foreach (glob(\Tourware\Path::getChildResourcesFolder() . 'layouts/' . $this->widgetPathPart . '/*.php') as $layout) {
                 $code = file_get_contents($layout);
                 $name = basename($layout, '.php');
 
@@ -44,6 +57,7 @@ class LayoutSelector extends Control
         return array(
             'type'    => $this->getType(),
             'label'   => $this->getLabel(),
+            'default' => 'none',
             'options' => $layouts
         );
     }

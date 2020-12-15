@@ -1,3 +1,8 @@
+<?php
+/**
+ * Name: tourware Layout 5
+ */
+?>
 <div class="ht-grid-item">
     <div class="tour-item">
         <div class="tour-head item-image-holder">

@@ -552,7 +552,9 @@ class Loader {
             'crop' => 'thumb'
         ]);
 
-        include self::getElementorFolder() . '/designs/'.$settings['design'].'.php';
+        if ($settings['template'] !== 'none') {
+            include $settings['template'];
+        }
     }
 
     public static function getPostIDsByKeywords($search_str) {
