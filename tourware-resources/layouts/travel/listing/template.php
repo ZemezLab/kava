@@ -29,7 +29,7 @@
     }
 
     if ($settings['pagi'] == 'infinity_scroll') {
-        wp_enqueue_script('adv-list-infinity-scroll', \Tourware\Path::getResourcesFolder() . 'js/widget/abstract/listing/infinity-scroll.js', ['jquery', 'throttle-debounce']);
+        wp_enqueue_script('adv-list-infinity-scroll', \Tourware\Path::getResourcesUri() . 'js/widget/abstract/listing/infinity-scroll.js', ['jquery', 'throttle-debounce']);
     }
 
     wp_reset_postdata(); ?>

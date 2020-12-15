@@ -224,7 +224,7 @@ class Loader {
     }
 
     public function enqueue_editor() {
-        wp_enqueue_style('tyto-elementor-editor-css', get_parent_theme_file_path() . '/elementor/assets/css/editor.css');
+//        wp_enqueue_style('tyto-elementor-editor-css', get_parent_theme_file_uri() . '/tourware-resources/editor.css');
     }
 
     public function enqueue_styles() {

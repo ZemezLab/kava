@@ -74,8 +74,8 @@ abstract class AbstractListing extends Widget
     }
 
     public function _enqueue_styles() {
-        wp_enqueue_script('throttle-debounce', \Tourware\Path::getResourcesFolder() . 'js/widget/abstract/listing/jquery-throttle-debounce.js', ['jquery']);
-        wp_enqueue_script('tourware-widget-abstract-listing-js', \Tourware\Path::getResourcesFolder() . 'js/widget/abstract/listing/script.js', ['jquery', 'throttle-debounce']);
+        wp_enqueue_script('throttle-debounce', \Tourware\Path::getResourcesUri() . 'js/widget/abstract/listing/jquery-throttle-debounce.js', ['jquery']);
+        wp_enqueue_script('tourware-widget-abstract-listing-js', \Tourware\Path::getResourcesUri() . 'js/widget/abstract/listing/script.js', ['jquery', 'throttle-debounce']);
 
         wp_localize_script($this->get_name().'-js', 'TytoAjaxVars',
             array(
