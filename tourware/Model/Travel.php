@@ -74,6 +74,15 @@ class Travel extends Model implements Displayable, Imageable
     }
 
     /**
+     * @return array
+     */
+    public function getTags()
+    {
+        $tags = $this->getRawProperty('tags');
+        return $tags ? $tags : array();
+    }
+
+    /**
      * @return int
      */
     public function getItineraryLength()

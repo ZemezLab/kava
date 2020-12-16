@@ -143,7 +143,7 @@ abstract class AbstractListing extends Widget
             ),
         ) );
 
-        $this->addControl(new \Tourware\Elementor\Control\LayoutSelector('travel/listing'));
+        $this->addControl(new \Tourware\Elementor\Control\LayoutSelector($this->getRecordTypeName().'/listing'));
 
         $this->add_responsive_control( 'col', array(
             'type'           => Controls_Manager::SELECT,
@@ -361,7 +361,7 @@ abstract class AbstractListing extends Widget
         );
 
         $tags = [];
-        if ($tyto_tags = get_option('tyto_tags', false)) $tags = wp_list_pluck($tyto_tags, 'name', 'id');
+        if ($tyto_tags = get_option('tyto_tags', false)) $tags = wp_list_pluck($tyto_tags, 'name', 'name');
 
         $this->add_control(
             'badge_tag',
@@ -1219,6 +1219,7 @@ abstract class AbstractListing extends Widget
             "items"      => intval( $col_mobile ),
             "controls"   => 'yes' == $settings['arrows'] && 'yes' != $settings['arrows_mobile'] ? true : false,
             "nav"        => 'yes' == $settings['dots'] && 'yes' != $settings['dots_mobile'] ? true : false,
+            "lazyload"   => true,
             "autoHeight" => true,
             'slideBy' => $col_mobile,
             "responsive" => array(

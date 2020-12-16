@@ -1618,7 +1618,7 @@
 }
 
 .tns-controls [data-controls]:before {
-  font-family: Ionicons;
+  font-family: FontAwesome;
   font-size: 18px
 }
 
@@ -1627,7 +1627,7 @@
 }
 
 .tns-controls [data-controls=prev]:before {
-  content: "\f3d2"
+  content: "\f053"
 }
 
 .tns-controls [data-controls=next] {
@@ -1635,7 +1635,7 @@
 }
 
 .tns-controls [data-controls=next]:before {
-  content: "\f3d3"
+  content: "\f054"
 }
 
 .tns-nav {

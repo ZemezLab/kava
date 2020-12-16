@@ -1,5 +1,7 @@
-<?php use Tourware\Elementor\Loader; ?>
-<div class="advanced-tyto-list <?php echo esc_attr( $settings['design'] );  ?>" <?php if ($settings['adv_list_id']) echo 'id="'.$settings['adv_list_id'].'"'?>>
+<?php use Tourware\Elementor\Loader;
+$parts = explode('##', $settings['template']);
+?>
+<div class="advanced-tyto-list <?php echo esc_attr( $parts[2] );  ?>" <?php if ($settings['adv_list_id']) echo 'id="'.$settings['adv_list_id'].'"'?>>
     <div class="<?php echo $classes ?>">
         <div class="tours-content <?php echo esc_attr( $layout_name ); echo $this->get_id();?> "
              id="<?php echo esc_attr( $tiny_slider_id ); ?>" <?php echo wp_kses_post( $tiny_slider_data ); ?>>

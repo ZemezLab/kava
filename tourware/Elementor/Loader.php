@@ -380,6 +380,7 @@ class Loader {
             // TODO repository factory
             // $repository = \Tourware\RepositoryFactory::getRepositoryByPostType(get_post_type());
             $item_data = \Tourware\Repository\Travel::getInstance()->findOneByPostId(get_the_ID());
+
             Loader::renderListItem($item_data,$settings);
         endwhile;
 
@@ -488,6 +489,7 @@ class Loader {
      * @param $settings
      */
     public static function renderListItem($item_data, $settings) {
+//        print_r($item_data);
         $post = get_post(get_the_ID());
         $img_width = $img_height = 1200 / $settings['col'];
         /*VARIABLES*/
@@ -511,8 +513,8 @@ class Loader {
 
         $badge = false;
         if ($settings['show_badge']) {
-            if ($item_data->tags) {
-                foreach ($item_data->tags as $tag) {
+            if ($tags = $item_data->getTags()) {
+                foreach ($tags as $tag) {
                     if (is_array($settings['badge_tag'])) {
                         foreach ($settings['badge_tag'] as $settings_tag) {
                             if ($tag->name == $settings_tag) {
