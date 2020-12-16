@@ -5,6 +5,18 @@
 @import "single/tytotravels";
 
 
+// Kava fixes
+body:not(.page-template-fullwidth-content) .site-content {
+  margin-top: 0px;
+}
+
+.elementor-posts {
+  .elementor-post__read-more {
+    color: var( --e-global-color-text );
+    font-weight: var( --e-global-typography-primary-font-weight );
+  }
+}
+
 // Editor
 .elementor-label-inline>.elementor-control-content>.elementor-control-field>.elementor-control-input-wrapper {
   width: 55%;

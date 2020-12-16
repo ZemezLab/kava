@@ -30,6 +30,10 @@ class Theme
         $elementor = new Elementor();
         $elementor->init();
 
+        add_action( 'init', function () {
+            register_taxonomy_for_object_type( 'category', 'page' );
+        } );
+
         add_action( 'wp_enqueue_scripts', function () {
             wp_enqueue_style('tourware', get_parent_theme_file_uri() . '/tourware-resources/scss/tourware.css');
         } );
@@ -43,6 +47,7 @@ class Theme
             Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Accommodation\Listing() );
         } );
 
+        // Legacy
         add_filter( 'kava-theme/customizer/options', array(new Customizer\Typography(), 'register'), 99 );
         add_filter( 'kava-theme/customizer/options', array(new Customizer\Page\Header(), 'register'), 99 );
         add_filter( 'kava-theme/customizer/options', array(new Customizer\Buttons(), 'register'), 99 );
@@ -50,6 +55,11 @@ class Theme
         add_filter( 'kava-theme/customizer/options', array(new Customizer\Travel\Sidebar(), 'register'), 99 );
         add_filter( 'kava-theme/customizer/options', array(new Customizer\Accommodation\Single(), 'register'), 99 );
         add_filter( 'kava-theme/customizer/options', array(new Customizer\Brick\Single(), 'register'), 99 );
+
+        // Correct way
+        add_action( 'customize_register', function ($wp_customize) {
+            new Customizer\Page\General($wp_customize);
+        } );
 
         return $this;
     }

@@ -35,6 +35,11 @@ abstract class Widget extends \Elementor\Widget_Base
         return [ 'tyto' ];
     }
 
+    public function _enqueue_styles()
+    {
+
+    }
+
     public function addControl(Control $control)
     {
         $this->add_control( $control->getId(), $control->getConfig() );
