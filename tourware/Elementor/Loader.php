@@ -247,7 +247,6 @@ class Loader {
 
         $this->include_dynamic_tags_files();
         // Finally register the tag
-        $dynamic_tags->register_tag( 'Elementor_Server_Var_Tag' );
     }
 
     public static function search_autocomplete() {
