@@ -26,11 +26,8 @@ jobs:
     - name: Update annotations
       run: php annotation.php ${{ steps.get_version.outputs.VERSION }}
       
-    - name: Create theme folder
-      run: sudo mv `ls -1 | grep -v tourware-theme` tourware-theme
-      
     - name: Archive the release
-      run: php zip.php
+      run: sudo php zip.php
         
     - name: 📂 Sync zip file
       uses: bayssmekanique/action-simple-file-upload@v1
