@@ -5,9 +5,9 @@ require_once 'tourware/Theme.php';
 require_once 'update-checker/plugin-update-checker.php';
 
 $updateChecker = Puc_v4_Factory::buildUpdateChecker(
-    'https://update.tourware.net/?action=get_metadata&slug=tourware-theme',
+    'https://update.tourware.net/?action=get_metadata&slug=tourware',
     __FILE__,
-    'tourware-theme'
+    'tourware'
 );
 
 spl_autoload_register(function ($class) {
