@@ -25,7 +25,7 @@ foreach ($files as $name => $file)
             substr($relativePath, 0, 5) !== '.idea' &&
             substr($relativePath, 0, 7) !== 'zip.php'
         ) {
-            $zip->addFile($filePath, 'tourware\\' . $relativePath);
+            $zip->addFile($filePath, 'tourware/' . $relativePath);
         }
     }
 }
