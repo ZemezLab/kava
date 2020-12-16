@@ -1,0 +1,45 @@
+on:
+  push:
+    tags:
+      - '*'
+name: 🚀 Release a new theme version
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@master
+      
+    - name: Get the version
+      id: get_version
+      run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+      
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+      
+    - name: run composer
+      uses: php-actions/composer@v4
+      
+    - name: Update annotations
+      run: php annotation.php ${{ steps.get_version.outputs.VERSION }}
+      
+    - name: Create theme folder
+      run: sudo mv `ls -1 | grep -v tourware-theme` tourware-theme
+      
+    - name: Archive Release
+      uses: thedoctor0/zip-release@master
+      with:
+        filename: 'tourware-theme.zip'
+        exclusions: '*.git* /*node_modules/* .editorconfig'
+        
+    - name: 📂 Sync zip file
+      uses: bayssmekanique/action-simple-file-upload@v1
+      with:
+        user: release_plugin
+        password: ${{ secrets.update_ftp_pass }}
+        host: update.tourware.net
+        src: tourware-theme.zip
+        dest: tourware-theme.zip
