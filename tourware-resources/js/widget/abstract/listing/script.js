@@ -11,10 +11,9 @@ jQuery(document).ready(function ($) {
 })
 
 function add_tyto_items($page_num, trigger) {
-
     var $args = $page_num.closest('.tyto-pagination').data('args');
     var $container = $page_num.closest('.advanced-tyto-list');
-    var id = $page_num.closest('.elementor-widget-advanced-tyto-list').data('id');
+    var id = $page_num.closest('.elementor-widget-tourware-travel-listing, .elementor-widget-tourware-accommodation-listing').data('id');
     var post_id = $page_num.closest('.tyto-pagination').data('post_id');
     if (trigger === 'search' || trigger === 'click' && $page_num.closest('ul.page-numbers').hasClass('numbers')) {
         jQuery('.autocompete-result').remove();

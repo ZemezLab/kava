@@ -378,12 +378,15 @@ class Loader {
         ob_start();
         while ( $query->have_posts() ):
             $query->the_post();
-
-            $item_data = json_decode(get_post_meta(get_the_ID(), 'tytorawdata', true));
+            // TODO repository factory
+            // $repository = \Tourware\RepositoryFactory::getRepositoryByPostType(get_post_type());
+            $item_data = \Tourware\Repository\Travel::getInstance()->findOneByPostId(get_the_ID());
             Loader::renderListItem($item_data,$settings);
         endwhile;
 
         $html = ob_get_clean();
+
+
 
         if (empty($html) && $settings['advanced_search'] == 'yes' && $settings['search_not_found'])
             $res['posts'] = '<h4 style="margin: 20px auto;">'.$settings['search_not_found'].'</h4>';

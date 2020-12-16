@@ -77,7 +77,7 @@ abstract class AbstractListing extends Widget
         wp_enqueue_script('throttle-debounce', \Tourware\Path::getResourcesUri() . 'js/widget/abstract/listing/jquery-throttle-debounce.js', ['jquery']);
         wp_enqueue_script('tourware-widget-abstract-listing-js', \Tourware\Path::getResourcesUri() . 'js/widget/abstract/listing/script.js', ['jquery', 'throttle-debounce']);
 
-        wp_localize_script($this->get_name().'-js', 'TytoAjaxVars',
+        wp_localize_script('tourware-widget-abstract-listing-js', 'TytoAjaxVars',
             array(
                 'ajaxurl' => admin_url('admin-ajax.php'),
             )
