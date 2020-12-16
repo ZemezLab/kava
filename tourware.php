@@ -2,6 +2,13 @@
 
 require_once 'vendor/autoload.php';
 require_once 'tourware/Theme.php';
+require_once 'update-checker/plugin-update-checker.php';
+
+$updateChecker = Puc_v4_Factory::buildUpdateChecker(
+    'https://update.tourware.net/?action=get_metadata&slug=tourware-theme',
+    __FILE__,
+    'tourware-theme'
+);
 
 spl_autoload_register(function ($class) {
     $file = str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
