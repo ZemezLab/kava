@@ -171,7 +171,7 @@ var Kava_Theme_JS;
 				return false;
 			} );
 
-			$( window ).scroll( function() {
+			$( window ).on( 'scroll', function() {
 				var scrollTop = $( window ).scrollTop();
 
 				if ( scrollTop > settings.min )

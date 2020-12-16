@@ -1032,7 +1032,7 @@ function kava_get_customizer_options() {
 				'priority'        => 50,
 				'panel'           => 'typography',
 				'type'            => 'section',
-				'active_callback' => '__false',
+				'active_callback' => '__return_false',
 			),
 			'breadcrumbs_font_family' => array(
 				'title'   => esc_html__( 'Font Family', 'kava' ),
