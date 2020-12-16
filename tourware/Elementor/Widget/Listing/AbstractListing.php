@@ -712,10 +712,8 @@ abstract class AbstractListing extends Widget
     }
 
     protected function sectionAttributes() {
-        if (class_exists('Goto_Kirki')) {
-            $primary_color = \Goto_Kirki::get_option('goto', 'primary_color');
-            $second_color = \Goto_Kirki::get_option('goto', 'second_color');
-        }
+        $primary_color = get_theme_mod('accent_color');
+        $invert_text_color = get_theme_mod('invert_text_color');;
 
         $this->start_controls_section( 'card', array(
             'label'     => esc_html__( 'Card', 'tyto' ),
@@ -1029,11 +1027,10 @@ abstract class AbstractListing extends Widget
             [
                 'type'      => Controls_Manager::COLOR,
                 'label'     => esc_html__( 'Price text color', 'tyto' ),
-                'default'   => isset($second_color) ? $second_color : '#40c1b9',
+                'default'   => empty($invert_text_color) ? '#ffffff' : $invert_text_color,
                 'selectors' => array(
                     '{{WRAPPER}} .advanced-tyto-list .tour-item .price' => 'color: {{VALUE}};'
                 ),
-                'condition' => ['design' => 'voyage'],
             ]
         );
 
@@ -1041,11 +1038,10 @@ abstract class AbstractListing extends Widget
             [
                 'type'      => Controls_Manager::COLOR,
                 'label'     => esc_html__( 'Price background color', 'tyto' ),
-                'default'   => isset($primary_color) ? $primary_color : '#FF4A52',
+                'default'   => empty($primary_color) ? '#FF4A52' : $primary_color,
                 'selectors' => array(
                     '{{WRAPPER}} .advanced-tyto-list .tour-item .price' => 'background-color: {{VALUE}};'
                 ),
-                'condition' => ['design' => ['goto', 'grand-tour']],
             ]
         );
 

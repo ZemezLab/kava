@@ -26,9 +26,7 @@ class LayoutSelector extends Control
 
     public function getConfig()
     {
-        $layouts = [
-            'none' => __('None', 'tourware')
-        ];
+        $layouts = [];
 
         foreach (glob(\Tourware\Path::getResourcesFolder() . 'layouts/' . $this->widgetPathPart . '/layout*.php') as $layout) {
             $code = file_get_contents($layout);
@@ -56,10 +54,12 @@ class LayoutSelector extends Control
             }
         }
 
+        $keys = array_keys($layouts);
+
         return array(
             'type'    => $this->getType(),
             'label'   => $this->getLabel(),
-            'default' => 'none',
+            'default' => $keys[0],
             'options' => $layouts
         );
     }
