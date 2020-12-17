@@ -15,7 +15,11 @@ $color-grey-light: var(--e-global-color-c9c4df1);
 @import "single/tytotravels";
 
 body {
-  color: $color-text
+  color: $color-text;
+  
+  .site-content {
+    overflow-x: hidden;
+  }
 }
 
 a, h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
