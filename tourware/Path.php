@@ -25,4 +25,15 @@ class Path
         return get_theme_file_uri() . '/tourware-resources/';
     }
 
+    public static function getLayoutPath( $template ) {
+        $parts = explode('##', $template);
+
+        if ($parts[0] === 'tourware') {
+            $layoutPath = Path::getResourcesFolder() . 'layouts/' . $parts[1] . '/' . $parts[2] . '.php';
+        } else {
+            $layoutPath = Path::getChildResourcesFolder() . 'layouts/' . $parts[1] . '/' . $parts[2] . '.php';
+        }
+
+        return $layoutPath;
+    }
 }

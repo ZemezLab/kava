@@ -24,10 +24,17 @@ class Search extends Widget
         return __( 'Search' );
     }
 
+    /**
+     * @return string
+     */
     public function get_icon()
     {
         return 'eicon-search';
     }
+
+    /**
+     * @return void
+     */
     protected function _register_controls()
     {
         $this->start_controls_section('ps_general', array(
@@ -612,7 +619,7 @@ class Search extends Widget
                 })
             </script>
         <?php }
-        include Path::getResourcesFolder().'/layouts/search/template.php';
+        include Path::getResourcesFolder().'layouts/search/template.php';
     }
 
     public function _enqueue_styles()

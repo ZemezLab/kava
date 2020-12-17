@@ -70,7 +70,7 @@ abstract class AbstractListing extends Widget
         $classes          = 'tours-layout-' . $settings['layout'] . ' ht-grid ht-grid-' . $settings['col'] . ' ht-grid-tablet-' . $settings['col_tablet'] . ' ht-grid-mobile-' . $settings['col_mobile'];
         $layout_name      = 'carousel' == $settings['layout'] ? 'not-real-slider' : '';
 
-        include_once \Tourware\Path::getResourcesFolder() . '/layouts/' . $this->getRecordTypeName() . '/listing/template.php';
+        include_once \Tourware\Path::getResourcesFolder() . 'layouts/' . $this->getRecordTypeName() . '/listing/template.php';
     }
 
     public function _enqueue_styles() {

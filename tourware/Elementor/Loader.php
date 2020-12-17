@@ -558,13 +558,7 @@ class Loader {
         ]);
 
 
-        $parts = explode('##', $settings['template']);
-
-        if ($parts[0] === 'tourware') {
-            include Path::getResourcesFolder() . 'layouts/' . $parts[1] . '/' . $parts[2] . '.php';
-        } else {
-            include Path::getChildResourcesFolder() . 'layouts/' . $parts[1] . '/' . $parts[2] . '.php';
-        }
+        include Path::getLayoutPath($settings['template']);
     }
 
     public static function getPostIDsByKeywords($search_str) {
