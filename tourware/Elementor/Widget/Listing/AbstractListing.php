@@ -586,7 +586,6 @@ abstract class AbstractListing extends Widget
         $this->add_control( 'arrows_bg', array(
             'type'      => Controls_Manager::COLOR,
             'label'     => esc_html__( 'Background color', 'tyto' ),
-            'default'   => '#aaa',
             'selectors' => array(
                 '{{WRAPPER}} .tns-controls [data-controls]' => 'background-color: {{VALUE}};'
             ),
@@ -779,7 +778,6 @@ abstract class AbstractListing extends Widget
             [
                 'type'      => Controls_Manager::COLOR,
                 'label'     => esc_html__( 'Text color', 'tyto' ),
-                'default'   => isset($default_color) ? $default_color : '#555',
                 'selectors' => array(
                     '{{WRAPPER}} .advanced-tyto-list .tour-excerpt' => 'color: {{VALUE}};',
                 ),
@@ -857,9 +855,6 @@ abstract class AbstractListing extends Widget
         $this->add_control( 'pagination_load_more_border_radius', array(
             'type'    => Controls_Manager::SLIDER,
             'label'   => esc_html__( 'Button border radius', 'tyto' ),
-            'default' => array(
-                'size' => 0,
-            ),
             'range' => array(
                 'px' => array(
                     'min'  => 0,
@@ -885,8 +880,7 @@ abstract class AbstractListing extends Widget
                     '{{WRAPPER}} .advanced-tyto-list .page-numbers:not(.load-more) a.current' => 'background-color: {{VALUE}};',
                     '{{WRAPPER}} .advanced-tyto-list .page-numbers:not(.load-more) a.current:hover' => 'color: {{VALUE}};border-color: {{VALUE}}',
                     '{{WRAPPER}} .advanced-tyto-list .page-numbers:not(.load-more) a:not(.current)' => 'border-color: {{VALUE}}; color: {{VALUE}}',
-                    '{{WRAPPER}} .advanced-tyto-list .page-numbers:not(.load-more) a:not(.current):hover' => 'background-color: {{VALUE}};',
-
+                    '{{WRAPPER}} .advanced-tyto-list .page-numbers:not(.load-more) a:not(.current):hover' => 'background-color: {{VALUE}};'
                 ),
             ]
         );
@@ -975,7 +969,6 @@ abstract class AbstractListing extends Widget
             [
                 'type'      => Controls_Manager::COLOR,
                 'label'     => esc_html__( 'Text color', 'tyto' ),
-                'default'   => '#999',
                 'selectors' => array(
                     '{{WRAPPER}} .tour-attributes .tour-attribute' => 'color: {{VALUE}};'
                 ),
@@ -995,7 +988,6 @@ abstract class AbstractListing extends Widget
             [
                 'type'      => Controls_Manager::COLOR,
                 'label'     => esc_html__( 'Badge background color', 'tyto' ),
-                'default'   => '#e83f53',
                 'selectors' => array(
                     '{{WRAPPER}} .tour-label' => 'background-color: {{VALUE}};'
                 ),
@@ -1007,7 +999,6 @@ abstract class AbstractListing extends Widget
             [
                 'type'      => Controls_Manager::COLOR,
                 'label'     => esc_html__( 'Badge text color', 'tyto' ),
-                'default'   => '#ffffff',
                 'selectors' => array(
                     '{{WRAPPER}} .tour-label' => 'color: {{VALUE}};'
                 ),
@@ -1027,7 +1018,6 @@ abstract class AbstractListing extends Widget
             [
                 'type'      => Controls_Manager::COLOR,
                 'label'     => esc_html__( 'Price text color', 'tyto' ),
-                'default'   => empty($invert_text_color) ? '#ffffff' : $invert_text_color,
                 'selectors' => array(
                     '{{WRAPPER}} .advanced-tyto-list .tour-item .price' => 'color: {{VALUE}};'
                 ),
@@ -1038,7 +1028,6 @@ abstract class AbstractListing extends Widget
             [
                 'type'      => Controls_Manager::COLOR,
                 'label'     => esc_html__( 'Price background color', 'tyto' ),
-                'default'   => empty($primary_color) ? '#FF4A52' : $primary_color,
                 'selectors' => array(
                     '{{WRAPPER}} .advanced-tyto-list .tour-item .price' => 'background-color: {{VALUE}};'
                 ),
@@ -1049,7 +1038,6 @@ abstract class AbstractListing extends Widget
             [
                 'type'      => Controls_Manager::COLOR,
                 'label'     => esc_html__( 'Price text color', 'tyto' ),
-                'default'   => '#ffffff',
                 'selectors' => array(
                     '{{WRAPPER}} .advanced-tyto-list .tour-item  .price' => 'color: {{VALUE}};'
                 ),

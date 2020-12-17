@@ -466,12 +466,12 @@ class Loader {
             $r .= join( "</li>\n\t<li>", $page_links );
             $r .= "</li>\n</ul>\n";
         } else if ($settings['pagi'] == 'load_more') {
-            $r = "<ul class='page-numbers load-more'>\n\t<li><a class='page-numbers hidden' data-num='1'></a>";
+            $r = "<div class='page-numbers load-more'><a class='page-numbers hidden' data-num='1'></a>";
             $r .= "";
             if ($current + 1 <= $total) {
-                $r .= "<a class='page-numbers' href='#' data-num='".($current + 1)."'>".$settings['pagination_button_text']."</a>";
+                $r .= "<a class='elementor-button ' href='#' data-num='".($current + 1)."'>".$settings['pagination_button_text']."</a>";
             }
-            $r .= "</li>\n</ul>\n";
+            $r .= "</div>";
         } else if ($settings['pagi'] == 'infinity_scroll') {
             if ($current + 1 <= $total || $current == 1 /*search*/) {
                 $r = "<ul class='page-numbers infinity-scroll'>\n\t<li>";

@@ -25,7 +25,6 @@ if (empty($img_src)) {
     if( true == $parallax ) $parallax_output = 'id="page-header-parallax" data-speed="' . absint( $parallax_speed ) . '"'; ?>
     <div class="header-cover-image page-header" <?php echo wp_kses_post( $parallax_output ); ?>>
         <div class="container">
-            <h1 class="page-title entry-title"><?php echo esc_html($post->post_title); ?></h1>
         </div>
     </div>
     <style><?php echo $css ?></style>

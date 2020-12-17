@@ -2,6 +2,7 @@
 namespace Tourware\Elementor\Widget;
 
 use Elementor\Controls_Manager;
+use Tourware\Elementor\Control;
 use Tourware\Elementor\Widget;
 use Tourware\Path;
 
@@ -119,9 +120,9 @@ class Search extends Widget
         $this->add_control(
             'search_input_placeholder',
             [
-                'label' => __('Search Placeholder'),
+                'label' => __('Reiseziel', 'tyto'),
                 'type' => Controls_Manager::TEXT,
-                'default' => 'Enter a destination or tour name',
+                'default' => 'Wohin soll die Reise gehen?',
                 'title' => __('Enter some text'),
             ]
         );
@@ -165,7 +166,7 @@ class Search extends Widget
             [
                 'label' => __('Date Title'),
                 'type' => Controls_Manager::TEXT,
-                'default' => __('When', 'tyto'),
+                'default' => __('Reisezeitraum', 'tyto'),
                 'title' => __('Enter some text'),
                 'condition' => ['show_date' => 'yes', 'search_results_adv_list!' => 'yes']
             ]
@@ -175,7 +176,7 @@ class Search extends Widget
             [
                 'label' => __('Date Placeholder'),
                 'type' => Controls_Manager::TEXT,
-                'default' => __('Anytime', 'tyto'),
+                'default' => __('Jederzeit', 'tourware'),
                 'title' => __('Enter some text'),
                 'condition' => ['show_date' => 'yes', 'search_results_adv_list!' => 'yes']
             ]
@@ -184,7 +185,7 @@ class Search extends Widget
         $this->add_control(
             'show_categories',
             [
-                'label' => __('Show Categories', 'tyto'),
+                'label' => __('Kategorien anzeigen', 'tyto'),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __('Show', 'tyto'),
                 'label_off' => __('Hide', 'tyto'),
@@ -293,29 +294,6 @@ class Search extends Widget
             'tab' => Controls_Manager::TAB_STYLE,
         ));
 
-        /*BORDER RADIUS*/
-        $this->add_control('radius', array(
-            'type' => Controls_Manager::SLIDER,
-            'label' => esc_html__('Border radius', 'tyto'),
-            'default' => array(
-                'size' => 0,
-            ),
-            'range' => array(
-                'px' => array(
-                    'min' => 0,
-                    'max' => 100,
-                    'step' => 1,
-                )
-            ),
-            'size_units' => array('px'),
-            'selectors' => array(
-                '{{WRAPPER}} .place-search-spn input' => 'border-radius: {{SIZE}}{{UNIT}};',
-                '{{WRAPPER}} .place-search-spn select[name="category"]' => 'border-radius: {{SIZE}}{{UNIT}};',
-                '{{WRAPPER}} .place-search-btn button' => 'border-radius: {{SIZE}}{{UNIT}};',
-                '{{WRAPPER}} .tag-button' => 'border-radius: {{SIZE}}{{UNIT}};',
-            ),
-        ));
-
         $this->add_control('space', array(
             'type' => Controls_Manager::SLIDER,
             'label' => esc_html__('Space'),
@@ -341,7 +319,6 @@ class Search extends Widget
         $this->add_control('input_bg', array(
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Input background', 'tyto'),
-            'default' => ($input_bg_color = get_theme_mod('accent_color')) ? $input_bg_color : '#0c3555',
             'selectors' => array(
                 '{{WRAPPER}} .place-search-spn input' => 'background-color: {{VALUE}};',
                 '{{WRAPPER}} .place-search-spn select' => 'background-color: {{VALUE}};'
@@ -352,7 +329,6 @@ class Search extends Widget
         $this->add_control('input_color', array(
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Input text, input icon, focused border color', 'tyto'),
-            'default' => ($invert_color = get_theme_mod( 'invert_color' )) ? $invert_color : 'rgba(255,255,255,0.3)',
             'selectors' => array(
                 '{{WRAPPER}} .place-search-spn input' => 'color: {{VALUE}};',
                 '{{WRAPPER}} .place-search-spn input::placeholder' => 'color: {{VALUE}};',
@@ -368,7 +344,6 @@ class Search extends Widget
         $this->add_control('title_color', array(
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Title color', 'tyto'),
-            'default' => ($text_color = get_theme_mod('primary_text_color')) ? $text_color : '#555',
             'selectors' => array(
                 '{{WRAPPER}} .place-search-spn h5' => 'color: {{VALUE}};',
 
@@ -403,15 +378,15 @@ class Search extends Widget
                 ]
             ]
         ];
-        $default_text_transorm = get_theme_mod('primary_btn_text_transform');
+
         $default_font_weight = get_theme_mod('primary_btn_font_weight');
-        $default_bg_color =  get_theme_mod('link_color');
 
         /* Button Text Transform */
         $this->add_control( 'submit_text_transform', array(
             'type'     => Controls_Manager::SELECT2,
             'label'    => esc_html__( 'Button Text Transorm' ),
             'multiple' => false,
+            'default' => 'none',
             'options'  => array(
                 'uppercase' => esc_html__('Uppercase', 'tyto'),
                 'capitalize'  => esc_html__('Capitalize', 'tyto'),
@@ -421,26 +396,24 @@ class Search extends Widget
             'selectors' => array(
                 '{{WRAPPER}} .place-search-btn button' => 'text-transform: {{VALUE}};',
             ),
-            'default' => empty($default_text_transorm) ? 'none' : $default_text_transorm,
             'conditions' => $btn_conditions
         ) );
 
-        /* Button Font Weight */
-        $this->add_control( 'submit_font_weight', array(
-            'type'     => Controls_Manager::NUMBER,
-            'label'    => esc_html__( 'Button Font Weight' ),
-            'selectors' => array(
-                '{{WRAPPER}} .place-search-btn button' => 'font-weight: {{VALUE}};',
-            ),
-            'default' => empty($default_font_weight) ? 'none' : $default_font_weight,
-            'conditions' => $btn_conditions
-        ) );
+//        /* Button Font Weight */
+//        $this->add_control( 'submit_font_weight', array(
+//            'type'     => Controls_Manager::NUMBER,
+//            'label'    => esc_html__( 'Button Font Weight' ),
+//            'selectors' => array(
+//                '{{WRAPPER}} .place-search-btn button' => 'font-weight: {{VALUE}};',
+//            ),
+//            'default' => empty($default_font_weight) ? 'none' : $default_font_weight,
+//            'conditions' => $btn_conditions
+//        ) );
 
         /* Button Backgroung Color */
         $this->add_control('submit_bg_color', array(
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Button Background Color', 'tyto'),
-            'default' => empty($default_bg_color) ? '#ec5849' : $default_bg_color,
             'selectors' => array(
                 '{{WRAPPER}} .place-search-btn button' => 'background-color: {{VALUE}}; border: 1px solid {{VALUE}}',
 
@@ -452,7 +425,6 @@ class Search extends Widget
         $this->add_control('submit_text_color', array(
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Button Text Color', 'tyto'),
-            'default' => '#fff',
             'selectors' => array(
                 '{{WRAPPER}} .place-search-btn button' => 'color: {{VALUE}};',
             ),
@@ -463,7 +435,6 @@ class Search extends Widget
         $this->add_control('submit_hover_bg_color', array(
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Button Hover Background Color', 'tyto'),
-            'default' => '#fff',
             'selectors' => array(
                 '{{WRAPPER}} .place-search-btn button:hover' => 'background-color: {{VALUE}};',
             ),
@@ -474,7 +445,6 @@ class Search extends Widget
         $this->add_control('submit_hover_text_color', array(
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Button Hover Text Color', 'tyto'),
-            'default' => empty($default_bg_color) ? '#ec5849' : $default_bg_color,
             'selectors' => array(
                 '{{WRAPPER}} .place-search-btn button:hover' => 'color: {{VALUE}}; border: 1px solid {{VALUE}}',
             ),
@@ -485,7 +455,6 @@ class Search extends Widget
         $this->add_control('autocomplete_bg', array(
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Autocomplete results background', 'tyto'),
-            'default' => '#333',
             'selectors' => array(
                 '{{WRAPPER}} .autocomplete-result' => 'background-color: {{VALUE}};',
             ),
@@ -494,7 +463,6 @@ class Search extends Widget
         $this->add_control('autocomplete_text_color', array(
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Autocomplete text color', 'tyto'),
-            'default' => '#fff',
             'selectors' => array(
                 '{{WRAPPER}} .autocomplete-result span' => 'color: {{VALUE}};',
             ),
@@ -504,7 +472,6 @@ class Search extends Widget
         $this->add_control('autocomplete_selected_bg', array(
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Autocomplete selected background', 'tyto'),
-            'default' => '#000',
             'selectors' => array(
                 '{{WRAPPER}} .autocomplete-result span.selected' => 'background-color: {{VALUE}};',
                 '{{WRAPPER}} .autocomplete-result span:hover' => 'background-color: {{VALUE}};',
@@ -516,7 +483,6 @@ class Search extends Widget
         $this->add_control('categories_buttons_text', array(
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Categories Buttons Text', 'tyto'),
-            'default' => '#AAA', //TODO
             'selectors' => array(
                 '{{WRAPPER}} .tag-button' => 'color: {{VALUE}};',
             ),
@@ -526,7 +492,6 @@ class Search extends Widget
         $this->add_control('categories_buttons_bg', array(
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Categories Buttons Background', 'tyto'),
-            'default' => '#fff',
             'selectors' => array(
                 '{{WRAPPER}} .tag-button' => 'background-color: {{VALUE}};',
                 '{{WRAPPER}} .tag-button.active' => 'color: {{VALUE}};',
@@ -536,7 +501,6 @@ class Search extends Widget
         $this->add_control('categories_selected_buttons_bg', array(
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Categories Selected Buttons Background', 'tyto'),
-            'default' => '#AAA',
             'selectors' => array(
                 '{{WRAPPER}} .tag-button.active' => 'background-color: {{VALUE}};',
                 '{{WRAPPER}} .tag-button' => 'border-color: {{VALUE}};',

@@ -127,6 +127,7 @@
 .advanced-tyto-list.layout-4 .time,
 .advanced-tyto-list.layout-4 .price {
   color: #fff;
+  background-color: $color-primary;
 }
 
 .advanced-tyto-list.layout-4 .aver {
@@ -156,9 +157,6 @@
 
 .advanced-tyto-list.layout-1 .title {
   margin: 0;
-  font-size: 18px;
-  line-height: 22px;
-  /*height: 44px;*/
 }
 
 .advanced-tyto-list.layout-1 .tour-attributes {
@@ -202,6 +200,7 @@
   -webkit-box-align: center;
   align-items: center;
   color: #fff;
+  background-color: $color-primary;
   font-weight: 600;
   font-size: 16px;
   text-decoration: none;
@@ -559,24 +558,6 @@
 .advanced-tyto-list .page-numbers.load-more {
   text-align: center;
   margin: 0;
-}
-
-.advanced-tyto-list .page-numbers.load-more a {
-  width: auto;
-  max-width: 100%;
-  padding: 5px 30px;
-  background-color: #6EC1E4;
-  color: #ffffff;
-  border: 1px solid #6EC1E4;
-  border-radius: 0;
-  -webkit-transition-duration: .4s;
-  transition-duration: .4s;
-}
-
-.advanced-tyto-list ul.page-numbers.load-more li:not(.dots) a:hover {
-  background-color: #ffffff;
-  color: #6EC1E4;
-  border-color: #6EC1E4;
 }
 
 .advanced-tyto-list.loading .tours-content {

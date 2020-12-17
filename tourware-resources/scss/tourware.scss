@@ -1,19 +1,35 @@
+// Common variables coming from Elementor
+$color-primary: var(--e-global-color-primary);
+$color-secondary: var(--e-global-color-primary);
+$color-text: var(--e-global-color-text);
+$color-accent: var(--e-global-color-accent);
+$color-grey-dark: var(--e-global-color-0a154d8);
+$color-grey-light: var(--e-global-color-c9c4df1);
+
+// Import Widgets
 @import "widget/search";
 @import "widget/abstract/listing";
 @import "widget/destination/listing";
 
-// Single Views
+// Import Views
 @import "single/tytotravels";
 
+body {
+  color: $color-text
+}
+
+a, h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
+  color: $color-primary
+}
 
 // Kava fixes
 body:not(.page-template-fullwidth-content) .site-content {
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 .elementor-posts {
   .elementor-post__read-more {
-    color: var( --e-global-color-text );
+    color: $color-text;
     font-weight: var( --e-global-typography-primary-font-weight );
   }
 }

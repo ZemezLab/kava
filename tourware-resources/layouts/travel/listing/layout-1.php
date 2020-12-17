@@ -27,9 +27,9 @@
         </div>
         <?php /*CONTENT*/ ?>
         <div class="tour-content">
-            <h3 class="title entry-title">
+            <p class="title entry-title">
                 <a href="<?php the_permalink(); ?>"><?php esc_html_e($title); ?></a>
-            </h3>
+            </p>
             <?php if ($settings['show_categories'] && isset($categories_str)) { ?>
                 <div class="tour-categories"><?php esc_html_e($categories_str); ?></div>
             <?php } ?>
