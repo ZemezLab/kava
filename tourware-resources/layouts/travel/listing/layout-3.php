@@ -1,6 +1,7 @@
 <?php
 /**
  * Name: tourware Layout 3
+ * grand tour
  */
 ?>
 <div class="ht-grid-item">

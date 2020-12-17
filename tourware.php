@@ -260,7 +260,7 @@ function tyto_scripts()
 
     wp_enqueue_script(
         'kava-custom-script',
-        \Tourware\Path::getResourcesFolder() . '/js/custom.js',
+        \Tourware\Path::getResourcesUri() . '/js/custom.js',
         $scripts_depends,
         null,
         true

@@ -1,6 +1,7 @@
 <?php
 /**
  * Name: tourware Layout 4
+ * clean
  */
 ?>
 <div class="ht-grid-item">

@@ -1,44 +1,40 @@
 <?php
+namespace Tourware\Elementor\Widget;
 
-namespace Elementor;
+use Elementor\Controls_Manager;
+use Tourware\Elementor\Widget;
+use Tourware\Path;
 
-use ElementorTyto\Widgets\Widget_Advanced_Tyto_List;
-
-class Widget_Advanced_Tyto_Search extends Widget_Base
+class Search extends Widget
 {
-    public function __construct($data = [], $args = null)
-    {
-        parent::__construct($data, $args);
-        $this->_enqueue_styles();
 
-        add_action('elementor/preview/enqueue_scripts', [$this, 'enqueue_scripts_in_preview_mode']);
-    }
-
+    /**
+     * @return string
+     */
     public function get_name()
     {
-        return 'advanced-tyto-search';
+        return 'tourware-search';
     }
 
-    public function get_categories()
-    {
-        return array('tyto');
-    }
-
+    /**
+     * @return string
+     */
     public function get_title()
     {
-        return esc_html__('Advanced Search', 'tyto');
+        return __( 'Search' );
     }
 
     public function get_icon()
     {
         return 'eicon-search';
     }
-
     protected function _register_controls()
     {
         $this->start_controls_section('ps_general', array(
             'label' => esc_html__('General', 'goto'),
         ));
+
+        $this->addControl(new \Tourware\Elementor\Control\LayoutSelector('/search'));
 
         $this->add_control(
             'search_results_adv_list',
@@ -223,7 +219,7 @@ class Widget_Advanced_Tyto_Search extends Widget_Base
         );
 
         $tags = [];
-        if ($tyto_tags = get_option('tyto_tags', false)) $tags = wp_list_pluck($tyto_tags, 'name', 'id');
+        if ($tyto_tags = get_option('tyto_tags', false)) $tags = wp_list_pluck($tyto_tags, 'name', 'name');
 
         $this->add_control('search_tags', array(
             'type' => Controls_Manager::SELECT2,
@@ -295,7 +291,7 @@ class Widget_Advanced_Tyto_Search extends Widget_Base
             'type' => Controls_Manager::SLIDER,
             'label' => esc_html__('Border radius', 'tyto'),
             'default' => array(
-                'size' => 5,
+                'size' => 0,
             ),
             'range' => array(
                 'px' => array(
@@ -309,6 +305,7 @@ class Widget_Advanced_Tyto_Search extends Widget_Base
                 '{{WRAPPER}} .place-search-spn input' => 'border-radius: {{SIZE}}{{UNIT}};',
                 '{{WRAPPER}} .place-search-spn select[name="category"]' => 'border-radius: {{SIZE}}{{UNIT}};',
                 '{{WRAPPER}} .place-search-btn button' => 'border-radius: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .tag-button' => 'border-radius: {{SIZE}}{{UNIT}};',
             ),
         ));
 
@@ -327,15 +324,17 @@ class Widget_Advanced_Tyto_Search extends Widget_Base
             ),
             'size_units' => array('px'),
             'selectors' => array(
-                '{{WRAPPER}} .place-search-spn:not(.place-search-spn--tags_buttons)' => 'margin-right: {{SIZE}}{{UNIT}};'
+                '{{WRAPPER}} .place-search-spn:not(.place-search-spn--tags_buttons)' => 'margin-right: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .tag-button:not(:last-child)' => 'margin-right: {{SIZE}}{{UNIT}};'
             ),
         ));
+
 
         /*INPUT BACKGROUND COLOR*/
         $this->add_control('input_bg', array(
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Input background', 'tyto'),
-            'default' => '#0c3555',
+            'default' => ($input_bg_color = get_theme_mod('accent_color')) ? $input_bg_color : '#0c3555',
             'selectors' => array(
                 '{{WRAPPER}} .place-search-spn input' => 'background-color: {{VALUE}};',
                 '{{WRAPPER}} .place-search-spn select' => 'background-color: {{VALUE}};'
@@ -346,7 +345,7 @@ class Widget_Advanced_Tyto_Search extends Widget_Base
         $this->add_control('input_color', array(
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Input text, input icon, focused border color', 'tyto'),
-            'default' => 'rgba(255,255,255,0.3)',
+            'default' => ($invert_color = get_theme_mod( 'invert_color' )) ? $invert_color : 'rgba(255,255,255,0.3)',
             'selectors' => array(
                 '{{WRAPPER}} .place-search-spn input' => 'color: {{VALUE}};',
                 '{{WRAPPER}} .place-search-spn input::placeholder' => 'color: {{VALUE}};',
@@ -362,88 +361,117 @@ class Widget_Advanced_Tyto_Search extends Widget_Base
         $this->add_control('title_color', array(
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Title color', 'tyto'),
-            'default' => '#fff',
+            'default' => ($text_color = get_theme_mod('primary_text_color')) ? $text_color : '#555',
             'selectors' => array(
                 '{{WRAPPER}} .place-search-spn h5' => 'color: {{VALUE}};',
 
             ),
         ));
 
-        /*Button Text COLOR*/
-        $this->add_control('submit_text', array(
+        $btn_conditions = [
+            'relation' => 'or',
+            'terms' => [
+                [
+                    'terms' => [
+                        [
+                            'name' => 'search_results_ajax',
+                            'operator' => '==',
+                            'value' => ''
+                        ]
+                    ]
+                ],
+                [
+                    'terms' => [
+                        [
+                            'name' => 'search_results_ajax',
+                            'operator' => '==',
+                            'value' => 'yes'
+                        ],
+                        [
+                            'name' => 'search_results_ajax_by_button',
+                            'operator' => '==',
+                            'value' => 'yes'
+                        ]
+                    ]
+                ]
+            ]
+        ];
+        $default_text_transorm = get_theme_mod('primary_btn_text_transform');
+        $default_font_weight = get_theme_mod('primary_btn_font_weight');
+        $default_bg_color =  get_theme_mod('link_color');
+
+        /* Button Text Transform */
+        $this->add_control( 'submit_text_transform', array(
+            'type'     => Controls_Manager::SELECT2,
+            'label'    => esc_html__( 'Button Text Transorm' ),
+            'multiple' => false,
+            'options'  => array(
+                'uppercase' => esc_html__('Uppercase', 'tyto'),
+                'capitalize'  => esc_html__('Capitalize', 'tyto'),
+                'lowercase'  => esc_html__('Lowercase', 'tyto'),
+                'none'  => esc_html__('None', 'tyto'),
+            ),
+            'selectors' => array(
+                '{{WRAPPER}} .place-search-btn button' => 'text-transform: {{VALUE}};',
+            ),
+            'default' => empty($default_text_transorm) ? 'none' : $default_text_transorm,
+            'conditions' => $btn_conditions
+        ) );
+
+        /* Button Font Weight */
+        $this->add_control( 'submit_font_weight', array(
+            'type'     => Controls_Manager::NUMBER,
+            'label'    => esc_html__( 'Button Font Weight' ),
+            'selectors' => array(
+                '{{WRAPPER}} .place-search-btn button' => 'font-weight: {{VALUE}};',
+            ),
+            'default' => empty($default_font_weight) ? 'none' : $default_font_weight,
+            'conditions' => $btn_conditions
+        ) );
+
+        /* Button Backgroung Color */
+        $this->add_control('submit_bg_color', array(
             'type' => Controls_Manager::COLOR,
-            'label' => esc_html__('Submit Button Text', 'tyto'),
+            'label' => esc_html__('Button Background Color', 'tyto'),
+            'default' => empty($default_bg_color) ? '#ec5849' : $default_bg_color,
+            'selectors' => array(
+                '{{WRAPPER}} .place-search-btn button' => 'background-color: {{VALUE}}; border: 1px solid {{VALUE}}',
+
+            ),
+            'conditions' => $btn_conditions
+        ));
+
+        /*Button Text COLOR*/
+        $this->add_control('submit_text_color', array(
+            'type' => Controls_Manager::COLOR,
+            'label' => esc_html__('Button Text Color', 'tyto'),
             'default' => '#fff',
             'selectors' => array(
                 '{{WRAPPER}} .place-search-btn button' => 'color: {{VALUE}};',
-
             ),
-            'conditions' => [
-                'relation' => 'or',
-                'terms' => [
-                    [
-                        'terms' => [
-                            [
-                                'name' => 'search_results_ajax',
-                                'operator' => '==',
-                                'value' => ''
-                            ]
-                        ]
-                    ],
-                    [
-                        'terms' => [
-                            [
-                                'name' => 'search_results_ajax',
-                                'operator' => '==',
-                                'value' => 'yes'
-                            ],
-                            [
-                                'name' => 'search_results_ajax_by_button',
-                                'operator' => '==',
-                                'value' => 'yes'
-                            ]
-                        ]
-                    ]
-                ]
-            ]
+            'conditions' => $btn_conditions
         ));
 
-        /*SUBMIT BACKGROUND*/
-        $this->add_control('submit_bg', array(
+        /* Button Hover Color */
+        $this->add_control('submit_hover_bg_color', array(
             'type' => Controls_Manager::COLOR,
-            'label' => esc_html__('Submit Button Background', 'tyto'),
-            'default' => '#ec5849',
+            'label' => esc_html__('Button Hover Background Color', 'tyto'),
+            'default' => '#fff',
             'selectors' => array(
-                '{{WRAPPER}} .place-search-btn button' => 'background-color: {{VALUE}};',
+                '{{WRAPPER}} .place-search-btn button:hover' => 'background-color: {{VALUE}};',
             ),
-            'conditions' => [
-                'relation' => 'or',
-                'terms' => [
-                    [
-                        'terms' => [
-                            [
-                                'name' => 'search_results_ajax',
-                                'operator' => '==',
-                                'value' => ''
-                            ]
-                        ]
-                    ],
-                    [
-                        'terms' => [
-                            [
-                                'name' => 'search_results_ajax',
-                                'operator' => '==',
-                                'value' => 'yes'
-                            ],
-                            [
-                                'name' => 'search_results_ajax_by_button',
-                                'operator' => '==',
-                                'value' => 'yes'
-                            ]
-                        ]
-                    ]
-                ]
-            ]
+            'conditions' => $btn_conditions
+        ));
+
+        /*Button Hover Text COLOR*/
+        $this->add_control('submit_hover_text_color', array(
+            'type' => Controls_Manager::COLOR,
+            'label' => esc_html__('Button Hover Text Color', 'tyto'),
+            'default' => empty($default_bg_color) ? '#ec5849' : $default_bg_color,
+            'selectors' => array(
+                '{{WRAPPER}} .place-search-btn button:hover' => 'color: {{VALUE}}; border: 1px solid {{VALUE}}',
+            ),
+            'conditions' => $btn_conditions
         ));
 
         /*AUTOCOMPLETE BACKGROUND*/
@@ -477,15 +505,11 @@ class Widget_Advanced_Tyto_Search extends Widget_Base
             'condition' => ['search_autocomplete' => 'yes']
         ));
 
-        if (class_exists('Goto_Kirki')) {
-            $primary_color = \Goto_Kirki::get_option('goto', 'primary_color');
-            $second_color = \Goto_Kirki::get_option('goto', 'second_color');
-        }
 
         $this->add_control('categories_buttons_text', array(
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Categories Buttons Text', 'tyto'),
-            'default' => $second_color ? $second_color : '#AAA',
+            'default' => '#AAA', //TODO
             'selectors' => array(
                 '{{WRAPPER}} .tag-button' => 'color: {{VALUE}};',
             ),
@@ -505,7 +529,7 @@ class Widget_Advanced_Tyto_Search extends Widget_Base
         $this->add_control('categories_selected_buttons_bg', array(
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Categories Selected Buttons Background', 'tyto'),
-            'default' => $second_color ? $second_color : '#AAA',
+            'default' => '#AAA',
             'selectors' => array(
                 '{{WRAPPER}} .tag-button.active' => 'background-color: {{VALUE}};',
                 '{{WRAPPER}} .tag-button' => 'border-color: {{VALUE}};',
@@ -540,10 +564,6 @@ class Widget_Advanced_Tyto_Search extends Widget_Base
 
     }
 
-    public function _content_template()
-    {
-    }
-
     protected function render()
     {
         $settings = $this->get_settings_for_display();
@@ -562,118 +582,19 @@ class Widget_Advanced_Tyto_Search extends Widget_Base
                 $search_tag = get_query_var('advanced_search_category_' . $settings['adv_list_id']);
             if ($search_tag) $search_tags = explode(',', urldecode($search_tag));
 
-            if ($settings['show_categories'] && $settings['show_categories_buttons'] == 'yes') wp_enqueue_script('category-buttons');
+            if ($settings['show_categories'] && $settings['show_categories_buttons'] == 'yes')
+                wp_enqueue_script('category-buttons');
         }
 
         if ($settings['search_results_adv_list'] !== 'yes' && $settings['show_date']) {
             wp_enqueue_script('moment');
             wp_enqueue_script('datepicker');
             wp_enqueue_style('datepicker');
-            ?>
-            <script>
-                jQuery(document).ready(function ($) {
-                    var $homepage_search_dates = $('#adv-search-time');
-                    $homepage_search_dates.daterangepicker({
-                        autoUpdateInput: false,
-                        locale: {
-                            format: "DD.MM.YYYY",
-                            applyLabel: 'Übernehmen',
-                            cancelLabel: 'Abbrechen',
-                            fromLabel: 'Abreise',
-                            toLabel: 'Rückreise',
-                            daysOfWeek: ['SO', 'MO', 'DI', 'MI', 'DO', 'FR', 'SA'],
-                            monthNames: ['Jan.', 'Feb.', 'März', 'Apr.', 'Mai', 'Jun.', 'Jul.', 'Aug.', 'Sep.', 'Okt.', 'Nov.', 'Dez.'],
-                            firstDay: 1
-                        }
-                    });
-
-                    $homepage_search_dates.on('apply.daterangepicker', function (ev, picker) {
-                        $(this).val(picker.startDate.format('DD.MM.YYYY') + '-' + picker.endDate.format('DD.MM.YYYY'));
-                    });
-
-                    $homepage_search_dates.on('cancel.daterangepicker', function (ev, picker) {
-                        $(this).val('');
-                    });
-                })
-            </script>
-        <?php }
+            wp_enqueue_script('init-datepicker');
+        }
         if ($settings['search_autocomplete']) {
             wp_enqueue_script('search-autocomplete');
         }
-        ?>
-        <form action="<?php echo esc_url(get_the_permalink($settings['results_page'])); ?>"
-              id="<?php echo $form_id ?>" <?php if ($settings['target_blank'] == 'yes') echo 'target="_blank"' ?>
-              autocomplete="off">
-            <div class="advanced-tyto-search"
-                <?php if ($settings['adv_list_id']) echo 'data-adv_list_id="' . $settings['adv_list_id'] . '"' ?>
-                <?php if ($settings['adv_list_id'] && $settings['search_results_ajax']) echo 'data-ajax_button="'.$settings['search_results_ajax_by_button'].'"'?>>
-                <?php if ($settings['adv_list_id']) { ?>
-                <input type="hidden" name="adv_list_id" value="<?php echo $settings['adv_list_id']?>">
-                <?php } ?>
-                <div class="place-search-spn <?php if ($settings['search_autocomplete']) echo 'autocomplete-field' ?>">
-                    <?php if ($settings['search_input_title']) { ?>
-                    <h5><?php esc_html_e($settings['search_input_title']); ?></h5>
-                    <?php } ?>
-                    <label for="i-dest" class="goto-icon-location">
-                        <span class="material-icons-outlined icon">place</span>
-                        <input id="i-dest" type="text"
-                               placeholder="<?php esc_attr_e($settings['search_input_placeholder']); ?>"
-                               name="keywords"
-                               value="<?php if (isset($_GET['keywords'])) echo $_GET['keywords']?>">
-                    </label>
-                </div>
-                <?php if ($settings['search_results_adv_list'] !== 'yes' && $settings['show_date']) { ?>
-                    <div class="place-search-spn">
-                        <?php if ($settings['date_input_title']) { ?>
-                        <h5><?php esc_html_e($settings['date_input_title']); ?></h5>
-                        <?php } ?>
-                        <label for="adv-search-time" class="goto-icon-calendar-3">
-                            <span class="material-icons-outlined icon">calendar_today</span>
-                            <input id="adv-search-time" type="text"
-                                   placeholder="<?php esc_attr_e($settings['date_input_placeholder']); ?>"
-                                   name="start_date">
-                        </label>
-                    </div>
-                <?php } ?>
-                <?php if ($settings['show_categories'] && $settings['show_categories_buttons'] !== 'yes') { ?>
-                    <div class="place-search-spn">
-                        <?php if ($settings['tags_input_title']) { ?>
-                        <h5><?php esc_html_e($settings['tags_input_title']); ?></h5>
-                        <?php } ?>
-                        <label for="i-tags" class="goto-icon-tag">
-                            <span class="material-icons-outlined icon">local_offer</span>
-                            <select id="i-tags" name="category">
-                                <option value=""><?php esc_html_e($settings['tags_input_placeholder']); ?></option>
-                                <?php if ($settings['search_tags']) {
-                                    foreach ($settings['search_tags'] as $tag) { ?>
-                                        <option value="<?php echo $tag ?>"
-                                            <?php if ($search_tag) echo selected($tag == $search_tag) ?>
-                                        ><?php echo $tag ?></option>
-                                    <?php }
-                                } ?>
-                            </select>
-                        </label>
-                    </div>
-                <?php } ?>
-                <?php if ($settings['search_results_ajax'] != 'yes' || ($settings['search_results_ajax'] == 'yes' && $settings['search_results_ajax_by_button'] == 'yes')) { ?>
-                    <div class="place-search-btn">
-                        <button type="submit" data-num="1"><?php esc_html_e($settings['button_text']); ?></button>
-                    </div>
-                <?php } ?>
-                <?php if ($settings['show_categories'] && $settings['show_categories_buttons'] == 'yes') { ?>
-                    <div class="break"></div>
-                    <div class="place-search-spn place-search-spn--tags_buttons">
-                        <?php foreach ($settings['search_tags'] as $tag) { ?>
-                            <div class="tag-button <?php if (in_array($tag, $search_tags)) echo 'active' ?>"><?php echo $tag ?></div>
-                        <?php } ?>
-                    </div>
-                    <input type="hidden" value="<?php echo $search_tag ?>" name="category" id="i-tags">
-                <?php } ?>
-            </div>
-            <i class="error"></i>
-            <input type="hidden" value="" name="selected">
-        </form>
-        <?php
         if ($settings['only_autocomplete']) { ?>
             <script>
                 jQuery(document).ready(function ($) {
@@ -691,28 +612,19 @@ class Widget_Advanced_Tyto_Search extends Widget_Base
                 })
             </script>
         <?php }
+        include Path::getResourcesFolder().'/layouts/search/template.php';
     }
 
     public function _enqueue_styles()
     {
-        wp_enqueue_style($this->get_name(), \Tourware\Elementor\Loader::getElementorWidgetsFolderUri() .  $this->get_name() . '/assets/css/styles.css');
-//        wp_enqueue_style('font-material');
-        wp_enqueue_style('font-material-outlined');
-        wp_register_script('search-autocomplete', \Tourware\Elementor\Loader::getElementorWidgetsFolderUri() .  $this->get_name() . '/assets/js/search-autocomplete.js');
+        wp_register_script('search-autocomplete', Path::getResourcesUri() . '/js/widget/search/search-autocomplete.js');
         wp_localize_script('search-autocomplete', 'TytoAjaxVars',
             array(
                 'ajaxurl' => admin_url('admin-ajax.php'),
             )
         );
-        wp_register_script('adv-list-handler', \Tourware\Elementor\Loader::getElementorWidgetsFolderUri() .  $this->get_name() . '/assets/js/advanced-list-handler.js');
-        wp_register_script('category-buttons', \Tourware\Elementor\Loader::getElementorWidgetsFolderUri() .  $this->get_name() . '/assets/js/category-buttons.js');
-    }
-
-    public function enqueue_scripts_in_preview_mode()
-    {
-        wp_enqueue_script('search-autocomplete');
+        wp_register_script('adv-list-handler', Path::getResourcesUri() . '/js/widget/search/advanced-list-handler.js');
+        wp_register_script('category-buttons', Path::getResourcesUri() . '/js/widget/search/category-buttons.js');
+        wp_register_script('init-datepicker', Path::getResourcesUri() .  '/js/widget/search/init-datepicker.js');
     }
 }
-
-Plugin::instance()->widgets_manager->register_widget_type(new Widget_Advanced_Tyto_Search());
-
