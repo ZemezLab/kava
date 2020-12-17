@@ -26,6 +26,12 @@ jobs:
     - name: Update annotations
       run: php annotation.php ${{ steps.get_version.outputs.VERSION }}
       
+    - name: Compile CSS from SCSS files
+      uses: gha-utilities/sass-build@v0.3.1
+      with:
+        source: tourware-resources/scss/tourware.scss
+        destination: tourware-resources/scss/tourware.css
+
     - name: Archive the release
       run: sudo php zip.php
         
