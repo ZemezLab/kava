@@ -55,7 +55,7 @@
     <div class="break"></div>
     <div class="place-search-spn place-search-spn--tags_buttons">
         <?php foreach ($settings['search_tags'] as $tag) { ?>
-            <div class="tag-button <?php if (is_array($search_tags) && in_array($tag, $search_tags)) echo 'active' ?>"><?php echo $tag ?></div>
+            <div class="elementor-button tag-button <?php if (is_array($search_tags) && in_array($tag, $search_tags)) echo 'active' ?>"><?php echo $tag ?></div>
         <?php } ?>
     </div>
     <input type="hidden" value="<?php echo $search_tag ?>" name="category" id="i-tags">
