@@ -6,6 +6,54 @@ $color-accent: var(--e-global-color-accent);
 $color-grey-dark: var(--e-global-color-0a154d8);
 $color-grey-light: var(--e-global-color-c9c4df1);
 
+$text-h1-family: var(--e-global-typography-primary-font-family);
+$text-h1-size: var(--e-global-typography-primary-font-size);
+$text-h1-weight: var(--e-global-typography-primary-font-weight);
+$text-h1-line-height: var(--e-global-typography-primary-line-height);
+
+$text-h2-family: var(--e-global-typography-secondary-font-family);
+$text-h2-size: var(--e-global-typography-secondary-font-size);
+$text-h2-weight: var(--e-global-typography-secondary-font-weight);
+$text-h2-line-height: var(--e-global-typography-secondary-line-height);
+
+$text-h3-family: var(--e-global-typography-2093911-font-family);
+$text-h3-size: var(--e-global-typography-2093911-font-size);
+$text-h3-weight: var(--e-global-typography-2093911-font-weight);
+$text-h3-line-height: var(--e-global-typography-2093911-line-height);
+
+$text-p-family: var(--e-global-typography-text-font-family);
+$text-p-size: var(--e-global-typography-text-font-size);
+$text-p-weight: var(--e-global-typography-text-font-weight);
+$text-p-line-height: var(--e-global-typography-text-line-height);
+
+@mixin tourware-h1 {
+  font-family: $text-h1-family;
+  font-size: $text-h1-size;
+  font-weight: $text-h1-weight;
+  line-height: $text-h1-line-height;
+}
+
+@mixin tourware-h2 {
+  font-family: $text-h2-family;
+  font-size: $text-h2-size;
+  font-weight: $text-h2-weight;
+  line-height: $text-h2-line-height;
+}
+
+@mixin tourware-h3 {
+  font-family: $text-h3-family;
+  font-size: $text-h3-size;
+  font-weight: $text-h3-weight;
+  line-height: $text-h3-line-height;
+}
+
+@mixin tourware-body-text {
+  font-family: $text-p-family;
+  font-size: $text-p-size;
+  font-weight: $text-p-weight;
+  line-height: $text-p-line-height;
+}
+
 // Import Widgets
 @import "widget/search";
 @import "widget/abstract/listing";
