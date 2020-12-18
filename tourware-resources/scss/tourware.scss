@@ -26,6 +26,8 @@ $text-p-size: var(--e-global-typography-text-font-size);
 $text-p-weight: var(--e-global-typography-text-font-weight);
 $text-p-line-height: var(--e-global-typography-text-line-height);
 
+$tourware-gutter: 20px;
+
 @mixin tourware-h1 {
   font-family: $text-h1-family;
   font-size: $text-h1-size;

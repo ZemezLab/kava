@@ -152,7 +152,7 @@
 }
 
 .advanced-tyto-list.layout-1 .tour-content {
-  padding: 20px;
+  padding: $tourware-gutter
 }
 
 .advanced-tyto-list.layout-1 .title {
@@ -325,14 +325,13 @@
 }
 
 .advanced-tyto-list.layout-3 .tour-item .price {
+  @include tourware-body-text;
   position: absolute;
   bottom: 20px;
   left: 0;
   background: var(--e-global-color-primary);
   padding: 3px 10px 2px 10px;
   color: #fff;
-  font-weight: 700;
-  font-size: 15px;
 }
 
 .advanced-tyto-list.layout-3 .tour-item:hover .price {
@@ -356,12 +355,12 @@
 }
 
 .advanced-tyto-list.layout-3 .tour-title {
-  font-size: 20px;
-  line-height: 1.4;
+  @include tourware-h3;
+  margin: 0;
 }
 
 .advanced-tyto-list.layout-3 .tour-content {
-  padding: 10px 15px 15px;
+  padding: $tourware-gutter;
 }
 
 .advanced-tyto-list.layout-3 .tour-excerpt {
