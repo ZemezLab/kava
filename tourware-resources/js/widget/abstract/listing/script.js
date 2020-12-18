@@ -15,7 +15,7 @@ function add_tyto_items($page_num, trigger) {
     var $container = $page_num.closest('.advanced-tyto-list');
     var id = $page_num.closest('.elementor-widget-tourware-travel-listing, .elementor-widget-tourware-accommodation-listing').data('id');
     var post_id = $page_num.closest('.tyto-pagination').data('post_id');
-    if (trigger === 'search' || trigger === 'click' && $page_num.closest('ul.page-numbers').hasClass('numbers')) {
+    if (trigger === 'search' || trigger === 'click' && $page_num.closest('div.page-numbers').hasClass('numbers')) {
         jQuery('.autocompete-result').remove();
         $container.addClass('loading');
     }
@@ -34,7 +34,7 @@ function add_tyto_items($page_num, trigger) {
         method: 'post',
         data: data,
         success: function (data) {
-            $container.find('ul.page-numbers').replaceWith(data.pagination);
+            $container.find('div.page-numbers').replaceWith(data.pagination);
             var $tours_content = $container.find('.tours-content');
             $container.removeClass('loading');
             jQuery('.autocompete-result').remove();

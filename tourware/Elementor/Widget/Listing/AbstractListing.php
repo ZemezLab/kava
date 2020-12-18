@@ -819,7 +819,7 @@ abstract class AbstractListing extends Widget
             ),
             'default'        => 'left',
             'selectors'      => array(
-                '{{WRAPPER}} .advanced-tyto-list ul.page-numbers' => 'text-align: {{VALUE}};'
+                '{{WRAPPER}} .advanced-tyto-list div.page-numbers' => 'text-align: {{VALUE}};'
             ),
         ));
 
@@ -832,73 +832,6 @@ abstract class AbstractListing extends Widget
             ]
         );
 
-        $this->add_control( 'pagination_border_radius', array(
-            'type'    => Controls_Manager::SLIDER,
-            'label'   => esc_html__( 'Button border radius', 'tyto' ),
-            'default' => array(
-                'size' => 50,
-            ),
-            'range' => array(
-                'px' => array(
-                    'min'  => 0,
-                    'max'  => 50,
-                    'step' => 1,
-                )
-            ),
-            'size_units' => array( 'px' ),
-            'selectors'  => array(
-                '{{WRAPPER}} .advanced-tyto-list .page-numbers a'  => 'border-radius: {{SIZE}}{{UNIT}};',
-            ),
-            'condition' => [ 'pagi' => 'numbers' ]
-        ));
-
-        $this->add_control( 'pagination_load_more_border_radius', array(
-            'type'    => Controls_Manager::SLIDER,
-            'label'   => esc_html__( 'Button border radius', 'tyto' ),
-            'range' => array(
-                'px' => array(
-                    'min'  => 0,
-                    'max'  => 100,
-                    'step' => 1,
-                )
-            ),
-            'size_units' => array( 'px' ),
-            'selectors'  => array(
-                '{{WRAPPER}} .advanced-tyto-list .page-numbers.load-more a'  => 'border-radius: {{SIZE}}{{UNIT}};',
-            ),
-            'condition' => [ 'pagi' => 'load_more' ]
-        ));
-
-        $this->add_control('pagination_button_background_color',
-            [
-                'type'      => Controls_Manager::COLOR,
-                'label'     => esc_html__( 'Button background color', 'tyto' ),
-                'default'   => isset($primary_color) ? $primary_color : '#fff',
-                'selectors' => array(
-                    '{{WRAPPER}} .advanced-tyto-list .page-numbers.load-more a' => 'background-color: {{VALUE}}; border-color: {{VALUE}};',
-                    '{{WRAPPER}} .advanced-tyto-list .page-numbers.load-more a:hover' => 'color: {{VALUE}}; border-color: {{VALUE}};',
-                    '{{WRAPPER}} .advanced-tyto-list .page-numbers:not(.load-more) a.current' => 'background-color: {{VALUE}};',
-                    '{{WRAPPER}} .advanced-tyto-list .page-numbers:not(.load-more) a.current:hover' => 'color: {{VALUE}};border-color: {{VALUE}}',
-                    '{{WRAPPER}} .advanced-tyto-list .page-numbers:not(.load-more) a:not(.current)' => 'border-color: {{VALUE}}; color: {{VALUE}}',
-                    '{{WRAPPER}} .advanced-tyto-list .page-numbers:not(.load-more) a:not(.current):hover' => 'background-color: {{VALUE}};'
-                ),
-            ]
-        );
-        $this->add_control('pagination_button_color',
-            [
-                'type'      => Controls_Manager::COLOR,
-                'label'     => esc_html__( 'Button text color, button hover color', 'tyto' ),
-                'default'   => '#fff',
-                'selectors' => array(
-                    '{{WRAPPER}} .advanced-tyto-list .page-numbers.load-more a' => 'color: {{VALUE}};',
-                    '{{WRAPPER}} .advanced-tyto-list .page-numbers.load-more a:hover' => 'background-color: {{VALUE}};',
-                    '{{WRAPPER}} .advanced-tyto-list .page-numbers:not(.load-more) a:not(.current)' => 'background-color: {{VALUE}}',
-                    '{{WRAPPER}} .advanced-tyto-list .page-numbers:not(.load-more) a:not(.current):hover' => 'color: {{VALUE}}',
-                    '{{WRAPPER}} .advanced-tyto-list .page-numbers:not(.load-more) a.current:hover' => 'background-color: {{VALUE}};',
-
-                ),
-            ]
-        );
 
         $this->end_controls_section();
 

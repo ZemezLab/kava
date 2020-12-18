@@ -15,7 +15,6 @@ class Widget_Tyto_TravelServices extends Widget_Base
 {
     public function __construct( $data = [], $args = null ) {
         parent::__construct($data, $args);
-        $this->_enqueue_styles();
     }
 
     public function get_name()
@@ -150,10 +149,6 @@ class Widget_Tyto_TravelServices extends Widget_Base
         ));
 
         $this->end_controls_section();
-    }
-
-    public function _enqueue_styles() {
-        wp_enqueue_style($this->get_name(), \Tourware\Elementor\Loader::getElementorWidgetsFolderUri() . '/assets/css/styles.css');
     }
 }
 

@@ -102,10 +102,6 @@ class Loader {
      * @access public
      */
     public function register_widget_scripts() {
-        /* GRID */
-        wp_register_style('tyto-grid', self::getElementorFolderUri() . '/assets/css/grid.css');
-        wp_register_style('tyto-pagination', self::getElementorFolderUri() . '/assets/css/pagination.css');
-
         /* SLICK SLIDER */
         wp_register_script('slick-script', self::getElementorFolderUri() . '/assets/js/slick.min.js', array('jquery'), false, true);
         wp_register_style('slick-style', self::getElementorFolderUri() . '/assets/css/slick.css');
@@ -204,10 +200,6 @@ class Loader {
     }
 
     public function enqueue_scripts_in_preview_mode() {
-        wp_enqueue_style('tyto-grid');
-        wp_enqueue_style('tyto-pagination');
-//        wp_enqueue_style('tyto-ionicons');
-
         wp_enqueue_script('slick-script');
         wp_enqueue_script('tyto-preview-script');
         wp_enqueue_style('slick-style');
@@ -229,7 +221,6 @@ class Loader {
     }
 
     public function enqueue_styles() {
-        wp_enqueue_style('tyto-grid');
         wp_enqueue_style('tyto-pagination');
         wp_enqueue_style('tyto-ionicons');
     }
@@ -469,7 +460,7 @@ class Loader {
             $r = "<div class='page-numbers load-more'><a class='page-numbers hidden' data-num='1'></a>";
             $r .= "";
             if ($current + 1 <= $total) {
-                $r .= "<a class='elementor-button ' href='#' data-num='".($current + 1)."'>".$settings['pagination_button_text']."</a>";
+                $r .= "<a class='elementor-button page-numbers' href='#' data-num='".($current + 1)."'>".$settings['pagination_button_text']."</a>";
             }
             $r .= "</div>";
         } else if ($settings['pagi'] == 'infinity_scroll') {
