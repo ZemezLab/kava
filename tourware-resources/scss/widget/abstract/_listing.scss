@@ -127,7 +127,7 @@
 .advanced-tyto-list.layout-4 .time,
 .advanced-tyto-list.layout-4 .price {
   color: #fff;
-  background-color: $color-primary;
+  background-color: transparent !important;
 }
 
 .advanced-tyto-list.layout-4 .aver {
@@ -136,9 +136,7 @@
 
 .advanced-tyto-list.layout-4 .price {
   margin-left: 15px;
-  background-color: transparent !important;
 }
-
 
 /* layout-1 */
 .advanced-tyto-list.layout-1 .tour-item {

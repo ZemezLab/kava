@@ -513,9 +513,4 @@ class Listing extends Widget
         }
         include Path::getResourcesFolder() . 'layouts/destination/listing/template.php';
     }
-
-    public function _enqueue_styles()
-    {
-        wp_enqueue_style($this->get_name(), Path::getResourcesUri() . '/css/styles.css');
-    }
 }

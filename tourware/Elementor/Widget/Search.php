@@ -2,7 +2,6 @@
 namespace Tourware\Elementor\Widget;
 
 use Elementor\Controls_Manager;
-use Tourware\Elementor\Control;
 use Tourware\Elementor\Widget;
 use Tourware\Path;
 
@@ -35,6 +34,7 @@ class Search extends Widget
 
     /**
      * @return void
+     * @throws \Exception
      */
     protected function _register_controls()
     {
@@ -350,160 +350,11 @@ class Search extends Widget
             ),
         ));
 
-        $btn_conditions = [
-            'relation' => 'or',
-            'terms' => [
-                [
-                    'terms' => [
-                        [
-                            'name' => 'search_results_ajax',
-                            'operator' => '==',
-                            'value' => ''
-                        ]
-                    ]
-                ],
-                [
-                    'terms' => [
-                        [
-                            'name' => 'search_results_ajax',
-                            'operator' => '==',
-                            'value' => 'yes'
-                        ],
-                        [
-                            'name' => 'search_results_ajax_by_button',
-                            'operator' => '==',
-                            'value' => 'yes'
-                        ]
-                    ]
-                ]
-            ]
-        ];
-
-        $default_font_weight = get_theme_mod('primary_btn_font_weight');
-
-        /* Button Text Transform */
-        $this->add_control( 'submit_text_transform', array(
-            'type'     => Controls_Manager::SELECT2,
-            'label'    => esc_html__( 'Button Text Transorm' ),
-            'multiple' => false,
-            'default' => 'none',
-            'options'  => array(
-                'uppercase' => esc_html__('Uppercase', 'tyto'),
-                'capitalize'  => esc_html__('Capitalize', 'tyto'),
-                'lowercase'  => esc_html__('Lowercase', 'tyto'),
-                'none'  => esc_html__('None', 'tyto'),
-            ),
-            'selectors' => array(
-                '{{WRAPPER}} .place-search-btn button' => 'text-transform: {{VALUE}};',
-            ),
-            'conditions' => $btn_conditions
-        ) );
-
-//        /* Button Font Weight */
-//        $this->add_control( 'submit_font_weight', array(
-//            'type'     => Controls_Manager::NUMBER,
-//            'label'    => esc_html__( 'Button Font Weight' ),
-//            'selectors' => array(
-//                '{{WRAPPER}} .place-search-btn button' => 'font-weight: {{VALUE}};',
-//            ),
-//            'default' => empty($default_font_weight) ? 'none' : $default_font_weight,
-//            'conditions' => $btn_conditions
-//        ) );
-
-        /* Button Backgroung Color */
-        $this->add_control('submit_bg_color', array(
-            'type' => Controls_Manager::COLOR,
-            'label' => esc_html__('Button Background Color', 'tyto'),
-            'selectors' => array(
-                '{{WRAPPER}} .place-search-btn button' => 'background-color: {{VALUE}}; border: 1px solid {{VALUE}}',
-
-            ),
-            'conditions' => $btn_conditions
-        ));
-
-        /*Button Text COLOR*/
-        $this->add_control('submit_text_color', array(
-            'type' => Controls_Manager::COLOR,
-            'label' => esc_html__('Button Text Color', 'tyto'),
-            'selectors' => array(
-                '{{WRAPPER}} .place-search-btn button' => 'color: {{VALUE}};',
-            ),
-            'conditions' => $btn_conditions
-        ));
-
-        /* Button Hover Color */
-        $this->add_control('submit_hover_bg_color', array(
-            'type' => Controls_Manager::COLOR,
-            'label' => esc_html__('Button Hover Background Color', 'tyto'),
-            'selectors' => array(
-                '{{WRAPPER}} .place-search-btn button:hover' => 'background-color: {{VALUE}};',
-            ),
-            'conditions' => $btn_conditions
-        ));
-
-        /*Button Hover Text COLOR*/
-        $this->add_control('submit_hover_text_color', array(
-            'type' => Controls_Manager::COLOR,
-            'label' => esc_html__('Button Hover Text Color', 'tyto'),
-            'selectors' => array(
-                '{{WRAPPER}} .place-search-btn button:hover' => 'color: {{VALUE}}; border: 1px solid {{VALUE}}',
-            ),
-            'conditions' => $btn_conditions
-        ));
-
-        /*AUTOCOMPLETE BACKGROUND*/
-        $this->add_control('autocomplete_bg', array(
-            'type' => Controls_Manager::COLOR,
-            'label' => esc_html__('Autocomplete results background', 'tyto'),
-            'selectors' => array(
-                '{{WRAPPER}} .autocomplete-result' => 'background-color: {{VALUE}};',
-            ),
-            'condition' => ['search_autocomplete' => 'yes']
-        ));
-        $this->add_control('autocomplete_text_color', array(
-            'type' => Controls_Manager::COLOR,
-            'label' => esc_html__('Autocomplete text color', 'tyto'),
-            'selectors' => array(
-                '{{WRAPPER}} .autocomplete-result span' => 'color: {{VALUE}};',
-            ),
-            'condition' => ['search_autocomplete' => 'yes']
-        ));
-
-        $this->add_control('autocomplete_selected_bg', array(
-            'type' => Controls_Manager::COLOR,
-            'label' => esc_html__('Autocomplete selected background', 'tyto'),
-            'selectors' => array(
-                '{{WRAPPER}} .autocomplete-result span.selected' => 'background-color: {{VALUE}};',
-                '{{WRAPPER}} .autocomplete-result span:hover' => 'background-color: {{VALUE}};',
-            ),
-            'condition' => ['search_autocomplete' => 'yes']
-        ));
-
-
-        $this->add_control('categories_buttons_text', array(
-            'type' => Controls_Manager::COLOR,
-            'label' => esc_html__('Categories Buttons Text', 'tyto'),
-            'selectors' => array(
-                '{{WRAPPER}} .tag-button' => 'color: {{VALUE}};',
-            ),
-            'condition' => ['show_categories_buttons' => 'yes']
-        ));
-
-        $this->add_control('categories_buttons_bg', array(
-            'type' => Controls_Manager::COLOR,
-            'label' => esc_html__('Categories Buttons Background', 'tyto'),
-            'selectors' => array(
-                '{{WRAPPER}} .tag-button' => 'background-color: {{VALUE}};',
-                '{{WRAPPER}} .tag-button.active' => 'color: {{VALUE}};',
-            ),
-            'condition' => ['show_categories_buttons' => 'yes']
-        ));
         $this->add_control('categories_selected_buttons_bg', array(
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Categories Selected Buttons Background', 'tyto'),
             'selectors' => array(
-                '{{WRAPPER}} .tag-button.active' => 'background-color: {{VALUE}};',
-                '{{WRAPPER}} .tag-button' => 'border-color: {{VALUE}};',
+                '{{WRAPPER}} .tag-button.active' => 'background-color: {{VALUE}}; border-color: {{VALUE}}',
             ),
             'condition' => ['show_categories_buttons' => 'yes']
         ));
@@ -532,6 +383,9 @@ class Search extends Widget
         ));
 
         $this->end_controls_section();
+
+        $this->addControlButtonGroup(['id' => 'submit_button', 'label' => 'Submit Button', 'selector' => '.place-search-btn .elementor-button' ]);
+        $this->addControlButtonGroup(['id' => 'categories_buttons', 'label' => 'Categories Buttons', 'selector' => '.elementor-button.tag-button' ]);
 
     }
 
