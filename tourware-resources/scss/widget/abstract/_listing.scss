@@ -156,7 +156,8 @@
 }
 
 .advanced-tyto-list.layout-1 .title {
-  margin: 0;
+  @include tourware-body-text;
+  margin: 0 0 20px 0;
 }
 
 .advanced-tyto-list.layout-1 .tour-attributes {
@@ -184,13 +185,14 @@
 }
 
 .advanced-tyto-list.layout-1 .price {
+  @include tourware-body-text;
+  padding: 4px 10px;
   z-index: 2;
   bottom: 0;
   left: 20px;
   border-radius: 4px 4px 0 0;
   min-height: 30px;
   height: auto;
-  padding: 0 20px;
   position: absolute;
   display: -webkit-box;
   display: -webkit-flex;

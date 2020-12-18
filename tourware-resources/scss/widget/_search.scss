@@ -35,10 +35,12 @@
   }
 
   .place-search-spn input {
+    @include tourware-body-text;
     border-color: rgba(0, 0, 0, 0);
     padding: 10px 12px 9px 45px;
     -moz-appearance: textfield;
     background-color: $color-grey-light;
+    width: 100%;
   }
 
   select#i-tags {
@@ -111,6 +113,11 @@
 .advanced-tyto-search .tag-button.active {
   background-color: #AAAAAA;
   color: #fff;
+}
+
+.advanced-tyto-search .place-search-btn button {
+  @include tourware-body-text;
+  width: 100%;
 }
 
 @media (max-width: 767px) {
