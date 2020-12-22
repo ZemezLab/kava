@@ -711,9 +711,6 @@ abstract class AbstractListing extends Widget
     }
 
     protected function sectionAttributes() {
-        $primary_color = get_theme_mod('accent_color');
-        $invert_text_color = get_theme_mod('invert_text_color');;
-
         $this->start_controls_section( 'card', array(
             'label'     => esc_html__( 'Card', 'tyto' ),
             'tab' => Controls_Manager::TAB_STYLE,

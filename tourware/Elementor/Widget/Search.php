@@ -460,6 +460,6 @@ class Search extends Widget
         );
         wp_register_script('adv-list-handler', Path::getResourcesUri() . '/js/widget/search/advanced-list-handler.js');
         wp_register_script('category-buttons', Path::getResourcesUri() . '/js/widget/search/category-buttons.js');
-        wp_register_script('init-datepicker', Path::getResourcesUri() .  '/js/widget/search/init-datepicker.js');
+        wp_register_script('init-datepicker', Path::getResourcesUri() .  '/js/widget/search/init-datepicker.js', ['datepicker']);
     }
 }

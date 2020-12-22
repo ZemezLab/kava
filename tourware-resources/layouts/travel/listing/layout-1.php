@@ -41,7 +41,7 @@
                 <?php } ?>
 				</span>
                 <?php endif; ?>
-                <?php if ($settings['show_duration'] && isset($days)): ?>
+                <?php if ($settings['show_duration'] && !empty($days)): ?>
                     <span class="time tour-attribute">
 				    <?php \Elementor\Icons_Manager::render_icon( $settings['icon_duration'] ); ?>
                         <strong><?php
@@ -60,13 +60,13 @@
 					</strong>
 				</span>
                 <?php endif; ?>
-                <?php if ($settings['show_persons'] && isset($persons)): ?>
+                <?php if ($settings['show_persons'] && !empty($persons)): ?>
                     <span class="time tour-attribute">
 				    <?php \Elementor\Icons_Manager::render_icon( $settings['icon_persons'] ); ?>
                     <strong><?php esc_html_e($persons.$settings['persons_suffix']); ?></strong>
 				</span>
                 <?php endif; ?>
-                <?php if ($settings['show_destination'] && isset($destination)):  ?>
+                <?php if ($settings['show_destination'] && !empty($destination)):  ?>
                     <span class="time tour-attribute">
 				    <?php \Elementor\Icons_Manager::render_icon( $settings['icon_destination'] ); ?>
                         <strong><?php esc_html_e($destination); ?></strong>

@@ -273,7 +273,7 @@ function tyto_scripts()
     );
     wp_register_script(
         'jquery-lightbox',
-        \Tourware\Path::getResourcesFolder() . '/js/lightbox.min.js',
+        \Tourware\Path::getResourcesUri() . '/js/lightbox.min.js',
         array('jquery'),
         null,
         true
@@ -286,7 +286,7 @@ function tyto_scripts()
     );
     wp_register_script(
         'jquery-fancybox',
-        \Tourware\Path::getResourcesFolder() . '/js/fancybox.min.js',
+        \Tourware\Path::getResourcesUri() . '/js/fancybox.min.js',
         array('jquery'),
         null,
         true
@@ -301,14 +301,14 @@ function tyto_scripts()
     /* TOUR SINGLE JS */
     wp_register_script(
         'tour-single',
-        \Tourware\Path::getResourcesFolder() . '/js/tour-single.js',
+        \Tourware\Path::getResourcesUri() . '/js/tour-single.js',
         array(),
         null,
         true
     );
     wp_register_script(
         'sticky-sidebar',
-        \Tourware\Path::getResourcesFolder() . '/js/sticky-sidebar.js',
+        \Tourware\Path::getResourcesUri() . '/js/sticky-sidebar.js',
         array(),
         null,
         true
@@ -322,7 +322,7 @@ function tyto_scripts()
 
     wp_register_script(
         'jquery-lity',
-        \Tourware\Path::getResourcesFolder() . '/js/lity.js',
+        \Tourware\Path::getResourcesUri() . '/js/lity.js',
         array(),
         null,
         true
@@ -331,14 +331,14 @@ function tyto_scripts()
     /* JARALLAX : VIDEO PARALLAX */
     wp_register_script(
         'jarallax',
-        \Tourware\Path::getResourcesFolder() . '/js/jarallax.min.js',
+        \Tourware\Path::getResourcesUri() . '/js/jarallax.min.js',
         array( 'jquery' ),
         null,
         true
     );
     wp_register_script(
         'jarallax-video',
-        \Tourware\Path::getResourcesFolder() . '/js/jarallax-video.min.js',
+        \Tourware\Path::getResourcesUri() . '/js/jarallax-video.min.js',
         array( 'jquery' ),
         null,
         true
@@ -347,15 +347,10 @@ function tyto_scripts()
     /*TINY SLIDER*/
     wp_register_script(
         'tiny-slider-js',
-        \Tourware\Path::getResourcesFolder() . '/js/tiny-slider.js',
+        \Tourware\Path::getResourcesUri() . '/js/tiny-slider.js',
         array(),
         null,
         true
-    );
-
-    wp_register_style(
-        'tiny-slider',
-        get_template_directory_uri() . '/assets/css/tiny-slider.css'
     );
 
     /* COLLAPSER */

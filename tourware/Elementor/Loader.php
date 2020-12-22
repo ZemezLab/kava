@@ -104,14 +104,10 @@ class Loader {
     public function register_widget_scripts() {
         /* SLICK SLIDER */
         wp_register_script('slick-script', self::getElementorFolderUri() . '/assets/js/slick.min.js', array('jquery'), false, true);
-        wp_register_style('slick-style', self::getElementorFolderUri() . '/assets/css/slick.css');
         /* DATEPICKER */
         wp_register_script( 'moment', 'https://cdn.jsdelivr.net/momentjs/latest/moment.min.js', array('jquery'));
         wp_register_script( 'datepicker', 'https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js', array('jquery', 'moment'));
         wp_register_style('datepicker', 'https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css');
-        /*TINY SLIDER*/
-        wp_register_script('tiny-slider-js',self::getElementorFolderUri() . '/assets/js/tiny-slider.js', array(),null,true);
-        wp_register_style('tiny-slider',self::getElementorFolderUri() . '/assets/css/tiny-slider.css');
         /* ISOTOPE */
         wp_register_script('isotope-script', self::getElementorFolderUri() . '/assets/js/isotope.min.js', array('jquery'), false, true);
         /* COLLAPSER */
