@@ -819,7 +819,8 @@ abstract class AbstractListing extends Widget
             ),
             'default'        => 'left',
             'selectors'      => array(
-                '{{WRAPPER}} .advanced-tyto-list div.page-numbers' => 'text-align: {{VALUE}};'
+                '{{WRAPPER}} .advanced-tyto-list div.page-numbers' => 'text-align: {{VALUE}};',
+                '{{WRAPPER}} .advanced-tyto-list ul.page-numbers' => 'text-align: {{VALUE}};'
             ),
         ));
 
@@ -831,9 +832,14 @@ abstract class AbstractListing extends Widget
                 'condition' => [ 'pagi' => 'load_more' ]
             ]
         );
-
-
         $this->end_controls_section();
+
+        $this->addControlGroupButton([
+            'id' => 'load_more_button',
+            'label' => 'Load More Button',
+            'selector' => 'elementor-button.page-numbers',
+            'condition' => ['pagi' => 'load_more']
+        ]);
 
         $this->start_controls_section( 'attributes', array(
             'label'     => esc_html__( 'Attributes', 'tyto' ),

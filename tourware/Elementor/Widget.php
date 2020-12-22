@@ -51,7 +51,7 @@ abstract class Widget extends \Elementor\Widget_Base
         $this->add_control( $control->getId(), $control->getConfig() );
     }
 
-    public function addControlButtonGroup($args)
+    public function addControlGroupButton($args)
     {
         if (!$args['id']) {
             throw new \Exception('Button Group ID is missing');
@@ -69,6 +69,8 @@ abstract class Widget extends \Elementor\Widget_Base
             [
                 'label' => $args['label'],
                 'tab' => Controls_Manager::TAB_STYLE,
+                'condition' => $args['condition'] ? $args['condition'] : null,
+                'conditions' => $args['conditions'] ? $args['conditions'] : null,
             ]
         );
 
