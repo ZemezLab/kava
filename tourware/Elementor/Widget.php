@@ -64,6 +64,7 @@ abstract class Widget extends \Elementor\Widget_Base
         $args = wp_parse_args( $args, $default_args );
 
         $id = $args['id'].'_';
+
         $this->start_controls_section(
             $id,
             [
@@ -229,6 +230,264 @@ abstract class Widget extends \Elementor\Widget_Base
         );
 
         $this->end_controls_section();
+    }
+
+    public function addControlGroupField($args) {
+        if (!$args['id']) {
+            throw new \Exception('Button Group ID is missing');
+        }
+
+        $default_args = array(
+            'label' => 'Field',
+            'selector' => '.elementor-button',
+        );
+        $args = wp_parse_args( $args, $default_args );
+
+        $id = $args['id'].'_';
+
+        $label_selectors = [
+            '{{WRAPPER}} label',
+        ];
+
+        $input_selectors = [
+            '{{WRAPPER}} input:not([type="button"]):not([type="submit"])',
+            '{{WRAPPER}} textarea',
+            '{{WRAPPER}} .elementor-field-textual',
+        ];
+
+        $input_focus_selectors = [
+            '{{WRAPPER}} input:focus:not([type="button"]):not([type="submit"])',
+            '{{WRAPPER}} textarea:focus',
+            '{{WRAPPER}} .elementor-field-textual:focus',
+        ];
+
+        $label_selector = implode( ',', $label_selectors );
+        $input_selector = implode( ',', $input_selectors );
+        $input_focus_selector = implode( ',', $input_focus_selectors );
+
+        $this->start_controls_section(
+            $id.'section_form_fields',
+            [
+                'label' => __( 'Field', 'elementor' ),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_control(
+            $id.'form_label_heading',
+            [
+                'type' => Controls_Manager::HEADING,
+                'label' => __( 'Label', 'elementor' ),
+            ]
+        );
+
+        $this->add_control(
+            $id.'form_label_color',
+            [
+                'label' => __( 'Color', 'elementor' ),
+                'type' => Controls_Manager::COLOR,
+                'dynamic' => [],
+                'selectors' => [
+                    $label_selector => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'label' => __( 'Typography', 'elementor' ),
+                'name' => $id.'form_label_typography',
+                'selector' => $label_selector,
+            ]
+        );
+
+        $this->add_control(
+            $id.'form_field_heading',
+            [
+                'type' => Controls_Manager::HEADING,
+                'label' => __( 'Field', 'elementor' ),
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'label' => __( 'Typography', 'elementor' ),
+                'name' => $id.'form_field_typography',
+                'selector' => $input_selector,
+            ]
+        );
+
+        $this->start_controls_tabs( 'tabs_form_field_style' );
+
+        $this->start_controls_tab(
+            $id.'tab_form_field_normal',
+            [
+                'label' => __( 'Normal', 'elementor' ),
+            ]
+        );
+
+        $this->add_control(
+            $id . 'form_field_text_color',
+            [
+                'label' => __( 'Text Color', 'elementor' ),
+                'type' => Controls_Manager::COLOR,
+                'dynamic' => [],
+                'selectors' => [
+                    $input_selector => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            $id . 'form_field_background_color',
+            [
+                'label' => __( 'Background Color', 'elementor' ),
+                'type' => Controls_Manager::COLOR,
+                'dynamic' => [],
+                'selectors' => [
+                    $input_selector => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => $id . 'form_field_box_shadow',
+                'selector' => $input_selector,
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => $id . 'form_field_border',
+                'selector' => $input_selector,
+                'fields_options' => [
+                    'color' => [
+                        'dynamic' => [],
+                    ],
+                ],
+            ]
+        );
+
+        $this->add_control(
+            $id . 'form_field_border_radius',
+            [
+                'label' => __( 'Border Radius', 'elementor' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    $input_selector => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            $id.'tab_form_field_focus',
+            [
+                'label' => __( 'Focus', 'elementor' ),
+            ]
+        );
+
+        $this->add_control(
+            $id . 'form_field_focus_text_color',
+            [
+                'label' => __( 'Text Color', 'elementor' ),
+                'type' => Controls_Manager::COLOR,
+                'dynamic' => [],
+                'selectors' => [
+                    $input_focus_selector => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            $id . 'form_field_focus_background_color',
+            [
+                'label' => __( 'Background Color', 'elementor' ),
+                'type' => Controls_Manager::COLOR,
+                'dynamic' => [],
+                'selectors' => [
+                    $input_focus_selector => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => $id . 'form_field_focus_box_shadow',
+                'selector' => $input_focus_selector,
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => $id . 'form_field_focus_border',
+                'selector' => $input_focus_selector,
+                'fields_options' => [
+                    'color' => [
+                        'dynamic' => [],
+                    ],
+                ],
+            ]
+        );
+
+        $this->add_control(
+            $id . 'form_field_focus_border_radius',
+            [
+                'label' => __( 'Border Radius', 'elementor' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    $input_focus_selector => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            $id.'form_field_focus_transition_duration',
+            [
+                'label' => __( 'Transition Duration', 'elementor' ) . ' (ms)',
+                'type' => Controls_Manager::SLIDER,
+                'selectors' => [
+                    $input_selector => 'transition: {{SIZE}}ms',
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 3000,
+                    ],
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
+        $this->add_responsive_control(
+            $id.'form_field_padding',
+            [
+                'label' => __( 'Padding', 'elementor' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', 'em', '%' ],
+                'selectors' => [
+                    $input_selector => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+                'separator' => 'before',
+            ]
+        );
+
+        $this->end_controls_section();
+
     }
 
 }

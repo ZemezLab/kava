@@ -314,41 +314,40 @@ class Search extends Widget
             ),
         ));
 
-
         /*INPUT BACKGROUND COLOR*/
-        $this->add_control('input_bg', array(
-            'type' => Controls_Manager::COLOR,
-            'label' => esc_html__('Input background', 'tyto'),
-            'selectors' => array(
-                '{{WRAPPER}} .place-search-spn input' => 'background-color: {{VALUE}};',
-                '{{WRAPPER}} .place-search-spn select' => 'background-color: {{VALUE}};'
-            ),
-        ));
-
-        /*TEXT COLOR*/
-        $this->add_control('input_color', array(
-            'type' => Controls_Manager::COLOR,
-            'label' => esc_html__('Input text, input icon, focused border color', 'tyto'),
-            'selectors' => array(
-                '{{WRAPPER}} .place-search-spn input' => 'color: {{VALUE}};',
-                '{{WRAPPER}} .place-search-spn input::placeholder' => 'color: {{VALUE}};',
-                '{{WRAPPER}} .place-search-spn input:focus' => 'border-color: {{VALUE}};',
-                '{{WRAPPER}} .place-search-spn select' => 'color: {{VALUE}};',
-                '{{WRAPPER}} .place-search-spn select:focus' => 'border-color: {{VALUE}};',
-                '{{WRAPPER}} .place-search-spn label:before' => 'color: {{VALUE}};',
-                '{{WRAPPER}} .place-search-spn label .icon' => 'color: {{VALUE}};',
-            ),
-        ));
-
-        /*Title COLOR*/
-        $this->add_control('title_color', array(
-            'type' => Controls_Manager::COLOR,
-            'label' => esc_html__('Title color', 'tyto'),
-            'selectors' => array(
-                '{{WRAPPER}} .place-search-spn h5' => 'color: {{VALUE}};',
-
-            ),
-        ));
+//        $this->add_control('input_bg', array(
+//            'type' => Controls_Manager::COLOR,
+//            'label' => esc_html__('Input background', 'tyto'),
+//            'selectors' => array(
+//                '{{WRAPPER}} .place-search-spn input' => 'background-color: {{VALUE}};',
+//                '{{WRAPPER}} .place-search-spn select' => 'background-color: {{VALUE}};'
+//            ),
+//        ));
+//
+//        /*TEXT COLOR*/
+//        $this->add_control('input_color', array(
+//            'type' => Controls_Manager::COLOR,
+//            'label' => esc_html__('Input text, input icon, focused border color', 'tyto'),
+//            'selectors' => array(
+//                '{{WRAPPER}} .place-search-spn input' => 'color: {{VALUE}};',
+//                '{{WRAPPER}} .place-search-spn input::placeholder' => 'color: {{VALUE}};',
+//                '{{WRAPPER}} .place-search-spn input:focus' => 'border-color: {{VALUE}};',
+//                '{{WRAPPER}} .place-search-spn select' => 'color: {{VALUE}};',
+//                '{{WRAPPER}} .place-search-spn select:focus' => 'border-color: {{VALUE}};',
+//                '{{WRAPPER}} .place-search-spn label:before' => 'color: {{VALUE}};',
+//                '{{WRAPPER}} .place-search-spn label .icon' => 'color: {{VALUE}};',
+//            ),
+//        ));
+//
+//        /*Title COLOR*/
+//        $this->add_control('title_color', array(
+//            'type' => Controls_Manager::COLOR,
+//            'label' => esc_html__('Title color', 'tyto'),
+//            'selectors' => array(
+//                '{{WRAPPER}} .place-search-spn h5' => 'color: {{VALUE}};',
+//
+//            ),
+//        ));
 
         $this->add_control('categories_selected_buttons_bg', array(
             'type' => Controls_Manager::COLOR,
@@ -361,7 +360,7 @@ class Search extends Widget
 
         $this->add_control( 'categories_buttons_align', array(
             'type'           => Controls_Manager::CHOOSE,
-            'label'          => esc_html__( 'Buttons Alignment', 'tyto' ),
+            'label'          => esc_html__( 'Categories Buttons Alignment', 'tyto' ),
             'options'        => array(
                 'left'   => array(
                     'title' => esc_html__( 'Left', 'tyto' ),
@@ -380,9 +379,12 @@ class Search extends Widget
             'selectors'      => array(
                 '{{WRAPPER}} .place-search-spn--tags_buttons' => 'text-align: {{VALUE}};'
             ),
+            'condition' => ['show_categories_buttons' => 'yes']
         ));
 
         $this->end_controls_section();
+
+        $this->addControlGroupField(['id' => 'search_input']);
 
         $this->addControlGroupButton([
             'id' => 'submit_button',
