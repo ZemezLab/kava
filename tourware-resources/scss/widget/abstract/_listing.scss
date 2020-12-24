@@ -116,11 +116,8 @@
 }
 
 .advanced-tyto-list.layout-4 .title {
-  font-size: 17px;
-  line-height: 1.2;
-  margin-top: 0;
-  margin-bottom: 8px;
-  color: #fff;
+  margin: 0 0 8px;
+  color: #fff !important;
 }
 
 .advanced-tyto-list.layout-4 .aver,
@@ -151,10 +148,13 @@
 
 .advanced-tyto-list.layout-1 .tour-content {
   padding: 20px;
+
+  *:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .advanced-tyto-list.layout-1 .title {
-  @include tourware-body-text;
   margin: 0 0 20px 0;
 }
 
@@ -465,8 +465,7 @@
 }
 
 .advanced-tyto-list.layout-2 .tour-content .title {
-  font-size: 22px;
-  color: #466066;
+  //@include tourware-body-text;
 }
 
 .advanced-tyto-list.layout-2 .tour-content .item-excerpt {

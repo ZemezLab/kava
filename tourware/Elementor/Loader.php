@@ -367,8 +367,8 @@ class Loader {
             // TODO repository factory
             // $repository = \Tourware\RepositoryFactory::getRepositoryByPostType(get_post_type());
             $item_data = \Tourware\Repository\Travel::getInstance()->findOneByPostId(get_the_ID());
-
-            Loader::renderListItem($item_data,$settings);
+            $data = Loader::getListItemData($item_data, $settings);
+            Loader::renderListItem($data);
         endwhile;
 
         $html = ob_get_clean();
@@ -476,29 +476,40 @@ class Loader {
      * @param $settings
      */
     public static function renderListItem($item_data, $settings) {
-//        print_r($item_data);
-        $post = get_post(get_the_ID());
         $img_width = $img_height = 1200 / $settings['col'];
+
         /*VARIABLES*/
 
-        $title = $item_data->getTitle();
-
-        if ($settings['title_length']) {
-            if (strlen($title) > $settings['title_length']['size']) {
-                $title = substr($title, 0, $settings['title_length']['size']).'...';
+        $title_html = '';
+        if ($settings['show_title']) {
+            $title = $item_data->getTitle();
+            if ($settings['title_length']) {
+                if (strlen($title) > $settings['title_length']['size']) {
+                    $title = substr($title, 0, $settings['title_length']['size']).'...';
+                }
             }
+            $tag = $settings['title_tag'];
+            ob_start(); ?>
+            <<?php echo $tag; ?> class="elementor-post__title title entry-title">
+            <a href="<?php echo get_the_permalink() ?>" <?php //echo $optional_attributes_html; ?>>
+                <?php echo $item_data->getTitle(); ?>
+            </a>
+            </<?php echo $tag; ?>>
+            <?php
+            $title_html = ob_get_contents();
+            ob_end_clean();
         }
 
         $price = $item_data->getPrice();
-        $days = $item_data->getItineraryLength();
-        $persons = ($item_data->getPaxMin() ? $item_data->getPaxMin().'-' : '').$item_data->getPaxMax();
-        $destination = $item_data->_destination;
-        $stars = 0;
+        if ($settings['show_duration']) $days = $item_data->getItineraryLength();
+        if ($settings['show_persons']) $persons = ($item_data->getPaxMin() ? $item_data->getPaxMin().'-' : '').$item_data->getPaxMax();
+        if ($settings['show_destination']) $destination = $item_data->_destination;
+
         if (get_post_type(get_the_ID()) == 'tytoaccommodations') {
             $stars = $item_data->stars ? $item_data->stars : 1;
         }
 
-        $badge = false;
+        $badge = $badge_html = '';
         if ($settings['show_badge']) {
             if ($tags = $item_data->getTags()) {
                 foreach ($tags as $tag) {
@@ -516,10 +527,13 @@ class Loader {
                     }
                 }
             }
+            if (!empty($badge)) {
+                $badge_html = '<span class="tour-label">'.$badge.'</span>';
+            }
         }
 
         if ($settings['show_excerpt'] ) {
-            $excerpt = $post->post_excerpt;
+            $excerpt = $item_data->getTeaser();
             if (strlen($excerpt) > $settings['excerpt_length']['size']) {
                 $excerpt = substr($excerpt, 0, $settings['excerpt_length']['size']).'...';
             }
@@ -527,9 +541,9 @@ class Loader {
 
         if ($settings['show_categories'] && $settings['categories_tags']) {
             $categories = [];
-            if ($item_data->tags) {
-                foreach ($item_data->tags as $tag) {
-                    if (in_array($tag->name, $settings['categories_tags'])) {
+            if ($tags = $item_data->getTags()) {
+                foreach ($tags as $tag) {
+                    if (is_array($settings['categories_tags']) && in_array($tag->name, $settings['categories_tags'])) {
                         $categories[] = $tag->name;
                     }
                 }

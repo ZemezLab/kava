@@ -42,9 +42,7 @@
             <div class="item-destination">
                 <?php echo $settings['show_destination'] && $destination ? $destination : "&nbsp;" ?>
             </div>
-            <h3 class="title entry-title">
-                <a href="<?php the_permalink(); ?>"><?php echo $title; ?></a>
-            </h3>
+            <?php echo $title_html ?>
             <div class="item-excerpt">
                 <?php if ($settings['show_excerpt'] && $excerpt) echo $excerpt; ?>
             </div>

@@ -135,7 +135,7 @@ abstract class AbstractListing extends Widget
 
         $this->add_control( 'layout', array(
             'type'    => Controls_Manager::SELECT,
-            'label'   => esc_html__( 'Layout' ),
+            'label'   => esc_html__( 'Skin' ),
             'default' => 'grid',
             'options' => array(
                 'grid'     => esc_html__( 'Grid' ),
@@ -331,6 +331,38 @@ abstract class AbstractListing extends Widget
         ) );
 
         $this->add_control(
+            'show_title',
+            [
+                'label' => __( 'Title', 'elementor-pro' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Show', 'elementor-pro' ),
+                'label_off' => __( 'Hide', 'elementor-pro' ),
+                'default' => 'yes',
+            ]
+        );
+
+        $this->add_control(
+            'title_tag',
+            [
+                'label' => __( 'Title HTML Tag', 'elementor-pro' ),
+                'type' => Controls_Manager::SELECT,
+                'options' => [
+                    'h1' => 'H1',
+                    'h2' => 'H2',
+                    'h3' => 'H3',
+                    'h4' => 'H4',
+                    'h5' => 'H5',
+                    'h6' => 'H6',
+                    'div' => 'div',
+                    'span' => 'span',
+                    'p' => 'p',
+                ],
+                'default' => 'h3',
+                'condition' => [ 'show_title' => 'yes'],
+            ]
+        );
+
+        $this->add_control(
             'title_length',
             [
                 'label' => __( 'Title Length', 'tyto' ),
@@ -346,6 +378,7 @@ abstract class AbstractListing extends Widget
                     ),
                 ),
                 'size_units' => array( 'px' ),
+                'condition' => ['show_title' => 'yes']
             ]
         );
 
@@ -357,6 +390,7 @@ abstract class AbstractListing extends Widget
                 'label_on' => __( 'Show', 'tyto' ),
                 'label_off' => __( 'Hide', 'tyto' ),
                 'default' => 'yes',
+                'separator' => 'before'
             ]
         );
 
@@ -414,7 +448,6 @@ abstract class AbstractListing extends Widget
                 'label_off' => __( 'Hide', 'tyto' ),
                 'default' => 'yes',
                 'separator' => 'before',
-                'condition' => ['design!' => 'clean']
             ]
         );
         $this->add_control(
@@ -434,6 +467,40 @@ abstract class AbstractListing extends Widget
                 ),
                 'size_units' => array( 'px' ),
                 'condition' => ['show_excerpt' => 'yes']
+            ]
+        );
+
+        $this->add_control(
+            'show_read_more',
+            [
+                'label' => __( 'Read More', 'elementor-pro' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Show', 'elementor-pro' ),
+                'label_off' => __( 'Hide', 'elementor-pro' ),
+                'default' => 'yes',
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_control(
+            'read_more_text',
+            [
+                'label' => __( 'Read More Text', 'elementor-pro' ),
+                'type' => Controls_Manager::TEXT,
+                'default' => __( 'Read More »', 'elementor-pro' ),
+                'condition' => [ 'show_read_more' => 'yes' ],
+            ]
+        );
+
+        $this->add_control(
+            'open_new_tab',
+            [
+                'label' => __( 'Open in new window', 'elementor-pro' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Yes', 'elementor-pro' ),
+                'label_off' => __( 'No', 'elementor-pro' ),
+                'default' => 'no',
+                'render_type' => 'none',
             ]
         );
 

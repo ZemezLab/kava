@@ -15,16 +15,14 @@
                     <?php } ?>
                     data-src="<?php echo $img_src ?>"
                     alt="<?php esc_html_e($title) ?>">
-                <?php if ($badge) { ?>
-		            <span class="tour-label"><?php echo $badge ?></span>
-                <?php } ?>
+                <?php echo $badge_html ?>
             </a>
         </div>
 
         <div class="tour-content item-content-holder">
             <div class="item-title-price-holder">
-                <h5 class="tour-title">
-                    <a href="<?php the_permalink() ?>"><?php esc_html_e($title) ?></a>
+                <div class="tour-title">
+                    <?php echo $title_html ?>
                     <?php if ($settings['show_price'] && $price) { ?>
                         <span class="item-price-holder">
                         <span class="price-holder">
@@ -32,17 +30,14 @@
 						</span>
 					</span>
                     <?php } ?>
-                </h5>
+                </div>
             </div>
             <div class="item-excerpt">
                 <?php if ($settings['show_excerpt'] && $excerpt) esc_html_e($excerpt); ?>
             </div>
-            <?php if (($settings['show_duration'] && $days)
-                || ($settings['show_persons'] && $persons)
-                || ($settings['show_destination'] && $destination)
-                || ($settings['show_categories'] && $categories_str)) { ?>
+            <?php if ($days || $persons || $destination || $categories_str) { ?>
             <div class="item-bottom-content tour-attributes">
-                <?php if ($settings['show_duration'] && $days) { ?>
+                <?php if ($days) { ?>
                 <div class="item-bottom-item tour-attribute">
                     <?php \Elementor\Icons_Manager::render_icon( $settings['icon_duration'] ); ?>
                     <span class="tour-info-label">
@@ -61,14 +56,14 @@
                         ?></span>
                 </div>
                 <?php } ?>
-                <?php if ($settings['show_persons'] && $persons) { ?>
+                <?php if ($persons) { ?>
                     <div class="item-bottom-item tour-attribute">
                         <?php \Elementor\Icons_Manager::render_icon( $settings['icon_persons'] ); ?>
                         <span class="tour-info-label">
 					    <?php echo $persons.$settings['persons_suffix'] ?></span>
                     </div>
                 <?php } ?>
-                <?php if ($settings['show_destination'] && $destination) { ?>
+                <?php if ($destination) { ?>
                     <div class="item-bottom-item tour-attribute">
                         <?php \Elementor\Icons_Manager::render_icon( $settings['icon_destination'] ); ?>
                         <span class="tour-info-label">
@@ -76,7 +71,7 @@
                     </div>
                     <br>
                 <?php } ?>
-                <?php if ($settings['show_categories'] && $categories_str) { ?>
+                <?php if ($categories_str) { ?>
                     <div class="item-bottom-item tour-attribute">
                         <?php \Elementor\Icons_Manager::render_icon( $settings['icon_categories'] ); ?>
                         <span class="tour-info-label">
