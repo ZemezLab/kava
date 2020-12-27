@@ -367,8 +367,7 @@ class Loader {
             // TODO repository factory
             // $repository = \Tourware\RepositoryFactory::getRepositoryByPostType(get_post_type());
             $item_data = \Tourware\Repository\Travel::getInstance()->findOneByPostId(get_the_ID());
-            $data = Loader::getListItemData($item_data, $settings);
-            Loader::renderListItem($data);
+            Loader::renderListItem($item_data, $settings);
         endwhile;
 
         $html = ob_get_clean();
@@ -478,8 +477,9 @@ class Loader {
     public static function renderListItem($item_data, $settings) {
         $img_width = $img_height = 1200 / $settings['col'];
 
-        /*VARIABLES*/
+        $optional_attributes_html = $settings[ 'open_new_tab' ] === 'yes' ? 'target="_blank"' : '';
 
+        /*VARIABLES*/
         $title_html = '';
         if ($settings['show_title']) {
             $title = $item_data->getTitle();
@@ -491,7 +491,7 @@ class Loader {
             $tag = $settings['title_tag'];
             ob_start(); ?>
             <<?php echo $tag; ?> class="elementor-post__title title entry-title">
-            <a href="<?php echo get_the_permalink() ?>" <?php //echo $optional_attributes_html; ?>>
+            <a href="<?php echo get_the_permalink() ?>" <?php echo $optional_attributes_html; ?>>
                 <?php echo $item_data->getTitle(); ?>
             </a>
             </<?php echo $tag; ?>>
@@ -500,7 +500,18 @@ class Loader {
             ob_end_clean();
         }
 
-        $price = $item_data->getPrice();
+        $price_html = '';
+        if ($settings['show_price']) {
+            $price = $item_data->getPrice();
+            ob_start(); ?>
+            <div class="price">
+                <?php echo $settings['price_prefix'].number_format($price, 0, ',', '.').$settings['price_suffix'] ?>
+            </div>
+            <?php
+            $price_html = ob_get_contents();
+            ob_end_clean();
+        }
+
         if ($settings['show_duration']) $days = $item_data->getItineraryLength();
         if ($settings['show_persons']) $persons = ($item_data->getPaxMin() ? $item_data->getPaxMin().'-' : '').$item_data->getPaxMax();
         if ($settings['show_destination']) $destination = $item_data->_destination;
@@ -532,11 +543,13 @@ class Loader {
             }
         }
 
+        $excerpt_html = '';
         if ($settings['show_excerpt'] ) {
             $excerpt = $item_data->getTeaser();
             if (strlen($excerpt) > $settings['excerpt_length']['size']) {
                 $excerpt = substr($excerpt, 0, $settings['excerpt_length']['size']).'...';
             }
+            $excerpt_html = '<div class="item-excerpt">'.esc_html($excerpt).'</div>';
         }
 
         if ($settings['show_categories'] && $settings['categories_tags']) {
@@ -557,6 +570,20 @@ class Loader {
             'height' => $img_height,
             'crop' => 'thumb'
         ]);
+
+        $read_more_html = '';
+        if ($settings['show_read_more']) {
+            $read_more_text = $settings['read_more_text'];
+            ob_start(); ?>
+            <div class="read-more">
+                <a href="<?php echo get_the_permalink() ?>" <?php echo $optional_attributes_html; ?> class="elementor-post__read-more">
+                    <?php echo $read_more_text; ?>
+                </a>
+            </div>
+            <?php
+            $read_more_html = ob_get_contents();
+            ob_end_clean();
+        }
 
 
         include Path::getLayoutPath($settings['template']);

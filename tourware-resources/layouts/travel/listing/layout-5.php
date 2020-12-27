@@ -23,7 +23,7 @@
             <div class="item-title-price-holder">
                 <div class="tour-title">
                     <?php echo $title_html ?>
-                    <?php if ($settings['show_price'] && $price) { ?>
+                    <?php if ($price) { ?>
                         <span class="item-price-holder">
                         <span class="price-holder">
 							<span class="item-price price"><?php echo $settings['price_prefix'].number_format($price, 0, ',', '.').'<br>'.$settings['price_suffix'] ?></span>
@@ -32,9 +32,8 @@
                     <?php } ?>
                 </div>
             </div>
-            <div class="item-excerpt">
-                <?php if ($settings['show_excerpt'] && $excerpt) esc_html_e($excerpt); ?>
-            </div>
+            <?php echo $excerpt_html ?>
+            <?php echo $read_more_html ?>
             <?php if ($days || $persons || $destination || $categories_str) { ?>
             <div class="item-bottom-content tour-attributes">
                 <?php if ($days) { ?>

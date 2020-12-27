@@ -91,10 +91,24 @@ abstract class AbstractListing extends Widget
         $this->sectionLayout();
         $this->sectionQueryAndCardLayout();
 
-        /* STYLE */
-        $this->sectionAttributes();
-        $this->sectionArrows();
-        $this->sectionDots();
+        $this->start_controls_section('pagination_options', [
+            'label' => esc_html__('Pagination', 'tyto')
+        ]);
+        $this->add_control( 'pagi', array(
+            'type'         => Controls_Manager::SELECT,
+            'label'        => esc_html__( 'Pagination', 'tyto' ),
+            'default'      => 'none',
+            'options'      => [
+                'none' => esc_html__( 'None', 'tyto' ),
+                'numbers' => esc_html__( 'Numbers', 'tyto' ),
+                'load_more' => esc_html__( 'Load More', 'tyto' ),
+                'infinity_scroll' => esc_html__( 'Infinity Scroll', 'tyto' ),
+            ],
+            'condition'    => array(
+                'layout' => 'grid'
+            )
+        ) );
+        $this->end_controls_section();
 
         /* LIST ID */
         $this->start_controls_section('search', [
@@ -126,6 +140,11 @@ abstract class AbstractListing extends Widget
         ]);
 
         $this->end_controls_section();
+
+        /* STYLE */
+        $this->sectionAttributes();
+        $this->sectionArrows();
+        $this->sectionDots();
     }
 
     private function sectionLayout() {
@@ -166,21 +185,6 @@ abstract class AbstractListing extends Widget
             'default' => 6,
             'min'     => - 1,
             'max'     => 100,
-        ) );
-
-        $this->add_control( 'pagi', array(
-            'type'         => Controls_Manager::SELECT,
-            'label'        => esc_html__( 'Pagination', 'tyto' ),
-            'default'      => 'none',
-            'options'      => [
-                'none' => esc_html__( 'None', 'tyto' ),
-                'numbers' => esc_html__( 'Numbers', 'tyto' ),
-                'load_more' => esc_html__( 'Load More', 'tyto' ),
-                'infinity_scroll' => esc_html__( 'Infinity Scroll', 'tyto' ),
-            ],
-            'condition'    => array(
-                'layout' => 'grid'
-            )
         ) );
 
         $this->add_control( 'arrows', array(
@@ -329,6 +333,19 @@ abstract class AbstractListing extends Widget
         $this->start_controls_section( 'card_layout', array(
             'label' => esc_html__( 'Card Layout' ),
         ) );
+
+        $this->add_control(
+            'open_new_tab',
+            [
+                'label' => __( 'Open in new window', 'elementor-pro' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Yes', 'elementor-pro' ),
+                'label_off' => __( 'No', 'elementor-pro' ),
+                'default' => 'no',
+                'render_type' => 'none',
+                'separator' => 'after'
+            ]
+        );
 
         $this->add_control(
             'show_title',
@@ -489,18 +506,6 @@ abstract class AbstractListing extends Widget
                 'type' => Controls_Manager::TEXT,
                 'default' => __( 'Read More »', 'elementor-pro' ),
                 'condition' => [ 'show_read_more' => 'yes' ],
-            ]
-        );
-
-        $this->add_control(
-            'open_new_tab',
-            [
-                'label' => __( 'Open in new window', 'elementor-pro' ),
-                'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'elementor-pro' ),
-                'label_off' => __( 'No', 'elementor-pro' ),
-                'default' => 'no',
-                'render_type' => 'none',
             ]
         );
 

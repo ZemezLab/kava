@@ -19,21 +19,13 @@
                         alt="<?php esc_html_e($title) ?>">
                     <?php echo $badge_html ?>
                 </div>
-                <?php if ($settings['show_price'] && $price) { ?>
-                    <div class="price">
-                        <?php echo $settings['price_prefix'].number_format($price, 0, ',', '.').$settings['price_suffix'] ?>
-                    </div>
-                <?php } ?>
-
+                <?php echo $price_html ?>
             </a>
         </div>
         <div class="tour-content">
             <?php echo $title_html ?>
-            <?php if ($settings['show_excerpt'] && $excerpt) { ?>
-            <div class="tour-excerpt">
-                <?php esc_html_e($excerpt); ?>
-            </div>
-            <?php } ?>
+            <?php echo $excerpt_html ?>
+            <?php echo $read_more_html ?>
             <?php if (($settings['show_duration'] && $days) || ($settings['show_categories'] && $categories_str) || $persons) { ?>
             <div class="tour-attributes">
                 <?php if ($settings['show_duration'] && $days) { ?>

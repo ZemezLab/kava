@@ -43,9 +43,8 @@
                 <?php echo $settings['show_destination'] && $destination ? $destination : "&nbsp;" ?>
             </div>
             <?php echo $title_html ?>
-            <div class="item-excerpt">
-                <?php if ($settings['show_excerpt'] && $excerpt) echo $excerpt; ?>
-            </div>
+            <?php echo $excerpt_html ?>
+            <?php echo $read_more_html ?>
             <div class="block">
                 <div class="item-price">
                     <?php if ($days) { ?>
@@ -63,11 +62,7 @@
                         ); ?>
                     </div>
                     <?php } ?>
-                    <?php if ($price) { ?>
-                    <div class="price">
-                        <?php echo $settings['price_prefix'].number_format($price, 0, ',', '.').$settings['price_suffix'] ?>
-                    </div>
-                    <?php } ?>
+                    <?php echo $price_html; ?>
                 </div>
                 <div class="item-button">
                     <a class="button" href="<?php the_permalink()?>">

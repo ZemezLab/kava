@@ -9,9 +9,7 @@
     <div class="tour-item">
         <?php /*HEAD*/ ?>
         <div class="tour-head">
-            <?php if ($settings['show_price'] && isset($price)) { ?>
-                <span class="price"><?php echo $settings['price_prefix'].number_format($price, 0, ',', '.').$settings['price_suffix']; ?></span>
-            <?php } ?>
+            <?php echo $price_html; ?>
             <a href="<?php the_permalink(); ?>">
                 <img <?php if ($settings['layout'] !== 'carousel') { ?>
                     class="lazyload"
@@ -29,6 +27,7 @@
             <?php if ($settings['show_categories'] && isset($categories_str)) { ?>
                 <div class="tour-categories"><?php esc_html_e($categories_str); ?></div>
             <?php } ?>
+            <?php echo $read_more_html; ?>
             <?php if ($days || $persons || $destination) { ?>
             <div class="tour-attributes">
                 <?php if ($days): ?>

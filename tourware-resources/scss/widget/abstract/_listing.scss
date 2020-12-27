@@ -98,6 +98,10 @@
   transform: translate(50%, -50%) rotate(45deg) translateZ(0);
 }
 
+.advanced-tyto-list .read-more {
+  margin: 0 0 5px;
+}
+
 
 /* layout-4 */
 
@@ -155,7 +159,7 @@
 }
 
 .advanced-tyto-list.layout-1 .title {
-  margin: 0 0 20px 0;
+  margin: 0 0 10px;
 }
 
 .advanced-tyto-list.layout-1 .tour-attributes {
@@ -362,7 +366,7 @@
   padding: 10px 15px 15px;
 }
 
-.advanced-tyto-list.layout-3 .tour-excerpt {
+.advanced-tyto-list.layout-3 .item-excerpt {
   font-size: 14px;
   padding-top: 10px;
   padding-bottom: 15px;
