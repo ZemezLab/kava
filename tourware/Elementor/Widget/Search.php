@@ -314,41 +314,6 @@ class Search extends Widget
             ),
         ));
 
-        /*INPUT BACKGROUND COLOR*/
-//        $this->add_control('input_bg', array(
-//            'type' => Controls_Manager::COLOR,
-//            'label' => esc_html__('Input background', 'tyto'),
-//            'selectors' => array(
-//                '{{WRAPPER}} .place-search-spn input' => 'background-color: {{VALUE}};',
-//                '{{WRAPPER}} .place-search-spn select' => 'background-color: {{VALUE}};'
-//            ),
-//        ));
-//
-//        /*TEXT COLOR*/
-//        $this->add_control('input_color', array(
-//            'type' => Controls_Manager::COLOR,
-//            'label' => esc_html__('Input text, input icon, focused border color', 'tyto'),
-//            'selectors' => array(
-//                '{{WRAPPER}} .place-search-spn input' => 'color: {{VALUE}};',
-//                '{{WRAPPER}} .place-search-spn input::placeholder' => 'color: {{VALUE}};',
-//                '{{WRAPPER}} .place-search-spn input:focus' => 'border-color: {{VALUE}};',
-//                '{{WRAPPER}} .place-search-spn select' => 'color: {{VALUE}};',
-//                '{{WRAPPER}} .place-search-spn select:focus' => 'border-color: {{VALUE}};',
-//                '{{WRAPPER}} .place-search-spn label:before' => 'color: {{VALUE}};',
-//                '{{WRAPPER}} .place-search-spn label .icon' => 'color: {{VALUE}};',
-//            ),
-//        ));
-//
-//        /*Title COLOR*/
-//        $this->add_control('title_color', array(
-//            'type' => Controls_Manager::COLOR,
-//            'label' => esc_html__('Title color', 'tyto'),
-//            'selectors' => array(
-//                '{{WRAPPER}} .place-search-spn h5' => 'color: {{VALUE}};',
-//
-//            ),
-//        ));
-
         $this->add_control('categories_selected_buttons_bg', array(
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Categories Selected Buttons Background', 'tyto'),
@@ -382,6 +347,44 @@ class Search extends Widget
             'condition' => ['show_categories_buttons' => 'yes']
         ));
 
+        /*AUTOCOMPLETE COLORS*/
+        $this->add_control(
+            'autocomplete_heading',
+            [
+                'type' => Controls_Manager::HEADING,
+                'label' => __( 'Autocomplete', 'elementor' ),
+                'condition' => ['search_autocomplete' => 'yes'],
+                'separator' => 'before'
+            ]
+        );
+        $this->add_control('autocomplete_bg', array(
+            'type' => Controls_Manager::COLOR,
+            'label' => esc_html__('Results background', 'tyto'),
+            'selectors' => array(
+                '{{WRAPPER}} .autocomplete-result' => 'background-color: {{VALUE}};',
+            ),
+            'condition' => ['search_autocomplete' => 'yes'],
+        ));
+        $this->add_control('autocomplete_text_color', array(
+            'type' => Controls_Manager::COLOR,
+            'label' => esc_html__('Text color', 'tyto'),
+            'default' => '#fff',
+            'selectors' => array(
+                '{{WRAPPER}} .autocomplete-result span' => 'color: {{VALUE}};',
+            ),
+            'condition' => ['search_autocomplete' => 'yes']
+        ));
+
+        $this->add_control('autocomplete_selected_bg', array(
+            'type' => Controls_Manager::COLOR,
+            'label' => esc_html__('Selected Item background', 'tyto'),
+            'selectors' => array(
+                '{{WRAPPER}} .autocomplete-result span.selected' => 'background-color: {{VALUE}};',
+                '{{WRAPPER}} .autocomplete-result span:hover' => 'background-color: {{VALUE}};',
+            ),
+            'condition' => ['search_autocomplete' => 'yes']
+        ));
+
         $this->end_controls_section();
 
         $this->addControlGroupField(['id' => 'search_input']);
@@ -398,6 +401,8 @@ class Search extends Widget
             'selector' => '.elementor-button.tag-button',
             'condition' => ['show_categories_buttons' => 'yes']
         ]);
+
+        $this->addControlGroupIcon(['id' => 'field_icon']);
 
     }
 

@@ -12,7 +12,7 @@
                    placeholder="<?php esc_attr_e($settings['search_input_placeholder']); ?>"
                    name="keywords"
                    value="<?php if (isset($_GET['keywords'])) echo $_GET['keywords'] ?>">
-            <i class="icon fas fa-map-marker-alt"></i>
+            <i class="icon field-icon fas fa-map-marker-alt"></i>
         </div>
     </div>
 <?php if ($settings['search_results_adv_list'] !== 'yes' && $settings['show_date']) { ?>
@@ -26,7 +26,7 @@
                    id="adv-search-time" type="text"
                    placeholder="<?php esc_attr_e($settings['date_input_placeholder']); ?>"
                    name="start_date">
-            <i class="icon fas fa-calendar-alt"></i>
+            <i class="icon field-icon fas fa-calendar-alt"></i>
         </div>
     </div>
 <?php } ?>
@@ -46,7 +46,7 @@
                     <?php }
                 } ?>
             </select>
-            <i class="icon fas fa-tag"></i>
+            <i class="icon field-icon fas fa-tag"></i>
         </div>
     </div>
 <?php } ?>

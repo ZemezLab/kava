@@ -320,7 +320,7 @@ abstract class Widget extends \Elementor\Widget_Base
             ]
         );
 
-        $this->start_controls_tabs( 'tabs_form_field_style' );
+        $this->start_controls_tabs( $id.'tabs_form_field_style' );
 
         $this->start_controls_tab(
             $id.'tab_form_field_normal',
@@ -485,6 +485,88 @@ abstract class Widget extends \Elementor\Widget_Base
                 'separator' => 'before',
             ]
         );
+
+        $this->end_controls_section();
+
+    }
+
+    public function addControlGroupIcon($args)
+    {
+        if (!$args['id']) {
+            throw new \Exception('Group ID is missing');
+        }
+
+        $default_args = array(
+            'label' => 'Field Icon',
+            'selector' => '.field-icon',
+        );
+        $args = wp_parse_args($args, $default_args);
+
+        $id = $args['id'] . '_';
+
+        $icon_focus_selectors = [
+            '{{WRAPPER}} input:focus:not([type="button"]):not([type="submit"]) + '.$args['selector'],
+            '{{WRAPPER}} textarea:focus + '.$args['selector'],
+            '{{WRAPPER}} select:focus + '.$args['selector'],
+            '{{WRAPPER}} .elementor-field-textual:focus + '.$args['selector'],
+        ];
+        $icon_focus_selector = implode( ',', $icon_focus_selectors );
+
+        $this->start_controls_section(
+            $id,
+            [
+                'label' => $args['label'],
+                'tab' => Controls_Manager::TAB_STYLE,
+                'condition' => $args['condition'] ? $args['condition'] : null,
+                'conditions' => $args['conditions'] ? $args['conditions'] : null,
+            ]
+        );
+
+        $this->start_controls_tabs( $id.'tabs_form_field_icon' );
+
+        $this->start_controls_tab(
+            $id.'tab_form_field_icon',
+            [
+                'label' => __( 'Normal', 'elementor' ),
+            ]
+        );
+
+        $this->add_control(
+            $id . 'form_field_icon_color',
+            [
+                'label' => __( 'Color', 'elementor' ),
+                'type' => Controls_Manager::COLOR,
+                'dynamic' => [],
+                'selectors' => [
+                    '{{WRAPPER}} '.$args['selector'] => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            $id.'tab_form_field_focus_icon',
+            [
+                'label' => __( 'Focus', 'elementor' ),
+            ]
+        );
+
+        $this->add_control(
+            $id . 'form_field_focus_icon_color',
+            [
+                'label' => __( 'Color', 'elementor' ),
+                'type' => Controls_Manager::COLOR,
+                'dynamic' => [],
+                'selectors' => [
+                    $icon_focus_selector. ' + '.$args['selector'] => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
 
         $this->end_controls_section();
 

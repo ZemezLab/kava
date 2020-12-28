@@ -840,9 +840,6 @@ abstract class AbstractListing extends Widget
             ]
         );
 
-        $theme = wp_get_theme();
-        if ($theme->parent() == 'Kava' )
-            $default_color = get_theme_mod('primary_text_color');
         $this->add_control('text_color',
             [
                 'type'      => Controls_Manager::COLOR,
