@@ -497,7 +497,7 @@ abstract class Widget extends \Elementor\Widget_Base
         }
 
         $default_args = array(
-            'label' => 'Field Icon',
+            'label' => 'Icon',
             'selector' => '.field-icon',
         );
         $args = wp_parse_args($args, $default_args);

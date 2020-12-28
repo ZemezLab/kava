@@ -52,7 +52,16 @@
 <?php } ?>
         <?php if ($settings['search_results_ajax'] != 'yes' || ($settings['search_results_ajax'] == 'yes' && $settings['search_results_ajax_by_button'] == 'yes')) { ?>
     <div class="place-search-btn">
-        <button class="elementor-button" type="submit" data-num="1"><?php esc_html_e($settings['button_text']); ?></button>
+        <button class="elementor-button elementor-search-form__submit" type="submit" data-num="1"
+                title="<?php esc_attr_e( 'Search', 'elementor-pro' ); ?>"
+                aria-label="<?php esc_attr_e( 'Search', 'elementor-pro' ); ?>">
+            <?php if ( 'icon' === $settings['button_type'] ) : ?>
+                <i class="fa fa-<?php echo $settings['icon']?>" aria-hidden="true"></i>
+                <span class="elementor-screen-only"><?php esc_html_e( 'Search', 'elementor-pro' ); ?></span>
+            <?php elseif ( ! empty( $settings['button_text'] ) ) : ?>
+                <?php echo $settings['button_text']; ?>
+            <?php endif; ?>
+        </button>
     </div>
 <?php } ?>
         <?php if ($settings['show_categories'] && $settings['show_categories_buttons'] == 'yes') { ?>
