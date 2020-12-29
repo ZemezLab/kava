@@ -41,4 +41,9 @@ class Listing extends \Tourware\Elementor\Widget\Listing\AbstractListing
         return 'accommodation';
     }
 
+    protected function getCardLayoutOptions() {
+//        return array_merge($this->defaultCardLayoutOptions, ['stars']);
+        return ['title', 'badge', 'price', 'stars'];
+    }
+
 }
