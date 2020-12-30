@@ -469,17 +469,19 @@ class Search extends Widget
 
         $this->end_controls_section();
 
-        $this->addControlGroupField(['id' => 'search_input']);
-        $this->addControlGroupIcon(['id' => 'field_icon', 'Fields Icons']);
+        $this->addControlGroup(['id' => 'search_input', 'type' => 'field']);
+        $this->addControlGroup(['id' => 'field_icon', 'type' => 'icon', 'label' => 'Fields Icons']);
 
-        $this->addControlGroupButton([
+        $this->addControlGroup([
             'id' => 'submit_button',
+            'type' => 'button',
             'label' => 'Submit Button',
             'selector' => '.place-search-btn .elementor-button',
         ]);
 
-        $this->addControlGroupButton([
+        $this->addControlGroup([
             'id' => 'categories_buttons',
+            'type' => 'button',
             'label' => 'Categories Buttons',
             'selector' => '.elementor-button.tag-button',
             'condition' => ['show_categories_buttons' => 'yes']

@@ -44,7 +44,7 @@ class Listing extends \Tourware\Elementor\Widget\Listing\AbstractListing
      */
     protected function getCardLayoutOptions() {
 //        return array_merge($this->defaultCardLayoutOptions, ['duration', 'persons']);
-        return ['title', 'badge', 'price', 'excerpt', 'readmore', 'duration', 'persons'];
+        return ['title', 'badge', 'price', 'excerpt', 'readmore', 'duration', 'persons', 'destination', 'categories'];
     }
 
     protected function optionsDuration() {
@@ -77,9 +77,17 @@ class Listing extends \Tourware\Elementor\Widget\Listing\AbstractListing
 
     protected function optionsPersons() {
         $this->add_control(
+            'heading_persons_options',
+            [
+                'label' => __( 'Persons', 'elementor-pro' ),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+        $this->add_control(
             'show_persons',
             [
-                'label' => __( 'Persons', 'tourware' ),
+                'label' => __( 'Show', 'tourware' ),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __( 'Show', 'elementor-pro' ),
                 'label_off' => __( 'Hide', 'elementor-pro' ),

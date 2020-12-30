@@ -549,7 +549,7 @@ class Loader {
             if (strlen($excerpt) > $settings['excerpt_length']['size']) {
                 $excerpt = substr($excerpt, 0, $settings['excerpt_length']['size']).'...';
             }
-            $excerpt_html = '<div class="item-excerpt">'.esc_html($excerpt).'</div>';
+            $excerpt_html = '<div class="item-excerpt">'.$excerpt.'</div>';
         }
 
         if ($settings['show_categories'] && $settings['categories_tags']) {

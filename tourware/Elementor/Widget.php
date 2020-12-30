@@ -51,19 +51,28 @@ abstract class Widget extends \Elementor\Widget_Base
         $this->add_control( $control->getId(), $control->getConfig() );
     }
 
-    public function addControlGroupButton($args)
-    {
+    public function addControlGroup($args) {
         if (!$args['id']) {
-            throw new \Exception('Button Group ID is missing');
+            throw new \Exception('Group ID is missing');
         }
+        if (!$args['type']) {
+            throw new \Exception('Group Type is missing');
+        }
+        $id = $args['id'].'_';
+        $type = $args['type'];
+        if (method_exists($this, 'addControlGroup'.ucfirst($type)))
+            call_user_func([$this, 'addControlGroup'.ucfirst($type)], $id, $args);
+        else
+            throw new \Exception('Group Method is missing');
+    }
 
+    private function addControlGroupButton($id, $args)
+    {
         $default_args = array(
             'label' => 'Button',
             'selector' => '.elementor-button',
         );
         $args = wp_parse_args( $args, $default_args );
-
-        $id = $args['id'].'_';
 
         $this->start_controls_section(
             $id,
@@ -232,18 +241,12 @@ abstract class Widget extends \Elementor\Widget_Base
         $this->end_controls_section();
     }
 
-    public function addControlGroupField($args) {
-        if (!$args['id']) {
-            throw new \Exception('Button Group ID is missing');
-        }
-
+    private function addControlGroupField($id, $args) {
         $default_args = array(
             'label' => 'Field',
-            'selector' => '.elementor-button',
+            'selector' => '.tourware-field',
         );
         $args = wp_parse_args( $args, $default_args );
-
-        $id = $args['id'].'_';
 
         $label_selectors = [
             '{{WRAPPER}} label',
@@ -253,12 +256,14 @@ abstract class Widget extends \Elementor\Widget_Base
             '{{WRAPPER}} input:not([type="button"]):not([type="submit"])',
             '{{WRAPPER}} textarea',
             '{{WRAPPER}} .elementor-field-textual',
+            '{{WRAPPER}} '.$args['selector']
         ];
 
         $input_focus_selectors = [
             '{{WRAPPER}} input:focus:not([type="button"]):not([type="submit"])',
             '{{WRAPPER}} textarea:focus',
             '{{WRAPPER}} .elementor-field-textual:focus',
+            '{{WRAPPER}} '.$args['selector'].':focus'
         ];
 
         $label_selector = implode( ',', $label_selectors );
@@ -268,7 +273,7 @@ abstract class Widget extends \Elementor\Widget_Base
         $this->start_controls_section(
             $id.'section_form_fields',
             [
-                'label' => __( 'Field', 'elementor' ),
+                'label' => $args['label'],
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -490,19 +495,13 @@ abstract class Widget extends \Elementor\Widget_Base
 
     }
 
-    public function addControlGroupIcon($args)
+    public function addControlGroupIcon($id, $args)
     {
-        if (!$args['id']) {
-            throw new \Exception('Group ID is missing');
-        }
-
         $default_args = array(
             'label' => 'Icon',
             'selector' => '.field-icon',
         );
         $args = wp_parse_args($args, $default_args);
-
-        $id = $args['id'] . '_';
 
         $icon_focus_selectors = [
             '{{WRAPPER}} input:focus:not([type="button"]):not([type="submit"]) + '.$args['selector'],
@@ -570,6 +569,159 @@ abstract class Widget extends \Elementor\Widget_Base
 
         $this->end_controls_section();
 
+    }
+
+    public function addControlGroupBox($id, $args) {
+        $default_args = array(
+            'label' => __( 'Box', 'elementor-pro' ),
+            'selector' => '.ht-grid-item',
+        );
+        $args = wp_parse_args( $args, $default_args );
+
+        $this->start_controls_section(
+            $id.'section_design_box',
+            [
+                'label' => $args['label'],
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_control(
+            $id.'box_border_width',
+            [
+                'label' => __( 'Border Width', 'elementor-pro' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px' ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 50,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} '.$args['selector'] => 'border-style: solid; border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            $id.'box_border_radius',
+            [
+                'label' => __( 'Border Radius', 'elementor-pro' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px', '%' ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 200,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} '.$args['selector'] => 'border-radius: {{SIZE}}{{UNIT}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            $id.'content_padding',
+            [
+                'label' => __( 'Content Padding', 'elementor-pro' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px' ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 50,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} '.$args['selector'].' .tour-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+                ],
+                'separator' => 'after',
+            ]
+        );
+
+        $this->start_controls_tabs( $id.'bg_effects_tabs' );
+
+        $this->start_controls_tab( $id.'classic_style_normal',
+            [
+                'label' => __( 'Normal', 'elementor-pro' ),
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => $id.'box_shadow',
+                'selector' => '{{WRAPPER}} '.$args['selector'],
+            ]
+        );
+
+        $this->add_control(
+            $id.'box_bg_color',
+            [
+                'label' => __( 'Background Color', 'elementor-pro' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} '.$args['selector'] => 'background-color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            $id.'box_border_color',
+            [
+                'label' => __( 'Border Color', 'elementor-pro' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} '.$args['selector'] => 'border-color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab( $id.'classic_style_hover',
+            [
+                'label' => __( 'Hover', 'elementor-pro' ),
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => $id.'box_shadow_hover',
+                'selector' => '{{WRAPPER}} '.$args['selector'].':hover',
+            ]
+        );
+
+        $this->add_control(
+            $id.'box_bg_color_hover',
+            [
+                'label' => __( 'Background Color', 'elementor-pro' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} '.$args['selector'].':hover' => 'background-color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            $id.'box_border_color_hover',
+            [
+                'label' => __( 'Border Color', 'elementor-pro' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} '.$args['selector'].':hover' => 'border-color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
+        $this->end_controls_section();
     }
 
 }

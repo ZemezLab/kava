@@ -50,6 +50,14 @@ abstract class AbstractListing extends Widget
         throw new \Exception('Needs to be implemented.');
     }
 
+    /**
+     * @throws \Exception
+     * @return string
+     */
+    protected function getCardLayoutOptions() {
+        throw new \Exception('Needs to be implemented.');
+    }
+
     protected function render( $instance = [] )
     {
         if ('tytotravels' === $this->getPostTypeName()) {
@@ -91,57 +99,8 @@ abstract class AbstractListing extends Widget
         $this->sectionLayout();
         $this->sectionQuery();
         $this->sectionCardLayout();
-
-
-        $this->start_controls_section('pagination_options', [
-            'label' => esc_html__('Pagination', 'tyto')
-        ]);
-        $this->add_control( 'pagi', array(
-            'type'         => Controls_Manager::SELECT,
-            'label'        => esc_html__( 'Pagination', 'tyto' ),
-            'default'      => 'none',
-            'options'      => [
-                'none' => esc_html__( 'None', 'tyto' ),
-                'numbers' => esc_html__( 'Numbers', 'tyto' ),
-                'load_more' => esc_html__( 'Load More', 'tyto' ),
-                'infinity_scroll' => esc_html__( 'Infinity Scroll', 'tyto' ),
-            ],
-            'condition'    => array(
-                'layout' => 'grid'
-            )
-        ) );
-        $this->end_controls_section();
-
-        /* LIST ID */
-        $this->start_controls_section('search', [
-            'label' => esc_html__('Search', 'tyto')
-        ]);
-
-        $this->add_control(
-            'advanced_search',
-            [
-                'label' => __('Use Advanced Tyto Search', 'tyto'),
-                'type' => Controls_Manager::SWITCHER,
-                'label_on' => __('Yes', 'tyto'),
-                'label_off' => __('No', 'tyto'),
-            ]
-        );
-
-        $this->add_control('adv_list_id', [
-            'type' => Controls_Manager::TEXT,
-            'label' => esc_html__('Advanced List ID', 'tyto'),
-            'description' => 'use this ID to bind the List to Advanced Tyto Search',
-            'condition' => ['advanced_search' => 'yes']
-        ]);
-
-        $this->add_control('search_not_found', [
-            'type' => Controls_Manager::TEXT,
-            'label' => esc_html__('Not Found Text', 'tyto'),
-            'default' => __('Not found', 'tyto'),
-            'condition' => ['advanced_search' => 'yes']
-        ]);
-
-        $this->end_controls_section();
+        $this->sectionPagination();
+        $this->sectionSearch();
 
         /* STYLE */
         $this->sectionAttributesStyle();
@@ -267,13 +226,8 @@ abstract class AbstractListing extends Widget
             'options'  => $tags,
         ) );
 
-        $theme = wp_get_theme();
-        if ($theme->parent() == 'Goto' )
-            $dest_post_type = 'ht_dest';
-        else
-            $dest_post_type = 'tytodestinations';
         $destinations_args = array(
-            'post_type'           => $dest_post_type,
+            'post_type'           => 'tytodestinations',
             'post_status'         => 'publish',
             'ignore_sticky_posts' => 1,
             'posts_per_page'      => - 1,
@@ -285,7 +239,7 @@ abstract class AbstractListing extends Widget
             'label'    => esc_html__( 'Destinations' ),
             'multiple' => true,
             'options'  => $output,
-            'default'  => get_post_type( get_the_ID() ) == $dest_post_type ? array( get_the_ID() ) : []
+            'default'  => get_post_type( get_the_ID() ) == 'tytodestinations' ? array( get_the_ID() ) : []
         ) );
 
         $regions_args = array(
@@ -331,7 +285,9 @@ abstract class AbstractListing extends Widget
         ) );
 
         $this->end_controls_section();
+    }
 
+    private function sectionCardLayout() {
         $this->start_controls_section( 'card_layout', array(
             'label' => esc_html__( 'Card Layout' ),
         ) );
@@ -348,67 +304,116 @@ abstract class AbstractListing extends Widget
             ]
         );
 
-        $this->registerCardLayoutOptions();
-
-
-        $this->add_control(
-            'show_destination',
-            [
-                'label' => __( 'Destination', 'tyto' ),
-                'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Show', 'tyto' ),
-                'label_off' => __( 'Hide', 'tyto' ),
-                'default' => 'yes',
-                'separator' => 'before',
-            ]
-        );
-
-        $this->add_control(
-            'show_categories',
-            [
-                'label' => __( 'Categories', 'tyto' ),
-                'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Show', 'tyto' ),
-                'label_off' => __( 'Hide', 'tyto' ),
-                'default' => 'yes',
-                'separator' => 'before',
-            ]
-        );
-
-        $this->add_control(
-            'categories_tags',
-            [
-                'label' => __( 'Tags for categories', 'tyto' ),
-                'type' => Controls_Manager::SELECT2,
-                'multiple' => true,
-                'options' => $tags,
-                'condition' => ['show_categories' => 'yes'],
-            ]
-        );
+        $this->addCardLayoutOptions();
 
         $this->end_controls_section();
     }
 
-    private function sectionCardLayout() {}
+    private function sectionPagination() {
+        $this->start_controls_section('pagination_options', [
+            'label' => esc_html__('Pagination', 'tyto')
+        ]);
+        $this->add_control( 'pagi', array(
+            'type'         => Controls_Manager::SELECT,
+            'label'        => esc_html__( 'Pagination', 'tyto' ),
+            'default'      => 'none',
+            'options'      => [
+                'none' => esc_html__( 'None', 'tyto' ),
+                'numbers' => esc_html__( 'Numbers', 'tyto' ),
+                'load_more' => esc_html__( 'Load More', 'tyto' ),
+                'infinity_scroll' => esc_html__( 'Infinity Scroll', 'tyto' ),
+            ],
+            'condition'    => array(
+                'layout' => 'grid'
+            )
+        ) );
+        $this->end_controls_section();
+    }
 
-    protected function sectionAttributesStyle() {
-        $this->start_controls_section( 'card', array(
-            'label'     => esc_html__( 'Card', 'tyto' ),
+    private function sectionSearch() {
+        $this->start_controls_section('search', [
+            'label' => esc_html__('Search', 'tyto')
+        ]);
+
+        $this->add_control(
+            'advanced_search',
+            [
+                'label' => __('Use Advanced Tyto Search', 'tyto'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __('Yes', 'tyto'),
+                'label_off' => __('No', 'tyto'),
+            ]
+        );
+
+        $this->add_control('adv_list_id', [
+            'type' => Controls_Manager::TEXT,
+            'label' => esc_html__('Advanced List ID', 'tyto'),
+            'description' => 'use this ID to bind the List to Advanced Tyto Search',
+            'condition' => ['advanced_search' => 'yes']
+        ]);
+
+        $this->add_control('search_not_found', [
+            'type' => Controls_Manager::TEXT,
+            'label' => esc_html__('Not Found Text', 'tyto'),
+            'default' => __('Not found', 'tyto'),
+            'condition' => ['advanced_search' => 'yes']
+        ]);
+
+        $this->end_controls_section();
+    }
+
+    private function sectionAttributesStyle() {
+        $this->start_controls_section( 'style_layout', array(
+            'label'     => esc_html__( 'Layout', 'tyto' ),
             'tab' => Controls_Manager::TAB_STYLE,
         ) );
 
-        $this->add_control('card_background',
+        $this->add_control(
+            'column_gap',
             [
-                'type'      => Controls_Manager::COLOR,
-                'label'     => esc_html__( 'Background', 'tyto' ),
-                'default'   => '#fff',
-                'selectors' => array(
-                    '{{WRAPPER}} .tour-item' => 'background-color: {{VALUE}};'
-                ),
-
+                'label' => __( 'Columns Gap', 'elementor-pro' ),
+                'type' => Controls_Manager::SLIDER,
+                'default' => [
+                    'size' => 30,
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ht-grid-item' => 'padding-right: calc({{SIZE}}{{UNIT}}/2);padding-left: calc({{SIZE}}{{UNIT}}/2)',
+                    '{{WRAPPER}} .ht-grid' => 'margin-right: calc(-{{SIZE}}{{UNIT}}/2);margin-left: calc(-{{SIZE}}{{UNIT}}/2)',
+                    '{{WRAPPER}} .tns-ovh' => 'padding-left: calc({{SIZE}}{{UNIT}}/2); margin-left: calc(-{{SIZE}}{{UNIT}}/2); padding-right: calc({{SIZE}}{{UNIT}}/2); margin-right: calc(-{{SIZE}}{{UNIT}}/2);',
+                ],
             ]
         );
+
+        $this->add_control(
+            'row_gap',
+            [
+                'label' => __( 'Rows Gap', 'elementor-pro' ),
+                'type' => Controls_Manager::SLIDER,
+                'default' => [
+                    'size' => 35,
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'frontend_available' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .ht-grid-item' => 'margin-bottom: {{SIZE}}{{UNIT}}',
+                ],
+            ]
+        );
+
         $this->end_controls_section();
+
+        $this->addControlGroup(['id' => 'style_box', 'type' => 'box', 'selector' => '.tour-item']);
 
         $this->start_controls_section( 'excerpt_styles', array(
             'label'     => esc_html__( 'Excerpt', 'tyto' ),
@@ -509,8 +514,9 @@ abstract class AbstractListing extends Widget
         );
         $this->end_controls_section();
 
-        $this->addControlGroupButton([
+        $this->addControlGroup([
             'id' => 'load_more_button',
+            'type' => 'button',
             'label' => 'Load More Button',
             'selector' => 'elementor-button.page-numbers',
             'condition' => ['pagi' => 'load_more']
@@ -931,11 +937,7 @@ abstract class AbstractListing extends Widget
         $this->end_controls_section();
     }
 
-    protected function getCardLayoutOptions() {
-        throw new \Exception('Needs to be implemented.');
-    }
-
-    protected function registerCardLayoutOptions() {
+    protected function addCardLayoutOptions() {
         $options = $this->getCardLayoutOptions();
         foreach ($options as $option) {
             if (method_exists($this, 'options'.ucfirst($option)))
@@ -1007,6 +1009,7 @@ abstract class AbstractListing extends Widget
 
     protected function optionsBadge()
     {
+        $tags = ($tyto_tags = get_option('tyto_tags', false)) ? wp_list_pluck($tyto_tags, 'name', 'name') : [];
         $this->add_control(
             'heading_badge_options',
             [
@@ -1026,10 +1029,6 @@ abstract class AbstractListing extends Widget
                 'default' => 'yes',
             ]
         );
-
-        $tags = [];
-        if ($tyto_tags = get_option('tyto_tags', false)) $tags = wp_list_pluck($tyto_tags, 'name', 'name');
-
         $this->add_control(
             'badge_tag',
             [
@@ -1155,6 +1154,59 @@ abstract class AbstractListing extends Widget
         );
     }
 
+    protected function optionsDestination() {
+        $this->add_control(
+            'heading_destination_options',
+            [
+                'label' => __( 'Destination', 'elementor-pro' ),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+        $this->add_control(
+            'show_destination',
+            [
+                'label' => __( 'Show', 'elementor-pro' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Show', 'elementor-pro' ),
+                'label_off' => __( 'Hide', 'elementor-pro' ),
+                'default' => 'yes',
+            ]
+        );
+    }
+
+    protected function optionsCategories() {
+        $tags = ($tyto_tags = get_option('tyto_tags', false)) ? wp_list_pluck($tyto_tags, 'name', 'name') : [];
+        $this->add_control(
+            'heading_categories_options',
+            [
+                'label' => __( 'Categories', 'elementor-pro' ),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+        $this->add_control(
+            'show_categories',
+            [
+                'label' => __( 'Show', 'elementor-pro' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Show', 'elementor-pro' ),
+                'label_off' => __( 'Hide', 'elementor-pro' ),
+                'default' => 'yes',
+            ]
+        );
+        $this->add_control(
+            'categories_tags',
+            [
+                'label' => __( 'Tags for categories', 'tourware' ),
+                'type' => Controls_Manager::SELECT2,
+                'multiple' => true,
+                'options' => $tags,
+                'condition' => ['show_categories' => 'yes'],
+            ]
+        );
+    }
+
     public function renderCarousel( $tiny_slider_id, $layout, $col_desktop, $col_tablet, $col_mobile ) {
         $settings = $this->get_settings_for_display();
 
@@ -1230,7 +1282,6 @@ abstract class AbstractListing extends Widget
     <?php }
 
     /*RENDER CAROUSEL FOR FRONT-END VIEW*/
-
     protected function carouselOptions( $layout, $col_desktop, $col_tablet, $col_mobile ) {
         $settings = $this->get_settings_for_display();
 
