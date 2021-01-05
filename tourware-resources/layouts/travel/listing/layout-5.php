@@ -7,7 +7,7 @@
 <div class="ht-grid-item">
     <div class="tour-item">
         <div class="tour-head item-image-holder">
-            <a href="<?php the_permalink() ?>">
+            <a href="<?php the_permalink() ?>" class="tour-image">
                 <img <?php if ($settings['layout'] !== 'carousel') { ?>
                     class="lazyload"
                     <?php } else { ?>
@@ -15,8 +15,8 @@
                     <?php } ?>
                     data-src="<?php echo $img_src ?>"
                     alt="<?php esc_html_e($title) ?>">
-                <?php echo $badge_html ?>
             </a>
+            <?php echo $badge_html ?>
         </div>
 
         <div class="tour-content item-content-holder">

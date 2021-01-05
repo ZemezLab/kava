@@ -35,6 +35,7 @@
 .advanced-tyto-list .tours-content .tour-item {
   height: 100%;
   background-color: #ffffff;
+  overflow: hidden;
 }
 
 .advanced-tyto-list .tours-content .tour-item * {
@@ -58,6 +59,10 @@
   position: relative;
   overflow: hidden;
   height: 240px;
+}
+
+.advanced-tyto-list .tour-image {
+  display: block;
 }
 
 .advanced-tyto-list .tours-content .tour-head img {
@@ -280,6 +285,10 @@
 .advanced-tyto-list.layout-3 .tour-item-wrapper {
   /*padding-top: 15px;*/
   height: 100%;
+}
+
+.advanced-tyto-list.layout-3 .tour-item:hover {
+  overflow: visible;
 }
 
 

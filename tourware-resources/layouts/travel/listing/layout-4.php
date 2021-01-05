@@ -8,7 +8,7 @@
     <div class="tour-item">
         <?php /*HEAD*/ ?>
         <div class="tour-head">
-            <a href="<?php the_permalink(); ?>">
+            <a href="<?php the_permalink(); ?>" class="tour-image">
                 <img <?php if ($settings['layout'] !== 'carousel') { ?>
                     class="lazyload"
                 <?php } else { ?>

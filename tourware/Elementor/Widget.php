@@ -7,6 +7,7 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
 use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
+use Elementor\Group_Control_Css_Filter;
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Typography;
 
@@ -51,7 +52,7 @@ abstract class Widget extends \Elementor\Widget_Base
         $this->add_control( $control->getId(), $control->getConfig() );
     }
 
-    public function addControlGroup($args) {
+    protected function addControlGroup($args) {
         if (!$args['id']) {
             throw new \Exception('Group ID is missing');
         }
@@ -66,7 +67,19 @@ abstract class Widget extends \Elementor\Widget_Base
             throw new \Exception('Group Method is missing');
     }
 
-    private function addControlGroupButton($id, $args)
+    protected function startControlsGroupSection($section_id, $args) {
+        $this->start_controls_section(
+            $section_id,
+            [
+                'label' => $args['label'],
+                'tab' => $args['tab'] ? $args['tab'] : Controls_Manager::TAB_STYLE,
+                'condition' => $args['condition'] ? $args['condition'] : null,
+                'conditions' => $args['conditions'] ? $args['conditions'] : null,
+            ]
+        );
+    }
+
+    protected function addControlGroupButton($id, $args)
     {
         $default_args = array(
             'label' => 'Button',
@@ -74,15 +87,7 @@ abstract class Widget extends \Elementor\Widget_Base
         );
         $args = wp_parse_args( $args, $default_args );
 
-        $this->start_controls_section(
-            $id,
-            [
-                'label' => $args['label'],
-                'tab' => Controls_Manager::TAB_STYLE,
-                'condition' => $args['condition'] ? $args['condition'] : null,
-                'conditions' => $args['conditions'] ? $args['conditions'] : null,
-            ]
-        );
+        $this->startControlsGroupSection($id, $args);
 
         $this->add_group_control(
             Group_Control_Typography::get_type(),
@@ -241,7 +246,7 @@ abstract class Widget extends \Elementor\Widget_Base
         $this->end_controls_section();
     }
 
-    private function addControlGroupField($id, $args) {
+    protected function addControlGroupField($id, $args) {
         $default_args = array(
             'label' => 'Field',
             'selector' => '.tourware-field',
@@ -270,13 +275,7 @@ abstract class Widget extends \Elementor\Widget_Base
         $input_selector = implode( ',', $input_selectors );
         $input_focus_selector = implode( ',', $input_focus_selectors );
 
-        $this->start_controls_section(
-            $id.'section_form_fields',
-            [
-                'label' => $args['label'],
-                'tab' => Controls_Manager::TAB_STYLE,
-            ]
-        );
+        $this->startControlsGroupSection($id, $args);
 
         $this->add_control(
             $id.'form_label_heading',
@@ -495,7 +494,7 @@ abstract class Widget extends \Elementor\Widget_Base
 
     }
 
-    public function addControlGroupIcon($id, $args)
+    protected function addControlGroupIcon($id, $args)
     {
         $default_args = array(
             'label' => 'Icon',
@@ -511,15 +510,7 @@ abstract class Widget extends \Elementor\Widget_Base
         ];
         $icon_focus_selector = implode( ',', $icon_focus_selectors );
 
-        $this->start_controls_section(
-            $id,
-            [
-                'label' => $args['label'],
-                'tab' => Controls_Manager::TAB_STYLE,
-                'condition' => $args['condition'] ? $args['condition'] : null,
-                'conditions' => $args['conditions'] ? $args['conditions'] : null,
-            ]
-        );
+        $this->startControlsGroupSection($id, $args);
 
         $this->start_controls_tabs( $id.'tabs_form_field_icon' );
 
@@ -571,20 +562,14 @@ abstract class Widget extends \Elementor\Widget_Base
 
     }
 
-    public function addControlGroupBox($id, $args) {
+    protected function addControlGroupBox($id, $args) {
         $default_args = array(
             'label' => __( 'Box', 'elementor-pro' ),
             'selector' => '.ht-grid-item',
         );
         $args = wp_parse_args( $args, $default_args );
 
-        $this->start_controls_section(
-            $id.'section_design_box',
-            [
-                'label' => $args['label'],
-                'tab' => Controls_Manager::TAB_STYLE,
-            ]
-        );
+        $this->startControlsGroupSection($id, $args);
 
         $this->add_control(
             $id.'box_border_width',
@@ -618,6 +603,7 @@ abstract class Widget extends \Elementor\Widget_Base
                 ],
                 'selectors' => [
                     '{{WRAPPER}} '.$args['selector'] => 'border-radius: {{SIZE}}{{UNIT}}',
+                    '{{WRAPPER}} .image-holder' => 'border-top-left-radius: {{SIZE}}{{UNIT}};border-top-right-radius: {{SIZE}}{{UNIT}}',
                 ],
             ]
         );
@@ -636,6 +622,9 @@ abstract class Widget extends \Elementor\Widget_Base
                 ],
                 'selectors' => [
                     '{{WRAPPER}} '.$args['selector'].' .tour-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+                ],
+                'default' => [
+                    'size' => 15,
                 ],
                 'separator' => 'after',
             ]
@@ -720,6 +709,164 @@ abstract class Widget extends \Elementor\Widget_Base
         $this->end_controls_tab();
 
         $this->end_controls_tabs();
+
+        $this->end_controls_section();
+    }
+
+    protected function addControlGroupImage($id, $args) {
+        $default_args = array(
+            'label' => __( 'Image', 'elementor-pro' ),
+            'selector' => '.tour-image',
+        );
+        $args = wp_parse_args( $args, $default_args );
+
+        $this->startControlsGroupSection($id, $args);
+
+        $this->add_control(
+            $id.'img_border_radius',
+            [
+                'label' => __( 'Border Radius', 'elementor-pro' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} '.$args['selector'].' img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} '.$args['selector'].' .image-holder' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            $id.'image_spacing',
+            [
+                'label' => __( 'Spacing', 'elementor-pro' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} '.$args['selector'] => 'margin-bottom: {{SIZE}}{{UNIT}}',
+                ],
+                'default' => [
+                    'size' => 15,
+                ],
+            ]
+        );
+
+        $this->start_controls_tabs( $id.'thumbnail_effects_tabs' );
+
+        $this->start_controls_tab( $id.'normal',
+            [
+                'label' => __( 'Normal', 'elementor-pro' ),
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Css_Filter::get_type(),
+            [
+                'name' => $id.'thumbnail_filters',
+                'selector' => '{{WRAPPER}} '.$args['selector'].' img',
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab( $id.'hover',
+            [
+                'label' => __( 'Hover', 'elementor-pro' ),
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Css_Filter::get_type(),
+            [
+                'name' => $id.'thumbnail_hover_filters',
+                'selector' => '{{WRAPPER}} '.$args['selector'].':hover img',
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
+        $this->end_controls_section();
+    }
+
+    protected function addControlGroupAttribute($id, $args) {
+        $default_args = array(
+            'label' => __( 'Attribute', 'elementor-pro' ),
+            'selector' => '.tour-attribute',
+        );
+        $args = wp_parse_args( $args, $default_args );
+
+        $this->startControlsGroupSection($id, $args);
+
+        if (!empty($args['icon'])) {
+            $this->add_control( $id.'icon', array(
+                'label'         =>  esc_html__( 'Icon', 'elementor-pro' ),
+                'type'          =>  Controls_Manager::ICONS,
+                'default'       => $args['icon_default'] ? $args['icon_default'] : null
+            ));
+            $this->add_control(
+                $id.'image_spacing',
+                [
+                    'label' => __( 'Icon Spacing', 'elementor-pro' ),
+                    'type' => Controls_Manager::SLIDER,
+                    'range' => [
+                        'px' => [
+                            'max' => 50,
+                        ],
+                    ],
+                    'selectors' => [
+                        '{{WRAPPER}} '.$args['selector'].' .icon' => 'margin-right: {{SIZE}}{{UNIT}}',
+                    ],
+                    'default' => [
+                        'size' => 5,
+                    ],
+                ]
+            );
+        }
+
+        $this->add_control($id.'text_color',
+            [
+                'type'      => Controls_Manager::COLOR,
+                'label'     => esc_html__( 'Color', 'elementor-pro' ),
+                'selectors' => array(
+                    '{{WRAPPER}} '.$args['selector'] => 'color: {{VALUE}};'
+                ),
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => $id.'typography',
+                'global' => [
+                    'default' => Global_Typography::TYPOGRAPHY_TEXT,
+                ],
+                'selector' => '{{WRAPPER}} '.$args['selector'],
+            ]
+        );
+
+        $this->add_control(
+            $id.'attribute_spacing',
+            [
+                'label' => __( 'Spacing', 'elementor-pro' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'max' => 50,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} '.$args['selector'] => 'margin-bottom: {{SIZE}}{{UNIT}}',
+                ],
+                'default' => [
+                    'size' => 10,
+                ],
+            ]
+        );
 
         $this->end_controls_section();
     }

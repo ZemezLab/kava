@@ -415,6 +415,8 @@ abstract class AbstractListing extends Widget
 
         $this->addControlGroup(['id' => 'style_box', 'type' => 'box', 'selector' => '.tour-item']);
 
+        $this->addControlGroup(['id' => 'style_image', 'type' => 'image']);
+
         $this->start_controls_section( 'excerpt_styles', array(
             'label'     => esc_html__( 'Excerpt', 'tyto' ),
             'tab' => Controls_Manager::TAB_STYLE,
@@ -716,7 +718,7 @@ abstract class AbstractListing extends Widget
                 'value' => 'far fa-map',
                 'library' => 'fa-regular',
             ],
-            'condition' => ['show_duration' => 'yes']
+            'condition' => ['show_destination' => 'yes']
         ));
 
         $this->end_controls_section();
