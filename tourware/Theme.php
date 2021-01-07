@@ -63,6 +63,12 @@ class Theme
             new Customizer\Page\General($wp_customize);
         } );
 
+        include get_theme_file_path( 'inc/tourware/www-post-thumbnail.php' );
+        include get_theme_file_path( 'inc/tourware/tcpdf/generate.php' );
+        include get_theme_file_path( 'inc/tourware/form-action-hook.php' );
+        include get_theme_file_path( 'inc/tourware/functions-pipedrive.php' );
+        include get_theme_file_path( 'inc/tourware/pipedrive-sender.php' );
+
         return $this;
     }
 }
