@@ -415,58 +415,177 @@ abstract class AbstractListing extends Widget
 
         $this->addControlGroup(['id' => 'style_box', 'type' => 'box', 'selector' => '.tour-item']);
 
+        /* IMAGE */
         $this->addControlGroup(['id' => 'style_image', 'type' => 'image']);
 
-        $this->start_controls_section( 'excerpt_styles', array(
-            'label'     => esc_html__( 'Excerpt', 'tyto' ),
+        /* BADGE */
+        $this->start_controls_section( 'style_badge', array(
+            'label'     => esc_html__( 'Badge', 'tyto' ),
             'tab' => Controls_Manager::TAB_STYLE,
-            'condition' => [ 'show_excerpt' => 'yes' ]
+            'condition' => ['show_badge' => 'yes']
         ) );
 
-        $this->add_control( 'excerpt_align', array(
-            'type'           => Controls_Manager::CHOOSE,
-            'label'          => esc_html__( 'Alignment', 'tyto' ),
-            'options'        => array(
-                'left'   => array(
-                    'title' => esc_html__( 'Left', 'tyto' ),
-                    'icon'  => 'fa fa-align-left'
+        $this->add_control('badge_background',
+            [
+                'type'      => Controls_Manager::COLOR,
+                'label'     => esc_html__( 'Background color', 'elementor-pro' ),
+                'selectors' => array(
+                    '{{WRAPPER}} .tour-label' => 'background-color: {{VALUE}};'
                 ),
-                'center' => array(
-                    'title' => esc_html__( 'Center', 'tyto' ),
-                    'icon'  => 'fa fa-align-center'
+                'condition' => ['show_badge' => 'yes'],
+            ]
+        );
+
+        $this->add_control('badge_color',
+            [
+                'type'      => Controls_Manager::COLOR,
+                'label'     => esc_html__( 'Text color', 'elementor-pro' ),
+                'selectors' => array(
+                    '{{WRAPPER}} .tour-label' => 'color: {{VALUE}};'
                 ),
-                'right'  => array(
-                    'title' => esc_html__( 'Right', 'tyto' ),
-                    'icon'  => 'fa fa-align-right'
-                ),
-            ),
-            'default'        => 'left',
-            'selectors'      => array(
-                '{{WRAPPER}} .advanced-tyto-list .tour-excerpt' => 'text-align: {{VALUE}};'
-            ),
-        ));
+                'condition' => ['show_badge' => 'yes'],
+            ]
+        );
 
         $this->add_group_control(
             Group_Control_Typography::get_type(),
             [
-                'name'     => 'typography',
-                'label'    => __( 'Typography', 'elementor' ),
-                'scheme'   => Schemes\Typography::TYPOGRAPHY_3,
-                'selector' => '{{WRAPPER}} .advanced-tyto-list .tour-excerpt',
+                'name' => 'badge_typography',
+                'global' => [
+                    'default' => Global_Typography::TYPOGRAPHY_TEXT,
+                ],
+                'selector' => '{{WRAPPER}} .tour-label',
+                'condition' => ['show_badge' => 'yes'],
             ]
         );
 
-        $this->add_control('text_color',
+        $this->end_controls_section();
+
+        /* PRICE */
+        $this->start_controls_section( 'style_price', array(
+            'label'     => esc_html__( 'Price', 'tyto' ),
+            'tab' => Controls_Manager::TAB_STYLE,
+            'condition' => ['show_price' => 'yes']
+        ) );
+
+        $this->add_control('price_background_color',
             [
                 'type'      => Controls_Manager::COLOR,
-                'label'     => esc_html__( 'Text color', 'tyto' ),
+                'label'     => esc_html__( 'Background color', 'elementor-pro' ),
                 'selectors' => array(
-                    '{{WRAPPER}} .advanced-tyto-list .tour-excerpt' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .advanced-tyto-list .price' => 'background-color: {{VALUE}};'
                 ),
             ]
         );
+
+        $this->add_control('price_text_color',
+            [
+                'type'      => Controls_Manager::COLOR,
+                'label'     => esc_html__( 'Text color', 'elementor-pro' ),
+                'selectors' => array(
+                    '{{WRAPPER}} .advanced-tyto-list .price' => 'color: {{VALUE}};'
+                ),
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'price_typography',
+                'global' => [
+                    'default' => Global_Typography::TYPOGRAPHY_ACCENT,
+                ],
+                'selector' => '{{WRAPPER}} .price',
+                'condition' => ['show_price' => 'yes'],
+            ]
+        );
+
         $this->end_controls_section();
 
+        /* TITLE */
+        $this->addControlGroup([
+            'id'=>'style_title',
+            'type' => 'attribute',
+            'label' => 'Title',
+            'selector' => '.title',
+            'condition' => ['show_title' => 'yes']
+        ]);
+
+        /* EXCERPT */
+        $this->addControlGroup([
+            'id'=>'style_excerpt',
+            'type' => 'attribute',
+            'label' => 'Excerpt',
+            'selector' => '.item-excerpt',
+            'condition' => ['show_excerpt' => 'yes']
+        ]);
+
+        /* READ MORE */
+        $this->addControlGroup([
+            'id'=>'style_readmore',
+            'type' => 'attribute',
+            'label' => 'Read More',
+            'selector' => '.elementor-post__read-more',
+            'condition' => ['show_read_more' => 'yes']
+        ]);
+
+        /* DESTINATION */
+        $this->addControlGroup([
+            'id'=>'style_destination',
+            'type' => 'attribute',
+            'label' => 'Destination',
+            'selector' => '.destination',
+            'icon' => true,
+            'icon_default' => [
+                'value' => 'far fa-map',
+                'library' => 'fa-regular',
+            ],
+            'condition' => ['show_destination' => 'yes']
+        ]);
+
+        /* DURATION */
+        $this->addControlGroup([
+            'id'=>'style_duration',
+            'type' => 'attribute',
+            'label' => 'Duration',
+            'selector' => '.duration',
+            'icon' => true,
+            'icon_default' => [
+                'value' => 'far fa-clock-o',
+                'library' => 'fa-regular',
+            ],
+            'condition' => ['show_duration' => 'yes']
+        ]);
+
+        /* PERSONS */
+        $this->addControlGroup([
+            'id'=>'style_persons',
+            'type' => 'attribute',
+            'label' => 'Persons',
+            'selector' => '.persons',
+            'icon' => true,
+            'icon_default' => [
+                'value' => 'far fa-user',
+                'library' => 'fa-regular',
+            ],
+            'condition' => ['show_persons' => 'yes']
+        ]);
+
+        /* CATEGORIES */
+        $this->addControlGroup([
+            'id'=>'style_categories',
+            'type' => 'attribute',
+            'label' => 'Categories',
+            'selector' => '.categories',
+            'icon' => true,
+            'icon_default' => [
+                'value' => 'fas fa-tags',
+                'library' => 'fa-solid',
+            ],
+            'condition' => ['show_categories' => 'yes']
+        ]);
+
+        /* PAGINATION */
         $this->start_controls_section( 'pagination', array(
             'label'     => esc_html__( 'Pagination', 'tyto' ),
             'tab' => Controls_Manager::TAB_STYLE,
@@ -516,6 +635,7 @@ abstract class AbstractListing extends Widget
         );
         $this->end_controls_section();
 
+        /* PAGINATION LOAD MORE */
         $this->addControlGroup([
             'id' => 'load_more_button',
             'type' => 'button',
@@ -523,223 +643,6 @@ abstract class AbstractListing extends Widget
             'selector' => 'elementor-button.page-numbers',
             'condition' => ['pagi' => 'load_more']
         ]);
-
-        $this->start_controls_section( 'attributes', array(
-            'label'     => esc_html__( 'Attributes', 'tyto' ),
-            'tab' => Controls_Manager::TAB_STYLE,
-        ) );
-
-        $this->add_control( 'attributes_align', array(
-            'type'           => Controls_Manager::CHOOSE,
-            'label'          => esc_html__( 'Alignment', 'tyto' ),
-            'options'        => array(
-                'left'   => array(
-                    'title' => esc_html__( 'Left', 'tyto' ),
-                    'icon'  => 'fa fa-align-left'
-                ),
-                'center' => array(
-                    'title' => esc_html__( 'Center', 'tyto' ),
-                    'icon'  => 'fa fa-align-center'
-                ),
-                'right'  => array(
-                    'title' => esc_html__( 'Right', 'tyto' ),
-                    'icon'  => 'fa fa-align-right'
-                ),
-            ),
-            'default'        => 'left',
-            'selectors'      => array(
-                '{{WRAPPER}} .tour-attributes' => 'text-align: {{VALUE}};'
-            ),
-        ));
-
-        $this->add_control(
-            'attributes_font_size',
-            [
-                'label' => __( 'Font Size', 'tyto' ),
-                'type' => Controls_Manager::SLIDER,
-                'default' => [
-                    'size' => 13,
-                ],
-                'range' => [
-                    'px' => [
-                        'min' => 10,
-                        'max' => 16,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .tour-attributes .tour-attribute' => 'font-size: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'attributes_font_weight',
-            [
-                'label' => __( 'Font Bold', 'tyto' ),
-                'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Bold', 'tyto' ),
-                'label_off' => __( 'Normal', 'tyto' ),
-                'default' => 'normal',
-                'return_value' => 'bold',
-                'selectors' => [
-                    '{{WRAPPER}} .tour-attributes .tour-attribute' => 'font-weight: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_control('attributes_text_color',
-            [
-                'type'      => Controls_Manager::COLOR,
-                'label'     => esc_html__( 'Text color', 'tyto' ),
-                'selectors' => array(
-                    '{{WRAPPER}} .tour-attributes .tour-attribute' => 'color: {{VALUE}};'
-                ),
-
-            ]
-        );
-
-        $this->end_controls_section();
-
-        $this->start_controls_section( 'style_badge', array(
-            'label'     => esc_html__( 'Badge', 'tyto' ),
-            'tab' => Controls_Manager::TAB_STYLE,
-            'condition' => ['show_badge' => 'yes']
-        ) );
-
-        $this->add_control('badge_background',
-            [
-                'type'      => Controls_Manager::COLOR,
-                'label'     => esc_html__( 'Badge background color', 'tyto' ),
-                'selectors' => array(
-                    '{{WRAPPER}} .tour-label' => 'background-color: {{VALUE}};'
-                ),
-                'condition' => ['show_badge' => 'yes'],
-            ]
-        );
-
-        $this->add_control('badge_color',
-            [
-                'type'      => Controls_Manager::COLOR,
-                'label'     => esc_html__( 'Badge text color', 'tyto' ),
-                'selectors' => array(
-                    '{{WRAPPER}} .tour-label' => 'color: {{VALUE}};'
-                ),
-                'condition' => ['show_badge' => 'yes'],
-            ]
-        );
-
-        $this->end_controls_section();
-
-        $this->start_controls_section( 'style_price', array(
-            'label'     => esc_html__( 'Price', 'tyto' ),
-            'tab' => Controls_Manager::TAB_STYLE,
-            'condition' => ['show_price' => 'yes']
-        ) );
-
-        $this->add_control('price_voyage_color',
-            [
-                'type'      => Controls_Manager::COLOR,
-                'label'     => esc_html__( 'Price text color', 'tyto' ),
-                'selectors' => array(
-                    '{{WRAPPER}} .advanced-tyto-list .tour-item .price' => 'color: {{VALUE}};'
-                ),
-            ]
-        );
-
-        $this->add_control('price_background_color',
-            [
-                'type'      => Controls_Manager::COLOR,
-                'label'     => esc_html__( 'Price background color', 'tyto' ),
-                'selectors' => array(
-                    '{{WRAPPER}} .advanced-tyto-list .tour-item .price' => 'background-color: {{VALUE}};'
-                ),
-            ]
-        );
-
-        $this->add_control('price_text_color',
-            [
-                'type'      => Controls_Manager::COLOR,
-                'label'     => esc_html__( 'Price text color', 'tyto' ),
-                'selectors' => array(
-                    '{{WRAPPER}} .advanced-tyto-list .tour-item  .price' => 'color: {{VALUE}};'
-                ),
-                'condition' => ['design' => ['goto', 'grand-tour']],
-            ]
-        );
-
-        $this->end_controls_section();
-
-        $this->start_controls_section( 'style_duration', array(
-            'label'     => esc_html__( 'Duration', 'tyto' ),
-            'tab' => Controls_Manager::TAB_STYLE,
-            'condition' => ['show_duration' => 'yes']
-        ) );
-
-        $this->add_control( 'icon_duration', array(
-            'label'         =>  esc_html__( 'Icon duration', 'tyto' ),
-            'type'          =>  Controls_Manager::ICONS,
-            'default' => [
-                'value' => 'fa fa-clock-o',
-                'library' => 'regular',
-            ],
-            'condition' => ['show_duration' => 'yes']
-        ));
-
-        $this->end_controls_section();
-
-        $this->start_controls_section( 'style_persons', array(
-            'label'     => esc_html__( 'Persons', 'tyto' ),
-            'tab' => Controls_Manager::TAB_STYLE,
-            'condition' => ['show_persons' => 'yes']
-        ) );
-
-        $this->add_control( 'icon_persons', array(
-            'label'         =>  esc_html__( 'Persons Icon', 'tyto' ),
-            'type'          =>  Controls_Manager::ICONS,
-            'default' => [
-                'value' => 'far fa-user',
-                'library' => 'fa-regular',
-            ],
-            'condition' => ['show_persons' => 'yes']
-        ));
-
-        $this->end_controls_section();
-
-        $this->start_controls_section( 'style_destination', array(
-            'label'     => esc_html__( 'Destination', 'tyto' ),
-            'tab' => Controls_Manager::TAB_STYLE,
-            'condition' => ['show_destination' => 'yes']
-        ) );
-
-        $this->add_control( 'icon_destination', array(
-            'label'         =>  esc_html__( 'Icon destination', 'tyto' ),
-            'type'          =>  Controls_Manager::ICONS,
-            'default' => [
-                'value' => 'far fa-map',
-                'library' => 'fa-regular',
-            ],
-            'condition' => ['show_destination' => 'yes']
-        ));
-
-        $this->end_controls_section();
-
-        $this->start_controls_section( 'style_categories', array(
-            'label'     => esc_html__( 'Categories', 'tyto' ),
-            'tab' => Controls_Manager::TAB_STYLE,
-            'condition' => ['show_categories' => 'yes']
-        ) );
-
-        $this->add_control( 'icon_categories', array(
-            'label'         =>  esc_html__( 'Icon for categories', 'tyto' ),
-            'type'          =>  Controls_Manager::ICONS,
-            'default' => [
-                'value' => 'fas fa-tags',
-                'library' => 'fa-solid',
-            ],
-            'condition' => ['show_categories' => 'yes']
-        ));
-
-        $this->end_controls_section();
     }
 
     protected function sectionArrows() {

@@ -6,6 +6,7 @@
 ?>
 <div class="ht-grid-item">
     <div class="tour-item-wrapper">
+    <?php echo $price_html ?>
     <div class="tour-item">
         <div class="tour-head">
             <a class="tour-image" href="<?php the_permalink() ?>">
@@ -19,7 +20,7 @@
                         alt="<?php esc_html_e($title) ?>">
                     <?php echo $badge_html ?>
                 </div>
-                <?php echo $price_html ?>
+
             </a>
         </div>
         <div class="tour-content">

@@ -603,7 +603,6 @@ abstract class Widget extends \Elementor\Widget_Base
                 ],
                 'selectors' => [
                     '{{WRAPPER}} '.$args['selector'] => 'border-radius: {{SIZE}}{{UNIT}}',
-                    '{{WRAPPER}} .image-holder' => 'border-top-left-radius: {{SIZE}}{{UNIT}};border-top-right-radius: {{SIZE}}{{UNIT}}',
                 ],
             ]
         );
@@ -819,7 +818,7 @@ abstract class Widget extends \Elementor\Widget_Base
                         ],
                     ],
                     'selectors' => [
-                        '{{WRAPPER}} '.$args['selector'].' .icon' => 'margin-right: {{SIZE}}{{UNIT}}',
+                        '{{WRAPPER}} '.$args['selector'].' i' => 'margin-right: {{SIZE}}{{UNIT}}',
                     ],
                     'default' => [
                         'size' => 5,
@@ -852,18 +851,11 @@ abstract class Widget extends \Elementor\Widget_Base
         $this->add_control(
             $id.'attribute_spacing',
             [
-                'label' => __( 'Spacing', 'elementor-pro' ),
-                'type' => Controls_Manager::SLIDER,
-                'range' => [
-                    'px' => [
-                        'max' => 50,
-                    ],
-                ],
+                'label' => __( 'Spacing', 'elementor' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} '.$args['selector'] => 'margin-bottom: {{SIZE}}{{UNIT}}',
-                ],
-                'default' => [
-                    'size' => 10,
+                    '{{WRAPPER}} '.$args['selector'] => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );

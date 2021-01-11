@@ -24,16 +24,20 @@
         <?php /*CONTENT*/ ?>
         <div class="tour-content">
             <?php echo $title_html ?>
-            <?php if ($settings['show_categories'] && isset($categories_str)) { ?>
-                <div class="tour-categories"><?php esc_html_e($categories_str); ?></div>
+            <?php if ($categories_str) { ?>
+                <div class="categories">
+                    <?php \Elementor\Icons_Manager::render_icon( $settings['style_categories_icon'] ); ?>
+                    <?php esc_html_e($categories_str); ?>
+                </div>
             <?php } ?>
+            <?php echo $excerpt_html; ?>
             <?php echo $read_more_html; ?>
             <?php if ($days || $persons || $destination) { ?>
             <div class="tour-attributes">
                 <?php if ($days): ?>
-                    <span class="time tour-attribute">
-				    <?php \Elementor\Icons_Manager::render_icon( $settings['icon_duration'] ); ?>
-                        <strong><?php
+                    <span class="tour-attribute duration">
+				    <?php \Elementor\Icons_Manager::render_icon( $settings['style_duration_icon'] ); ?>
+                        <span><?php
                             echo $settings['duration_prefix'];
                             printf(
                                 _nx(
@@ -46,19 +50,19 @@
                                 $days
                             );
                             ?>
-					</strong>
+					</span>
 				</span>
                 <?php endif; ?>
                 <?php if ($persons): ?>
-                    <span class="time tour-attribute">
-				    <?php \Elementor\Icons_Manager::render_icon( $settings['icon_persons'] ); ?>
-                    <strong><?php esc_html_e($persons.$settings['persons_suffix']); ?></strong>
+                <span class="tour-attribute persons">
+				    <?php \Elementor\Icons_Manager::render_icon( $settings['style_persons_icon'] ); ?>
+                    <span><?php esc_html_e($persons.$settings['persons_suffix']); ?></span>
 				</span>
                 <?php endif; ?>
                 <?php if ($destination):  ?>
-                    <span class="time tour-attribute">
-				    <?php \Elementor\Icons_Manager::render_icon( $settings['icon_destination'] ); ?>
-                        <strong><?php esc_html_e($destination); ?></strong>
+                <span class="tour-attribute destination">
+				    <?php \Elementor\Icons_Manager::render_icon( $settings['style_destination_icon'] ); ?>
+                        <span><?php esc_html_e($destination); ?></span>
 				</span>
                 <?php endif; ?>
             </div>

@@ -59,10 +59,10 @@ function WWWPostThumbnail_save( $pid, $post ) {
     }
     if ( ! empty( $url ) ) {
         update_post_meta( $pid, '_thumbnail_ext_url', esc_url($url) );
-        update_post_meta( $pid, '_thumbnail_id', 'by_url' );
+        update_post_meta( $pid, '_thumbnail_id', '999999' );
     } elseif ( get_post_meta( $pid, '_thumbnail_ext_url', TRUE ) ) {
         delete_post_meta( $pid, '_thumbnail_ext_url' );
-        if ( get_post_meta( $pid, '_thumbnail_id', TRUE ) === 'by_url' ) {
+        if ( get_post_meta( $pid, '_thumbnail_id', TRUE ) === '999999' ) {
             delete_post_meta( $pid, '_thumbnail_id' );
         }
     }
@@ -87,14 +87,14 @@ function WWWPostThumbnail_markup( $html, $post_id ) {
 
 function WWWPostThumbnail_get_external_image_src($attachment_id, $size) {
     $src = '';
-    if ($attachment_id == 0) {
+    if ($attachment_id == 999999) {
         $post = get_post();
         $thumb_id = get_post_meta($post->ID, '_thumbnail_id', true);
-        if ($thumb_id == 'by_url') {
+        if ($thumb_id == '999999') {
             global $_wp_additional_image_sizes;
             if (in_array($size, array('thumbnail', 'medium', 'medium_large', 'large'))) {
                 $w = get_option("{$size}_size_w");
-            } elseif (isset($_wp_additional_image_sizes[$size])) {
+            } elseif (is_array($_wp_additional_image_sizes) && !empty($_wp_additional_image_sizes[$size])) {
                 $w = $_wp_additional_image_sizes[$size]['width'];
             }
             if (empty($w)) $w = 600;
@@ -123,7 +123,7 @@ function WWWPostThumbnail_elementor_attachment_html($html, $settings, $image_siz
     if ( ! empty( $src ) ) {
         $image_class = ! empty( $settings['hover_animation'] ) ? 'elementor-animation-' . $settings['hover_animation'] : '';
         $image_class_html = ! empty( $image_class ) ? ' class="' . $image_class . '"' : '';
-        $html = sprintf( '<img src="%s" alt=""%s />', esc_attr( $src ), $image_class_html );
+        $html = sprintf( '<img src="%s" class="%s" />', esc_attr( $src ), $image_class_html );
     }
 
     return $html;
