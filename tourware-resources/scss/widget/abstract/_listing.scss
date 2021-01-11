@@ -23,11 +23,7 @@
 }
 
 .advanced-tyto-list .tours-layout-carousel .tns-ovh {
-  /*margin-left: -15px;*/
-}
-
-.advanced-tyto-list .tours-layout-carousel .tours-content {
-  margin-left: -7px;
+  padding-top: 5px;
 }
 
 .advanced-tyto-list .tours-layout-carousel .tours-content .tns-item {
@@ -39,6 +35,7 @@
 .advanced-tyto-list .tours-content .tour-item {
   height: 100%;
   background-color: #ffffff;
+  overflow: hidden;
 }
 
 .advanced-tyto-list .tours-content .tour-item * {
@@ -58,14 +55,14 @@
   transition-duration: 0.3s;
 }
 
-.advanced-tyto-list .tours-layout-grid .ht-grid-item {
-  margin-bottom: 30px;
-}
-
 .advanced-tyto-list .tours-content .tour-head {
   position: relative;
   overflow: hidden;
   height: 240px;
+}
+
+.advanced-tyto-list .tour-image {
+  display: block;
 }
 
 .advanced-tyto-list .tours-content .tour-head img {
@@ -98,6 +95,10 @@
   transform: translate(50%, -50%) rotate(45deg) translateZ(0);
 }
 
+.advanced-tyto-list .read-more {
+  margin: 0 0 5px;
+}
+
 
 /* layout-4 */
 
@@ -116,11 +117,8 @@
 }
 
 .advanced-tyto-list.layout-4 .title {
-  font-size: 17px;
-  line-height: 1.2;
-  margin-top: 0;
-  margin-bottom: 8px;
-  color: #fff;
+  margin: 0 0 8px;
+  color: #fff !important;
 }
 
 .advanced-tyto-list.layout-4 .aver,
@@ -139,23 +137,14 @@
 }
 
 /* layout-1 */
-.advanced-tyto-list.layout-1 .tour-item {
-  -webkit-box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.07);
-  box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.07);
-}
-
-.advanced-tyto-list.layout-1 .tour-item:hover {
-  -webkit-box-shadow: 0 3px 11.88px 0.12px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 3px 11.88px 0.12px rgba(0, 0, 0, 0.2);
-}
-
 .advanced-tyto-list.layout-1 .tour-content {
-  padding: $tourware-gutter
+  *:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .advanced-tyto-list.layout-1 .title {
-  @include tourware-body-text;
-  margin: 0 0 20px 0;
+  margin: 0 0 10px;
 }
 
 .advanced-tyto-list.layout-1 .tour-attributes {
@@ -231,7 +220,6 @@
 }
 
 .advanced-tyto-list.layout-5 .tour-content {
-  padding: 15px 31px 25px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -254,7 +242,6 @@
 .advanced-tyto-list.layout-5 .tour-title {
   display: flex;
   margin: 0;
-  font-size: 18px;
 }
 
 .advanced-tyto-list.layout-5 .item-title-price-holder {
@@ -300,10 +287,10 @@
   height: 100%;
 }
 
-.advanced-tyto-list.layout-3 .tour-item {
-  border: 1px solid #dce0e0;
-  border-radius: 5px;
+.advanced-tyto-list.layout-3 .tour-item:hover {
+  overflow: visible;
 }
+
 
 .advanced-tyto-list.layout-3 .tour-item:hover {
   -webkit-transform: translateY(-4px);
@@ -311,9 +298,6 @@
   -o-transform: translateY(-4px);
   -ms-transform: translateY(-4px);
   transform: translateY(-4px);
-  -webkit-box-shadow: 0 22px 40px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: 0 22px 40px rgba(0, 0, 0, 0.15);
-  box-shadow: 0 22px 40px rgba(0, 0, 0, 0.15);
 }
 
 .advanced-tyto-list.layout-3 .tours-layout-carousel .tours-content .tns-item .tour-item:hover {
@@ -323,13 +307,14 @@
 }
 
 .advanced-tyto-list.layout-3 .tour-item .price {
-  @include tourware-body-text;
   position: absolute;
   bottom: 20px;
   left: 0;
   background: var(--e-global-color-primary);
   padding: 3px 10px 2px 10px;
   color: #fff;
+  font-weight: 700;
+  font-size: 15px;
 }
 
 .advanced-tyto-list.layout-3 .tour-item:hover .price {
@@ -353,15 +338,15 @@
 }
 
 .advanced-tyto-list.layout-3 .tour-title {
-  @include tourware-h3;
-  margin: 0;
+  font-size: 20px;
+  line-height: 1.4;
 }
 
 .advanced-tyto-list.layout-3 .tour-content {
-  padding: $tourware-gutter;
+  padding: 10px 15px 15px;
 }
 
-.advanced-tyto-list.layout-3 .tour-excerpt {
+.advanced-tyto-list.layout-3 .item-excerpt {
   font-size: 14px;
   padding-top: 10px;
   padding-bottom: 15px;
@@ -382,9 +367,6 @@
 /* layout-2 */
 
 .advanced-tyto-list.layout-2 .tour-item {
-  -webkit-box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.07);
-  box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.07);
-  color: #466066;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -400,15 +382,6 @@
   flex-grow: 1;
 }
 
-.advanced-tyto-list.layout-2 .tour-item:hover {
-  -webkit-box-shadow: 0 3px 11.88px 0.12px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 3px 11.88px 0.12px rgba(0, 0, 0, 0.2);
-}
-
-.advanced-tyto-list.layout-2 .tours-layout-carousel .tour-item {
-  margin-bottom: 10px;
-}
-
 .advanced-tyto-list.layout-2 .tour-head .item-categories {
   position: absolute;
   top: 20px;
@@ -422,7 +395,6 @@
   border-radius: 15px;
   background-color: rgba(255, 255, 255, 0.7);
   font-size: 14px;
-  color: #466066;
   font-weight: 700;
   font-style: italic;
   text-transform: uppercase;
@@ -432,7 +404,6 @@
 }
 
 .advanced-tyto-list.layout-2 .tour-content {
-  padding: 15px 25px 25px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -461,11 +432,6 @@
   font-style: italic;
   font-size: 13px;
   letter-spacing: 0;
-}
-
-.advanced-tyto-list.layout-2 .tour-content .title {
-  font-size: 22px;
-  color: #466066;
 }
 
 .advanced-tyto-list.layout-2 .tour-content .item-excerpt {

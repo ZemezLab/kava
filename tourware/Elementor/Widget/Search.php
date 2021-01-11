@@ -47,11 +47,11 @@ class Search extends Widget
         $this->add_control(
             'search_results_adv_list',
             [
-                'label' => __('Use Advanced Tyto List', 'tyto'),
-                'description' => __('works only on frontend', 'tyto'),
+                'label' => __('Use Advanced Listing', 'tourware'),
+                'description' => __('works only on frontend', 'tourware'),
                 'type' => Controls_Manager::SWITCHER,
-                'label_on' => __('Yes', 'tyto'),
-                'label_off' => __('No', 'tyto'),
+                'label_on' => __('Yes', 'elementor-pro'),
+                'label_off' => __('No', 'elementor-pro'),
 
             ]
         );
@@ -65,11 +65,11 @@ class Search extends Widget
         $this->add_control(
             'search_results_ajax',
             [
-                'label' => __('Use AJAX', 'tyto'),
-                'description' => __('search without page reload', 'tyto'),
+                'label' => __('Use AJAX', 'tourware'),
+                'description' => __('search without page reload', 'tourware'),
                 'type' => Controls_Manager::SWITCHER,
-                'label_on' => __('Yes', 'tyto'),
-                'label_off' => __('No', 'tyto'),
+                'label_on' => __('Yes', 'elementor-pro'),
+                'label_off' => __('No', 'elementor-pro'),
                 'condition' => ['search_results_adv_list' => 'yes']
             ]
         );
@@ -77,11 +77,11 @@ class Search extends Widget
         $this->add_control(
             'search_results_ajax_by_button',
             [
-                'label' => __('AJAX Search by button click', 'tyto'),
-                'description' => __('if disabled, then the search is triggered by pressing the keys', 'tyto'),
+                'label' => __('AJAX Search by button click', 'tourware'),
+                'description' => __('if disabled, then the search is triggered by pressing the keys', 'tourware'),
                 'type' => Controls_Manager::SWITCHER,
-                'label_on' => __('Yes', 'tyto'),
-                'label_off' => __('No', 'tyto'),
+                'label_on' => __('Yes', 'elementor-pro'),
+                'label_off' => __('No', 'elementor-pro'),
                 'condition' => ['search_results_ajax' => 'yes']
             ]
         );
@@ -91,10 +91,10 @@ class Search extends Widget
         $this->add_control(
             'target_blank',
             [
-                'label' => __('Show results on new page', 'tyto'),
+                'label' => __('Show results on new page', 'tourware'),
                 'type' => Controls_Manager::SWITCHER,
-                'label_on' => __('Yes', 'tyto'),
-                'label_off' => __('No', 'tyto'),
+                'label_on' => __('Yes', 'elementor-pro'),
+                'label_off' => __('No', 'elementor-pro'),
                 'condition' => ['search_results_ajax!' => 'yes']
             ]
         );
@@ -107,56 +107,68 @@ class Search extends Widget
         ));
 
         $this->add_control(
+            'heading_search_content',
+            [
+                'label' => __( 'Keywords', 'elementor-pro' ),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+        $this->add_control(
             'search_input_title',
             [
-                'label' => __('Search Title'),
+                'label' => __('Title', 'elementor-pro'),
                 'type' => Controls_Manager::TEXT,
                 'default' => 'Keywords',
-                'title' => __('Enter some text'),
-                'separator' => 'before'
             ]
         );
 
         $this->add_control(
             'search_input_placeholder',
             [
-                'label' => __('Reiseziel', 'tyto'),
+                'label' => __('Placeholder', 'elementor-pro'),
                 'type' => Controls_Manager::TEXT,
                 'default' => 'Wohin soll die Reise gehen?',
-                'title' => __('Enter some text'),
             ]
         );
 
         $this->add_control(
             'search_autocomplete',
             [
-                'label' => __('Search Autocomplete', 'tyto'),
+                'label' => __('Autocomplete', 'elementor-pro'),
                 'type' => Controls_Manager::SWITCHER,
-                'label_on' => __('Yes', 'tyto'),
-                'label_off' => __('No', 'tyto'),
+                'label_on' => __('Yes', 'elementor-pro'),
+                'label_off' => __('No', 'elementor-pro'),
             ]
         );
 
         $this->add_control(
             'only_autocomplete',
             [
-                'label' => __('Use Only Autocomplete', 'tyto'),
+                'label' => __('Use Only Autocomplete', 'elementor-pro'),
                 'type' => Controls_Manager::SWITCHER,
-                'label_on' => __('Yes', 'tyto'),
-                'label_off' => __('No', 'tyto'),
+                'label_on' => __('Yes', 'elementor-pro'),
+                'label_off' => __('No', 'elementor-pro'),
                 'condition' => ['search_autocomplete' => 'yes']
             ]
         );
 
         $this->add_control(
+            'heading_date_content',
+            [
+                'label' => __( 'Date', 'elementor-pro' ),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+        $this->add_control(
             'show_date',
             [
-                'label' => __('Show Date', 'tyto'),
+                'label' => __('Show Date', 'elementor-pro'),
                 'type' => Controls_Manager::SWITCHER,
-                'label_on' => __('Show', 'tyto'),
-                'label_off' => __('Hide', 'tyto'),
+                'label_on' => __('Show', 'elementor-pro'),
+                'label_off' => __('Hide', 'elementor-pro'),
                 'default' => 'yes',
-                'separator' => 'before',
                 'condition' => ['search_results_adv_list!' => 'yes']
             ]
         );
@@ -164,17 +176,16 @@ class Search extends Widget
         $this->add_control(
             'date_input_title',
             [
-                'label' => __('Date Title'),
+                'label' => __('Title', 'elementor-pro'),
                 'type' => Controls_Manager::TEXT,
-                'default' => __('Reisezeitraum', 'tyto'),
-                'title' => __('Enter some text'),
+                'default' => __('Reisezeitraum', 'tourware'),
                 'condition' => ['show_date' => 'yes', 'search_results_adv_list!' => 'yes']
             ]
         );
         $this->add_control(
             'date_input_placeholder',
             [
-                'label' => __('Date Placeholder'),
+                'label' => __('Placeholder', 'elementor-pro'),
                 'type' => Controls_Manager::TEXT,
                 'default' => __('Jederzeit', 'tourware'),
                 'title' => __('Enter some text'),
@@ -183,42 +194,49 @@ class Search extends Widget
         );
 
         $this->add_control(
+            'heading_categories_content',
+            [
+                'label' => __( 'Categories', 'elementor-pro' ),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+        $this->add_control(
             'show_categories',
             [
-                'label' => __('Kategorien anzeigen', 'tyto'),
+                'label' => __('Kategorien anzeigen', 'elementor-pro'),
                 'type' => Controls_Manager::SWITCHER,
-                'label_on' => __('Show', 'tyto'),
-                'label_off' => __('Hide', 'tyto'),
+                'label_on' => __('Show', 'elementor-pro'),
+                'label_off' => __('Hide', 'elementor-pro'),
                 'default' => 'yes',
-                'separator' => 'before',
             ]
         );
 
         $this->add_control(
             'show_categories_buttons',
             [
-                'label' => __('Show Categories as Buttons', 'tyto'),
+                'label' => __('Show as Buttons', 'tourware'),
                 'type' => Controls_Manager::SWITCHER,
-                'label_on' => __('Show', 'tyto'),
-                'label_off' => __('Hide', 'tyto'),
+                'label_on' => __('Show', 'elementor-pro'),
+                'label_off' => __('Hide', 'elementor-pro'),
                 'default' => 'no',
+                'condition' => ['show_categories' => 'yes']
             ]
         );
 
         $this->add_control(
             'tags_input_title',
             [
-                'label' => __('Categories Title'),
+                'label' => __('Title'),
                 'type' => Controls_Manager::TEXT,
-                'default' => __('Categories', 'tyto'),
-                'title' => __('Enter some text', 'tyto'),
+                'default' => __('Categories', 'elementor-pro'),
                 'condition' => ['show_categories' => 'yes', 'show_categories_buttons!' => 'yes']
             ]
         );
         $this->add_control(
             'tags_input_placeholder',
             [
-                'label' => __('Categories Placeholder'),
+                'label' => __('Placeholder'),
                 'type' => Controls_Manager::TEXT,
                 'default' => 'Select Category',
                 'title' => __('Enter some text'),
@@ -231,7 +249,7 @@ class Search extends Widget
 
         $this->add_control('search_tags', array(
             'type' => Controls_Manager::SELECT2,
-            'label' => esc_html__('Categories'),
+            'label' => esc_html__('List'),
             'multiple' => true,
             'options' => $tags,
             'condition' => ['show_categories' => 'yes']
@@ -245,52 +263,107 @@ class Search extends Widget
         ));
 
         $this->add_control(
-            'divider',
-            ['type' => Controls_Manager::DIVIDER]
+            'heading_button_content',
+            [
+                'label' => __( 'Button', 'elementor-pro' ),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_control(
+            'button_type',
+            [
+                'label' => __( 'Type', 'elementor-pro' ),
+                'type' => Controls_Manager::SELECT,
+                'default' => 'text',
+                'options' => [
+                    'icon' => __( 'Icon', 'elementor-pro' ),
+                    'text' => __( 'Text', 'elementor-pro' ),
+                ],
+                'prefix_class' => 'elementor-search-form--button-type-',
+            ]
         );
 
         $this->add_control(
             'button_text',
             [
-                'label' => __('Button Text'),
+                'label' => __( 'Text', 'elementor-pro' ),
                 'type' => Controls_Manager::TEXT,
-                'default' => 'Search',
-                'title' => __('Enter some text'),
-                'conditions' => [
-                    'relation' => 'or',
-                    'terms' => [
-                        [
-                            'terms' => [
-                                [
-                                    'name' => 'search_results_ajax',
-                                    'operator' => '==',
-                                    'value' => ''
-                                ]
-                            ]
-                        ],
-                        [
-                            'terms' => [
-                                [
-                                    'name' => 'search_results_ajax',
-                                    'operator' => '==',
-                                    'value' => 'yes'
-                                ],
-                                [
-                                    'name' => 'search_results_ajax_by_button',
-                                    'operator' => '==',
-                                    'value' => 'yes'
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
+                'default' => __( 'Search', 'elementor-pro' ),
+                'separator' => 'after',
+                'condition' => [
+                    'button_type' => 'text',
+                ],
             ]
         );
+
+        $this->add_control(
+            'icon',
+            [
+                'label' => __( 'Icon', 'elementor-pro' ),
+                'type' => Controls_Manager::CHOOSE,
+                'default' => 'search',
+                'options' => [
+                    'search' => [
+                        'title' => __( 'Search', 'elementor-pro' ),
+                        'icon' => 'eicon-search',
+                    ],
+                    'arrow-right' => [
+                        'title' => __( 'Arrow', 'elementor-pro' ),
+                        'icon' => 'eicon-arrow-right',
+                    ],
+                ],
+                'render_type' => 'template',
+                'prefix_class' => 'elementor-search-form--icon-',
+                'condition' => [
+                    'button_type' => 'icon',
+                ],
+            ]
+        );
+
+//        $this->add_control(
+//            'button_text',
+//            [
+//                'label' => __('Button Text'),
+//                'type' => Controls_Manager::TEXT,
+//                'default' => 'Search',
+//                'title' => __('Enter some text'),
+//                'conditions' => [
+//                    'relation' => 'or',
+//                    'terms' => [
+//                        [
+//                            'terms' => [
+//                                [
+//                                    'name' => 'search_results_ajax',
+//                                    'operator' => '==',
+//                                    'value' => ''
+//                                ]
+//                            ]
+//                        ],
+//                        [
+//                            'terms' => [
+//                                [
+//                                    'name' => 'search_results_ajax',
+//                                    'operator' => '==',
+//                                    'value' => 'yes'
+//                                ],
+//                                [
+//                                    'name' => 'search_results_ajax_by_button',
+//                                    'operator' => '==',
+//                                    'value' => 'yes'
+//                                ]
+//                            ]
+//                        ]
+//                    ]
+//                ]
+//            ]
+//        );
 
         $this->end_controls_section();
 
         $this->start_controls_section('styles', array(
-            'label' => esc_html__('Style', 'tyto'),
+            'label' => esc_html__('Style', 'elementor-pro'),
             'tab' => Controls_Manager::TAB_STYLE,
         ));
 
@@ -314,45 +387,18 @@ class Search extends Widget
             ),
         ));
 
-
-        /*INPUT BACKGROUND COLOR*/
-        $this->add_control('input_bg', array(
-            'type' => Controls_Manager::COLOR,
-            'label' => esc_html__('Input background', 'tyto'),
-            'selectors' => array(
-                '{{WRAPPER}} .place-search-spn input' => 'background-color: {{VALUE}};',
-                '{{WRAPPER}} .place-search-spn select' => 'background-color: {{VALUE}};'
-            ),
-        ));
-
-        /*TEXT COLOR*/
-        $this->add_control('input_color', array(
-            'type' => Controls_Manager::COLOR,
-            'label' => esc_html__('Input text, input icon, focused border color', 'tyto'),
-            'selectors' => array(
-                '{{WRAPPER}} .place-search-spn input' => 'color: {{VALUE}};',
-                '{{WRAPPER}} .place-search-spn input::placeholder' => 'color: {{VALUE}};',
-                '{{WRAPPER}} .place-search-spn input:focus' => 'border-color: {{VALUE}};',
-                '{{WRAPPER}} .place-search-spn select' => 'color: {{VALUE}};',
-                '{{WRAPPER}} .place-search-spn select:focus' => 'border-color: {{VALUE}};',
-                '{{WRAPPER}} .place-search-spn label:before' => 'color: {{VALUE}};',
-                '{{WRAPPER}} .place-search-spn label .icon' => 'color: {{VALUE}};',
-            ),
-        ));
-
-        /*Title COLOR*/
-        $this->add_control('title_color', array(
-            'type' => Controls_Manager::COLOR,
-            'label' => esc_html__('Title color', 'tyto'),
-            'selectors' => array(
-                '{{WRAPPER}} .place-search-spn h5' => 'color: {{VALUE}};',
-
-            ),
-        ));
-
+        $this->add_control(
+            'categories_buttons_style_heading',
+            [
+                'type' => Controls_Manager::HEADING,
+                'label' => __( 'Categories Buttons', 'tourware' ),
+                'condition' => ['show_categories_buttons' => 'yes'],
+                'separator' => 'before'
+            ]
+        );
         $this->add_control('categories_selected_buttons_bg', array(
             'type' => Controls_Manager::COLOR,
-            'label' => esc_html__('Categories Selected Buttons Background', 'tyto'),
+            'label' => esc_html__('Selected Buttons Background', 'tourware'),
             'selectors' => array(
                 '{{WRAPPER}} .tag-button.active' => 'background-color: {{VALUE}}; border-color: {{VALUE}}',
             ),
@@ -361,18 +407,18 @@ class Search extends Widget
 
         $this->add_control( 'categories_buttons_align', array(
             'type'           => Controls_Manager::CHOOSE,
-            'label'          => esc_html__( 'Buttons Alignment', 'tyto' ),
+            'label'          => esc_html__( 'Alignment', 'elementor-pro' ),
             'options'        => array(
                 'left'   => array(
-                    'title' => esc_html__( 'Left', 'tyto' ),
+                    'title' => esc_html__( 'Left', 'elementor-pro' ),
                     'icon'  => 'fa fa-align-left'
                 ),
                 'center' => array(
-                    'title' => esc_html__( 'Center', 'tyto' ),
+                    'title' => esc_html__( 'Center', 'elementor-pro' ),
                     'icon'  => 'fa fa-align-center'
                 ),
                 'right'  => array(
-                    'title' => esc_html__( 'Right', 'tyto' ),
+                    'title' => esc_html__( 'Right', 'elementor-pro' ),
                     'icon'  => 'fa fa-align-right'
                 ),
             ),
@@ -380,12 +426,66 @@ class Search extends Widget
             'selectors'      => array(
                 '{{WRAPPER}} .place-search-spn--tags_buttons' => 'text-align: {{VALUE}};'
             ),
+            'condition' => ['show_categories_buttons' => 'yes']
+        ));
+
+        /*AUTOCOMPLETE COLORS*/
+        $this->add_control(
+            'autocomplete_heading',
+            [
+                'type' => Controls_Manager::HEADING,
+                'label' => __( 'Autocomplete', 'elementor' ),
+                'condition' => ['search_autocomplete' => 'yes'],
+                'separator' => 'before'
+            ]
+        );
+        $this->add_control('autocomplete_bg', array(
+            'type' => Controls_Manager::COLOR,
+            'label' => esc_html__('Results background', 'tourware'),
+            'selectors' => array(
+                '{{WRAPPER}} .autocomplete-result' => 'background-color: {{VALUE}};',
+            ),
+            'condition' => ['search_autocomplete' => 'yes'],
+        ));
+        $this->add_control('autocomplete_text_color', array(
+            'type' => Controls_Manager::COLOR,
+            'label' => esc_html__('Text color', 'elementor-pro'),
+            'default' => '#fff',
+            'selectors' => array(
+                '{{WRAPPER}} .autocomplete-result span' => 'color: {{VALUE}};',
+            ),
+            'condition' => ['search_autocomplete' => 'yes']
+        ));
+
+        $this->add_control('autocomplete_selected_bg', array(
+            'type' => Controls_Manager::COLOR,
+            'label' => esc_html__('Selected Item background', 'tourware'),
+            'selectors' => array(
+                '{{WRAPPER}} .autocomplete-result span.selected' => 'background-color: {{VALUE}};',
+                '{{WRAPPER}} .autocomplete-result span:hover' => 'background-color: {{VALUE}};',
+            ),
+            'condition' => ['search_autocomplete' => 'yes']
         ));
 
         $this->end_controls_section();
 
-        $this->addControlButtonGroup(['id' => 'submit_button', 'label' => 'Submit Button', 'selector' => '.place-search-btn .elementor-button' ]);
-        $this->addControlButtonGroup(['id' => 'categories_buttons', 'label' => 'Categories Buttons', 'selector' => '.elementor-button.tag-button' ]);
+        $this->addControlGroup(['id' => 'search_input', 'type' => 'field']);
+        $this->addControlGroup(['id' => 'field_icon', 'type' => 'icon', 'label' => 'Fields Icons']);
+
+        $this->addControlGroup([
+            'id' => 'submit_button',
+            'type' => 'button',
+            'label' => 'Submit Button',
+            'selector' => '.place-search-btn .elementor-button',
+        ]);
+
+        $this->addControlGroup([
+            'id' => 'categories_buttons',
+            'type' => 'button',
+            'label' => 'Categories Buttons',
+            'selector' => '.elementor-button.tag-button',
+            'condition' => ['show_categories_buttons' => 'yes']
+        ]);
 
     }
 
@@ -425,7 +525,7 @@ class Search extends Widget
                 jQuery(document).ready(function ($) {
                     $('#<?php echo $form_id ?>').submit(function (e) {
                         if (!$(this).find('input[name="selected"]').val()) {
-                            $(this).find('i.error').html('<?php _e('Bitte geben Sie eine Destination an.', 'tyto')?>');
+                            $(this).find('i.error').html('<?php _e('Bitte geben Sie eine Destination an.', 'tourware')?>');
                             return false;
                         } else {
                             return true;
@@ -450,6 +550,6 @@ class Search extends Widget
         );
         wp_register_script('adv-list-handler', Path::getResourcesUri() . '/js/widget/search/advanced-list-handler.js');
         wp_register_script('category-buttons', Path::getResourcesUri() . '/js/widget/search/category-buttons.js');
-        wp_register_script('init-datepicker', Path::getResourcesUri() .  '/js/widget/search/init-datepicker.js');
+        wp_register_script('init-datepicker', Path::getResourcesUri() .  '/js/widget/search/init-datepicker.js', ['datepicker']);
     }
 }

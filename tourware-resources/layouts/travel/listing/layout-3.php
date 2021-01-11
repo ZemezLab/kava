@@ -17,26 +17,15 @@
                     <?php } ?>
                         data-src="<?php echo $img_src ?>"
                         alt="<?php esc_html_e($title) ?>">
-                    <?php if ($badge) { ?>
-                        <div class="tour-label"><?php echo $badge ?></div>
-                    <?php } ?>
+                    <?php echo $badge_html ?>
                 </div>
-                <?php if ($settings['show_price'] && $price) { ?>
-                    <div class="price">
-                        <?php echo $settings['price_prefix'].number_format($price, 0, ',', '.').$settings['price_suffix'] ?>
-                    </div>
-                <?php } ?>
-
+                <?php echo $price_html ?>
             </a>
         </div>
         <div class="tour-content">
-            <h4 class="tour-title"><a class="tour-link" href="<?php the_permalink() ?>">
-                    <?php echo $title; ?></a></h4>
-            <?php if ($settings['show_excerpt'] && $excerpt) { ?>
-            <div class="tour-excerpt">
-                <?php esc_html_e($excerpt); ?>
-            </div>
-            <?php } ?>
+            <?php echo $title_html ?>
+            <?php echo $excerpt_html ?>
+            <?php echo $read_more_html ?>
             <?php if (($settings['show_duration'] && $days) || ($settings['show_categories'] && $categories_str) || $persons) { ?>
             <div class="tour-attributes">
                 <?php if ($settings['show_duration'] && $days) { ?>

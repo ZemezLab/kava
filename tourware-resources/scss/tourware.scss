@@ -1,6 +1,6 @@
 // Common variables coming from Elementor
 $color-primary: var(--e-global-color-primary);
-$color-secondary: var(--e-global-color-primary);
+$color-secondary: var( --e-global-color-secondary );
 $color-text: var(--e-global-color-text);
 $color-accent: var(--e-global-color-accent);
 $color-grey-dark: var(--e-global-color-0a154d8);
@@ -1427,13 +1427,13 @@ body:not(.page-template-fullwidth-content) .site-content {
 }
 
 .tyto-pagination .prev:before {
-  content: "\f3d2";
-  font-family: "Ionicons";
+  content: "\f053";
+  font-family: "FontAwesome";
 }
 
 .tyto-pagination .next:before {
-  content: "\f3d3";
-  font-family: "Ionicons";
+  content: "\f054";
+  font-family: "FontAwesome";
 }
 
 // Slick SLider

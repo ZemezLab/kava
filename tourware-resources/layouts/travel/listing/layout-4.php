@@ -8,7 +8,7 @@
     <div class="tour-item">
         <?php /*HEAD*/ ?>
         <div class="tour-head">
-            <a href="<?php the_permalink(); ?>">
+            <a href="<?php the_permalink(); ?>" class="tour-image">
                 <img <?php if ($settings['layout'] !== 'carousel') { ?>
                     class="lazyload"
                 <?php } else { ?>
@@ -20,9 +20,7 @@
         </div>
         <?php /*CONTENT*/ ?>
         <div class="tour-content">
-            <h3 class="title entry-title">
-                <a href="<?php the_permalink(); ?>"><?php echo $title; ?></a>
-            </h3>
+            <?php echo $title_html ?>
             <?php if ($stars > 2): ?>
                 <span class="aver">
                 <?php for ($i = 0; $i < $stars; $i++) { ?>

@@ -104,14 +104,10 @@ class Loader {
     public function register_widget_scripts() {
         /* SLICK SLIDER */
         wp_register_script('slick-script', self::getElementorFolderUri() . '/assets/js/slick.min.js', array('jquery'), false, true);
-        wp_register_style('slick-style', self::getElementorFolderUri() . '/assets/css/slick.css');
         /* DATEPICKER */
         wp_register_script( 'moment', 'https://cdn.jsdelivr.net/momentjs/latest/moment.min.js', array('jquery'));
         wp_register_script( 'datepicker', 'https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js', array('jquery', 'moment'));
         wp_register_style('datepicker', 'https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css');
-        /*TINY SLIDER*/
-        wp_register_script('tiny-slider-js',self::getElementorFolderUri() . '/assets/js/tiny-slider.js', array(),null,true);
-        wp_register_style('tiny-slider',self::getElementorFolderUri() . '/assets/css/tiny-slider.css');
         /* ISOTOPE */
         wp_register_script('isotope-script', self::getElementorFolderUri() . '/assets/js/isotope.min.js', array('jquery'), false, true);
         /* COLLAPSER */
@@ -246,7 +242,7 @@ class Loader {
         $search_res = [];
         if ($search_str) {
             $search_res = $wpdb->get_results('SELECT * FROM '.$wpdb->prefix.'posts
-                         WHERE (post_type = "ht_dest" OR post_type = "tytodeestinations")  
+                         WHERE (post_type = "ht_dest" OR post_type = "tytodestinations")  
                          AND post_title LIKE "'.$search_str.'%"
                          AND post_status = "publish" 
                          ORDER BY post_title ASC');
@@ -371,8 +367,7 @@ class Loader {
             // TODO repository factory
             // $repository = \Tourware\RepositoryFactory::getRepositoryByPostType(get_post_type());
             $item_data = \Tourware\Repository\Travel::getInstance()->findOneByPostId(get_the_ID());
-
-            Loader::renderListItem($item_data,$settings);
+            Loader::renderListItem($item_data, $settings);
         endwhile;
 
         $html = ob_get_clean();
@@ -480,29 +475,52 @@ class Loader {
      * @param $settings
      */
     public static function renderListItem($item_data, $settings) {
-//        print_r($item_data);
-        $post = get_post(get_the_ID());
         $img_width = $img_height = 1200 / $settings['col'];
+
+        $optional_attributes_html = $settings[ 'open_new_tab' ] === 'yes' ? 'target="_blank"' : '';
+
         /*VARIABLES*/
-
-        $title = $item_data->getTitle();
-
-        if ($settings['title_length']) {
-            if (strlen($title) > $settings['title_length']['size']) {
-                $title = substr($title, 0, $settings['title_length']['size']).'...';
+        $title_html = '';
+        if ($settings['show_title']) {
+            $title = $item_data->getTitle();
+            if ($settings['title_length']) {
+                if (strlen($title) > $settings['title_length']['size']) {
+                    $title = substr($title, 0, $settings['title_length']['size']).'...';
+                }
             }
+            $tag = $settings['title_tag'];
+            ob_start(); ?>
+            <<?php echo $tag; ?> class="elementor-post__title title entry-title">
+            <a href="<?php echo get_the_permalink() ?>" <?php echo $optional_attributes_html; ?>>
+                <?php echo $item_data->getTitle(); ?>
+            </a>
+            </<?php echo $tag; ?>>
+            <?php
+            $title_html = ob_get_contents();
+            ob_end_clean();
         }
 
-        $price = $item_data->getPrice();
-        $days = $item_data->getItineraryLength();
-        $persons = ($item_data->getPaxMin() ? $item_data->getPaxMin().'-' : '').$item_data->getPaxMax();
-        $destination = $item_data->_destination;
-        $stars = 0;
+        $price_html = '';
+        if ($settings['show_price']) {
+            $price = $item_data->getPrice();
+            ob_start(); ?>
+            <div class="price">
+                <?php echo $settings['price_prefix'].number_format($price, 0, ',', '.').$settings['price_suffix'] ?>
+            </div>
+            <?php
+            $price_html = ob_get_contents();
+            ob_end_clean();
+        }
+
+        if ($settings['show_duration']) $days = $item_data->getItineraryLength();
+        if ($settings['show_persons']) $persons = ($item_data->getPaxMin() ? $item_data->getPaxMin().'-' : '').$item_data->getPaxMax();
+        if ($settings['show_destination']) $destination = $item_data->_destination;
+
         if (get_post_type(get_the_ID()) == 'tytoaccommodations') {
             $stars = $item_data->stars ? $item_data->stars : 1;
         }
 
-        $badge = false;
+        $badge = $badge_html = '';
         if ($settings['show_badge']) {
             if ($tags = $item_data->getTags()) {
                 foreach ($tags as $tag) {
@@ -520,20 +538,25 @@ class Loader {
                     }
                 }
             }
+            if (!empty($badge)) {
+                $badge_html = '<span class="tour-label">'.$badge.'</span>';
+            }
         }
 
+        $excerpt_html = '';
         if ($settings['show_excerpt'] ) {
-            $excerpt = $post->post_excerpt;
+            $excerpt = $item_data->getTeaser();
             if (strlen($excerpt) > $settings['excerpt_length']['size']) {
                 $excerpt = substr($excerpt, 0, $settings['excerpt_length']['size']).'...';
             }
+            $excerpt_html = '<div class="item-excerpt">'.$excerpt.'</div>';
         }
 
         if ($settings['show_categories'] && $settings['categories_tags']) {
             $categories = [];
-            if ($item_data->tags) {
-                foreach ($item_data->tags as $tag) {
-                    if (in_array($tag->name, $settings['categories_tags'])) {
+            if ($tags = $item_data->getTags()) {
+                foreach ($tags as $tag) {
+                    if (is_array($settings['categories_tags']) && in_array($tag->name, $settings['categories_tags'])) {
                         $categories[] = $tag->name;
                     }
                 }
@@ -547,6 +570,20 @@ class Loader {
             'height' => $img_height,
             'crop' => 'thumb'
         ]);
+
+        $read_more_html = '';
+        if ($settings['show_read_more']) {
+            $read_more_text = $settings['read_more_text'];
+            ob_start(); ?>
+            <div class="read-more">
+                <a href="<?php echo get_the_permalink() ?>" <?php echo $optional_attributes_html; ?> class="elementor-post__read-more">
+                    <?php echo $read_more_text; ?>
+                </a>
+            </div>
+            <?php
+            $read_more_html = ob_get_contents();
+            ob_end_clean();
+        }
 
 
         include Path::getLayoutPath($settings['template']);
