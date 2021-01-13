@@ -459,6 +459,18 @@ abstract class AbstractListing extends Widget
             ]
         );
 
+        $this->add_control(
+            'badge_border_radius',
+            [
+                'label' => __( 'Border Radius', 'elementor' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .tour-label' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
         $this->end_controls_section();
 
         /* PRICE */
@@ -585,6 +597,14 @@ abstract class AbstractListing extends Widget
             'condition' => ['show_categories' => 'yes']
         ]);
 
+        /* BOOKING */
+        $this->addControlGroup([
+            'id' => 'book_button',
+            'type' => 'button',
+            'label' => 'Book Button',
+            'selector' => '.elementor-button.book-button',
+        ]);
+
         /* PAGINATION */
         $this->start_controls_section( 'pagination', array(
             'label'     => esc_html__( 'Pagination', 'tyto' ),
@@ -640,7 +660,7 @@ abstract class AbstractListing extends Widget
             'id' => 'load_more_button',
             'type' => 'button',
             'label' => 'Load More Button',
-            'selector' => 'elementor-button.page-numbers',
+            'selector' => '.elementor-button.page-numbers',
             'condition' => ['pagi' => 'load_more']
         ]);
     }

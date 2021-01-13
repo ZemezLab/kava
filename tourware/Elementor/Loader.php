@@ -490,7 +490,7 @@ class Loader {
             }
             $tag = $settings['title_tag'];
             ob_start(); ?>
-            <<?php echo $tag; ?> class="elementor-post__title title entry-title">
+            <<?php echo $tag; ?> class="elementor-post__title title">
             <a href="<?php echo get_the_permalink() ?>" <?php echo $optional_attributes_html; ?>>
                 <?php echo $item_data->getTitle(); ?>
             </a>
@@ -515,6 +515,7 @@ class Loader {
         if ($settings['show_duration']) $days = $item_data->getItineraryLength();
         if ($settings['show_persons']) $persons = ($item_data->getPaxMin() ? $item_data->getPaxMin().'-' : '').$item_data->getPaxMax();
         if ($settings['show_destination']) $destination = $item_data->_destination;
+        $destination = 'Uganda';
 
         if (get_post_type(get_the_ID()) == 'tytoaccommodations') {
             $stars = $item_data->stars ? $item_data->stars : 1;

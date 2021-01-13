@@ -21,17 +21,10 @@
         <?php /*CONTENT*/ ?>
         <div class="tour-content">
             <?php echo $title_html ?>
-            <?php if ($stars > 2): ?>
-                <span class="aver">
-                <?php for ($i = 0; $i < $stars; $i++) { ?>
-                    <span class="fa fa-star"></span>
-                <?php } ?>
-			</span>
-            <?php endif; ?>
             <?php if ($settings['show_duration'] && $days): ?>
-                <span class="time">
-                    <?php \Elementor\Icons_Manager::render_icon( $settings['icon_duration'] ); ?>
-					<strong><?php
+                <span class="duration">
+                    <?php \Elementor\Icons_Manager::render_icon( $settings['style_duration_icon'] ); ?>
+					<span><?php
                         echo $settings['duration_prefix'];
                         printf(
                             _nx(
@@ -44,14 +37,14 @@
                             $days
                         );
                         ?>
-					</strong>
+					</span>
 				</span>
             <?php endif; ?>
             <?php if ($settings['show_price'] && $price): ?>
                 <span class="price"><?php
                     if ($price) {
                         esc_html_e($settings['price_prefix']);
-                        echo '<strong>' . number_format($price, 0, ',', '.') . '</strong>';
+                        echo '<span>' . number_format($price, 0, ',', '.') . '</span>';
                         esc_html_e($settings['price_suffix']);
                     } ?>
 				</span>
