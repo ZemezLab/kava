@@ -231,7 +231,7 @@ abstract class Widget extends \Elementor\Widget_Base
         );
 
         $this->add_responsive_control(
-            $id.'text_padding',
+            $id.'padding',
             [
                 'label' => __( 'Padding', 'elementor' ),
                 'type' => Controls_Manager::DIMENSIONS,
@@ -240,6 +240,18 @@ abstract class Widget extends \Elementor\Widget_Base
                     '{{WRAPPER}} '.$args['selector'] => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
                 'separator' => 'before',
+            ]
+        );
+
+        $this->add_control(
+            $id.'margin',
+            [
+                'label' => __( 'Margin', 'elementor' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', 'em', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} '.$args['selector'] => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
             ]
         );
 
@@ -808,7 +820,7 @@ abstract class Widget extends \Elementor\Widget_Base
                 'default'       => $args['icon_default'] ? $args['icon_default'] : null
             ));
             $this->add_control(
-                $id.'image_spacing',
+                $id.'icon_spacing',
                 [
                     'label' => __( 'Icon Spacing', 'elementor-pro' ),
                     'type' => Controls_Manager::SLIDER,
@@ -832,7 +844,8 @@ abstract class Widget extends \Elementor\Widget_Base
                 'type'      => Controls_Manager::COLOR,
                 'label'     => esc_html__( 'Color', 'elementor-pro' ),
                 'selectors' => array(
-                    '{{WRAPPER}} '.$args['selector'] => 'color: {{VALUE}};'
+                    '{{WRAPPER}} '.$args['selector'] => 'color: {{VALUE}};',
+                    '{{WRAPPER}} '.$args['selector'].' *' => 'color: {{VALUE}};',
                 ),
             ]
         );
@@ -859,6 +872,196 @@ abstract class Widget extends \Elementor\Widget_Base
                 ],
             ]
         );
+
+        $this->end_controls_section();
+    }
+
+    protected function addControlGroupArrows($id, $args) {
+        $default_args = array(
+            'label' => __( 'Arrows', 'elementor-pro' ),
+            'selector' => '.tns-controls [data-controls]',
+            'selector_next' => '.tns-controls [data-controls="next"]',
+            'selector_prev' => '.tns-controls [data-controls="prev"]',
+        );
+        $args = wp_parse_args( $args, $default_args );
+
+        $this->startControlsGroupSection($id, $args);
+
+        $this->add_control(
+            $id, array(
+            'type'         => Controls_Manager::SWITCHER,
+            'label'        => esc_html__( 'Arrows', 'elementor-pro' ),
+            'default'      => 'yes',
+            'label_on'     => esc_html__( 'Yes', 'elementor-pro' ),
+            'label_off'    => esc_html__( 'No', 'elementor-pro' ),
+            'return_value' => 'yes',
+        ) );
+
+        $this->add_control(
+            $id.'size', array(
+            'type'       => Controls_Manager::SLIDER,
+            'label'      => esc_html__( 'Size', 'elementor-pro' ),
+            'default'    => array(
+                'size' => 40
+            ),
+            'range'      => array(
+                'px' => array(
+                    'min'  => 1,
+                    'max'  => 200,
+                    'step' => 1
+                ),
+            ),
+            'size_units' => array( 'px' ),
+            'selectors'  => array(
+                '{{WRAPPER}} '.$args['selector'] => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+            ),
+        ) );
+
+        $this->add_control(
+            $id.'position', array(
+            'type'       => Controls_Manager::SLIDER,
+            'label'      => esc_html__( 'Horizontal Pisition', 'elementor-pro' ),
+            'default'    => array(
+                'size' => - 50
+            ),
+            'range'      => array(
+                'px' => array(
+                    'min'  => - 200,
+                    'max'  => 200,
+                    'step' => 1
+                ),
+            ),
+            'size_units' => array( 'px' ),
+            'selectors'  => array(
+                '{{WRAPPER}} '.$args['selector_next'] => 'right: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} '.$args['selector_prev'] => 'left: {{SIZE}}{{UNIT}};',
+            ),
+        ) );
+
+        $this->add_control(
+            $id.'color', array(
+            'type'      => Controls_Manager::COLOR,
+            'label'     => esc_html__( 'Color', 'elementor-pro' ),
+            'default'   => '#fff',
+            'selectors' => array(
+                '{{WRAPPER}} '.$args['selector'] => 'color: {{VALUE}};'
+            ),
+        ) );
+
+        $this->add_control(
+            $id.'bg', array(
+            'type'      => Controls_Manager::COLOR,
+            'label'     => esc_html__( 'Background color', 'elementor-pro' ),
+            'selectors' => array(
+                '{{WRAPPER}} '.$args['selector'] => 'background-color: {{VALUE}};'
+            ),
+        ) );
+
+        $this->add_control(
+            $id.'tablet', array(
+            'type'         => Controls_Manager::SWITCHER,
+            'label'        => esc_html__( 'Hide on Tablet', 'elementor-pro' ),
+            'default'      => 'yes',
+            'label_on'     => esc_html__( 'Yes', 'elementor-pro' ),
+            'label_off'    => esc_html__( 'No', 'elementor-pro' ),
+            'return_value' => 'yes',
+        ) );
+
+        $this->add_control(
+            $id.'mobile', array(
+            'type'         => Controls_Manager::SWITCHER,
+            'label'        => esc_html__( 'Hide on Mobile', 'elementor-pro' ),
+            'default'      => 'yes',
+            'label_on'     => esc_html__( 'Yes', 'elementor-pro' ),
+            'label_off'    => esc_html__( 'No', 'elementor-pro' ),
+            'return_value' => 'yes',
+        ) );
+
+        $this->end_controls_section();
+    }
+
+    protected function addControlGroupDots($id, $args) {
+        $default_args = array(
+            'label' => __( 'Dots', 'elementor-pro' ),
+            'selector' => '.tns-nav',
+            'selector_button' => '.tns-nav button',
+            'selector_active' => '.tns-nav button.tns-nav-active'
+        );
+        $args = wp_parse_args( $args, $default_args );
+
+        $this->startControlsGroupSection($id, $args);
+
+        $this->add_control(
+            $id, array(
+            'type'         => Controls_Manager::SWITCHER,
+            'label'        => $args['label'],
+            'default'      => '',
+            'label_on'     => esc_html__( 'Yes', 'elementor-pro' ),
+            'label_off'    => esc_html__( 'No', 'elementor-pro' ),
+            'return_value' => 'yes',
+        ) );
+
+        $this->add_responsive_control(
+            $id.'align', array(
+            'type'           => Controls_Manager::CHOOSE,
+            'label'          => esc_html__( 'Alignment', 'elementor-pro' ),
+            'options'        => array(
+                'left'   => array(
+                    'title' => esc_html__( 'Left', 'elementor-pro' ),
+                    'icon'  => 'fa fa-align-left'
+                ),
+                'center' => array(
+                    'title' => esc_html__( 'Center', 'elementor-pro' ),
+                    'icon'  => 'fa fa-align-center'
+                ),
+                'right'  => array(
+                    'title' => esc_html__( 'Right', 'elementor-pro' ),
+                    'icon'  => 'fa fa-align-right'
+                ),
+            ),
+            'default'        => 'center',
+            'tablet_default' => 'center',
+            'mobile_default' => 'center',
+            'selectors'      => array(
+                '{{WRAPPER}} '.$args['selector'] => 'text-align: {{VALUE}};'
+            ),
+        ) );
+
+        $this->add_control(
+            $id.'bg', array(
+            'type'      => Controls_Manager::COLOR,
+            'label'     => esc_html__( 'Background color', 'elementor-pro' ),
+            'selectors' => array(
+                '{{WRAPPER}} '.$args['selector_button'] => 'background-color: {{VALUE}};',
+            ),
+        ) );
+
+        $this->add_control(
+            $id.'active_bg', array(
+            'type'      => Controls_Manager::COLOR,
+            'label'     => esc_html__( 'Current background color', 'elementor-pro' ),
+            'selectors' => array(
+                '{{WRAPPER}} '.$args['selector_active'] => 'background-color: {{VALUE}};'
+            ),
+        ) );
+
+        $this->add_control(
+            $id.'tablet', array(
+            'type'         => Controls_Manager::SWITCHER,
+            'label'        => esc_html__( 'Hide on Tablet', 'elementor-pro' ),
+            'default'      => 'yes',
+            'label_on'     => esc_html__( 'Yes', 'elementor-pro' ),
+            'label_off'    => esc_html__( 'No', 'elementor-pro' ),
+        ) );
+
+        $this->add_control(
+            $id.'mobile', array(
+            'type'         => Controls_Manager::SWITCHER,
+            'label'        => esc_html__( 'Hide on Mobile', 'elementor-pro' ),
+            'default'      => 'yes',
+            'label_on'     => esc_html__( 'Yes', 'elementor-pro' ),
+            'label_off'    => esc_html__( 'No', 'elementor-pro' ),
+        ) );
 
         $this->end_controls_section();
     }

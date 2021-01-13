@@ -29,7 +29,6 @@
             <?php } ?>
             <?php echo $title_html ?>
             <?php echo $excerpt_html ?>
-            <?php echo $read_more_html ?>
             <div class="block">
                 <div class="block-left">
                     <?php if ($days) { ?>
@@ -57,9 +56,7 @@
                     <?php echo $price_html; ?>
                 </div>
                 <div class="block-right">
-                    <a class="elementor-button book-button" href="<?php the_permalink()?>">
-                        Ansehen & Buchen
-                    </a>
+                    <?php echo $read_more_html; ?>
                 </div>
             </div>
             <?php if ($categories_str) { ?>

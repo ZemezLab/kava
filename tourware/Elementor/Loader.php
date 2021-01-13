@@ -539,7 +539,7 @@ class Loader {
                 }
             }
             if (!empty($badge)) {
-                $badge_html = '<span class="tour-label">'.$badge.'</span>';
+                $badge_html = '<span class="badge">'.$badge.'</span>';
             }
         }
 
@@ -547,9 +547,9 @@ class Loader {
         if ($settings['show_excerpt'] ) {
             $excerpt = $item_data->getTeaser();
             if (strlen($excerpt) > $settings['excerpt_length']['size']) {
-                $excerpt = substr($excerpt, 0, $settings['excerpt_length']['size']).'...';
+                $excerpt = substr(strip_tags($excerpt), 0, $settings['excerpt_length']['size']).'...';
             }
-            $excerpt_html = '<div class="item-excerpt">'.$excerpt.'</div>';
+            $excerpt_html = '<div class="excerpt">'.$excerpt.'</div>';
         }
 
         if ($settings['show_categories'] && $settings['categories_tags']) {
@@ -575,11 +575,9 @@ class Loader {
         if ($settings['show_read_more']) {
             $read_more_text = $settings['read_more_text'];
             ob_start(); ?>
-            <div class="read-more">
-                <a href="<?php echo get_the_permalink() ?>" <?php echo $optional_attributes_html; ?> class="elementor-post__read-more">
-                    <?php echo $read_more_text; ?>
-                </a>
-            </div>
+            <a href="<?php echo get_the_permalink() ?>" <?php echo $optional_attributes_html; ?> class="elementor-button read-more">
+               <?php echo $read_more_text; ?>
+            </a>
             <?php
             $read_more_html = ob_get_contents();
             ob_end_clean();

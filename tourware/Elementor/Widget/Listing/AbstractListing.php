@@ -7,9 +7,6 @@ use Tourware\Elementor\Loader; // @todo: ugly
 use \Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use \Elementor\Group_Control_Typography;
 use \Elementor\Controls_Manager;
-use \Elementor\Plugin;
-use \Elementor\Core\Schemes as Schemes;
-use Tourware\Path;
 
 abstract class AbstractListing extends Widget
 {
@@ -104,8 +101,6 @@ abstract class AbstractListing extends Widget
 
         /* STYLE */
         $this->sectionAttributesStyle();
-        $this->sectionArrows();
-        $this->sectionDots();
     }
 
     private function sectionLayout() {
@@ -430,7 +425,7 @@ abstract class AbstractListing extends Widget
                 'type'      => Controls_Manager::COLOR,
                 'label'     => esc_html__( 'Background color', 'elementor-pro' ),
                 'selectors' => array(
-                    '{{WRAPPER}} .tour-label' => 'background-color: {{VALUE}};'
+                    '{{WRAPPER}} .badge' => 'background-color: {{VALUE}};'
                 ),
                 'condition' => ['show_badge' => 'yes'],
             ]
@@ -441,7 +436,7 @@ abstract class AbstractListing extends Widget
                 'type'      => Controls_Manager::COLOR,
                 'label'     => esc_html__( 'Text color', 'elementor-pro' ),
                 'selectors' => array(
-                    '{{WRAPPER}} .tour-label' => 'color: {{VALUE}};'
+                    '{{WRAPPER}} .badge' => 'color: {{VALUE}};'
                 ),
                 'condition' => ['show_badge' => 'yes'],
             ]
@@ -454,7 +449,7 @@ abstract class AbstractListing extends Widget
                 'global' => [
                     'default' => Global_Typography::TYPOGRAPHY_TEXT,
                 ],
-                'selector' => '{{WRAPPER}} .tour-label',
+                'selector' => '{{WRAPPER}} .badge',
                 'condition' => ['show_badge' => 'yes'],
             ]
         );
@@ -466,7 +461,7 @@ abstract class AbstractListing extends Widget
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .tour-label' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .badge' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -528,16 +523,16 @@ abstract class AbstractListing extends Widget
             'id'=>'style_excerpt',
             'type' => 'attribute',
             'label' => 'Excerpt',
-            'selector' => '.item-excerpt',
+            'selector' => '.excerpt',
             'condition' => ['show_excerpt' => 'yes']
         ]);
 
         /* READ MORE */
         $this->addControlGroup([
             'id'=>'style_readmore',
-            'type' => 'attribute',
+            'type' => 'button',
             'label' => 'Read More',
-            'selector' => '.elementor-post__read-more',
+            'selector' => '.read-more',
             'condition' => ['show_read_more' => 'yes']
         ]);
 
@@ -595,14 +590,6 @@ abstract class AbstractListing extends Widget
                 'library' => 'fa-solid',
             ],
             'condition' => ['show_categories' => 'yes']
-        ]);
-
-        /* BOOKING */
-        $this->addControlGroup([
-            'id' => 'book_button',
-            'type' => 'button',
-            'label' => 'Book Button',
-            'selector' => '.elementor-button.book-button',
         ]);
 
         /* PAGINATION */
@@ -663,204 +650,28 @@ abstract class AbstractListing extends Widget
             'selector' => '.elementor-button.page-numbers',
             'condition' => ['pagi' => 'load_more']
         ]);
-    }
 
-    protected function sectionArrows() {
-        $this->start_controls_section( 'd_arrows', array(
-            'label'     => esc_html__( 'Arrows', 'tyto' ),
-            'tab' => Controls_Manager::TAB_STYLE,
-            'condition' => array(
-                'd_layout.layout' => 'carousel',
-                'd_layout.arrows' => 'yes',
-            ),
-        ) );
+        /* ARROWS */
+        $this->addControlGroup([
+            'id' => 'arrows',
+            'type' => 'arrows',
+            'condition' => [
+               'layout' => 'carousel',
+               'arrows' => 'yes'
+            ]
+        ]);
 
-        $this->add_control( 'arrows', array(
-            'type'         => Controls_Manager::SWITCHER,
-            'label'        => esc_html__( 'Arrows', 'tyto' ),
-            'default'      => 'yes',
-            'label_on'     => esc_html__( 'Yes', 'tyto' ),
-            'label_off'    => esc_html__( 'No', 'tyto' ),
-            'return_value' => 'yes',
-            'condition'    => array(
-                'layout' => 'carousel'
-            )
-        ) );
-
-        $this->add_control( 'arrows_size', array(
-            'type'       => Controls_Manager::SLIDER,
-            'label'      => esc_html__( 'Size', 'tyto' ),
-            'default'    => array(
-                'size' => 40
-            ),
-            'range'      => array(
-                'px' => array(
-                    'min'  => 1,
-                    'max'  => 200,
-                    'step' => 1
-                ),
-            ),
-            'size_units' => array( 'px' ),
-            'selectors'  => array(
-                '{{WRAPPER}} .tns-controls [data-controls]' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
-            ),
-        ) );
-
-        $this->add_control( 'arrows_position', array(
-            'type'       => Controls_Manager::SLIDER,
-            'label'      => esc_html__( 'Horizontal Pisition', 'tyto' ),
-            'default'    => array(
-                'size' => - 50
-            ),
-            'range'      => array(
-                'px' => array(
-                    'min'  => - 200,
-                    'max'  => 200,
-                    'step' => 1
-                ),
-            ),
-            'size_units' => array( 'px' ),
-            'selectors'  => array(
-                '{{WRAPPER}} .tns-controls [data-controls="next"]' => 'right: {{SIZE}}{{UNIT}};',
-                '{{WRAPPER}} .tns-controls [data-controls="prev"]' => 'left: {{SIZE}}{{UNIT}};',
-            ),
-        ) );
-
-        $this->add_control( 'arrows_color', array(
-            'type'      => Controls_Manager::COLOR,
-            'label'     => esc_html__( 'Color', 'tyto' ),
-            'default'   => '#fff',
-            'selectors' => array(
-                '{{WRAPPER}} .tns-controls [data-controls]' => 'color: {{VALUE}};'
-            ),
-        ) );
-
-        $this->add_control( 'arrows_bg', array(
-            'type'      => Controls_Manager::COLOR,
-            'label'     => esc_html__( 'Background color', 'tyto' ),
-            'selectors' => array(
-                '{{WRAPPER}} .tns-controls [data-controls]' => 'background-color: {{VALUE}};'
-            ),
-        ) );
-
-        $this->add_control( 'arrows_tablet', array(
-            'type'         => Controls_Manager::SWITCHER,
-            'label'        => esc_html__( 'Hide on Tablet', 'tyto' ),
-            'default'      => 'yes',
-            'label_on'     => esc_html__( 'Yes', 'tyto' ),
-            'label_off'    => esc_html__( 'No', 'tyto' ),
-            'return_value' => 'yes',
-            'condition'    => array(
+        /* DOTS */
+        $this->addControlGroup([
+            'id' => 'dots',
+            'type' => 'dots',
+            'condition' => [
                 'layout' => 'carousel',
-            )
-        ) );
-
-        $this->add_control( 'arrows_mobile', array(
-            'type'         => Controls_Manager::SWITCHER,
-            'label'        => esc_html__( 'Hide on Mobile', 'tyto' ),
-            'default'      => 'yes',
-            'label_on'     => esc_html__( 'Yes', 'tyto' ),
-            'label_off'    => esc_html__( 'No', 'tyto' ),
-            'return_value' => 'yes',
-            'condition'    => array(
-                'layout' => 'carousel'
-            )
-        ) );
-
-        $this->end_controls_section();
+                'dots' => 'yes'
+            ]
+        ]);
     }
 
-    protected function sectionDots() {
-        $this->start_controls_section( 'd_dots', array(
-            'label'     => esc_html__( 'Dots', 'tyto' ),
-            'tab' => Controls_Manager::TAB_STYLE,
-            'condition' => array(
-                'd_layout.layout' => 'carousel',
-                'd_layout.dots'   => 'yes',
-            ),
-        ) );
-
-        $this->add_control( 'dots', array(
-            'type'         => Controls_Manager::SWITCHER,
-            'label'        => esc_html__( 'Dots', 'tyto' ),
-            'default'      => '',
-            'label_on'     => esc_html__( 'Yes', 'tyto' ),
-            'label_off'    => esc_html__( 'No', 'tyto' ),
-            'return_value' => 'yes',
-            'condition'    => array(
-                'layout' => 'carousel'
-            )
-        ) );
-
-        $this->add_responsive_control( 'd_align', array(
-            'type'           => Controls_Manager::CHOOSE,
-            'label'          => esc_html__( 'Alignment', 'tyto' ),
-            'options'        => array(
-                'left'   => array(
-                    'title' => esc_html__( 'Left', 'tyto' ),
-                    'icon'  => 'fa fa-align-left'
-                ),
-                'center' => array(
-                    'title' => esc_html__( 'Center', 'tyto' ),
-                    'icon'  => 'fa fa-align-center'
-                ),
-                'right'  => array(
-                    'title' => esc_html__( 'Right', 'tyto' ),
-                    'icon'  => 'fa fa-align-right'
-                ),
-            ),
-            'default'        => 'center',
-            'tablet_default' => 'center',
-            'mobile_default' => 'center',
-            'selectors'      => array(
-                '{{WRAPPER}} .tns-nav' => 'text-align: {{VALUE}};'
-            ),
-        ) );
-
-        $this->add_control( 'dots_bg', array(
-            'type'      => Controls_Manager::COLOR,
-            'label'     => esc_html__( 'Background color', 'tyto' ),
-            'default'   => 'rgba( 255, 255, 255, 0.3 )',
-            'selectors' => array(
-                '{{WRAPPER}} .tns-nav button' => 'background-color: {{VALUE}};'
-            ),
-        ) );
-
-        $this->add_control( 'dots_active_bg', array(
-            'type'      => Controls_Manager::COLOR,
-            'label'     => esc_html__( 'Current background color', 'tyto' ),
-            'default'   => '#eeeeee',
-            'selectors' => array(
-                '{{WRAPPER}} .tns-nav button.tns-nav-active' => 'background-color: {{VALUE}};'
-            ),
-        ) );
-
-        $this->add_control( 'dots_tablet', array(
-            'type'         => Controls_Manager::SWITCHER,
-            'label'        => esc_html__( 'Hide on Tablet', 'tyto' ),
-            'default'      => 'yes',
-            'label_on'     => esc_html__( 'Yes', 'tyto' ),
-            'label_off'    => esc_html__( 'No', 'tyto' ),
-            'return_value' => 'yes',
-            'condition'    => array(
-                'layout' => 'carousel',
-            )
-        ) );
-
-        $this->add_control( 'dots_mobile', array(
-            'type'         => Controls_Manager::SWITCHER,
-            'label'        => esc_html__( 'Hide on Mobile', 'tyto' ),
-            'default'      => 'yes',
-            'label_on'     => esc_html__( 'Yes', 'tyto' ),
-            'label_off'    => esc_html__( 'No', 'tyto' ),
-            'return_value' => 'yes',
-            'condition'    => array(
-                'layout' => 'carousel'
-            )
-        ) );
-
-        $this->end_controls_section();
-    }
 
     protected function addCardLayoutOptions() {
         $options = $this->getCardLayoutOptions();

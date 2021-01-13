@@ -76,7 +76,7 @@
   transform: scale(1.1);
 }
 
-.advanced-tyto-list .tour-label {
+.advanced-tyto-list .badge {
   background-color: var(--e-global-color-primary);
   color: #fff;
   position: absolute;
@@ -93,6 +93,10 @@
   transform: translate(50%, -50%) rotate(45deg) translateZ(0);
 }
 
+.advanced-tyto-list .excerpt {
+  margin: 0 0 10px;
+}
+
 .advanced-tyto-list .tour-attribute {
   display: inline-block;
   margin-right: 10px;
@@ -101,8 +105,8 @@
   margin-right: 0;
 }
 
-.advanced-tyto-list .elementor-post__read-more {
-  display: inline-block;
+.advanced-tyto-list .read-more {
+  margin: 0 0 10px;
 }
 
 /* layout-4 */
@@ -229,10 +233,6 @@
   padding-left: 5px;
 }
 
-.advanced-tyto-list.layout-5 .item-excerpt {
-  margin-bottom: 15px;
-}
-
 .advanced-tyto-list.layout-5 .item-bottom-content {
   margin-top: auto;
   padding-top: 15px;
@@ -307,20 +307,6 @@
   height: 240px;
 }
 
-.advanced-tyto-list.layout-3 .tour-title {
-  font-size: 20px;
-  line-height: 1.4;
-}
-
-.advanced-tyto-list.layout-3 .tour-content {
-  padding: 10px 15px 15px;
-}
-
-.advanced-tyto-list.layout-3 .item-excerpt {
-  font-size: 14px;
-  padding-top: 10px;
-  padding-bottom: 15px;
-}
 
 .advanced-tyto-list.layout-3 .tours-layout-carousel .tour-item-wrapper {
   padding-bottom: 10px;
@@ -345,7 +331,7 @@
   flex-grow: 1;
 }
 
-.advanced-tyto-list.layout-2 .tour-head .tour-label {
+.advanced-tyto-list.layout-2 .tour-head .badge {
   padding: 6px 12px;
   position: absolute;
   top: 20px;
@@ -380,7 +366,7 @@
   height: 315px;
 }
 
-.advanced-tyto-list.layout-2 .tour-content .item-excerpt > *:last-child {
+.advanced-tyto-list.layout-2 .tour-content .excerpt > *:last-child {
   margin-bottom: 0;
 }
 
@@ -390,12 +376,12 @@
   margin-bottom: 10px;
   border-top: 1px solid #ebebeb;
   padding-top: 10px;
-}
 
-.advanced-tyto-list.layout-2 .tour-content .block-right {
-  margin-left: auto;
-  text-align: center;
-  padding-left: 5px;
+  .block-right {
+    margin-left: auto;
+    text-align: center;
+    padding-left: 5px;
+  }
 }
 
 .advanced-tyto-list.layout-2 .tour-content .tour-attribute {

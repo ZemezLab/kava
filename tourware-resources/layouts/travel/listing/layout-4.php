@@ -21,7 +21,7 @@
         <?php /*CONTENT*/ ?>
         <div class="tour-content">
             <?php echo $title_html ?>
-            <?php if ($settings['show_duration'] && $days): ?>
+            <?php if ($days): ?>
                 <span class="duration">
                     <?php \Elementor\Icons_Manager::render_icon( $settings['style_duration_icon'] ); ?>
 					<span><?php
@@ -40,13 +40,11 @@
 					</span>
 				</span>
             <?php endif; ?>
-            <?php if ($settings['show_price'] && $price): ?>
+            <?php if ($price): ?>
                 <span class="price"><?php
-                    if ($price) {
                         esc_html_e($settings['price_prefix']);
                         echo '<span>' . number_format($price, 0, ',', '.') . '</span>';
-                        esc_html_e($settings['price_suffix']);
-                    } ?>
+                        esc_html_e($settings['price_suffix']); ?>
 				</span>
             <?php endif; ?>
         </div>
