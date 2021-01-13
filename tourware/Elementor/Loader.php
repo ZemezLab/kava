@@ -515,7 +515,6 @@ class Loader {
         if ($settings['show_duration']) $days = $item_data->getItineraryLength();
         if ($settings['show_persons']) $persons = ($item_data->getPaxMin() ? $item_data->getPaxMin().'-' : '').$item_data->getPaxMax();
         if ($settings['show_destination']) $destination = $item_data->_destination;
-        $destination = 'Uganda';
 
         if (get_post_type(get_the_ID()) == 'tytoaccommodations') {
             $stars = $item_data->stars ? $item_data->stars : 1;
