@@ -1,0 +1,19 @@
+.travel-services {
+  .list-content {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    li {
+      line-height: 30px;
+      display: flex;
+      align-items: baseline;
+
+      .icon {
+        font-size: 16px;
+        margin-right: 10px;
+        display: inline-block;
+      }
+    }
+  }
+}
