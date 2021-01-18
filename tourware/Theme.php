@@ -35,7 +35,10 @@ class Theme
         } );
 
         add_action( 'wp_enqueue_scripts', function () {
+            wp_enqueue_script('vue', 'https://cdn.jsdelivr.net/npm/vue/dist/vue.js', null, null, true);
+            wp_enqueue_script('tourware-js', get_parent_theme_file_uri() . '/tourware-resources/js/tourware.js', 'vue', null, true);
             wp_enqueue_style('tourware', get_parent_theme_file_uri() . '/tourware-resources/scss/tourware.css');
+
         } );
 
         add_action( 'elementor/preview/enqueue_scripts', function () {
@@ -43,6 +46,7 @@ class Theme
         } );
 
         add_action( 'elementor/widgets/widgets_registered', function() {
+            Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Travel\Gallery() );
             Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Travel\Listing() );
             Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Accommodation\Listing() );
             Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Search() );
@@ -63,7 +67,6 @@ class Theme
             new Customizer\Page\General($wp_customize);
         } );
 
-        include get_theme_file_path( 'inc/tourware/www-post-thumbnail.php' );
         include get_theme_file_path( 'inc/tourware/tcpdf/generate.php' );
         include get_theme_file_path( 'inc/tourware/form-action-hook.php' );
         include get_theme_file_path( 'inc/tourware/functions-pipedrive.php' );
