@@ -506,10 +506,10 @@ abstract class Widget extends \Elementor\Widget_Base
 
     }
 
-    protected function addControlGroupIcon($id, $args)
+    protected function addControlGroupFieldIcon($id, $args)
     {
         $default_args = array(
-            'label' => 'Icon',
+            'label' => 'Field Icon',
             'selector' => '.field-icon',
         );
         $args = wp_parse_args($args, $default_args);
@@ -578,6 +578,7 @@ abstract class Widget extends \Elementor\Widget_Base
         $default_args = array(
             'label' => __( 'Box', 'elementor-pro' ),
             'selector' => '.ht-grid-item',
+            'selector_content' => empty($args['selector_content']) ? $args['selector'] : $args['selector_content']
         );
         $args = wp_parse_args( $args, $default_args );
 
@@ -632,7 +633,7 @@ abstract class Widget extends \Elementor\Widget_Base
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} '.$args['selector'].' .tour-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+                    '{{WRAPPER}} '.$args['selector_content'] => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
                 ],
                 'default' => [
                     'size' => 15,

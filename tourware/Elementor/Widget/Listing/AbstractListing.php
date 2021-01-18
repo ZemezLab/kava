@@ -408,7 +408,7 @@ abstract class AbstractListing extends Widget
 
         $this->end_controls_section();
 
-        $this->addControlGroup(['id' => 'style_box', 'type' => 'box', 'selector' => '.tour-item']);
+        $this->addControlGroup(['id' => 'style_box', 'type' => 'box', 'selector' => '.tour-item', 'selector_content' => ' .tour-content']);
 
         /* IMAGE */
         $this->addControlGroup(['id' => 'style_image', 'type' => 'image']);

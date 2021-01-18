@@ -59,6 +59,7 @@ $text-p-line-height: var(--e-global-typography-text-line-height);
 @import "widget/abstract/listing";
 @import "widget/destination/listing";
 @import "widget/travel/services";
+@import "widget/travel/itinerary";
 
 // Import Views
 @import "single/tytotravels";
