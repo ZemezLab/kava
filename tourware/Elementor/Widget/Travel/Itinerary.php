@@ -125,6 +125,7 @@ class Itinerary extends Widget {
                 'label' => __('Description Rows', 'tyto'),
                 'type' => Controls_Manager::NUMBER,
                 'default' => '4',
+                'condition' => ['brick_accordion' => 'yes']
             ]
         );
 
@@ -148,8 +149,6 @@ class Itinerary extends Widget {
             'label' => 'Title',
             'selector' => '.brick-title',
         ]);
-
-
 
     }
 
