@@ -4,29 +4,11 @@
  * colibri
  */
 ?>
-
-<?php if ($item_data->tags) {
-    foreach ($item_data->tags as $tag) {
-        if ($tag->name == 'mit Flug')
-            $flight = true;
-        else if ($tag->name == 'Gruppenreise')
-            $group = true;
-        else if ($tag->name == 'Privatreise')
-            $privat = true;
-    }
-} ?>
 <div class="ht-grid-item">
     <div class="tour-item">
         <?php /*HEAD*/ ?>
         <div class="tour-head">
-            <?php if ($settings['show_categories'] && $categories) { ?>
-                <div class="item-categories">
-                    <?php foreach ($categories as $category) { ?>
-                    <span class="tour-cat-label">
-					    <?php echo $category ?></span>
-                    <?php } ?>
-                </div>
-            <?php } ?>
+            <?php echo $badge_html ?>
             <a href="<?php the_permalink(); ?>" class="tour-image">
                 <img <?php if ($settings['layout'] !== 'carousel') { ?>
                     class="lazyload"
@@ -39,16 +21,19 @@
         </div>
         <?php /*CONTENT*/ ?>
         <div class="tour-content">
-            <div class="item-destination">
-                <?php echo $settings['show_destination'] && $destination ? $destination : "&nbsp;" ?>
+            <?php if ($destination) { ?>
+            <div class="destination">
+                <?php \Elementor\Icons_Manager::render_icon( $settings['style_destination_icon'] ); ?>
+                <?php echo $destination; ?>
             </div>
+            <?php } ?>
             <?php echo $title_html ?>
             <?php echo $excerpt_html ?>
-            <?php echo $read_more_html ?>
             <div class="block">
-                <div class="item-price">
+                <div class="block-left">
                     <?php if ($days) { ?>
-                    <div class="duration">
+                    <div class="tour-attribute duration">
+                        <?php \Elementor\Icons_Manager::render_icon( $settings['style_duration_icon'] ); ?>
                         <?php echo $settings['duration_prefix'];
                         printf(
                             _nx(
@@ -62,33 +47,24 @@
                         ); ?>
                     </div>
                     <?php } ?>
+                    <?php if ($persons): ?>
+                        <div class="tour-attribute persons">
+				            <?php \Elementor\Icons_Manager::render_icon( $settings['style_persons_icon'] ); ?>
+                            <span><?php esc_html_e($persons.$settings['persons_suffix']); ?></span>
+				        </div>
+                    <?php endif; ?>
                     <?php echo $price_html; ?>
                 </div>
-                <div class="item-button">
-                    <a class="button" href="<?php the_permalink()?>">
-                        Ansehen & Buchen
-                    </a>
+                <div class="block-right">
+                    <?php echo $read_more_html; ?>
                 </div>
             </div>
-            <?php if ($flight || $group || $privat) { ?>
-            <div class="additional">
-                <?php if ($flight) { ?>
-                <div class="item-attribute item-flight">
-                    <i class="fas fa-plane"></i>&nbsp;mit Flug
+            <?php if ($categories_str) { ?>
+                <div class="categories">
+                    <?php \Elementor\Icons_Manager::render_icon( $settings['style_categories_icon'] ); ?>
+                    <?php esc_html_e($categories_str); ?>
                 </div>
-                <?php } ?>
-                <?php if ($group || $privat) { ?>
-                <div class="item-attribute item-type">
-                <?php if ($group) { ?>
-                    <i class="fas fa-users"></i>&nbsp;Gruppenreise
-                <?php }
-                    if ($privat) { ?>
-                    <i class="fas fa-user"></i>&nbsp;Privatreise
-                <?php } ?>
-                </div>
-                <?php }?>
-            </div>
-            <?php }?>
+            <?php } ?>
         </div>
     </div>
 </div>

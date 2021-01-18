@@ -102,4 +102,6 @@ class Listing extends \Tourware\Elementor\Widget\Listing\AbstractListing
             'condition' => ['show_persons' => 'yes']
         ));
     }
+
+
 }

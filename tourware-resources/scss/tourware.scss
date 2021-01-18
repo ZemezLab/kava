@@ -60,6 +60,8 @@ $tourware-gutter: 20px;
 @import "widget/search";
 @import "widget/abstract/listing";
 @import "widget/destination/listing";
+@import "widget/travel/services";
+@import "widget/travel/itinerary";
 
 // Import Views
 @import "single/tytotravels";
@@ -1641,11 +1643,11 @@ body:not(.page-template-fullwidth-content) .site-content {
 
 .tns-controls [data-controls] {
   position: absolute;
-  background: #fff;
+  background: $color-text;
+  color: #fff;
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  color: #aaa;
   border: 0;
   font-size: 0;
   z-index: 2;
@@ -1703,12 +1705,12 @@ body:not(.page-template-fullwidth-content) .site-content {
   margin: 0 5px;
   border-radius: 50%;
   display: inline-block;
-  background: #fff;
+  background-color: $color-text;
   border: 0;
   padding: 0;
 }
 
 .tns-nav button.tns-nav-active {
   cursor: default;
-  background: #444
+  background: $color-primary
 }
