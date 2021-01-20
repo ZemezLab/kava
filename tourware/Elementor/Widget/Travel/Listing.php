@@ -3,8 +3,9 @@
 namespace Tourware\Elementor\Widget\Travel;
 
 use Elementor\Controls_Manager;
+use Tourware\Elementor\Widget\Listing\AbstractListing;
 
-class Listing extends \Tourware\Elementor\Widget\Listing\AbstractListing
+class Listing extends AbstractListing
 {
 
     /**

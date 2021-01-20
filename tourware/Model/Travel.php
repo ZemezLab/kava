@@ -91,4 +91,13 @@ class Travel extends Model implements Displayable, Imageable
         return $itinerary ? array_sum(array_column($itinerary, 'days')) : 0;
     }
 
+    /**
+     * @param $field
+     * @return string
+     */
+    public function getAdditionalField($field)
+    {
+        $additionalFields = $this->getRawProperty('additionalFields');
+        return $additionalFields && !empty($additionalFields->$field) ? $additionalFields->$field : '';
+    }
 }
