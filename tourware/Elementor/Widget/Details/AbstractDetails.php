@@ -1,5 +1,5 @@
 <?php
-namespace Tourware\Elementor\Widget\Travel;
+namespace Tourware\Elementor\Widget\Details;
 
 use Elementor\Controls_Manager;
 use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
@@ -10,21 +10,42 @@ use Elementor\Repeater;
 use Tourware\Elementor\Widget;
 use Tourware\Path;
 
-class Countries extends Widget {
+class AbstractDetails extends Widget
+{
     /**
+     * @throws \Exception
      * @return string
      */
     public function get_name()
     {
-        return 'tourware-countries';
+        throw new \Exception('Needs to be implemented.');
     }
 
     /**
+     * @throws \Exception
      * @return string
      */
     public function get_title()
     {
-        return __( 'Countries' );
+        throw new \Exception('Needs to be implemented.');
+    }
+
+    /**
+     * @throws \Exception
+     * @return string
+     */
+    protected function getPostTypeName()
+    {
+        throw new \Exception('Needs to be implemented.');
+    }
+
+    /**
+     * @throws \Exception
+     * @return string
+     */
+    protected function getRecordTypeName()
+    {
+        throw new \Exception('Needs to be implemented.');
     }
 
     protected function _register_controls() {
@@ -32,16 +53,128 @@ class Countries extends Widget {
             'label' => esc_html__('Options'),
         ));
 
-        $posts = wp_list_pluck(get_posts(['post_type' => ['tytotravels'], 'post_status' => 'publish', 'posts_per_page' => -1]), 'post_title', 'ID');
+        $posts = wp_list_pluck(get_posts(['post_type' => [$this->getPostTypeName()], 'post_status' => 'publish', 'posts_per_page' => -1]), 'post_title', 'ID');
         $this->add_control(
             'post',
             [
-                'label' => __('Post', 'tyto'),
+                'label' => __('Post', 'elementor'),
                 'type' => Controls_Manager::SELECT2,
                 'options' => $posts,
-                'default' => in_array(get_post_type(get_the_ID()), ['tytotravels']) ? get_the_ID() : ''
+                'default' => in_array(get_post_type(get_the_ID()), [$this->getPostTypeName()]) ? get_the_ID() : ''
             ]
         );
+
+        $this->add_control(
+            'type',
+            [
+                'label' => __('Type', 'elementor'),
+                'type' => Controls_Manager::SELECT,
+                'options' => [
+                    'countries' => __('Countries', 'tourware'),
+                    'additional_field' => __('Additional Field', 'tourware')
+                ],
+                'default' => 'countries'
+            ]
+        );
+
+//        $this->add_control(
+//            'field',
+//            [
+//                'label' => __('Field', 'elementor'),
+//                'type' => Controls_Manager::SELECT,
+//                'options' => wp_list_pluck(get_option('tyto_additional_fields'), 'fieldLabel', 'name'),
+//                'condition' => [ 'type' => 'additional_field' ]
+//            ]
+//        );
+
+        $repeater = new Repeater();
+
+        $repeater->add_control(
+            'field',
+            [
+                'label' => __( 'Field', 'elementor' ),
+                'type' => Controls_Manager::SELECT,
+                'label_block' => true,
+                'placeholder' => __( 'List Item', 'elementor' ),
+                'default' => __( 'List Item', 'elementor' ),
+                'dynamic' => [
+                    'active' => true,
+                ],
+                'options' => wp_list_pluck(get_option('tyto_additional_fields'), 'fieldLabel', 'name'),
+            ]
+        );
+
+        $repeater->add_control(
+            'field_icon',
+            [
+                'label' => __( 'Icon', 'elementor' ),
+                'type' => Controls_Manager::ICONS,
+                'default' => [
+                    'value' => 'fas fa-check',
+                    'library' => 'fa-solid',
+                ],
+                'fa4compatibility' => 'icon',
+            ]
+        );
+
+        $this->add_control(
+            'fields_list',
+            [
+                'label' => __( 'Items', 'elementor' ),
+                'type' => Controls_Manager::REPEATER,
+                'fields' => $repeater->get_controls(),
+                'title_field' => '{{{ elementor.helpers.renderIcon( this, field_icon, {}, "i", "panel" ) || \'<i class="{{ icon }}" aria-hidden="true"></i>\' }}} {{{ field }}}',
+                'condition' => ['type' => 'additional_field']
+            ]
+        );
+
+        $this->add_control(
+            'view',
+            [
+                'label' => __( 'Layout', 'elementor' ),
+                'type' => Controls_Manager::CHOOSE,
+                'default' => 'traditional',
+                'options' => [
+                    'traditional' => [
+                        'title' => __( 'Default', 'elementor' ),
+                        'icon' => 'eicon-editor-list-ul',
+                    ],
+                    'inline' => [
+                        'title' => __( 'Inline', 'elementor' ),
+                        'icon' => 'eicon-ellipsis-h',
+                    ],
+                ],
+                'render_type' => 'template',
+                'classes' => 'elementor-control-start-end',
+                'style_transfer' => true,
+                'prefix_class' => 'elementor-icon-list--layout-',
+            ]
+        );
+
+        $this->add_control(
+            'icon_display',
+            [
+                'label' => __('Icon Display', 'tourware'),
+                'type' => Controls_Manager::SELECT,
+                'options' => [
+                    'none' => __('None', 'tourware'),
+                    'first' => __('Near the first item', 'tourware'),
+                    'each' => __('Near each item', 'tourware')
+                ],
+                'default' => 'first',
+                'condition' => ['type' => 'countries']
+            ]
+        );
+
+        $this->add_control( 'icon', array(
+            'label'         =>  esc_html__( 'Icon', 'elementor-pro' ),
+            'type'          =>  Controls_Manager::ICONS,
+            'default'       => [
+                'value' => 'fas fa-check',
+                'library' => 'fa-solid',
+            ],
+            'condition' => ['icon_display!' => 'none', 'type' => 'countries']
+        ));
 
         $this->end_controls_section();
 
@@ -97,7 +230,6 @@ class Countries extends Widget {
                 'prefix_class' => 'elementor%s-align-',
             ]
         );
-
 
         $this->end_controls_section();
 
@@ -255,38 +387,47 @@ class Countries extends Widget {
         $settings = $this->get_settings_for_display();
 
         $post = $settings['post'] ? $settings['post'] : get_the_ID();
-        $t_countries = get_post_meta($post, 'tytocountries', true);
-        $countries = [];
-        if (!empty($t_countries)) {
-            foreach ($t_countries as $t_country) {
-                $countries[] = $t_country['official_name_de'];
+
+        if ('tytotravels' === $this->getPostTypeName()) {
+            $repository = \Tourware\Repository\Travel::getInstance();
+        }
+
+        if ('tytoaccommodations' === $this->getPostTypeName()) {
+            $repository = \Tourware\Repository\Accommodation::getInstance();
+        }
+        $item_data = $repository->findOneByPostId($post);
+
+        $content = [];
+        if ($settings['type'] == 'countries') {
+            $t_countries = get_post_meta($post, 'tytocountries', true);
+            if (!empty($t_countries)) {
+                foreach ($t_countries as $t_country) {
+                    $content[] = $t_country['official_name_de'];
+                }
             }
+            if (empty($countries)) {
+//                $record->_destination
+//                $content[] = 'Uganda';
+//                $content[] = 'Namibia';
+//                $content[] = 'Kenia';
+            }
+            //TODO use countries taxonomy
+        } elseif ($settings['type'] == 'additional_field') {
+//            print_r($settings);
+            foreach ( $settings['fields_list'] as $index => $item ) {
+                if ($af = $item_data->getAdditionalField($item['field'])) $content[] = [ 'icon' => $item['field_icon'], 'text' => $af];
+            }
+
         }
-        if (empty($countries)) {
-            $countries[] = 'Uganda';
+
+        if (!empty($content)) {
+            $this->add_render_attribute( 'icon_list', 'class', 'elementor-icon-list-items' );
+            $this->add_render_attribute('list_item', 'class', 'elementor-icon-list-item');
+            if ( 'inline' === $settings['view'] ) {
+                $this->add_render_attribute( 'icon_list', 'class', 'elementor-inline-items' );
+                $this->add_render_attribute('list_item', 'class', 'elementor-inline-item');
+            }
+            include Path::getResourcesFolder() . 'layouts/' . $this->getRecordTypeName() . '/details/template.php';
         }
-        //TODO use countries taxonomy
-
-        $this->add_render_attribute( 'icon_list', 'class', 'elementor-icon-list-items' );
-        $this->add_render_attribute( 'icon_list', 'class', 'elementor-inline-items' );
-
-        $this->add_render_attribute( 'list_item', 'class', 'elementor-icon-list-item' );
-        $this->add_render_attribute( 'list_item', 'class', 'elementor-inline-item' );
-        ?>
-        <ul <?php echo $this->get_render_attribute_string( 'icon_list' ); ?>>
-            <?php
-            foreach ( $countries as $index => $item ) : ?>
-                <li <?php echo $this->get_render_attribute_string( 'list_item' ); ?>>
-                        <span class="elementor-icon-list-icon">
-							<?php Icons_Manager::render_icon( $settings['selected_icon'], [ 'aria-hidden' => 'true' ] ); ?>
-						</span>
-                    <span><?php echo $item; ?></span>
-
-                </li>
-            <?php
-            endforeach;
-            ?>
-        </ul>
-        <?php
     }
 }
