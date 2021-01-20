@@ -1,5 +1,5 @@
 <?php
-namespace Tourware\Elementor\Widget\Travel;
+namespace Tourware\Elementor\Widget\Accommodation;
 
 use Tourware\Elementor\Widget\Details\AbstractDetails;
 
