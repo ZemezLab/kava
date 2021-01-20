@@ -100,4 +100,8 @@ class Travel extends Model implements Displayable, Imageable
         $additionalFields = $this->getRawProperty('additionalFields');
         return $additionalFields && !empty($additionalFields->$field) ? $additionalFields->$field : '';
     }
+
+    public function getResponsibleUser() {
+        return $this->getRawProperty('responsibleUser');
+    }
 }

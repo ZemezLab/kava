@@ -71,62 +71,25 @@ class AbstractDetails extends Widget
                 'type' => Controls_Manager::SELECT,
                 'options' => [
                     'countries' => __('Countries', 'tourware'),
-                    'additional_field' => __('Additional Field', 'tourware')
+                    'tags' => __('Tags', 'tourware'),
+                    'additional_field' => __('Additional Field', 'tourware'),
+                    'contact_person' => __('Contact Person', 'tourware')
                 ],
                 'default' => 'countries'
             ]
         );
 
-//        $this->add_control(
-//            'field',
-//            [
-//                'label' => __('Field', 'elementor'),
-//                'type' => Controls_Manager::SELECT,
-//                'options' => wp_list_pluck(get_option('tyto_additional_fields'), 'fieldLabel', 'name'),
-//                'condition' => [ 'type' => 'additional_field' ]
-//            ]
-//        );
+        $additional_fields = wp_list_pluck(get_option('tyto_additional_fields'), 'fieldLabel', 'name');
+        $this->addItemsListRepeater('additional_fields_list', $additional_fields, ['type' => 'additional_field']);
 
-        $repeater = new Repeater();
+        $contact_fields = [
+            'name' => __( 'Name', 'elementor' ),
+            'phone' => __( 'Phone', 'elementor' ),
+            'email' => __( 'Email', 'elementor' ),
+            'website' => __( 'Website', 'elementor' ),
+        ];
+        $this->addItemsListRepeater('contact_fields_list', $contact_fields, ['type' => 'contact_person']);
 
-        $repeater->add_control(
-            'field',
-            [
-                'label' => __( 'Field', 'elementor' ),
-                'type' => Controls_Manager::SELECT,
-                'label_block' => true,
-                'placeholder' => __( 'List Item', 'elementor' ),
-                'default' => __( 'List Item', 'elementor' ),
-                'dynamic' => [
-                    'active' => true,
-                ],
-                'options' => wp_list_pluck(get_option('tyto_additional_fields'), 'fieldLabel', 'name'),
-            ]
-        );
-
-        $repeater->add_control(
-            'field_icon',
-            [
-                'label' => __( 'Icon', 'elementor' ),
-                'type' => Controls_Manager::ICONS,
-                'default' => [
-                    'value' => 'fas fa-check',
-                    'library' => 'fa-solid',
-                ],
-                'fa4compatibility' => 'icon',
-            ]
-        );
-
-        $this->add_control(
-            'fields_list',
-            [
-                'label' => __( 'Items', 'elementor' ),
-                'type' => Controls_Manager::REPEATER,
-                'fields' => $repeater->get_controls(),
-                'title_field' => '{{{ elementor.helpers.renderIcon( this, field_icon, {}, "i", "panel" ) || \'<i class="{{ icon }}" aria-hidden="true"></i>\' }}} {{{ field }}}',
-                'condition' => ['type' => 'additional_field']
-            ]
-        );
 
         $this->add_control(
             'view',
@@ -162,7 +125,7 @@ class AbstractDetails extends Widget
                     'each' => __('Near each item', 'tourware')
                 ],
                 'default' => 'first',
-                'condition' => ['type' => 'countries']
+                'condition' => ['type' => ['countries', 'tags']]
             ]
         );
 
@@ -173,7 +136,7 @@ class AbstractDetails extends Widget
                 'value' => 'fas fa-check',
                 'library' => 'fa-solid',
             ],
-            'condition' => ['icon_display!' => 'none', 'type' => 'countries']
+            'condition' => ['icon_display!' => 'none', 'type' => ['countries', 'tags']]
         ));
 
         $this->end_controls_section();
@@ -406,18 +369,29 @@ class AbstractDetails extends Widget
                 }
             }
             if (empty($countries)) {
-//                $record->_destination
-//                $content[] = 'Uganda';
-//                $content[] = 'Namibia';
-//                $content[] = 'Kenia';
+//                $record->_destination (?)
             }
             //TODO use countries taxonomy
         } elseif ($settings['type'] == 'additional_field') {
-//            print_r($settings);
-            foreach ( $settings['fields_list'] as $index => $item ) {
+            foreach ( $settings['additional_fields_list'] as $index => $item ) {
                 if ($af = $item_data->getAdditionalField($item['field'])) $content[] = [ 'icon' => $item['field_icon'], 'text' => $af];
             }
-
+        } elseif ($settings['type'] == 'contact_person') {
+            $user = $item_data->getResponsibleUser();
+            foreach ( $settings['contact_fields_list'] as $index => $item ) {
+                $field = $item['field'];
+                if ($field == 'name') {
+                    $name = trim($user->firstname.' '.$user->lastname);
+                    if ($name) $content[] = [ 'icon' => $item['field_icon'], 'text' => $name];
+                } else {
+                    if ($cf = $user->$field) $content[] = [ 'icon' => $item['field_icon'], 'text' => $cf];
+                }
+            }
+        } elseif ($settings['type'] == 'tags') {
+            $tags = $item_data->getTags();
+            foreach ($tags as $tag) {
+                $content[] = $tag->name;
+            }
         }
 
         if (!empty($content)) {
@@ -429,5 +403,47 @@ class AbstractDetails extends Widget
             }
             include Path::getResourcesFolder() . 'layouts/' . $this->getRecordTypeName() . '/details/template.php';
         }
+    }
+
+    private function addItemsListRepeater($id, $options, $condition) {
+        $repeater = new Repeater();
+        $repeater->add_control(
+            'field',
+            [
+                'label' => __( 'Field', 'elementor' ),
+                'type' => Controls_Manager::SELECT,
+                'label_block' => true,
+                'placeholder' => __( 'List Item', 'elementor' ),
+                'default' => __( 'List Item', 'elementor' ),
+                'dynamic' => [
+                    'active' => true,
+                ],
+                'options' => $options
+            ]
+        );
+
+        $repeater->add_control(
+            'field_icon',
+            [
+                'label' => __( 'Icon', 'elementor' ),
+                'type' => Controls_Manager::ICONS,
+                'default' => [
+                    'value' => 'fas fa-check',
+                    'library' => 'fa-solid',
+                ],
+                'fa4compatibility' => 'icon',
+            ]
+        );
+
+        $this->add_control(
+            $id,
+            [
+                'label' => __( 'Items', 'elementor' ),
+                'type' => Controls_Manager::REPEATER,
+                'fields' => $repeater->get_controls(),
+                'title_field' => '{{{ elementor.helpers.renderIcon( this, field_icon, {}, "i", "panel" ) || \'<i class="{{ icon }}" aria-hidden="true"></i>\' }}} {{{ field }}}',
+                'condition' => $condition
+            ]
+        );
     }
 }
