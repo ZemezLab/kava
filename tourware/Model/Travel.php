@@ -34,6 +34,14 @@ class Travel extends Model implements Displayable, Imageable
     /**
      * @return string
      */
+    public function getType()
+    {
+        return $this->getRawProperty('type');
+    }
+
+    /**
+     * @return string
+     */
     public function getPrice()
     {
         return floatval($this->getRawProperty('price'));
@@ -69,8 +77,14 @@ class Travel extends Model implements Displayable, Imageable
      */
     public function getDates()
     {
-        $dates = $this->getRawProperty('dates');
-        return $dates ? $dates : array();
+        $dates = [];
+        if ('INDEPENDENT' == $this->getType()) {
+            $dates[0]->start = $this->getRawProperty('travelBegin');
+            $dates[0]->end = $this->getRawProperty('travelEnd');
+        } else {
+            $dates = $this->getRawProperty('dates');
+        }
+        return $dates;
     }
 
     /**

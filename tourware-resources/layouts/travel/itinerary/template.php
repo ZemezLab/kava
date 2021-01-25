@@ -1,29 +1,11 @@
 <?php
 use Elementor\Icons_Manager;
-use ElementPack\Element_Pack_Loader;
+$day = 1;
 ?>
 <div class="bdt-accordion-container">
     <div <?php echo $this->get_render_attribute_string('accordion'); ?> <?php echo $this->get_render_attribute_string('accordion_data'); ?>>
         <?php foreach ($itinerary as $index => $item) :
-        $item_date = null;
-        if ('INDEPENDENT' === $record->type) { // start date for individual travel
-            if ($record->travelBegin) $item_date = date_create($record->travelBegin);
-        } else { // start date for group travel
-            if (count($dates) == 1) {
-                $item_date = date_create($dates[0]->start);
-            } else if (count($dates) > 1) {
-                foreach ($dates as $date) {
-                    if (isset($date->tags)) {
-                        foreach ($date->tags as $date_tag) {
-                            if (strtolower($date_tag->name) == 'default') {
-                                $item_date = date_create($date->start);
-                            }
-                        }
-                    }
-                }
-                if (!is_null($item_date)) $item_date = date_create($record->dates[0]->start);
-            }
-        }
+        $day_str = 'Tag '.($item->days > 1 ? $day . ' - ' . ($day + $item->days - 1) : $day);
 
         $acc_count = $index + 1;
 
@@ -48,7 +30,6 @@ use ElementPack\Element_Pack_Loader;
             'class' => ['bdt-accordion-content'],
         ]);
 
-        $this->add_inline_editing_attributes($tab_content_setting_key, 'advanced');
         $tab_title = $item->brick->title; ?>
         <div class="bdt-accordion-item">
             <<?php echo esc_attr($settings['title_html_tag']); ?>
@@ -82,10 +63,7 @@ use ElementPack\Element_Pack_Loader;
 							</span>
             <?php endif; ?>
             <?php
-            if (!is_null($item_date)) {
-                echo '<div class="brick-date">'.$item_date->format($settings['date_format']).'</div>';
-                date_modify($item_date, '+'.$item->days.' day');
-            } ?>
+            if ($day_str) { echo $day_str.': '; } ?>
             <?php echo esc_html($tab_title); ?>
 
         </<?php echo esc_attr($settings['title_html_tag']); ?>>
@@ -94,24 +72,25 @@ use ElementPack\Element_Pack_Loader;
                         $imgs_lngth = sizeof($item->brick->images);
                         if ($imgs_lngth > 0) {
                             if (strpos($item->brick->images[0]->image, 'unsplash')) {
-                                $unsplash_options = '?fm=jpg&crop=focalpoint&fit=crop&h=300&w=300';
+                                $unsplash_options = '?fm=jpg&crop=focalpoint&fit=crop&h=300&w=700';
                                 $img_array = explode("?", $item->brick->images[0]->image);
                                 $image_url = $img_array[0] . $unsplash_options;
                             } else {
                                 $cloudinary_options = array(
                                     "secure" => true,
-                                    "width" => 300,
+                                    "width" => 700,
                                     "height" => 300,
                                     "crop" => "thumb"
                                 );
                                 $image_url = \Cloudinary::cloudinary_url($item->brick->images[0]->image, $cloudinary_options);
                             } ?>
-            <img class="travel-itinerary-brick-img" src="<?php echo $image_url ?>"
+            <img class="itinerary-brick-img" src="<?php echo $image_url ?>"
                  alt="<?php echo $item->brick->title ?>">
             <?php } ?>
             <?php echo $item->brick->description; ?>
         </div>
     </div>
+    <?php $day += $item->days; ?>
     <?php endforeach; ?>
 </div>
 </div>
