@@ -24,6 +24,7 @@
 .travel-itinerary-brick-head .brick-day {
   margin-bottom: 10px;
 }
+
 .travel-itinerary-brick-head .brick-title {
   color: $color-accent;
 }
@@ -43,15 +44,48 @@
   overflow: hidden;
   /*display: none;*/
 }
+
 .travel-itinerary-brick .collapsed + .itinerary-accommodation {
   max-height: 0;
 }
+
 .travel-itinerary-brick .open + .itinerary-accommodation {
   max-height: 999px;
 }
+
 .travel-itinerary-brick .itinerary-accommodation .tour-acc-img {
   float: left;
   margin-right: 5px;
   margin-bottom: 5px;
 }
 
+.itinerary-accordion {
+  padding: 0;
+  list-style: none
+}
+
+.itinerary-accordion > :nth-child(n+2) {
+  margin-top: 20px
+}
+
+.itinerary-accordion-title {
+  display: block;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  color: #333
+}
+
+.itinerary-accordion-title:hover, .itinerary-accordion-title:focus {
+  color: #666;
+  text-decoration: none;
+  outline: none
+}
+
+.itinerary-accordion-content {
+  display: flow-root;
+  margin-top: 20px
+}
+
+.itinerary-accordion-content > :last-child {
+  margin-bottom: 0
+}
