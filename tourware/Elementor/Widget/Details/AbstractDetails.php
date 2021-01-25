@@ -64,17 +64,24 @@ class AbstractDetails extends Widget
             ]
         );
 
+        $options = [
+            'countries' => __('Countries', 'tourware'),
+            'tags' => __('Tags', 'tourware'),
+            'additional_field' => __('Additional Field', 'tourware'),
+            'contact_person' => __('Contact Person', 'tourware')
+        ];
+        if ('tytotravels' === $this->getPostTypeName()) {
+            $options['persons'] = __('Persons', 'tourware');
+            $options['duration'] = __('Duration', 'tourware');
+            $options['dates'] = __('Dates', 'tourware');
+        }
+
         $this->add_control(
             'type',
             [
                 'label' => __('Type', 'elementor'),
                 'type' => Controls_Manager::SELECT,
-                'options' => [
-                    'countries' => __('Countries', 'tourware'),
-                    'tags' => __('Tags', 'tourware'),
-                    'additional_field' => __('Additional Field', 'tourware'),
-                    'contact_person' => __('Contact Person', 'tourware')
-                ],
+                'options' => $options,
                 'default' => 'countries'
             ]
         );
@@ -137,11 +144,28 @@ class AbstractDetails extends Widget
                 'value' => 'fas fa-check',
                 'library' => 'fa-solid',
             ],
-            'condition' => ['icon_display!' => 'none', 'type' => ['countries', 'tags']]
+            'condition' => ['icon_display!' => 'none', 'type' => ['countries', 'tags', 'persons', 'duration', 'dates']]
         ));
 
-        $this->end_controls_section();
+        $this->add_control(
+            'persons_prefix',
+            [
+                'label'         =>  esc_html__( 'Prefix', 'tourware' ),
+                'type'          =>  Controls_Manager::TEXT,
+                'condition' => ['type' => 'persons']
+            ]
+        );
 
+        $this->add_control(
+            'persons_suffix',
+            [
+                'label'         =>  esc_html__( 'Suffix', 'tourware' ),
+                'type'          =>  Controls_Manager::TEXT,
+                'condition' => ['type' => 'persons']
+            ]
+        );
+
+        $this->end_controls_section();
 
         $this->start_controls_section(
             'section_icon_list',
@@ -393,6 +417,10 @@ class AbstractDetails extends Widget
             foreach ($tags as $tag) {
                 $content[] = $tag->name;
             }
+        } elseif ($settings['type'] == 'persons') {
+            $persons_str = $item_data->getPaxMin() ? $item_data->getPaxMin() : '';
+            $persons_str .= $item_data->getPaxMax() ? '-'.$item_data->getPaxMax() : '';
+            $content[] = $settings['persons_prefix'].$persons_str.$settings['persons_suffix'];
         }
 
         if (!empty($content)) {
