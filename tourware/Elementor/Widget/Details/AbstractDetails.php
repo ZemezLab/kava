@@ -85,6 +85,7 @@ class AbstractDetails extends Widget
         $contact_fields = [
             'name' => __( 'Name', 'elementor' ),
             'phone' => __( 'Phone', 'elementor' ),
+            'mobile' => __( 'Mobile', 'elementor' ),
             'email' => __( 'Email', 'elementor' ),
             'website' => __( 'Website', 'elementor' ),
         ];
