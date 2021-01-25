@@ -74,6 +74,7 @@ class AbstractDetails extends Widget
             $options['persons'] = __('Persons', 'tourware');
             $options['duration'] = __('Duration', 'tourware');
             $options['dates'] = __('Dates', 'tourware');
+            $options['price'] = __('Price', 'tourware');
         }
 
         $this->add_control(
@@ -97,6 +98,17 @@ class AbstractDetails extends Widget
             'website' => __( 'Website', 'elementor' ),
         ];
         $this->addItemsListRepeater('contact_fields_list', $contact_fields, ['type' => 'contact_person']);
+
+        $this->add_control(
+            'tags',
+            [
+                'label' => __('Tags', 'tourware'),
+                'type' => Controls_Manager::SELECT2,
+                'options' => wp_list_pluck(get_option('tyto_tags'), 'name', 'id'),
+                'multiple' => true,
+                'condition' => ['type' => 'tags']
+            ]
+        );
 
 
         $this->add_control(
@@ -144,24 +156,33 @@ class AbstractDetails extends Widget
                 'value' => 'fas fa-check',
                 'library' => 'fa-solid',
             ],
-            'condition' => ['icon_display!' => 'none', 'type' => ['countries', 'tags', 'persons', 'duration', 'dates']]
+            'condition' => ['icon_display!' => 'none', 'type' => ['countries', 'tags', 'persons', 'duration', 'dates', 'price']]
         ));
 
         $this->add_control(
-            'persons_prefix',
+            'prefix',
             [
                 'label'         =>  esc_html__( 'Prefix', 'tourware' ),
                 'type'          =>  Controls_Manager::TEXT,
-                'condition' => ['type' => 'persons']
+                'condition' => ['type' => ['persons', 'duration', 'price']]
             ]
         );
 
         $this->add_control(
-            'persons_suffix',
+            'suffix',
             [
                 'label'         =>  esc_html__( 'Suffix', 'tourware' ),
                 'type'          =>  Controls_Manager::TEXT,
-                'condition' => ['type' => 'persons']
+                'condition' => ['type' => ['persons', 'duration', 'price']]
+            ]
+        );
+
+        $this->add_control(
+            'dates_table_id',
+            [
+                'label'         =>  esc_html__( 'Dates Table ID', 'tourware' ),
+                'type'          =>  Controls_Manager::TEXT,
+                'condition' => ['type' => ['dates', 'price']]
             ]
         );
 
@@ -412,15 +433,46 @@ class AbstractDetails extends Widget
                     if ($cf = $user->$field) $content[] = [ 'icon' => $item['field_icon'], 'text' => $cf];
                 }
             }
-        } elseif ($settings['type'] == 'tags') {
+        } elseif ($settings['type'] == 'tags' && !empty($settings['tags'])) {
             $tags = $item_data->getTags();
             foreach ($tags as $tag) {
-                $content[] = $tag->name;
+                if (in_array($tag->id, $settings['tags']))
+                    $content[] =  $tag->name;
             }
         } elseif ($settings['type'] == 'persons') {
             $persons_str = $item_data->getPaxMin() ? $item_data->getPaxMin() : '';
             $persons_str .= $item_data->getPaxMax() ? '-'.$item_data->getPaxMax() : '';
-            $content[] = $settings['persons_prefix'].$persons_str.$settings['persons_suffix'];
+            if ($persons_str) $content[] = $settings['prefix'].$persons_str.$settings['suffix'];
+        } elseif ($settings['type'] == 'duration') {
+            if ($duration = $item_data->getItineraryLength())
+                $content[] = $settings['prefix'].$duration.$settings['suffix'];
+        } elseif ($settings['type'] == 'dates') {
+            $dates = $item_data->getDates();
+            $date_format = get_option( 'date_format', 'd.m.Y');
+            if (count($dates) == 1) {
+                $date_start = date_create($dates[0]->start);
+                $date_end = date_create($dates[0]->end);
+            } else if (count($dates) > 1) {
+                foreach ($dates as $date) {
+                    if (isset($date->tags)) {
+                        foreach ($date->tags as $date_tag) {
+                            if (strtolower($date_tag->name) == 'default') {
+                                $date_start = date_create($date->start);
+                                $date_end = date_create($date->end);
+                            }
+                        }
+                    }
+                }
+                if (empty($date_start)) $date_start = date_create($dates[0]->start);
+                if (empty($date_end)) $date_end = date_create($dates[0]->end);
+            }
+            if (!empty($date_start) && !empty($date_end)) {
+                $dates_str = $date_start->format($date_format).' - '.$date_end->format($date_format);
+                $content[] = $dates_str;
+            }
+        } elseif ($settings['type'] == 'price') {
+            if ($price = $item_data->getPrice())
+                $content[] = $settings['prefix'].number_format($price, 0, ',', '.').$settings['suffix'];
         }
 
         if (!empty($content)) {
