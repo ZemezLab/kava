@@ -36,4 +36,8 @@ class Details extends AbstractDetails {
         return 'travel';
     }
 
+    protected function optionPersons() {
+
+    }
+
 }
