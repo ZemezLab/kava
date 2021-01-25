@@ -5,11 +5,9 @@ use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Icons_Manager;
-use Elementor\Repeater;
 use Tourware\Elementor\Widget;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Typography;
-use Elementor\Core\Schemes as Schemes;
 
 class Itinerary extends Widget {
     /**
@@ -28,6 +26,10 @@ class Itinerary extends Widget {
         return __( 'Travel Itinerary' );
     }
 
+    public function get_style_depends() {
+        return [ 'ep-accordion' ];
+    }
+
     public function render()
     {
         $settings = $this->get_settings_for_display();
@@ -39,7 +41,7 @@ class Itinerary extends Widget {
             [
                 'accordion' => [
                     'id'            => $id,
-                    'class'         => 'bdt-accordion',
+                    'class'         => ['bdt-accordion', 'itinerary-accordion'],
                     'bdt-accordion' => [
                         wp_json_encode([
                             "collapsible" => $settings["collapsible"] ? true : false,
@@ -77,7 +79,6 @@ class Itinerary extends Widget {
         $post = $settings['post'] ? $settings['post'] : get_the_ID();
         $repository = \Tourware\Repository\Travel::getInstance();
         $item_data = $repository->findOneByPostId($post);
-        $dates = $item_data->getDates();
         $itinerary = $item_data->getItinerary();
         include \Tourware\Path::getResourcesFolder() . 'layouts/travel/itinerary/template.php';
     }
