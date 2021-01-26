@@ -57,14 +57,14 @@ $tourware-gutter: 20px;
 }
 
 // Import Widgets
-@import "widget/search";
-@import "widget/abstract/listing";
-@import "widget/destination/listing";
-@import "widget/travel/services";
-@import "widget/travel/itinerary";
+@import "scss/widget/search";
+@import "scss/widget/abstract/listing";
+@import "scss/widget/destination/listing";
+@import "scss/widget/travel/services";
+@import "scss/widget/travel/itinerary";
 
 // Import Views
-@import "single/tytotravels";
+@import "scss/single/tytotravels";
 
 body {
   color: $color-text;

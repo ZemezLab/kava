@@ -1,15 +1,39 @@
 {
-  "name": "kava",
+  "name": "wp-theme-tourware",
   "version": "1.0.0",
-  "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^4.1.0",
-    "gulp-notify": "^3.2.0",
-    "gulp-plumber": "^1.2.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^3.1.0",
-    "gulp-rtlcss": "^1.2.0",
-    "gulp-checktextdomain": "^2.2.0",
-    "gulp-livereload": "^4.0.1"
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npm run development",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "npm run development -- --watch",
+    "watch-poll": "npm run watch -- --watch-poll",
+    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --disable-host-check --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "npm run production",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "postinstall": "npm run production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tourware/wp-theme-tourware.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tourware/wp-theme-tourware/issues"
+  },
+  "homepage": "https://github.com/tourware/wp-theme-tourware#readme",
+  "dependencies": {
+    "cloudinary-core": "^2.11.3",
+    "laravel-mix": "^6.0.10",
+    "postcss": "8.1",
+    "resolve-url-loader": "3.1.0",
+    "sass": "^1.32.4",
+    "sass-loader": "8.*",
+    "vue": "^2.6.12",
+    "vue-loader": "15.9.5",
+    "vue-template-compiler": "^2.6.12",
+    "vue-tiny-slider": "^0.1.39"
   }
 }

@@ -21,5 +21,5 @@
 <!--</div>-->
 
 <div class="vue-widget-wrapper">
-    <travel-gallery data-record="<?php echo htmlspecialchars(json_encode($record), ENT_QUOTES, 'UTF-8'); ?>" data-config="<?php echo htmlspecialchars(json_encode($config), ENT_QUOTES, 'UTF-8'); ?>"></travel-gallery>
+    <travel-gallery :images='<?php echo json_encode($record->images, JSON_HEX_APOS|JSON_HEX_QUOT); ?>'></travel-gallery>
 </div>
