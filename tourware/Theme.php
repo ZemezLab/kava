@@ -39,10 +39,6 @@ class Theme
             wp_enqueue_style('tourware', get_parent_theme_file_uri() . '/public/tourware.css');
         } );
 
-//        add_action( 'elementor/preview/enqueue_scripts', function () {
-//            wp_enqueue_style('tourware-preview', get_parent_theme_file_uri() . '/tourware-resources/scss/tourware.css');
-//        } );
-
         add_action( 'elementor/widgets/widgets_registered', function() {
             Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Travel\Gallery() );
             Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Travel\Listing() );
