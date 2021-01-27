@@ -26,6 +26,8 @@ $text-p-size: var(--e-global-typography-text-font-size);
 $text-p-weight: var(--e-global-typography-text-font-weight);
 $text-p-line-height: var(--e-global-typography-text-line-height);
 
+$tourware-gutter: 20px;
+
 @mixin tourware-h1 {
   font-family: $text-h1-family;
   font-size: $text-h1-size;
@@ -55,14 +57,15 @@ $text-p-line-height: var(--e-global-typography-text-line-height);
 }
 
 // Import Widgets
-@import "widget/search";
-@import "widget/abstract/listing";
-@import "widget/destination/listing";
-@import "widget/travel/services";
-@import "widget/travel/itinerary";
+@import "scss/widget/search";
+@import "scss/widget/abstract/listing";
+@import "scss/widget/destination/listing";
+@import "scss/widget/travel/services";
+@import "scss/widget/travel/itinerary";
+@import "../node_modules/swiper/swiper-bundle.css";
 
 // Import Views
-@import "single/tytotravels";
+@import "scss/single/tytotravels";
 
 body {
   color: $color-text;
@@ -70,6 +73,40 @@ body {
   .site-content {
     overflow-x: hidden;
   }
+}
+
+.swiper-container {
+  width: 100%
+}
+
+.swiper-button-prev,
+.swiper-container-rtl .swiper-button-next,
+.swiper-button-next,
+.swiper-container-rtl .swiper-button-prev,
+.swiper-button-prev:after,
+.swiper-container-rtl .swiper-button-next:after {
+  color: #fff;
+  background-image: none !important;
+}
+
+.swiper-container .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background-size: cover;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
 }
 
 a, h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {

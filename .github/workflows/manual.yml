@@ -8,38 +8,38 @@ jobs:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@master
-      
-    - name: Get the version
-      id: get_version
-      run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
-      
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '7.4'
-      
-    - name: run composer
-      uses: php-actions/composer@v4
-      
-    - name: Update annotations
-      run: php annotation.php ${{ steps.get_version.outputs.VERSION }}
-      
-    - name: Compile CSS from SCSS files
-      uses: gha-utilities/sass-build@v0.3.1
-      with:
-        source: tourware-resources/scss/tourware.scss
-        destination: tourware-resources/scss/tourware.css
+      - name: 🚚 Get latest code
+        uses: actions/checkout@master
 
-    - name: Archive the release
-      run: sudo php zip.php
-        
-    - name: 📂 Sync zip file
-      uses: bayssmekanique/action-simple-file-upload@v1
-      with:
-        user: release_plugin
-        password: ${{ secrets.update_ftp_pass }}
-        host: update.tourware.net
-        src: tourware.zip
-        dest: tourware.zip
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+
+      - name: run composer
+        uses: php-actions/composer@v4
+
+      - name: run npm production
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12.14'
+        run: yarn install && npm run production
+
+      - name: Update annotations
+        run: php annotation.php ${{ steps.get_version.outputs.VERSION }}
+
+      - name: Archive the release
+        run: sudo php zip.php
+
+      - name: 📂 Sync zip file
+        uses: bayssmekanique/action-simple-file-upload@v1
+        with:
+          user: release_plugin
+          password: ${{ secrets.update_ftp_pass }}
+          host: update.tourware.net
+          src: tourware.zip
+          dest: tourware.zip
