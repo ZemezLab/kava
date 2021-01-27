@@ -23,14 +23,14 @@ jobs:
       - name: run composer
         uses: php-actions/composer@v4
 
-      - name: run npm production
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '12.14'
-          run: npm run production
-
       - name: Update annotations
         run: php annotation.php ${{ steps.get_version.outputs.VERSION }}
+
+      - name: Compile CSS from SCSS files
+        uses: gha-utilities/sass-build@v0.3.1
+        with:
+          source: tourware-resources/scss/tourware.scss
+          destination: tourware-resources/scss/tourware.css
 
       - name: Archive the release
         run: sudo php zip.php
