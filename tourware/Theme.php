@@ -30,6 +30,16 @@ class Theme
         $elementor = new Elementor();
         $elementor->init();
 
+
+
+        add_action( 'elementor/dynamic_tags/register_tags', function( $dynamic_tags ) {
+            \Elementor\Plugin::$instance->dynamic_tags->register_group( 'tourware', [
+                'title' => 'tourware'
+            ] );
+
+            $dynamic_tags->register_tag( Elementor\DynamicTag\Option::class );
+        } );
+
         add_action( 'init', function () {
             register_taxonomy_for_object_type( 'category', 'page' );
         } );
