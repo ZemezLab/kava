@@ -52,7 +52,7 @@ abstract class Model
 
     /**
      * @param $name
-     * @return string
+     * @return mixed
      */
     protected function getRawProperty($name)
     {

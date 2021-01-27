@@ -115,7 +115,18 @@ class Travel extends Model implements Displayable, Imageable
         return $additionalFields && !empty($additionalFields->$field) ? $additionalFields->$field : '';
     }
 
+    /**
+     * @return array
+     */
     public function getResponsibleUser() {
         return $this->getRawProperty('responsibleUser');
+    }
+
+    /**
+     * @return string
+     */
+    public function getKmlFile() {
+        $kml = $this->getRawProperty('kmlFile');
+        return $kml ? $kml : '';
     }
 }

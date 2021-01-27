@@ -42,11 +42,17 @@ class Theme
             wp_enqueue_style('tourware-preview', get_parent_theme_file_uri() . '/tourware-resources/scss/tourware.css');
         } );
 
+        add_action('elementor/frontend/before_register_scripts', function () {
+            wp_register_script('lodash-adt', get_parent_theme_file_uri() . '/tourware-resources/js/widget/travel/lodash.js', ['jquery']);
+            wp_register_script('tourware-travel-map', get_parent_theme_file_uri() . '/tourware-resources/js/widget/travel/Map.js', ['lodash-adt']);
+        });
+
         add_action( 'elementor/widgets/widgets_registered', function() {
             Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Travel\Listing() );
             Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Travel\Services() );
             Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Travel\Itinerary() );
             Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Travel\Details() );
+            Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Travel\Map() );
 
             Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Accommodation\Listing() );
             Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Accommodation\Details() );

@@ -33,9 +33,7 @@ class Itinerary extends Widget {
     public function render()
     {
         $settings = $this->get_settings_for_display();
-        $settings = $this->get_settings_for_display();
         $id       = 'itinerary-accordion-' . $this->get_id();
-
 
         $this->add_render_attribute(
             [
@@ -59,8 +57,6 @@ class Itinerary extends Widget {
                     'data-settings' => [
                         wp_json_encode([
                             "id"                => 'bdt-accordion-' . $this->get_id(),
-                            'activeHash'        => $settings['active_hash'],
-                            'activeScrollspy'   => $settings['active_scrollspy'],
                             'hashTopOffset'     => isset($settings['hash_top_offset']['size']) ? $settings['hash_top_offset']['size'] : false,
                             'hashScrollspyTime' => isset($settings['hash_scrollspy_time']['size']) ? $settings['hash_scrollspy_time']['size'] : false,
                         ]),
