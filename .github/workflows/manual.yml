@@ -23,6 +23,11 @@ jobs:
     - name: run composer
       uses: php-actions/composer@v4
 
+    - name: Setup yarn
+    - uses: borales/actions-yarn@v2.0.0
+      with:
+        cmd: install # will run `yarn install` command
+
     - name: run npm production
     - uses: actions/setup-node@v2
       with:
