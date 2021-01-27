@@ -76,7 +76,17 @@ body {
 }
 
 .swiper-container {
-  width: 100%;
+  width: 100%
+}
+
+.swiper-button-prev,
+.swiper-container-rtl .swiper-button-next,
+.swiper-button-next,
+.swiper-container-rtl .swiper-button-prev,
+.swiper-button-prev:after,
+.swiper-container-rtl .swiper-button-next:after {
+  color: #fff;
+  background-image: none !important;
 }
 
 .swiper-container .swiper-slide {

@@ -33,12 +33,29 @@ export default {
 
     new Swiper('.swiper-container', {
       slidesPerView: 3,
-      spaceBetween: 15,
-      freeMode: true,
+      spaceBetween: 1,
+      loop: true,
 
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
+      // pagination: {
+      //   el: '.swiper-pagination',
+      //   clickable: true,
+      // },
+
+      keyboard: {
+        enabled: true,
+        onlyInViewport: false,
+      },
+
+      breakpoints: {
+        320: {
+          slidesPerView: 1
+        },
+        480: {
+          slidesPerView: 1
+        },
+        640: {
+          slidesPerView: 3
+        }
       },
 
       navigation: {
