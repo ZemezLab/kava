@@ -27,7 +27,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '12.14'
-          run: yarn install && npm run production
+        run: yarn install && npm run production
 
       - name: Update annotations
         run: php annotation.php ${{ steps.get_version.outputs.VERSION }}
