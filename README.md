@@ -3,6 +3,10 @@ Kava Theme. Get the truly easy-to-use free theme with tons of functionality and 
 
 ## Changelog
 
+### 2.1.1
+- FIX: compatibility with WP 5.6
+- FIX: prevent php error in customizer
+
 ### 2.1.0
 - ADD: an ability enable/disable children modules
 - ADD: Spinner animation while ajax loading
