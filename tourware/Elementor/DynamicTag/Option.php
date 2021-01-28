@@ -57,7 +57,10 @@ class Option extends \Elementor\Core\DynamicTags\Tag {
      * @return array
      */
     public function get_categories() {
-        return [ \Elementor\Modules\DynamicTags\Module::TEXT_CATEGORY ];
+        return [
+            \Elementor\Modules\DynamicTags\Module::TEXT_CATEGORY,
+            \Elementor\Modules\DynamicTags\Module::URL_CATEGORY
+        ];
     }
 
     /**
@@ -75,7 +78,6 @@ class Option extends \Elementor\Core\DynamicTags\Tag {
         $variables = [];
 
         foreach ( array_keys(get_option('tourware-company')) as $variable ) {
-
             $variables[ $variable ] = ucwords( str_replace( '_', ' ', $variable ) );
         }
 
