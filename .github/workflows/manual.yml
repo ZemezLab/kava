@@ -27,6 +27,8 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '12.14'
+
+      - name: yarn install
         run: yarn install && npm run production
 
       - name: Update annotations
