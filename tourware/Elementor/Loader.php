@@ -520,9 +520,10 @@ class Loader {
             $stars = $item_data->stars ? $item_data->stars : 1;
         }
 
+        $tags = $item_data->getTags();
         $badge = $badge_html = '';
         if ($settings['show_badge']) {
-            if ($tags = $item_data->getTags()) {
+            if ($tags) {
                 foreach ($tags as $tag) {
                     if (is_array($settings['badge_tag'])) {
                         foreach ($settings['badge_tag'] as $settings_tag) {
@@ -562,6 +563,32 @@ class Loader {
                 }
             }
             $categories_str = implode(', ', $categories);
+        }
+
+        if ($settings['show_scores'] && $tags) {
+            $scores = [];
+            foreach ($settings['scores'] as $score) {
+                if ($score['score_tags']) {
+                    foreach ($tags as $tag) {
+                        if (in_array($tag->name, $score['score_tags'])) {
+                            $scores[] = ['tag' => $tag->name, 'icon' => $score['score_icon']];
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        $flight_html = '';
+        if ($settings['show_flight'] && $tags) {
+            if ($settings['flight_tags']) {
+                foreach ($tags as $tag) {
+                    if (in_array($tag->name, $settings['flight_tags'])) {
+                        $flight_html = '<div class="flight">'.$tag->name.'</div>';
+                        break;
+                    }
+                }
+            }
         }
 
         $img_src = $item_data->getFeaturedImageUri([

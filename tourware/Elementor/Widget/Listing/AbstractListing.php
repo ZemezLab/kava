@@ -2,6 +2,7 @@
 
 namespace Tourware\Elementor\Widget\Listing;
 
+use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
 use Tourware\Elementor\Widget;
 use Tourware\Elementor\Loader; // @todo: ugly
 use \Elementor\Core\Kits\Documents\Tabs\Global_Typography;
@@ -591,6 +592,197 @@ abstract class AbstractListing extends Widget
             ],
             'condition' => ['show_categories' => 'yes']
         ]);
+
+        /* SCORES */
+        $this->start_controls_section(
+            'scores_style',
+            [
+                'label' => __( 'Scores', 'tourware' ),
+                'tab' => Controls_Manager::TAB_STYLE,
+                'condition' => ['show_scores' => 'yes']
+            ]
+        );
+        $this->add_responsive_control(
+            'scores_space_between',
+            [
+                'label' => __( 'Space Between', 'elementor' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'max' => 50,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .score' => 'padding-left: {{SIZE}}{{UNIT}}; padding-right: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'scores_icon_color',
+            [
+                'label' => __( 'Icon Color', 'elementor' ),
+                'type' => Controls_Manager::COLOR,
+                'default' => '',
+                'selectors' => [
+                    '{{WRAPPER}} .score i' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .score svg' => 'fill: {{VALUE}};',
+                ],
+                'global' => [
+                    'default' => Global_Colors::COLOR_PRIMARY,
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'scores_icon_color_hover',
+            [
+                'label' => __( 'Icon Hover', 'elementor' ),
+                'type' => Controls_Manager::COLOR,
+                'default' => '',
+                'selectors' => [
+                    '{{WRAPPER}} .score:hover i' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .score:hover svg' => 'fill: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'scores_icon_size',
+            [
+                'label' => __( 'Icon Size', 'elementor' ),
+                'type' => Controls_Manager::SLIDER,
+                'default' => [
+                    'size' => 14,
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => 6,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .score i' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .score svg' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'scores_text_color',
+            [
+                'label' => __( 'Text Color', 'elementor' ),
+                'type' => Controls_Manager::COLOR,
+                'default' => '',
+                'selectors' => [
+                    '{{WRAPPER}} .score .text' => 'color: {{VALUE}};',
+                ],
+                'global' => [
+                    'default' => Global_Colors::COLOR_SECONDARY,
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'text_color_hover',
+            [
+                'label' => __( 'Text Hover', 'elementor' ),
+                'type' => Controls_Manager::COLOR,
+                'default' => '',
+                'selectors' => [
+                    '{{WRAPPER}} .score:hover .text' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'scores_text_indent',
+            [
+                'label' => __( 'Text Indent', 'elementor' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'max' => 50,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .score .text' => 'padding-top: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'scores_text_typography',
+                'selector' => '{{WRAPPER}} .score .text',
+                'global' => [
+                    'default' => Global_Typography::TYPOGRAPHY_TEXT,
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'scores_spacing',
+            [
+                'label' => __( 'Spacing', 'elementor' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', 'em', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .scores' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
+        /* FLIGHT */
+        $this->start_controls_section(
+            'flight_style',
+            [
+                'label' => __( 'Flight', 'tourware' ),
+                'tab' => Controls_Manager::TAB_STYLE,
+                'condition' => ['show_flight' => 'yes']
+            ]
+        );
+        $this->add_control(
+            'flight_text_color',
+            [
+                'label' => __( 'Text Color', 'elementor' ),
+                'type' => Controls_Manager::COLOR,
+                'default' => '',
+                'selectors' => [
+                    '{{WRAPPER}} .flight' => 'color: {{VALUE}};',
+                ],
+                'global' => [
+                    'default' => Global_Colors::COLOR_SECONDARY,
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'flight_text_typography',
+                'selector' => '{{WRAPPER}} .flight',
+                'global' => [
+                    'default' => Global_Typography::TYPOGRAPHY_TEXT,
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'flight_spacing',
+            [
+                'label' => __( 'Spacing', 'elementor' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', 'em', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .flight' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
 
         /* PAGINATION */
         $this->start_controls_section( 'pagination', array(
