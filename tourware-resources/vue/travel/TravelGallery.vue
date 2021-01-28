@@ -1,7 +1,7 @@
 <template>
   <div class="swiper-container" ref="container">
     <div class="swiper-wrapper">
-      <div class="swiper-slide" v-for="image in images" :style="{ 'background-image': 'url(' + $cloudinary.url(image.image, { height: height, crop: 'fit' }) +')' } ">
+      <div class="swiper-slide" v-for="image in images" data-fancybox="gallery" :href="$cloudinary.url(image.image, { width: 1920, crop: 'fit' })" :style="{ 'background-image': 'url(' + $cloudinary.url(image.image, { height: height, crop: 'fit' }) +')' } ">
 
       </div>
     </div>
@@ -16,6 +16,7 @@
 
 <script>
 import Swiper from 'swiper/bundle';
+import FancyBox from '@fancyapps/fancybox';
 
 export default {
   props: {
@@ -63,6 +64,8 @@ export default {
         prevEl: '.swiper-button-prev',
       },
     });
+
+    jQuery(this.$refs.container).find('[data-fancybox="gallery"]').fancybox();
   }
 }
 </script>

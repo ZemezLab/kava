@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/tourware/wp-theme-tourware#readme",
   "dependencies": {
+    "@fancyapps/fancybox": "^3.5.7",
     "cloudinary-core": "^2.11.3",
     "laravel-mix": "^6.0.10",
     "postcss": "8.1",

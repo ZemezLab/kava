@@ -62,7 +62,8 @@ $tourware-gutter: 20px;
 @import "scss/widget/destination/listing";
 @import "scss/widget/travel/services";
 @import "scss/widget/travel/itinerary";
-@import "../node_modules/swiper/swiper-bundle.css";
+@import "../node_modules/swiper/swiper-bundle.min.css";
+@import "../node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.css";
 
 // Import Views
 @import "scss/single/tytotravels";
@@ -93,8 +94,7 @@ body {
   text-align: center;
   font-size: 18px;
   background-size: cover;
-
-  /* Center slide text vertically */
+  cursor: zoom-in;
   display: -webkit-box;
   display: -ms-flexbox;
   display: -webkit-flex;
