@@ -31,13 +31,16 @@ $dates = $item_data->getDates();
             'class' => ['bdt-accordion-content'],
         ]);
 
-        $date_format = get_option('date_format');
+        $date_format = 'D, d.m.Y';
         $start = date_create($item->start);
         $end = date_create($item->end);
-        $tab_title = '<div class="checkbox"><i class="far fa-square"></i></div>';
+
+        $tab_title = '<div class="col-auto"><div class="checkbox"><i class="far fa-square"></i></div></div>';
+        $tab_title .= '<div class="col"><div class="row">';
         $tab_title .= '<div class="dates">'.date_i18n($date_format, strtotime($item->start)).' - '.date_i18n($date_format, strtotime($item->end)).'</div>';
         $tab_title .= '<div class="days">'.date_diff($start, $end)->format('%d').' Tage</div>';
         $tab_title .= '<div class="price">'.number_format($item->price, 0, ',', '.').'&nbsp;€</div>';
+        $tab_title .= '</div></div>';
 
         $tab_content = '';
         if ($item->note) $tab_content .= '<div class="note">'.$item->note.'</div>';

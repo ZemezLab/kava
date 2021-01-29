@@ -1,10 +1,29 @@
 .bdt-accordion-container .bdt-accordion.dates-accordion {
+  .col-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: 100%;
+  }
+
+  .col {
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 0;
+    margin-left: 0;
+  }
+
   .checkbox {
     font-size: 18px;
   }
 
   .dates {
-    width: 30%;
+    width: 25%;
     padding-left: 15px;
   }
 
@@ -14,7 +33,7 @@
   }
 
   .price {
-    width: 60%;
+    width: 65%;
     text-align: right;
   }
 
@@ -36,4 +55,17 @@
       margin-top: 15px;
     }
   }
+
+  @media screen and (max-width: 767px) {
+    .days, .price {
+      padding-top: 10px;
+    }
+
+    .dates, .days, .price {
+      width: 100%;
+      padding-left: 15px;
+      text-align: left;
+    }
+  }
 }
+
