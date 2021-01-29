@@ -450,24 +450,24 @@ class AbstractDetails extends Widget
             $dates = $item_data->getDates();
             $date_format = get_option( 'date_format', 'd.m.Y');
             if (count($dates) == 1) {
-                $date_start = date_create($dates[0]->start);
-                $date_end = date_create($dates[0]->end);
+                $date_start = $dates[0]->start;
+                $date_end = $dates[0]->end;
             } else if (count($dates) > 1) {
                 foreach ($dates as $date) {
                     if (isset($date->tags)) {
                         foreach ($date->tags as $date_tag) {
                             if (strtolower($date_tag->name) == 'default') {
-                                $date_start = date_create($date->start);
-                                $date_end = date_create($date->end);
+                                $date_start = $date->start;
+                                $date_end = $date->end;
                             }
                         }
                     }
                 }
-                if (empty($date_start)) $date_start = date_create($dates[0]->start);
-                if (empty($date_end)) $date_end = date_create($dates[0]->end);
+                if (empty($date_start)) $date_start = $dates[0]->start;
+                if (empty($date_end)) $date_end = $dates[0]->end;
             }
             if (!empty($date_start) && !empty($date_end)) {
-                $dates_str = $date_start->format($date_format).' - '.$date_end->format($date_format);
+                $dates_str = date_i18n($date_format, strtotime($date_start)).' - '.date_i18n($date_format, strtotime($date_end));
                 $content[] = $dates_str;
             }
         } elseif ($settings['type'] == 'price') {

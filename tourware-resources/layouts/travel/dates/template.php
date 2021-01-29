@@ -2,13 +2,11 @@
 use Elementor\Icons_Manager;
 $repository = \Tourware\Repository\Travel::getInstance();
 $item_data = $repository->findOneByPostId($post);
-$itinerary = $item_data->getItinerary();
-$day = 1;
+$dates = $item_data->getDates();
 ?>
 <div class="bdt-accordion-container">
     <div <?php echo $this->get_render_attribute_string('accordion'); ?> <?php echo $this->get_render_attribute_string('accordion_data'); ?>>
-        <?php foreach ($itinerary as $index => $item) :
-        $day_str = 'Tag '.($item->days > 1 ? $day . ' - ' . ($day + $item->days - 1) : $day);
+        <?php foreach ($dates as $index => $item) :
 
         $acc_count = $index + 1;
 
@@ -33,7 +31,23 @@ $day = 1;
             'class' => ['bdt-accordion-content'],
         ]);
 
-        $tab_title = $item->brick->title; ?>
+        $date_format = get_option('date_format');
+        $start = date_create($item->start);
+        $end = date_create($item->end);
+        $tab_title = '<div class="checkbox"><i class="far fa-square"></i></div>';
+        $tab_title .= '<div class="dates">'.date_i18n($date_format, strtotime($item->start)).' - '.date_i18n($date_format, strtotime($item->end)).'</div>';
+        $tab_title .= '<div class="days">'.date_diff($start, $end)->format('%d').' Tage</div>';
+        $tab_title .= '<div class="price">'.number_format($item->price, 0, ',', '.').'&nbsp;€</div>';
+
+        $tab_content = '';
+        if ($item->note) $tab_content .= '<div class="note">'.$item->note.'</div>';
+        $tab_content .= '<h6>Zuschläge / Ermäßigungen</h6>';
+        $tab_content .= '<div>* basierend auf dem Basispreis (1 Erwachsener im Doppelzimmer)</div>';
+        if ($item->singleRoomSurcharge) {
+            $tab_content .= '<div class="surcharge"><span class="h6-style">Einzelzimmer:</span> '.number_format($item->singleRoomSurcharge, 0, ',', '.').'&nbsp;€</div>';
+        }
+        if ($item->description) $tab_content .= '<div class="description">'.$item->description.'</div>';
+        ?>
         <div class="bdt-accordion-item">
             <<?php echo esc_attr($settings['title_html_tag']); ?>
             <?php echo $this->get_render_attribute_string($tab_title_setting_key); ?>
@@ -65,35 +79,13 @@ $day = 1;
 
 							</span>
             <?php endif; ?>
-            <?php
-            if ($day_str) { echo $day_str.': '; } ?>
-            <?php echo esc_html($tab_title); ?>
+            <?php echo $tab_title; ?>
 
         </<?php echo esc_attr($settings['title_html_tag']); ?>>
         <div <?php echo $this->get_render_attribute_string($tab_content_setting_key); ?>>
-            <?php
-                        $imgs_lngth = sizeof($item->brick->images);
-                        if ($imgs_lngth > 0) {
-                            if (strpos($item->brick->images[0]->image, 'unsplash')) {
-                                $unsplash_options = '?fm=jpg&crop=focalpoint&fit=crop&h=300&w=700';
-                                $img_array = explode("?", $item->brick->images[0]->image);
-                                $image_url = $img_array[0] . $unsplash_options;
-                            } else {
-                                $cloudinary_options = array(
-                                    "secure" => true,
-                                    "width" => 700,
-                                    "height" => 300,
-                                    "crop" => "thumb"
-                                );
-                                $image_url = \Cloudinary::cloudinary_url($item->brick->images[0]->image, $cloudinary_options);
-                            } ?>
-            <img class="itinerary-brick-img" src="<?php echo $image_url ?>"
-                 alt="<?php echo $item->brick->title ?>">
-            <?php } ?>
-            <?php echo $item->brick->description; ?>
+            <?php echo $tab_content ?>
         </div>
     </div>
-    <?php $day += $item->days; ?>
     <?php endforeach; ?>
 </div>
 </div>

@@ -3,13 +3,13 @@ namespace Tourware\Elementor\Widget\Travel;
 
 use Tourware\Elementor\Widget\Accordion\AbstractAccordion;
 
-class Itinerary extends AbstractAccordion {
+class Dates extends AbstractAccordion {
     /**
      * @return string
      */
     public function get_name()
     {
-        return 'tourware-travel-itinerary';
+        return 'tourware-travel-dates';
     }
 
     /**
@@ -17,7 +17,7 @@ class Itinerary extends AbstractAccordion {
      */
     public function get_title()
     {
-        return __( 'Travel Itinerary' );
+        return __( 'Travel Dates' );
     }
 
     /**
@@ -41,6 +41,6 @@ class Itinerary extends AbstractAccordion {
      */
     protected function getWidgetName()
     {
-        return 'itinerary';
+        return 'dates';
     }
 }

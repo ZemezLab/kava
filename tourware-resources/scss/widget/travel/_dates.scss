@@ -1,0 +1,39 @@
+.bdt-accordion-container .bdt-accordion.dates-accordion {
+  .checkbox {
+    font-size: 18px;
+  }
+
+  .dates {
+    width: 30%;
+    padding-left: 15px;
+  }
+
+  .days {
+    width: 10%;
+    text-align: right;
+  }
+
+  .price {
+    width: 60%;
+    text-align: right;
+  }
+
+  .bdt-accordion-icon {
+    margin-left: auto;
+    padding-left: 15px;
+  }
+
+  .bdt-open i.fa-square:before {
+    content: "\f14a";
+  }
+
+  .bdt-accordion-content {
+    .note {
+      margin-bottom: 15px;
+    }
+
+    .surcharge {
+      margin-top: 15px;
+    }
+  }
+}
