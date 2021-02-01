@@ -38,6 +38,8 @@ class Theme
             ] );
 
             $dynamic_tags->register_tag( Elementor\DynamicTag\Option::class );
+            $dynamic_tags->register_tag( Elementor\DynamicTag\Travel::class );
+            $dynamic_tags->register_tag( Elementor\DynamicTag\AdditionalFields::class );
         } );
 
         add_action( 'init', function () {
