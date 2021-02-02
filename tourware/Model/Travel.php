@@ -97,6 +97,15 @@ class Travel extends Model implements Displayable, Imageable
     }
 
     /**
+     * @return array
+     */
+    public function getHighlights()
+    {
+        $highlights = $this->getRawProperty('highlights');
+        return $highlights ? $highlights : '';
+    }
+
+    /**
      * @return int
      */
     public function getItineraryLength()
