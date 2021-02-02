@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 })(jQuery);
 
-function setUrlPostId(obj) {
+function setUrlRecordId(obj) {
     var anfragen_btn_href = jQuery(obj).attr('href');
     var urlObject = new URL(anfragen_btn_href);
     var record = jQuery(obj).data('record')
