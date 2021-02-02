@@ -80,8 +80,8 @@
   background-color: var(--e-global-color-primary);
   color: #fff;
   position: absolute;
-  top: 33px;
-  right: 33px;
+  top: 40px;
+  right: 40px;
   line-height: 20px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -91,6 +91,7 @@
   -webkit-transform: translate(50%, -50%) rotate(45deg) translateZ(0);
   -moz-transform: translate(50%, -50%) rotate(45deg) translateZ(0);
   transform: translate(50%, -50%) rotate(45deg) translateZ(0);
+  z-index: 10;
 }
 
 .advanced-tyto-list .excerpt {

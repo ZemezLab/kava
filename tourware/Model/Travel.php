@@ -129,4 +129,11 @@ class Travel extends Model implements Displayable, Imageable
         $kml = $this->getRawProperty('kmlFile');
         return $kml ? $kml : '';
     }
+
+    /**
+     * @return array
+     */
+    public function getCountries() {
+        return $this->getRawProperty('countries');
+    }
 }

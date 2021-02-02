@@ -49,6 +49,7 @@
                 </div>
             <?php } ?>
             <?php echo $title_html ?>
+            <?php echo $excerpt_html ?>
             <?php if ($categories) { ?>
                 <div class="categories">
                     <?php foreach ($categories as $category) { ?>

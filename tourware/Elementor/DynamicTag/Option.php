@@ -77,9 +77,12 @@ class Option extends \Elementor\Core\DynamicTags\Tag {
 
         $variables = [];
 
-        foreach ( array_keys(get_option('tourware-company')) as $variable ) {
-            $variables[ $variable ] = ucwords( str_replace( '_', ' ', $variable ) );
+        if ($tourware_company = get_option('tourware-company')) {
+            foreach ( array_keys($tourware_company) as $variable ) {
+                $variables[ $variable ] = ucwords( str_replace( '_', ' ', $variable ) );
+            }
         }
+
 
         $this->add_control(
             'param_name',

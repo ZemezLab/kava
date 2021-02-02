@@ -56,6 +56,10 @@ class AbstractAccordion extends Widget {
         throw new \Exception('Needs to be implemented.');
     }
 
+    public function get_style_depends() {
+        return ['ep-accordion'];
+    }
+
 
     protected function _register_controls()
     {

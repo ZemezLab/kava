@@ -490,11 +490,11 @@ class Loader {
             }
             $tag = $settings['title_tag'];
             ob_start(); ?>
-            <<?php echo $tag; ?> class="elementor-post__title title">
             <a href="<?php echo get_the_permalink() ?>" <?php echo $optional_attributes_html; ?>>
+                <<?php echo $tag; ?> class="elementor-post__title title">
                 <?php echo $item_data->getTitle(); ?>
+                </<?php echo $tag; ?>>
             </a>
-            </<?php echo $tag; ?>>
             <?php
             $title_html = ob_get_contents();
             ob_end_clean();
@@ -514,7 +514,20 @@ class Loader {
 
         if ($settings['show_duration']) $days = $item_data->getItineraryLength();
         if ($settings['show_persons']) $persons = ($item_data->getPaxMin() ? $item_data->getPaxMin().'-' : '').$item_data->getPaxMax();
-        if ($settings['show_destination']) $destination = $item_data->_destination;
+
+        if ($settings['show_destination']) {
+            $t_countries = $item_data->getCountries();
+            if (!empty($t_countries)) {
+                foreach ($t_countries as $t_country) {
+                    $countries[] = $t_country->official_name_de;
+                }
+            }
+            if (empty($countries)) {
+                $countries[] = $item_data->_destination;
+            }
+
+            $destination = implode(', ', $countries);
+        }
 
         if (get_post_type(get_the_ID()) == 'tytoaccommodations') {
             $stars = $item_data->stars ? $item_data->stars : 1;
