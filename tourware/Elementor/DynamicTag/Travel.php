@@ -79,6 +79,7 @@ class Travel extends \Elementor\Core\DynamicTags\Tag {
         $variables = [
             'highlights' => 'Highlights',
             'subtitle' => 'Untertitel',
+            'id' => 'Record ID',
         ];
 
         $this->add_control(

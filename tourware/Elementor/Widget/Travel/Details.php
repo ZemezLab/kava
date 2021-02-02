@@ -43,10 +43,10 @@ class Details extends AbstractDetails {
 
         $content = [];
         if ($settings['type'] == 'countries') {
-            $t_countries = get_post_meta($post, 'tytocountries', true);
+            $t_countries = $item_data->getCountries();
             if (!empty($t_countries)) {
                 foreach ($t_countries as $t_country) {
-                    $content[] = $t_country['official_name_de'];
+                    $content[] = $t_country->official_name_de;
                 }
             }
             if (empty($countries)) {
@@ -83,7 +83,7 @@ class Details extends AbstractDetails {
                 $content[] = $settings['prefix'].$duration.$settings['suffix'];
         } elseif ($settings['type'] == 'dates') {
             $dates = $item_data->getDates();
-            $date_format = get_option( 'date_format', 'd.m.Y');
+            $date_format = 'd.m.Y';
             if (count($dates) == 1) {
                 $date_start = $dates[0]->start;
                 $date_end = $dates[0]->end;
