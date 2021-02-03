@@ -400,7 +400,7 @@ class Search extends Widget
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Selected Buttons Background', 'tourware'),
             'selectors' => array(
-                '{{WRAPPER}} .tag-button.active' => 'background-color: {{VALUE}}; border-color: {{VALUE}}',
+                '{{WRAPPER}} .elementor-button.tag-button.active' => 'background-color: {{VALUE}}; border-color: {{VALUE}}',
             ),
             'condition' => ['show_categories_buttons' => 'yes']
         ));

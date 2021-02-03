@@ -26,7 +26,7 @@ $parts = explode('##', $settings['template']);
         </div>
     <?php } ?>
     <?php
-    if ( 'none' !== $settings['pagi'] && 'grid' == $settings['layout'] ) {
+    if ( 'grid' == $settings['layout'] ) {
         $this->renderPagination($query, $settings);
     }
 

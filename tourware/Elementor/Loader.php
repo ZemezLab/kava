@@ -466,6 +466,10 @@ class Loader {
                 $r .= "</li>\n</ul>\n";
 
             }
+        } else if ($settings['pagi'] == 'none') {
+            $r = "<ul class='page-numbers'>\n\t<li>";
+            $r .= "<a class='page-numbers hidden' data-num='1'></a>";
+            $r .= "</li>\n</ul>\n";
         }
         echo $r;
     }
