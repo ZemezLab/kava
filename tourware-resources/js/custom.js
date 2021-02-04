@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function setUrlRecordId(obj) {
     var anfragen_btn_href = jQuery(obj).attr('href');
     var urlObject = new URL(anfragen_btn_href);
-    var record = jQuery(obj).data('record')
-    urlObject.searchParams.set('recordId', record);
+    var postid = jQuery(obj).data('postid')
+    urlObject.searchParams.set('postId', postid);
     jQuery(obj).attr('href', urlObject.href);
 }

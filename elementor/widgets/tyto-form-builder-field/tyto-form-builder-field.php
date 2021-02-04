@@ -861,8 +861,42 @@ class Tyto_Form_Builder_Field extends Widget_Base {
                     $value = date($item['date_format'], strtotime($dates[1]));
             }
         } else {
-            if ($_GET[$tyto_type]) {
-                $value = $_GET[$tyto_type];
+            $postid = $_GET['postId'];
+            if ($postid) {
+                $tytorawdata = json_decode(get_post_meta($postid, 'tytorawdata', true));
+                if ('travel' == $tyto_type)
+                    $value = get_the_title($postid);
+                elseif ('destination' == $tyto_type) {
+                    $t_countries = $tytorawdata->countries;
+                    if (!empty($t_countries)) {
+                        foreach ($t_countries as $t_country) {
+                            $countries[] = $t_country->official_name_de;
+                        }
+                    }
+                    if (empty($countries)) {
+                        $countries[] = $tytorawdata->_destination;
+                    }
+                    if (!empty($countries)) $value = implode(', ', $countries);
+                } elseif ('price' == $tyto_type) {
+                    if ($_GET['dates'] && count($tytorawdata->dates)) {
+                        $selected_dates = explode('-', $_GET['dates']);
+                        foreach ($tytorawdata->dates as $t_date) {
+                            if (date('d.m.Y', strtotime($t_date->start)) == $selected_dates[0]
+                            && date('d.m.Y', strtotime($t_date->end)) == $selected_dates[1])
+                                $value = $t_date->price;
+                        }
+                    } else {
+                        $value = $tytorawdata->price;
+                    }
+                } elseif ('dates' == $tyto_type) {
+                    if ($_GET['dates']) {
+                        $value = $_GET['dates'];
+                    } else {
+                        if (count($tytorawdata->dates)) {
+                            $value = date_create($tytorawdata->dates[0]->start)->format('d.m.Y').'-'.date_create($tytorawdata->dates[0]->end)->format('d.m.Y');
+                        }
+                    }
+                }
             }
         }
 
@@ -1122,6 +1156,7 @@ class Tyto_Form_Builder_Field extends Widget_Base {
         $item = $settings;
 
         $form_id = $settings['form_id'];
+        $postid = $_GET['postId'];
 
         $item['input_size'] = '';
         $this->form_fields_render_attributes($item_index, '', $item); ?>
@@ -1175,7 +1210,6 @@ class Tyto_Form_Builder_Field extends Widget_Base {
 
                     echo '<input ' . $this->get_render_attribute_string('input' . $item_index) . '>';
                 } else if ($settings['tyto_type'] == 'picture') {
-                    $record_id = $_GET['recordId'];
                     global $_wp_additional_image_sizes;
                     $size = $settings['picture_size_size'];
                     if (in_array($size, array('thumbnail', 'medium', 'medium_large', 'large'))) {
@@ -1191,33 +1225,29 @@ class Tyto_Form_Builder_Field extends Widget_Base {
                     if (Plugin::$instance->editor->is_edit_mode() || Plugin::$instance->preview->is_preview_mode()) {
                         echo '<img src="https://via.placeholder.com/'.$w.'x'.$h.'" width="100%" height="auto">';
                     } else {
-                        if (!empty($record_id)) {
-                            $posts = get_posts(['meta_key' => 'tytoid', 'meta_value' => $record_id, 'post_type' => ['tytotravels', 'tytoaccommodations']]);
-                            if (count($posts)) {
-                                $p = $posts[0];
-                                $tytorawdata = json_decode(get_post_meta($p->ID, 'tytorawdata', true));
-                                if (count($tytorawdata->images)) {
-                                    $img_options = array(
-                                        "secure" => true,
-                                        "width" => $w,
-                                        "crop" => "thumb"
-                                    );
-                                    if ('http' === substr($tytorawdata->images[0]->image, 0, 4)) {
-                                        $img_options['type'] = 'fetch';
-                                    }
-                                    $img_url = \Cloudinary::cloudinary_url($tytorawdata->images[0]->image, $img_options);
-                                    echo '<img src="'.$img_url.'" width="100%" height="auto">';
+                        if (!empty($postid)) {
+                            $tytorawdata = json_decode(get_post_meta($postid, 'tytorawdata', true));
+                            if (count($tytorawdata->images)) {
+                                $img_options = array(
+                                    "secure" => true,
+                                    "width" => $w,
+                                    "height" => $h,
+                                    "crop" => "thumb"
+                                );
+                                if ('http' === substr($tytorawdata->images[0]->image, 0, 4)) {
+                                    $img_options['type'] = 'fetch';
                                 }
+                                $img_url = \Cloudinary::cloudinary_url($tytorawdata->images[0]->image, $img_options);
+                                echo '<img src="' . $img_url . '" width="100%" height="auto">';
                             }
                         }
                     }
                 } else {
                     $this->add_render_attribute('input' . $item_index, 'data-pafe-form-builder-form-id', $form_id);
-                    $this->add_render_attribute(
-                        'input' . $item_index,
-                        'type', $item['tyto_type_show_as'] == 'input' ? 'text' : 'hidden');
-                    echo '<input size="1" ' . $this->get_render_attribute_string('input' . $item_index) . '>';
                    if ($settings['tyto_type_show_as'] == 'text') {
+                       $this->add_render_attribute(
+                           'input' . $item_index,
+                           'style', 'display:none;');
                        $attributes = $this->get_render_attributes('input' . $item_index);
                        if (Plugin::$instance->editor->is_edit_mode() || Plugin::$instance->preview->is_preview_mode()) {
                            $value = '%value%';
@@ -1229,6 +1259,24 @@ class Tyto_Form_Builder_Field extends Widget_Base {
                            $value.
                            ($item['tyto_type'] == 'price' ? $item['price_suffix'] : '').
                            '</div>';
+                   }
+
+                   if ($settings['tyto_type'] == 'dates') {
+                       $attributes = $this->get_render_attributes('input' . $item_index);
+                       $value = implode(' ', $attributes['value']);
+                       echo '<select size="1" ' . $this->get_render_attribute_string('input' . $item_index) . '>';
+                       if (!empty($postid)) {
+                           $tytorawdata = json_decode(get_post_meta($postid, 'tytorawdata', true));
+                           if (count($tytorawdata->dates)) {
+                               foreach ($tytorawdata->dates as $t_date) {
+                                   $opt_val = date_create($t_date->start)->format('d.m.Y').'-'.date_create($t_date->end)->format('d.m.Y');
+                                   echo '<option value="'.$opt_val.'" '.selected($opt_val == $value).'>'.$opt_val.'</option>';
+                               }
+                           }
+                       }
+                       echo '</select>';
+                   } else {
+                       echo '<input size="1" ' . $this->get_render_attribute_string('input' . $item_index) . '>';
                    }
 
                 } ?>

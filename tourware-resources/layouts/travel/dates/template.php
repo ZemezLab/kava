@@ -34,7 +34,7 @@ $dates = $item_data->getDates();
         $date_format = 'D, d.m.Y';
         $start = date_create($item->start);
         $end = date_create($item->end);
-        $dates_value = $start->format('d.m.Y').' - '.$end->format('d.m.Y');
+        $dates_value = $start->format('d.m.Y').'-'.$end->format('d.m.Y');
         $price_value = number_format($item->price, 0, ',', '.');
 
         $tab_title = '<div class="col-auto"><div class="checkbox"><i class="far fa-square"></i></div></div>';
