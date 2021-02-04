@@ -9,14 +9,14 @@
 							<?php Icons_Manager::render_icon( $settings['icon'], [ 'aria-hidden' => 'true' ] ); ?>
 						</span>
             <?php } ?>
-            <span class="elementor-icon-list-text"><?php echo $item; ?></span>
+            <span class="elementor-icon-list-text details-<?php echo $settings['type'] ?>"><?php echo $item; ?></span>
             <?php } else { ?>
                 <?php if ($item['icon']) { ?>
                     <span class="elementor-icon-list-icon">
 							<?php Icons_Manager::render_icon( $item['icon'], [ 'aria-hidden' => 'true' ] ); ?>
 						</span>
                 <?php } ?>
-                <span class="elementor-icon-list-text"><?php echo $item['text']; ?></span>
+                <span class="elementor-icon-list-text details-<?php echo $settings['type'] ?>"><?php echo $item['text']; ?></span>
             <?php } ?>
         </li>
     <?php } ?>

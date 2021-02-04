@@ -43,4 +43,12 @@ class Dates extends AbstractAccordion {
     {
         return 'dates';
     }
+
+    /**
+     * @return array
+     */
+    public function get_script_depends() {
+        return ['tourware-travel-dates'];
+    }
+
 }

@@ -59,6 +59,7 @@ class Theme
         add_action('elementor/frontend/before_register_scripts', function () {
             wp_register_script('lodash-adt', get_parent_theme_file_uri() . '/tourware-resources/js/widget/travel/lodash.js', ['jquery']);
             wp_register_script('tourware-travel-map', get_parent_theme_file_uri() . '/tourware-resources/js/widget/travel/Map.js', ['lodash-adt']);
+            wp_register_script('tourware-travel-dates', get_parent_theme_file_uri() . '/tourware-resources/js/widget/travel/dates-accordion.js', ['jquery']);
         });
 
         add_action( 'elementor/widgets/widgets_registered', function() {
