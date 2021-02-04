@@ -403,6 +403,7 @@ abstract class AbstractListing extends Widget
                 'frontend_available' => true,
                 'selectors' => [
                     '{{WRAPPER}} .ht-grid-item' => 'margin-bottom: {{SIZE}}{{UNIT}}',
+                    '{{WRAPPER}} .tours-layout-carousel .ht-grid-item' => 'padding-top: {{SIZE}}{{UNIT}}; padding-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );

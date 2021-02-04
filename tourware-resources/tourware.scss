@@ -1715,7 +1715,8 @@ body:not(.page-template-fullwidth-content) .site-content {
 }
 
 .tns-controls [data-controls=prev]:before {
-  content: "\f053"
+  content: "\f053";
+  font-family: "Font Awesome 5 Pro";
 }
 
 .tns-controls [data-controls=next] {
@@ -1723,6 +1724,7 @@ body:not(.page-template-fullwidth-content) .site-content {
 }
 
 .tns-controls [data-controls=next]:before {
+  font-family: "Font Awesome 5 Pro";
   content: "\f054"
 }
 

@@ -32,6 +32,11 @@
   padding-bottom: 10px;
 }
 
+.advanced-tyto-list .tours-layout-carousel .ht-grid-item:not(.tns-slide-active) {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
 .advanced-tyto-list .tours-content .tour-item {
   height: 100%;
   background-color: #ffffff;
