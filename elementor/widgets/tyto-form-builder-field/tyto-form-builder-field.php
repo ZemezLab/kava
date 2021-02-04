@@ -1174,6 +1174,8 @@ class Tyto_Form_Builder_Field extends Widget_Base {
                     echo '>' . $settings['field_label'] . '</label>';
                 }
 
+                // TODO refactor: add functions to make fields
+                // TODO add field id, field name
                 if ($settings['tyto_type'] == 'start_date' || $item['tyto_type'] == 'end_date') {
                     $this->add_render_attribute('input' . $item_index, 'data-pafe-form-builder-form-id', $form_id);
                     $this->add_render_attribute('input' . $item_index, 'class', 'elementor-field-textual elementor-date-field');
@@ -1248,6 +1250,9 @@ class Tyto_Form_Builder_Field extends Widget_Base {
                        $this->add_render_attribute(
                            'input' . $item_index,
                            'style', 'display:none;');
+                       $this->add_render_attribute(
+                           'select-wrapper' . $item_index,
+                           'style', 'display:none;');
                        $attributes = $this->get_render_attributes('input' . $item_index);
                        if (Plugin::$instance->editor->is_edit_mode() || Plugin::$instance->preview->is_preview_mode()) {
                            $value = '%value%';
@@ -1264,18 +1269,54 @@ class Tyto_Form_Builder_Field extends Widget_Base {
                    if ($settings['tyto_type'] == 'dates') {
                        $attributes = $this->get_render_attributes('input' . $item_index);
                        $value = implode(' ', $attributes['value']);
-                       echo '<select size="1" ' . $this->get_render_attribute_string('input' . $item_index) . '>';
+                       $options = [];
                        if (!empty($postid)) {
                            $tytorawdata = json_decode(get_post_meta($postid, 'tytorawdata', true));
                            if (count($tytorawdata->dates)) {
                                foreach ($tytorawdata->dates as $t_date) {
                                    $opt_val = date_create($t_date->start)->format('d.m.Y').'-'.date_create($t_date->end)->format('d.m.Y');
-                                   echo '<option value="'.$opt_val.'" '.selected($opt_val == $value).'>'.$opt_val.'</option>';
+                                   $options[$opt_val] = $opt_val;
                                }
                            }
                        }
-                       echo '</select>';
-                   } else {
+
+                       $this->add_render_attribute(
+                           [
+                               'select-wrapper' . $item_index => [
+                                   'class' => [
+                                       'elementor-field',
+                                       'elementor-select-wrapper',
+                                       esc_attr( $item['css_classes'] ),
+                                   ],
+                               ],
+                               'select' . $item_index => [
+                                   'class' => [
+                                       'elementor-field-textual',
+                                       'elementor-size-' . $item['input_size'],
+                                   ],
+                               ],
+                           ]
+                       ); ?>
+                       <div <?php echo $this->get_render_attribute_string( 'select-wrapper' . $item_index ); ?>>
+                           <select <?php echo $this->get_render_attribute_string( 'select' . $item_index ); ?> data-options='<?php echo json_encode($options); ?>'>
+                               <?php
+
+                               foreach ( $options as $key => $option ) {
+                                   $option_id = $key;
+                                   $option_value = esc_attr( $key );
+                                   $option_label = esc_html( $option );
+
+                                   $this->add_render_attribute( $option_id, 'value', $option_value );
+
+                                   if ( ! empty( $value ) && $option_value === $value ) {
+                                       $this->add_render_attribute( $option_id, 'selected', 'selected' );
+                                   }
+                                   echo '<option ' . $this->get_render_attribute_string( $option_id ) . '>' . $option_label . '</option>';
+                               }
+                               ?>
+                           </select>
+                       </div>
+                   <?php } else {
                        echo '<input size="1" ' . $this->get_render_attribute_string('input' . $item_index) . '>';
                    }
 
