@@ -150,7 +150,6 @@ class Tyto_Form_Builder_Field extends Widget_Base {
 				'default' => '',
                 'condition' => [
                     'tyto_type!' => 'picture',
-                    'tyto_type_show_as!' => 'text'
                 ],
 			]
 		);
@@ -166,7 +165,6 @@ class Tyto_Form_Builder_Field extends Widget_Base {
 				'default' => 'true',
                 'condition' => [
                     'tyto_type!' => 'picture',
-                    'tyto_type_show_as!' => 'text'
                 ],
 			]
 		);
@@ -476,7 +474,6 @@ class Tyto_Form_Builder_Field extends Widget_Base {
 				'tab' => Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'tyto_type!' => 'picture',
-                    'tyto_type_show_as!' => 'text'
                 ]
 			]
 		);
@@ -1249,10 +1246,8 @@ class Tyto_Form_Builder_Field extends Widget_Base {
                    if ($settings['tyto_type_show_as'] == 'text') {
                        $this->add_render_attribute(
                            'input' . $item_index,
-                           'style', 'display:none;');
-                       $this->add_render_attribute(
-                           'select-wrapper' . $item_index,
-                           'style', 'display:none;');
+                           'type', 'hidden');
+
                        $attributes = $this->get_render_attributes('input' . $item_index);
                        if (Plugin::$instance->editor->is_edit_mode() || Plugin::$instance->preview->is_preview_mode()) {
                            $value = '%value%';
@@ -1266,7 +1261,7 @@ class Tyto_Form_Builder_Field extends Widget_Base {
                            '</div>';
                    }
 
-                   if ($settings['tyto_type'] == 'dates') {
+                   if ($settings['tyto_type'] == 'dates' && $settings['tyto_type_show_as'] !== 'text') {
                        $attributes = $this->get_render_attributes('input' . $item_index);
                        $value = implode(' ', $attributes['value']);
                        $options = [];
