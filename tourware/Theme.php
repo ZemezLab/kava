@@ -46,7 +46,7 @@ class Theme
 
         add_action( 'template_redirect', function () {
             if ('tytotravels' == get_post_type() && post_password_required()) {
-                get_template_part('template-parts/tyto/content/s-login'); //TODO
+                get_template_part('/tourware-resources/layouts/travel/protected');
                 die;
             }
         } );
