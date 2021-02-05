@@ -1172,7 +1172,6 @@ class Tyto_Form_Builder_Field extends Widget_Base {
                 }
 
                 // TODO refactor: add functions to make fields
-                // TODO add field id, field name
                 if ($settings['tyto_type'] == 'start_date' || $item['tyto_type'] == 'end_date') {
                     $this->add_render_attribute('input' . $item_index, 'data-pafe-form-builder-form-id', $form_id);
                     $this->add_render_attribute('input' . $item_index, 'class', 'elementor-field-textual elementor-date-field');
