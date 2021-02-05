@@ -30,8 +30,6 @@ class Theme
         $elementor = new Elementor();
         $elementor->init();
 
-
-
         add_action( 'elementor/dynamic_tags/register_tags', function( $dynamic_tags ) {
             \Elementor\Plugin::$instance->dynamic_tags->register_group( 'tourware', [
                 'title' => 'tourware'
@@ -44,6 +42,13 @@ class Theme
 
         add_action( 'init', function () {
             register_taxonomy_for_object_type( 'category', 'page' );
+        } );
+
+        add_action( 'template_redirect', function () {
+            if ('tytotravels' == get_post_type() && post_password_required()) {
+                get_template_part('template-parts/tyto/content/s-login'); //TODO
+                die;
+            }
         } );
 
         add_action( 'wp_enqueue_scripts', function () {
