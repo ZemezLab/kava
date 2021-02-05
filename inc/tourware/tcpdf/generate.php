@@ -1,20 +1,23 @@
 <?php
 add_filter( 'generate_rewrite_rules', function ( $wp_rewrite ) {
 	$wp_rewrite->rules = array_merge(
-		[ 'download-pdf/(\d+)/?$' => 'index.php?dl_id=$matches[1]' ],
+		[ 'download-pdf/(\d+)/?$' => 'index.php?downloadPDF=1&postId=$matches[1]' ],
+		[ 'download-pdf/?$' => 'index.php?downloadPDF=1' ],
 		$wp_rewrite->rules
 	);
 //    flush_rewrite_rules(); TODO
 } );
 add_filter( 'query_vars', function ( $query_vars ) {
-	$query_vars[] = 'dl_id';
+	$query_vars[] = 'postId';
+	$query_vars[] = 'downloadPDF';
 
 	return $query_vars;
 } );
 add_action( 'template_redirect', function () {
-	$dl_id = intval( get_query_var( 'dl_id' ) );
+	$dl_id = intval( get_query_var( 'postId' ) );
+	$download_pdf = intval( get_query_var( 'downloadPDF' ) );
 
-	if ( $dl_id ) {
+	if ( $download_pdf && $dl_id ) {
 		$pdf_file = tyto_pdf( $dl_id );
 		header( "Content-Description: File Transfer" );
 		header( "Content-Type: application/force-download; charset=UTF-8", true, 200 );
