@@ -2,6 +2,7 @@
 
 namespace Tourware;
 
+use Cassandra\Date;
 use Tourware\Elementor;
 use \Elementor\Plugin;
 
@@ -53,12 +54,7 @@ class Theme
 
         add_action( 'wp_enqueue_scripts', function () {
             wp_enqueue_script('tourware-js', get_parent_theme_file_uri() . '/public/tourware.js', 'vue', null, true);
-            wp_enqueue_style('tourware', get_parent_theme_file_uri() . '/public/tourware.css');
-            wp_enqueue_style('tourware-preview', get_parent_theme_file_uri() . '/tourware-resources/scss/tourware.css');
-        } );
-
-        add_action( 'elementor/preview/enqueue_scripts', function () {
-            wp_enqueue_style('tourware-preview', get_parent_theme_file_uri() . '/tourware-resources/scss/tourware.css');
+            wp_enqueue_style('tourware', get_parent_theme_file_uri() . '/public/tourware.css', null, time());
         } );
 
         add_action('elementor/frontend/before_register_scripts', function () {
