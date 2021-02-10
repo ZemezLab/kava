@@ -24,14 +24,6 @@ trait HasImages
      */
     public function getFeaturedImageUri(array $options = array())
     {
-        if (!array_key_exists('width', $options)) {
-            throw new \Exception('No image width speficied.');
-        }
-
-        if (!array_key_exists('height', $options)) {
-            $options['height'] = $options['width'];
-        }
-
         $data = $this->getRawData();
 
         if (isset($data->images) && isset($data->images[0])) {
@@ -39,11 +31,13 @@ trait HasImages
 
             if (strpos($firstImageIdentifier, 'unsplash')) {
                 $parts = explode('?', $firstImageIdentifier);
-                return $parts[0] . '?fm=jpg&crop=focalpoint&fit=crop&w=' . $options['width'];
+                return $parts[0] . '?fm=jpg&crop=focalpoint&fit=crop'. ($options['width'] ? '&w=' . $options['width'] : '');
             }
 
             return \Cloudinary::cloudinary_url($firstImageIdentifier, $options);
         } else { // @todo: check if there is a real featured image in the wordpress post
+            if (!array_key_exists('height', $options)) $options['height'] = 300;
+            if (!array_key_exists('width', $options)) $options['width'] = 300;
             return 'https://via.placeholder.com/' . $options['width'] . 'x' . $options['height'];
         }
     }
