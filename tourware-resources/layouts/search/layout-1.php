@@ -66,7 +66,7 @@
 <?php } ?>
         <?php if ($settings['show_categories'] && $settings['show_categories_buttons'] == 'yes') { ?>
     <div class="break"></div>
-    <div class="place-search-spn place-search-spn--tags_buttons">
+    <div class="place-search-spn place-search-spn--tags_buttons" data-multiselect="<?php echo $settings['categories_multiple'] ?>">
         <?php foreach ($settings['search_tags'] as $tag) { ?>
             <div class="elementor-button tag-button <?php if (is_array($search_tags) && in_array($tag, $search_tags)) echo 'active' ?>"><?php echo $tag ?></div>
         <?php } ?>

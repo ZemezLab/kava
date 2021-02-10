@@ -225,6 +225,18 @@ class Search extends Widget
         );
 
         $this->add_control(
+                'categories_multiple',
+            [
+                'label' => __('Categories Multi-selection', 'tourware'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __('Yes', 'elementor-pro'),
+                'label_off' => __('No', 'elementor-pro'),
+                'default' => '',
+                'condition' => ['show_categories_buttons' => 'yes']
+            ]
+        );
+
+        $this->add_control(
             'tags_input_title',
             [
                 'label' => __('Title'),
