@@ -115,11 +115,23 @@ class Search extends Widget
             ]
         );
         $this->add_control(
+            'show_keywords_input',
+            [
+                'label' => __('Show', 'elementor-pro'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __('Show', 'elementor-pro'),
+                'label_off' => __('Hide', 'elementor-pro'),
+                'default' => 'yes',
+            ]
+        );
+
+        $this->add_control(
             'search_input_title',
             [
                 'label' => __('Title', 'elementor-pro'),
                 'type' => Controls_Manager::TEXT,
                 'default' => 'Keywords',
+                'condition' => ['show_keywords_input' => 'yes']
             ]
         );
 
@@ -129,6 +141,7 @@ class Search extends Widget
                 'label' => __('Placeholder', 'elementor-pro'),
                 'type' => Controls_Manager::TEXT,
                 'default' => 'Wohin soll die Reise gehen?',
+                'condition' => ['show_keywords_input' => 'yes']
             ]
         );
 
@@ -139,6 +152,7 @@ class Search extends Widget
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __('Yes', 'elementor-pro'),
                 'label_off' => __('No', 'elementor-pro'),
+                'condition' => ['show_keywords_input' => 'yes']
             ]
         );
 
@@ -149,7 +163,7 @@ class Search extends Widget
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __('Yes', 'elementor-pro'),
                 'label_off' => __('No', 'elementor-pro'),
-                'condition' => ['search_autocomplete' => 'yes']
+                'condition' => ['search_autocomplete' => 'yes', 'show_keywords_input' => 'yes']
             ]
         );
 
@@ -159,6 +173,7 @@ class Search extends Widget
                 'label' => __( 'Date', 'elementor-pro' ),
                 'type' => Controls_Manager::HEADING,
                 'separator' => 'before',
+                'condition' => ['search_results_adv_list!' => 'yes']
             ]
         );
         $this->add_control(

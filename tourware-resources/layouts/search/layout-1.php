@@ -1,6 +1,7 @@
 <?php if ($settings['adv_list_id']) { ?>
     <input type="hidden" name="adv_list_id" value="<?php echo $settings['adv_list_id'] ?>">
 <?php } ?>
+<?php if ($settings['show_keywords_input'] == 'yes') { ?>
     <div class="elementor-field-type-text elementor-field-group place-search-spn <?php if ($settings['search_autocomplete']) echo 'autocomplete-field' ?>">
         <?php if ($settings['search_input_title']) { ?>
             <label for="i-dest"
@@ -15,6 +16,7 @@
             <i class="icon field-icon fas fa-map-marker-alt"></i>
         </div>
     </div>
+<?php } ?>
 <?php if ($settings['search_results_adv_list'] !== 'yes' && $settings['show_date']) { ?>
     <div class="elementor-field-type-text elementor-field-group place-search-spn">
         <?php if ($settings['date_input_title']) { ?>
