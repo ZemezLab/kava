@@ -72,7 +72,7 @@ class Theme
             Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Travel\Map() );
             Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Travel\Dates() );
             Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Travel\AdditionalFields() );
-            Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Travel\Image() );
+//            Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Travel\Image() );
 
             Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Accommodation\Listing() );
             Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Accommodation\Details() );
@@ -98,8 +98,8 @@ class Theme
 
         include get_theme_file_path( 'inc/tourware/tcpdf/generate.php' );
         include get_theme_file_path( 'inc/tourware/form-action-hook.php' );
-        include get_theme_file_path( 'inc/tourware/functions-pipedrive.php' );
-        include get_theme_file_path( 'inc/tourware/pipedrive-sender.php' );
+//        include get_theme_file_path( 'inc/tourware/functions-pipedrive.php' );
+//        include get_theme_file_path( 'inc/tourware/pipedrive-sender.php' );
 
         return $this;
     }
