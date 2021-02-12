@@ -1253,11 +1253,12 @@ class Tyto_Form_Builder_Field extends Widget_Base {
                        } else {
                            $value = implode(' ', $attributes['value']);
                        }
-                       echo '<div class="tyto-field-text">'.
-                           ($item['tyto_type'] == 'price' ? $item['price_prefix'] : '').
-                           $value.
-                           ($item['tyto_type'] == 'price' ? $item['price_suffix'] : '').
-                           '</div>';
+                       echo '<div class="tyto-field-text">';
+                       if ($item['tyto_type'] == 'price')
+                           echo $item['price_prefix'].number_format($value, 0, ',', '.').$item['price_suffix'];
+                       else
+                           echo $value;
+                       echo '</div>';
                    }
 
                    if ($settings['tyto_type'] == 'dates' && $settings['tyto_type_show_as'] !== 'text') {
