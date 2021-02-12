@@ -20,6 +20,7 @@
 
   .checkbox {
     font-size: 18px;
+    font-family: "Font Awesome 5 Pro";
   }
 
   .dates {
@@ -42,8 +43,8 @@
     padding-left: 15px;
   }
 
-  .bdt-open i.fa-square:before {
-    content: "\f14a";
+  .bdt-open i.fa-circle:before {
+    content: "\f192";
   }
 
   .bdt-accordion-content {

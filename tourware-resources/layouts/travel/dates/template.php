@@ -37,7 +37,7 @@ $dates = $item_data->getDates();
         $dates_value = $start->format('d.m.Y').'-'.$end->format('d.m.Y');
         $price_value = number_format($item->price, 0, ',', '.');
 
-        $tab_title = '<div class="col-auto"><div class="checkbox"><i class="far fa-square"></i></div></div>';
+        $tab_title = '<div class="col-auto"><div class="checkbox"><i class="far fa-circle"></i></div></div>';
         $tab_title .= '<div class="col"><div class="row">';
         $tab_title .= '<div class="dates" data-value="'.$dates_value.'">'.date_i18n($date_format, strtotime($item->start)).' - '.date_i18n($date_format, strtotime($item->end)).'</div>';
         $tab_title .= '<div class="days">'.date_diff($start, $end)->format('%d').' Tage</div>';
