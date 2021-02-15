@@ -497,6 +497,7 @@ abstract class Widget extends \Elementor\Widget_Base
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
                     $input_selector => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    $input_selector.' + .field-icon' => 'left: calc({{LEFT}}{{UNIT}} - 16px)'
                 ],
                 'separator' => 'before',
             ]
