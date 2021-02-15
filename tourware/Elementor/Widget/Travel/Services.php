@@ -64,6 +64,14 @@ class Services extends Widget {
             ]
         );
 
+        $this->add_control( 'content_color', array(
+            'type'      => Controls_Manager::COLOR,
+            'label'     => esc_html__( 'Content Color', 'tourware' ),
+            'selectors' => array(
+                '{{WRAPPER}} li' => 'color: {{VALUE}};',
+            ),
+        ));
+
         $this->add_control( 'icon', array(
             'label'         =>  esc_html__( 'Icon', 'tourware' ),
             'type'          =>  Controls_Manager::ICONS,
