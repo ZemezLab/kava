@@ -145,4 +145,56 @@ class Travel extends Model implements Displayable, Imageable
     public function getCountries() {
         return $this->getRawProperty('countries');
     }
+
+    /**
+     * @return array
+     */
+    public function getAccommodations() {
+        $accommodations = []; $prev = null; $nights = 0; $i = 0;
+        $itinerary = $this->getItinerary();
+        usort($itinerary, function($a, $b) {
+            return $a->position <=> $b->position;
+        });
+
+        foreach ($itinerary as $item) {
+            // get accommodation tytoId
+            $accommodation = $item->accommodations[0];
+            $acc_id = isset($accommodation->accommodation->id) ? $accommodation->accommodation->id : $accommodation->accommodation;
+            if (empty($accommodation)) {
+                $accommodation = $item->brick->defaultAccommodation;
+                $acc_id = $accommodation->id;
+            }
+            if (empty($accommodation)) {
+                $accommodation = $item->brick->accommodations[0];
+                $acc_id = $accommodation->id;
+            }
+
+            if (!empty($accommodation) && !empty($acc_id)) {
+                // get accommodation data by tytoId
+                $accommodation_data = tyto_get_accommodation_data($acc_id, $item);
+                if (!empty($accommodation_data)) {
+                    if ($prev == null && $i == 0) {
+                        array_push($accommodations, $accommodation);
+                        $i = 1;
+                    }
+                    if ($prev !== null && $prev != $acc_id) {
+                        if ($i > 0) $accommodations[$i-1]['nights'] = $nights;
+                        array_push($accommodations, $accommodation);
+                        $nights = 0;
+                        $i++;
+                    }
+                    if (!empty($accommodation)) $nights += intval($accommodation->nights);
+                    $prev = $acc_id;
+                }
+            }
+        }
+
+        if ($nights !== 0) {
+            $last = count($accommodations) - 1;
+            $accommodations[$last]['nights'] = $nights;
+        }
+
+        return $accommodations;
+    }
+
 }
