@@ -212,9 +212,8 @@ abstract class AbstractListing extends Widget
             'return_value' => 'yes'
         ) );
 
-        $tags = [];
-        if ($tyto_tags = get_option('tyto_tags', false)) $tags = wp_list_pluck($tyto_tags, 'name', 'id');
-
+        $tags_taxomomy = get_terms(['taxonomy' => 'post_tag', 'hide_empty' => false]);
+        $tags = wp_list_pluck( $tags_taxomomy, 'name', 'slug' );
         $this->add_control( 'item_tags', array(
             'type'     => Controls_Manager::SELECT2,
             'label'    => esc_html__( 'Item tags' ),
@@ -222,19 +221,13 @@ abstract class AbstractListing extends Widget
             'options'  => $tags,
         ) );
 
-        $destinations_args = array(
-            'post_type'           => 'tytodestinations',
-            'post_status'         => 'publish',
-            'ignore_sticky_posts' => 1,
-            'posts_per_page'      => - 1,
-        );
-        $dest_q            = new \WP_Query( $destinations_args );
-        $output            = wp_list_pluck( $dest_q->posts, 'post_title', 'ID' );
+        $countries_taxomomy = get_terms(['taxonomy' => 'tytocountries', 'hide_empty' => false]);
+        $countries = wp_list_pluck( $countries_taxomomy, 'name', 'slug' );
         $this->add_control( 'destinations', array(
             'type'     => Controls_Manager::SELECT2,
             'label'    => esc_html__( 'Destinations' ),
             'multiple' => true,
-            'options'  => $output,
+            'options'  => $countries,
             'default'  => get_post_type( get_the_ID() ) == 'tytodestinations' ? array( get_the_ID() ) : []
         ) );
 
@@ -1318,33 +1311,11 @@ abstract class AbstractListing extends Widget
         }
         if (!empty($settings['item_tags']) || !empty($settings['destinations']) || !empty($settings['regions'])) {
             if (!empty($settings['item_tags'])) {
-                $tags_args = array('relation' => 'OR',);
-                foreach ($settings['item_tags'] as $tag) {
-                    array_push($tags_args, array(
-                        'key' => 'tytorawdata',
-                        'value' => '"id":"' . $tag . '"',
-                        'compare' => 'LIKE'
-                    ));
-                }
+                $args['tag'] = implode(',', $settings['item_tags']);
             }
-            if (!empty($tags_args)) array_push($args['meta_query'], $tags_args);
 
             if (!empty($settings['destinations'])) {
-                $dest_args = array('relation' => 'OR',);
-                foreach ($settings['destinations'] as $dest_id) {
-                    $dest_title = get_the_title($dest_id);
-                    array_push($dest_args, array(
-                        'key' => 'tytorawdata',
-                        'value' => '"_destination":"' . addcslashes($dest_title, '/') . '"',
-                        'compare' => 'LIKE'
-                    ));
-                    array_push($dest_args, array(
-                        'key' => 'tytocountries',
-                        'value' => addcslashes($dest_title, '/'),
-                        'compare' => 'LIKE'
-                    ));
-                }
-                array_push($args['meta_query'], $dest_args);
+                $args['tytocountries'] = implode(',', $settings['destinations']);
             }
 
             if (!empty($settings['regions'])) {
