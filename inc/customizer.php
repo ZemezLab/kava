@@ -116,6 +116,20 @@ function kava_get_customizer_options() {
 				'field'    => 'checkbox',
 				'type'     => 'control',
 			),
+			'show_archive_title' => array(
+				'title'    => esc_html__( 'Show Archive Title', 'kava' ),
+				'section'  => 'page_layout',
+				'default'  => true,
+				'field'    => 'checkbox',
+				'type'     => 'control',
+			),
+			'show_archive_desc' => array(
+				'title'    => esc_html__( 'Show Archive Description', 'kava' ),
+				'section'  => 'page_layout',
+				'default'  => true,
+				'field'    => 'checkbox',
+				'type'     => 'control',
+			),
 
 			/** `ToTop button` section */
 			'totop_button' => array(
