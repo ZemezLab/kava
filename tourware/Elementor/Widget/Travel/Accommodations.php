@@ -79,4 +79,25 @@ class Accommodations extends AbstractAccordion {
         parent::_register_controls();
     }
 
+    protected function getTemplateData() {
+        $settings = $this->get_settings();
+        $post = $settings['post'] ? $settings['post'] : get_the_ID();
+        $result = [];
+
+        $repository = \Tourware\Repository\Travel::getInstance();
+        $item_data = $repository->findOneByPostId($post);
+        $accommodations = $item_data->getAccommodations();
+        foreach ($accommodations as $accommodation) {
+            $result['accordion_data'][] = [
+                'tab_title' => $accommodation->accommodation->title . ' Nights: ' . $accommodation->nights,
+                'tab_content' => $accommodation->accommodation->description
+            ];
+        }
+
+        return $result;
+    }
+
+    protected function getTemplatePath () {
+        return \Tourware\Path::getResourcesFolder() . 'layouts/accordion/template.php';
+    }
 }

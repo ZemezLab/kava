@@ -1,13 +1,10 @@
 <?php
 
-//use Elementor\Icons_Manager;
-//
-//$repository = \Tourware\Repository\Travel::getInstance();
-//$item_data = $repository->findOneByPostId($post);
-////$accommodations = $item_data->getAccommodations();
-////print_r($accommodations);
-//
-//?>
+use Elementor\Icons_Manager;
+
+
+//print_r($accommodations);
+?>
 <!--<div class="bdt-accordion-container">-->
 <!--    <div --><?php //echo $this->get_render_attribute_string('accordion'); ?><!-- --><?php //echo $this->get_render_attribute_string('accordion_data'); ?><!-->-->
 <!--        --><?php //foreach ($accommodations as $index => $item) :
@@ -35,11 +32,11 @@
 //            'class' => ['bdt-accordion-content'],
 //        ]);
 //
-//        $accommodation_repository = \Tourware\Repository\Accommodation::getInstance();
-//        $accommodation_data = $accommodation_repository->findOneByPostId($item['post_id']);
-//        $tab_title = $accommodation_data->getTitle();
+////        $accommodation_repository = \Tourware\Repository\Accommodation::getInstance();
+////        if ($item['post_id']) $accommodation_data = $accommodation_repository->findOneByPostId($item['post_id']);
+//        $tab_title = $item->accommodation->title. ' Nights: '.$item->nights;
 //
-//        $tab_content = '';
+//        $tab_content = $item->accommodation->description;
 //
 //        ?>
 <!--        <div class="bdt-accordion-item">-->

@@ -56,6 +56,18 @@ class AbstractAccordion extends Widget {
         throw new \Exception('Needs to be implemented.');
     }
 
+    /**
+     * @return array
+     */
+    protected function getTemplateData()
+    {
+        return [];
+    }
+
+    protected function getTemplatePath() {
+        return false;
+    }
+
     public function get_style_depends() {
         return ['ep-accordion'];
     }
@@ -761,9 +773,16 @@ class AbstractAccordion extends Widget {
         $active_migrated = isset($settings['__fa4_migrated']['accordion_active_icon']);
         $active_is_new   = empty($settings['icon_active']) && Icons_Manager::is_migration_allowed();
 
-        $post = $settings['post'] ? $settings['post'] : get_the_ID();
+        $data = $this->getTemplateData();
+        extract($data);
 
-        include \Tourware\Path::getResourcesFolder() . 'layouts/'.$this->getRecordTypeName().'/'.$this->getWidgetName().'/template.php';
+        // TODO refactor all accordions for one abstract template
+        if ($template_path = $this->getTemplatePath()) {
+            include $template_path;
+        } else {
+            $post = $settings['post'] ? $settings['post'] : get_the_ID();
+            include \Tourware\Path::getResourcesFolder() . 'layouts/'.$this->getRecordTypeName().'/'.$this->getWidgetName().'/template.php';
+        }
     }
 }
 
