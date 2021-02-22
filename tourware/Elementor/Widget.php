@@ -859,7 +859,7 @@ abstract class Widget extends \Elementor\Widget_Base
                 'global' => [
                     'default' => Global_Typography::TYPOGRAPHY_TEXT,
                 ],
-                'selector' => '{{WRAPPER}} '.$args['selector'],
+                'selector' => '{{WRAPPER}} '.$args['selector'].', {{WRAPPER}} '.$args['selector'].' * ',
             ]
         );
 
