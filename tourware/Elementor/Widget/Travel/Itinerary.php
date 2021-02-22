@@ -131,8 +131,8 @@ class Itinerary extends AbstractAccordion {
                                 ));
                                 if (count($accommodations)) {
                                     $accommodation_wp_post = array_shift($accommodations);
+                                    $link = get_permalink($accommodation_wp_post->ID);
                                 }
-                                $link = get_permalink($accommodation_wp_post->ID);
                             }
                             if ($link) {
                                 $tab_content .= '<div class="accommodation">Unterkunft: <a href="'.$link.'">'.$item_accommodation->accommodation->title. '</a></div>';
