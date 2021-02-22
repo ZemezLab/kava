@@ -47,10 +47,11 @@ class Accommodations extends AbstractAccordion {
 
     protected function _register_controls()
     {
+        parent::_register_controls();
         $this->start_controls_section(
             'accommodations_options',
             [
-                'label' => __( 'Options', 'elementor-pro' )
+                'label' => __( 'Accommodations Options', 'elementor-pro' )
             ]
         );
 
@@ -75,8 +76,6 @@ class Accommodations extends AbstractAccordion {
         $this->end_controls_section();
 
         $this->addControlGroup(['id' => 'style_image', 'type' => 'image']);
-
-        parent::_register_controls();
     }
 
     protected function getTemplateData() {

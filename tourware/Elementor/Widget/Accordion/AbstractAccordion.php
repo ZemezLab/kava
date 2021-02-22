@@ -778,10 +778,10 @@ class AbstractAccordion extends Widget {
 
         // TODO refactor all accordions for one abstract template
         if ($template_path = $this->getTemplatePath()) {
+            $post = $settings['post'] ? $settings['post'] : get_the_ID();
             include $template_path;
         } else {
-            $post = $settings['post'] ? $settings['post'] : get_the_ID();
-            include \Tourware\Path::getResourcesFolder() . 'layouts/'.$this->getRecordTypeName().'/'.$this->getWidgetName().'/template.php';
+            include \Tourware\Path::getResourcesFolder() . 'layouts/accordion/template.php';
         }
     }
 }

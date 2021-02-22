@@ -83,7 +83,10 @@ class AdditionalFields extends AbstractAccordion {
 
         $this->end_controls_section();
         parent::_register_controls();
+    }
 
+    protected function getTemplatePath () {
+        return \Tourware\Path::getResourcesFolder() . 'layouts/'.$this->getRecordTypeName().'/'.$this->getWidgetName().'/template.php';
     }
 }
 

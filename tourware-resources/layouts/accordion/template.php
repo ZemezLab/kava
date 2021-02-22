@@ -1,11 +1,9 @@
 <?php
 use Elementor\Icons_Manager;
-echo 'лев';
 if (isset($accordion_data)) { ?>
 <div class="bdt-accordion-container">
     <div <?php echo $this->get_render_attribute_string('accordion'); ?> <?php echo $this->get_render_attribute_string('accordion_data'); ?>>
         <?php foreach ($accordion_data as $index => $item) :
-
         $acc_count = $index + 1;
 
         $acc_id = $id . $acc_count;

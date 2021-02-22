@@ -51,4 +51,7 @@ class Dates extends AbstractAccordion {
         return ['tourware-travel-dates'];
     }
 
+    protected function getTemplatePath () {
+        return \Tourware\Path::getResourcesFolder() . 'layouts/'.$this->getRecordTypeName().'/'.$this->getWidgetName().'/template.php';
+    }
 }
