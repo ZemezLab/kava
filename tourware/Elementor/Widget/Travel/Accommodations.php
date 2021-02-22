@@ -87,9 +87,42 @@ class Accommodations extends AbstractAccordion {
         $item_data = $repository->findOneByPostId($post);
         $accommodations = $item_data->getAccommodations();
         foreach ($accommodations as $accommodation) {
+            $tab_content = '';
+            $imgs_lngth = sizeof($accommodation->accommodation->images);
+            if ($imgs_lngth > 0) {
+                if (strpos($accommodation->accommodation->images[0]->image, 'unsplash')) {
+                    $unsplash_options = '?fm=jpg&crop=focalpoint&fit=crop&h=300&w=700';
+                    $img_array = explode("?", $accommodation->accommodation->images[0]->image);
+                    $image_url = $img_array[0] . $unsplash_options;
+                } else {
+                    $cloudinary_options = array(
+                        "secure" => true,
+                        "width" => 300,
+                        "height" => 400,
+                        "crop" => "thumb"
+                    );
+                    $image_url = \Cloudinary::cloudinary_url($accommodation->accommodation->images[0]->image, $cloudinary_options);
+                }
+                $tab_content .= '<div class="accommodation-left"><img class="" src="'. $image_url .'" alt="'. $accommodation->accommodation->title .'"></div>';
+            }
+
+            $tab_content .= '<div class="accommodation-right">';
+            if ($settings['meta_data']) {
+                foreach ($settings['meta_data'] as $meta) {
+                    if ($meta == 'room' && !empty($accommodation->room)) {
+                        $tab_content .= '<div class="room">Ihre Zimmerkategorie: <br>'.$accommodation->room->title.'</div>';
+                    }
+                }
+            }
+
+
+            $tab_content .= '<div class="excerpt">'.$accommodation->accommodation->description.'</div>';
+
+            $tab_content .= '</div>';
+
             $result['accordion_data'][] = [
                 'tab_title' => $accommodation->accommodation->title . ' Nights: ' . $accommodation->nights,
-                'tab_content' => $accommodation->accommodation->description
+                'tab_content' => $tab_content
             ];
         }
 

@@ -117,7 +117,6 @@ class Itinerary extends AbstractAccordion {
                 if (!empty($item->accommodations)) {
                     foreach ($item->accommodations as $item_accommodation) {
                         if (!empty($item_accommodation->travel)) {
-//                            print_r($item_accommodation);
                             if (!empty($item_accommodation->accommodation->url)) {
                                 $link = $item_accommodation->accommodation->url;
                             } else {
