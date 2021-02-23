@@ -157,10 +157,12 @@ class Travel extends Model implements Displayable, Imageable
         });
 
         foreach ($itinerary as $item) {
+
             if (!empty($item->accommodations)) {
                 foreach ($item->accommodations as $item_accommodation) {
                     if (!empty($item_accommodation->travel)) {
                         $accommodation = $item_accommodation;
+//                        echo $accommodation->accommodation->title.$accommodation->nights.'</br>';
                         $acc_id = $item_accommodation->accommodation->id;
                         if (!empty($accommodation) && !empty($acc_id)) {
                             if ($prev == null && $i == 0) {
@@ -173,7 +175,7 @@ class Travel extends Model implements Displayable, Imageable
                                 $nights = 0;
                                 $i++;
                             }
-                            if (!empty($accommodation)) $nights += intval($accommodation->nights);
+                            $nights += intval($accommodation->nights);
                             $prev = $acc_id;
                         }
                     }
