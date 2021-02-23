@@ -34,16 +34,14 @@ foreach($record->itinerary as $value){
     }
 }
 
-if (class_exists('Goto_Kirki')) {
-    $primary_color = \Goto_Kirki::get_option('goto', 'primary_color');
-    $second_color = \Goto_Kirki::get_option('goto', 'second_color');
-} else {
-    $primary_text_color = get_theme_mod('primary_text_color');
-}
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
+    <meta charset="<?php bloginfo( 'charset' ); ?>">
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+    <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+
     <?php wp_head(); ?>
 </head>
 <style>
@@ -83,6 +81,7 @@ if (class_exists('Goto_Kirki')) {
         text-align: center;
         color: #fff;
         max-width: 98%;
+        border-radius: 4px;
     }
 
     .post-login-form h2 {
@@ -97,21 +96,20 @@ if (class_exists('Goto_Kirki')) {
 
     .post-login-form .post-password-form label {
         width: 100%;
+        color: #fff;
     }
 
     .post-password-form input[type="password"] {
         min-width: 300px;
         margin-top: 10px;
         float: none;
-        color: <?php echo $primary_text_color ?>;
     }
-    .post-password-form input[type="submit"] {
-        line-height: 1;
-        padding: 15px 30px;
-    }
+
     .post-login-form .box-header {
         text-align: center;
     }
+
+    input, button, submit { border:none; }
 
     /*@keyframes pulse {*/
     /*    0% {*/
@@ -153,7 +151,7 @@ if (class_exists('Goto_Kirki')) {
                         $output = '<form action="' . esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ) . '" class="post-password-form" method="post">
 	                    <p>' . __( 'This content is password protected. To view it please enter your password below:' ) . '</p>
 	                    <p><label for="' . $label . '">' . __( 'Password:' ) . '<br><input name="post_password" id="' . $label . '" type="password" size="20" /></label></p>
-	                    <p><input class="tyto-button tyto-button-primary" type="submit" name="Submit" value="' . esc_attr_x( 'Start', 'post password form' ) . '" /></p></form>';
+	                    <p><input class="tyto-button tyto-button-primary elementor-button" type="submit" name="Submit" value="' . esc_attr_x( 'Start', 'post password form' ) . '" /></p></form>';
                         echo $output; ?>
                     </div>
                 </div>

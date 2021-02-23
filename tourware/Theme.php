@@ -50,7 +50,7 @@ class Theme
                 get_template_part('/tourware-resources/layouts/travel/protected');
                 die;
             }
-        } );
+        }, 99 );
 
         add_action( 'wp_enqueue_scripts', function () {
             wp_enqueue_script('tourware-js', get_parent_theme_file_uri() . '/public/tourware.js', 'vue', null, true);
