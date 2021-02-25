@@ -68,7 +68,21 @@ abstract class AbstractListing extends Widget
 
         $settings = $this->get_settings();
         $args = $this->getQueryArgs();
+
+        if ($settings['related'] == 'yes') {
+            $post = $settings['post'] ? $settings['post'] : get_the_ID();
+            $main_post_record = $repository->findOneByPostId($post);
+
+            if (!empty($main_post_record->related_items_ids)) {
+                array_push($args['meta_query'], array(
+                    'key' => 'tytoid',
+                    'value' => $main_post_record->related_items_ids,
+                    'compare' => 'IN'
+                ));
+            }
+        }
         unset($args['s']);
+
         $query = new \WP_Query( $args );
         $tiny_slider_id = uniqid( 'advanced-tyto-list-id-' );
         $this->renderCarousel( $tiny_slider_id, $settings['layout'], $settings['col'], $settings['col_tablet'], $settings['col_mobile'] );
@@ -212,6 +226,28 @@ abstract class AbstractListing extends Widget
             'return_value' => 'yes'
         ) );
 
+        $this->add_control( 'related', array(
+            'type'         => Controls_Manager::SWITCHER,
+            'label'        => esc_html__( 'Related' ),
+            'default'      => '',
+            'label_on'     => esc_html__( 'Yes' ),
+            'label_off'    => esc_html__( 'No' ),
+            'return_value' => 'yes'
+        ) );
+
+        $posts = wp_list_pluck(get_posts(['post_type' => ['tytotravels', 'tytoaccommodations', 'tytotravelsbricks'], 'post_status' => 'publish', 'posts_per_page' => -1]), 'post_title', 'ID');
+        $this->add_control(
+            'post',
+            [
+                'label' => __('Post', 'tourware'),
+                'type' => Controls_Manager::SELECT2,
+                'options' => $posts,
+                'default' => in_array(get_post_type(get_the_ID()), ['tytotravels']) ? get_the_ID() : '',
+                'condition' => ['related' => 'yes'],
+                'separator' => 'after'
+            ]
+        );
+
         $tags_taxomomy = get_terms(['taxonomy' => 'post_tag', 'hide_empty' => false]);
         $tags = wp_list_pluck( $tags_taxomomy, 'name', 'slug' );
         $this->add_control( 'item_tags', array(
@@ -321,7 +357,8 @@ abstract class AbstractListing extends Widget
 
     private function sectionSearch() {
         $this->start_controls_section('search', [
-            'label' => esc_html__('Search', 'tyto')
+            'label' => esc_html__('Search', 'tyto'),
+            'condition' => ['related!' => 'yes']
         ]);
 
         $this->add_control(
@@ -1284,32 +1321,37 @@ abstract class AbstractListing extends Widget
         // check if there is default advanced search category
         // only on frontend
         $args['meta_query'] = ['relation' => 'AND'];
-        $search_tag = $search_str = '';
-        if ($settings['adv_list_id'] && !empty($_GET['adv_list_id']) && $_GET['adv_list_id'] == $settings['adv_list_id']) {
-            if (isset($_GET['category']) && !empty($_GET['category']))
-                $search_tag = $_GET['category'];
-            else
-                $search_tag = get_query_var('advanced_search_category_'.$settings['adv_list_id']);
 
-            if (isset($_GET['keywords']) )  $search_str = $_GET['keywords'];
-            else $search_str = get_query_var('s');
+        if ($settings['related'] !== 'yes') {
+            $search_tag = $search_str = '';
+            if ($settings['adv_list_id'] && !empty($_GET['adv_list_id']) && $_GET['adv_list_id'] == $settings['adv_list_id']) {
+                if (isset($_GET['category']) && !empty($_GET['category']))
+                    $search_tag = $_GET['category'];
+                else
+                    $search_tag = get_query_var('advanced_search_category_'.$settings['adv_list_id']);
 
-            if ($search_str) $post_ids = Loader::getPostIDsByKeywords($search_str);
-            $args['post__in'] = $post_ids;
-        }
-        if (!empty($search_tag) && !is_admin()) {
-            $search_tags = explode(',', urldecode($search_tag));
-            $search_tags_args = ['relation' => 'OR'];
-            foreach ($search_tags as $s_tag) {
-                array_push( $search_tags_args, array(
-                    'key'     => 'tytorawdata',
-                    'value'   => '"name":"' . $s_tag . '"',
-                    'compare' => 'LIKE'
-                ) );
+                if (isset($_GET['keywords']) )  $search_str = $_GET['keywords'];
+                else $search_str = get_query_var('s');
+
+                if ($search_str) $post_ids = Loader::getPostIDsByKeywords($search_str);
+                $args['post__in'] = $post_ids;
             }
-            if (!empty($search_tags_args)) $args['meta_query']['search_tag'] = $search_tags_args;
+            if (!empty($search_tag) && !is_admin()) {
+                $search_tags = explode(',', urldecode($search_tag));
+                $search_tags_args = ['relation' => 'OR'];
+                foreach ($search_tags as $s_tag) {
+                    array_push( $search_tags_args, array(
+                        'key'     => 'tytorawdata',
+                        'value'   => '"name":"' . $s_tag . '"',
+                        'compare' => 'LIKE'
+                    ) );
+                }
+                if (!empty($search_tags_args)) $args['meta_query']['search_tag'] = $search_tags_args;
+            }
         }
+
         if (!empty($settings['item_tags']) || !empty($settings['destinations']) || !empty($settings['regions'])) {
+
             if (!empty($settings['item_tags'])) {
                 $args['tag'] = implode(',', $settings['item_tags']);
             }
