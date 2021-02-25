@@ -639,14 +639,7 @@ class Loader {
             'post_type' => ['tytotravels', 'tytoaccommodations'],
             'posts_per_page' => -1,
             'status' => 'publish',
-            'meta_query' => array(
-                'relation' => 'AND',
-                array(
-                    'key' => 'tytodestination',
-                    'value' => $kw,
-                    'compare' => 'LIKE'
-                )
-            )
+            'tytocountries' => $kw
         );
         $t_posts = get_posts($ta_args);
         $by_dest_ids = wp_list_pluck($t_posts, 'ID');
