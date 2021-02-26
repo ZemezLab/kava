@@ -31,6 +31,19 @@ class Theme
         $elementor = new Elementor();
         $elementor->init();
 
+        add_filter( 'query_vars', function($vars) {
+            $vars[] = 'booking';
+            return $vars;
+        } );
+
+        add_action('generate_rewrite_rules', function($wp_rewrite) {
+            $rules = array(
+                'buchung\/([0-9a-zA-Z-]+)?[\/]?$' => 'index.php?p=4391&booking=' . $wp_rewrite->preg_index(1)
+            );
+
+            $wp_rewrite->rules = $rules + $wp_rewrite->rules;
+        });
+
         add_action( 'elementor/dynamic_tags/register_tags', function( $dynamic_tags ) {
             \Elementor\Plugin::$instance->dynamic_tags->register_group( 'tourware', [
                 'title' => 'tourware'

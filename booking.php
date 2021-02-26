@@ -1,11 +1,5 @@
 <?php
-/**
- * The template for displaying all single posts
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
- *
- * @package Kava
- */
+/* Template Name: tourware Buchungsformular */
 
 get_header();
 
@@ -29,6 +23,8 @@ do_action( 'kava-theme/site/site-content-before', 'single' ); ?>
                     ?></main><!-- #main -->
 
                 <?php do_action( 'kava-theme/site/main-after', 'single' ); ?>
+                <script type="application/javascript" src="https://cloud.typisch-touristik.de/assets/js/iframe-receiver.js"></script>
+                <iframe style="width: 100%; height: 100%; border: 0; overflow: hidden;" id="ibe" src="https://cloud.typisch-touristik.de/booking/<?php echo get_query_var('booking'); ?>"></iframe>
 
             </div><!-- #primary -->
 
