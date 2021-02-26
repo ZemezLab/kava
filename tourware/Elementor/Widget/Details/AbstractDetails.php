@@ -108,12 +108,14 @@ class AbstractDetails extends Widget
         ];
         $this->addItemsListRepeater('contact_fields_list', $contact_fields, ['type' => 'contact_person']);
 
+        $tags_taxomomy = get_terms(['taxonomy' => 'post_tag', 'hide_empty' => false]);
+        $tags = wp_list_pluck( $tags_taxomomy, 'name', 'id' );
         $this->add_control(
             'tags',
             [
                 'label' => __('Tags', 'tourware'),
                 'type' => Controls_Manager::SELECT2,
-                'options' => wp_list_pluck(get_option('tyto_tags'), 'name', 'id'),
+                'options' => $tags,
                 'multiple' => true,
                 'condition' => ['type' => 'tags']
             ]

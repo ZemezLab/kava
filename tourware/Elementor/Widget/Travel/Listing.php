@@ -127,7 +127,8 @@ class Listing extends AbstractListing
             ]
         );
 
-        $tags = ($tyto_tags = get_option('tyto_tags', false)) ? wp_list_pluck($tyto_tags, 'name', 'name') : [];
+        $tags_taxomomy = get_terms(['taxonomy' => 'post_tag', 'hide_empty' => false]);
+        $tags = wp_list_pluck( $tags_taxomomy, 'name', 'name' );
         $repeater = new Repeater();
         $repeater->add_control(
             'score_tags',
@@ -192,7 +193,8 @@ class Listing extends AbstractListing
             ]
         );
 
-        $tags = ($tyto_tags = get_option('tyto_tags', false)) ? wp_list_pluck($tyto_tags, 'name', 'name') : [];
+        $tags_taxomomy = get_terms(['taxonomy' => 'post_tag', 'hide_empty' => false]);
+        $tags = wp_list_pluck( $tags_taxomomy, 'name', 'name' );
         $this->add_control(
             'flight_tags',
             [
