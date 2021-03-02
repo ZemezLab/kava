@@ -12,6 +12,14 @@ if ( ! function_exists( 'kava_post_excerpt' ) ) :
 	 * Prints HTML with excerpt.
 	 */
 	function kava_post_excerpt( $args = array() ) {
+
+		$_post = get_post();
+
+		if ( post_password_required( $_post ) ) {
+			echo get_the_password_form( $_post );
+			return;
+		}
+
 		$default_args = array(
 			'before' => '<div class="entry-content">',
 			'after'  => '</div>',
@@ -363,6 +371,12 @@ endif;
 
 if ( ! function_exists( 'kava_post_link' ) ) :
 	function kava_post_link( $args = array() ) {
+
+		$_post = get_post();
+
+		if ( post_password_required( $_post ) ) {
+			return;
+		}
 
 		$default_args = array(
 			'class' => '',
