@@ -3,6 +3,9 @@ Kava Theme. Get the truly easy-to-use free theme with tons of functionality and 
 
 ## Changelog
 
+### 2.1.2
+- ADD: `Show Archive Title` and `Show Archive Description` options
+
 ### 2.1.1
 - FIX: compatibility with WP 5.6
 - FIX: prevent php error in customizer
