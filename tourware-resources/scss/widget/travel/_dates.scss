@@ -37,28 +37,13 @@
     text-align: right;
   }
 
-  .places i {
-    color: green;
-    &.yellow {
-      color: yellow;
-    }
-    &.red {
-      color: red;
-    }
-  }
-
-  .places {
-    width: 5%;
-  }
-
-  .places, .info {
+  .info {
     text-align: center;
     position: relative;
 
     .info-wrapper {
       position: relative;
       display: inline-block;
-      margin-right: 10px;
       &:last-child {
         margin-right: 0;
       }
@@ -72,7 +57,7 @@
       position: absolute;
       background: #000;
       color: #fff;
-      top: 101%;
+      bottom: 101%;
       margin: 0;
       transform: translateX(-50%);
       opacity: 0;
@@ -80,15 +65,15 @@
       transition: all .5s ease-in;
 
       &:before {
-        content: '';
+        content: "";
         display: block;
         width: 0;
         height: 0;
         position: absolute;
         border-left: 5px solid transparent;
         border-right: 5px solid transparent;
-        border-bottom: 5px solid black;
-        top: -5px;
+        border-top: 5px solid black;
+        bottom: -5px;
         left: 51px;
       }
     }
@@ -101,7 +86,6 @@
 
 
   .price {
-    width: 25%;
     text-align: right;
     margin-left: auto;
   }
@@ -126,15 +110,28 @@
   }
 
   @media screen and (max-width: 767px) {
-    .days, .price {
+    .row {
+      position: relative;
+      padding-bottom: 35px;
+    }
+    .days, .price, .info {
       padding-top: 10px;
     }
 
-    .dates, .days, .price {
+    .dates, .days, .price, .info {
       width: 100%;
-      padding-left: 15px;
+      padding-left: 15px !important;
       text-align: left;
     }
+
+    .info {
+      position: absolute;
+      bottom: 0;
+    }
+  }
+
+  .bdt-accordion-title .bdt-accordion-icon {
+    width: 30px !important;
   }
 }
 

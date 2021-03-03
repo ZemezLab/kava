@@ -86,6 +86,19 @@ class Dates extends AbstractAccordion {
         );
 
         $this->add_control(
+            'places_low_color',
+            [
+                'label'   => esc_html__( 'Low Quantity Color', 'tourware' ),
+                'type'    => Controls_Manager::COLOR,
+                'default' => '#ff0000',
+                'selectors' => [
+                    '{{WRAPPER}} i.low-qty' => 'color: {{VALUE}}',
+                ],
+                'condition' => ['show_places' => 'yes'],
+            ]
+        );
+
+        $this->add_control(
             'places_low_tooltip',
             [
                 'label'   => esc_html__( 'Low Quantity Tooltip', 'tourware' ),
@@ -95,6 +108,18 @@ class Dates extends AbstractAccordion {
         );
 
         $this->add_control(
+            'places_avg_color',
+            [
+                'label'   => esc_html__( 'Average Quantity Color', 'tourware' ),
+                'type'    => Controls_Manager::COLOR,
+                'default' => '#ffff00',
+                'selectors' => [
+                    '{{WRAPPER}} i.avg-qty' => 'color: {{VALUE}}',
+                ],
+                'condition' => ['show_places' => 'yes'],
+            ]
+        );
+        $this->add_control(
             'places_average_tooltip',
             [
                 'label'   => esc_html__( 'Average Quantity Tooltip', 'tourware' ),
@@ -103,6 +128,18 @@ class Dates extends AbstractAccordion {
             ]
         );
 
+        $this->add_control(
+            'places_high_color',
+            [
+                'label'   => esc_html__( 'High Quantity Color', 'tourware' ),
+                'type'    => Controls_Manager::COLOR,
+                'default' => '#008000',
+                'selectors' => [
+                    '{{WRAPPER}} i.high-qty' => 'color: {{VALUE}}',
+                ],
+                'condition' => ['show_places' => 'yes'],
+            ]
+        );
         $this->add_control(
             'places_high_tooltip',
             [
@@ -165,6 +202,14 @@ class Dates extends AbstractAccordion {
         );
 
         $repeater->add_control(
+            'info_icon_color',
+            [
+                'label' => __( 'Icon Color', 'elementor' ),
+                'type' => Controls_Manager::COLOR,
+            ]
+        );
+
+        $repeater->add_control(
             'info_tooltip',
             [
                 'label' => __( 'Tooltip', 'elementor' ),
@@ -180,6 +225,53 @@ class Dates extends AbstractAccordion {
                 'fields' => $repeater->get_controls(),
                 'title_field' => '{{{ elementor.helpers.renderIcon( this, info_icon, {}, "i", "panel" ) || \'<i class="{{ icon }}" aria-hidden="true"></i>\' }}} {{{ info_tags }}}',
                 'condition' => ['show_information' => 'yes']
+            ]
+        );
+
+        $this->end_controls_section();
+
+        $this->start_controls_section('icons_styling',
+            [
+                'label' => 'Info Icons',
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+        $this->add_control(
+            'left_indent',
+            [
+                'label' => __( 'Left Indent', 'elementor-pro' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'max' => 50,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .info' => 'padding-left: {{SIZE}}{{UNIT}}',
+                ],
+                'default' => [
+                    'size' => 10,
+                ],
+            ]
+        );
+
+
+        $this->add_control(
+            'icon_spacing',
+            [
+                'label' => __( 'Icon Spacing', 'elementor-pro' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'max' => 50,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .info-wrapper' => 'margin-right: {{SIZE}}{{UNIT}}',
+                ],
+                'default' => [
+                    'size' => 10,
+                ],
             ]
         );
 
@@ -209,34 +301,38 @@ class Dates extends AbstractAccordion {
             $tab_title .= '<div class="dates" data-value="'.$dates_value.'">'.date_i18n($date_format, strtotime($date->start)).' - '.date_i18n($date_format, strtotime($date->end)).'</div>';
             $tab_title .= '<div class="days">'.date_diff($start, $end)->format('%d').' Tage</div>';
 
-            $tab_title .= '<div class="places">';
+
+            $tab_title .= '<div class="info">';
             if ($settings['show_places'] === 'yes') {
-                $color = 'green';
+                $tab_title .= '<div class="info-wrapper">';
+                $class = 'high-qty';
                 $free_places = $date->maxPax - $date->bookedPax;
                 $tooltip = $settings['places_high_tooltip'];
                 if ($free_places === 0) {
-                    $color = 'red';
+                    $class = 'low-qty';
                     $tooltip = $settings['places_low_tooltip'];
                 } elseif ($free_places > 0 && $free_places < 4) {
-                    $color = 'yellow';
+                    $color = 'avg-qty';
                     $tooltip = $settings['places_average_tooltip'];
                 }
 
-                $tab_title .= '<i class="'.$color.' fas fa-circle"></i>';
+                $tab_title .= '<i class="'.$class.' fas fa-circle"></i>';
                 if (!empty($tooltip)) {
                     $tab_title .= '<span class="tooltip">'.$tooltip.'</span>';
                 }
+                $tab_title .= '</div>';
             }
-            $tab_title .= '</div>';
 
-            $tab_title .= '<div class="info">';
             if ($settings['show_information'] === 'yes' && !empty($date->tags)) {
                 foreach ($settings['info'] as $info) {
                     foreach ($date->tags as $tag) {
                         if (array_search($tag->name, $info['info_tags']) !== false) {
                             $tab_title .= '<div class="info-wrapper">';
+                            $icon_attrs = [];
+                            if ($info['info_icon_color'])
+                                $icon_attrs = ['style' => 'color: '.$info['info_icon_color']];
                             ob_start();
-                            Icons_Manager::render_icon($info['info_icon'], ['aria-hidden' => 'true']);
+                            Icons_Manager::render_icon($info['info_icon'], $icon_attrs);
                             $tab_title .= ob_get_clean();
                             if ($info['info_tooltip']) $tab_title .= '<span class="tooltip">'.$info['info_tooltip'].'</span>';
                             $tab_title .= '</div>';
