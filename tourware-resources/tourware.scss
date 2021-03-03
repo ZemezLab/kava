@@ -1574,7 +1574,30 @@ left: 0
 }
 
 .tns-outer {
-position: relative
+  position: relative;
+  .tns-nav {
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+    height: 0;
+
+    button[data-nav] {
+      width: 12px;
+      height: 12px;
+      margin: 0 5px;
+      border-radius: 50%;
+      display: inline-block;
+      background-color: $color-text;
+      border: 0;
+      padding: 0;
+      &.tns-nav-active {
+        cursor: default;
+        background: $color-primary
+      }
+    }
+  }
 }
 
 .tns-outer [hidden] {
@@ -1751,27 +1774,3 @@ font-family: "Font Awesome 5 Pro";
 content: "\f054"
 }
 
-.tns-nav {
-position: absolute;
-bottom: 30px;
-width: 100%;
-text-align: center;
-z-index: 2;
-height: 0
-}
-
-.tns-nav button {
-width: 12px;
-height: 12px;
-margin: 0 5px;
-border-radius: 50%;
-display: inline-block;
-background-color: $color-text;
-border: 0;
-padding: 0;
-}
-
-.tns-nav button.tns-nav-active {
-cursor: default;
-background: $color-primary
-}

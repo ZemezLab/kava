@@ -19,7 +19,7 @@
 }
 
 .advanced-tyto-list .tours-layout-carousel .tns-outer {
-  padding-bottom: 50px;
+  padding-bottom: 20px;
 }
 
 .advanced-tyto-list .tours-layout-carousel .tns-ovh {
@@ -30,6 +30,7 @@
   float: none;
   display: inline-block;
   padding-bottom: 10px;
+  margin-bottom: 0 !important;
 }
 
 .advanced-tyto-list .tours-layout-carousel .ht-grid-item:not(.tns-slide-active) {
@@ -448,7 +449,9 @@
 .advanced-tyto-list.layout-6 .categories {
   margin-bottom: 10px;
 }
-
+.advanced-tyto-list.layout-6 .push {
+  margin-top: auto;
+}
 .advanced-tyto-list.layout-6 .scores {
   display: flex;
   margin-bottom: 15px;
@@ -463,7 +466,6 @@
 
 .advanced-tyto-list.layout-6 .footer {
   display: flex;
-  margin-top: auto;
 }
 .advanced-tyto-list.layout-6 .footer .left {
 }

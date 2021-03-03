@@ -57,6 +57,7 @@
                     <?php } ?>
                 </div>
             <?php } ?>
+            <div class="push"></div>
             <?php if (!empty($scores)) { ?>
             <div class="scores">
             <?php foreach ($scores as $score) { ?>

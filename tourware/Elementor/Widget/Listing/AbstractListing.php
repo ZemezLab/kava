@@ -336,7 +336,10 @@ abstract class AbstractListing extends Widget
 
     private function sectionPagination() {
         $this->start_controls_section('pagination_options', [
-            'label' => esc_html__('Pagination', 'tyto')
+            'label' => esc_html__('Pagination', 'tyto'),
+            'condition'    => array(
+                'layout' => 'grid'
+            )
         ]);
         $this->add_control( 'pagi', array(
             'type'         => Controls_Manager::SELECT,
@@ -347,10 +350,7 @@ abstract class AbstractListing extends Widget
                 'numbers' => esc_html__( 'Numbers', 'tyto' ),
                 'load_more' => esc_html__( 'Load More', 'tyto' ),
                 'infinity_scroll' => esc_html__( 'Infinity Scroll', 'tyto' ),
-            ],
-            'condition'    => array(
-                'layout' => 'grid'
-            )
+            ]
         ) );
         $this->end_controls_section();
     }
