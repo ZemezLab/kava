@@ -271,7 +271,7 @@ class Search extends Widget
             ]
         );
 
-        $tags_taxomomy = get_terms(['taxonomy' => 'post_tag', 'hide_empty' => false]);
+        $tags_taxomomy = get_terms(['taxonomy' => 'tytotags', 'hide_empty' => false]);
         $tags = wp_list_pluck( $tags_taxomomy, 'name', 'name' );
         $this->add_control('search_tags', array(
             'type' => Controls_Manager::SELECT2,

@@ -127,7 +127,7 @@ class Listing extends AbstractListing
             ]
         );
 
-        $tags_taxomomy = get_terms(['taxonomy' => 'post_tag', 'hide_empty' => false]);
+        $tags_taxomomy = get_terms(['taxonomy' => 'tytotags', 'hide_empty' => false]);
         $tags = wp_list_pluck( $tags_taxomomy, 'name', 'name' );
         $repeater = new Repeater();
         $repeater->add_control(
@@ -193,7 +193,7 @@ class Listing extends AbstractListing
             ]
         );
 
-        $tags_taxomomy = get_terms(['taxonomy' => 'post_tag', 'hide_empty' => false]);
+        $tags_taxomomy = get_terms(['taxonomy' => 'tytotags', 'hide_empty' => false]);
         $tags = wp_list_pluck( $tags_taxomomy, 'name', 'name' );
         $this->add_control(
             'flight_tags',

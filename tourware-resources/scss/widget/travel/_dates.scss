@@ -1,4 +1,8 @@
 .bdt-accordion-container .bdt-accordion.dates-accordion {
+  .bdt-accordion-item .bdt-accordion-title {
+    overflow: visible !important;
+  }
+
   .col-auto {
     flex: 0 0 auto;
     width: auto;
@@ -43,13 +47,26 @@
     }
   }
 
-  .places, .languages, .info {
+  .places {
     width: 5%;
+  }
+
+  .places, .info {
     text-align: center;
     position: relative;
 
+    .info-wrapper {
+      position: relative;
+      display: inline-block;
+      margin-right: 10px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
     .tooltip {
-      padding: 0 3px;
+      padding: 5px 8px;
+      border-radius: 4px;
       width: 130px;
       display: inline;
       position: absolute;
@@ -61,6 +78,19 @@
       opacity: 0;
       visibility: hidden;
       transition: all .5s ease-in;
+
+      &:before {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        position: absolute;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid black;
+        top: -5px;
+        left: 51px;
+      }
     }
 
     i:hover + .tooltip {
@@ -73,6 +103,7 @@
   .price {
     width: 25%;
     text-align: right;
+    margin-left: auto;
   }
 
   .bdt-accordion-icon {

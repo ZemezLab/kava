@@ -112,82 +112,13 @@ class Dates extends AbstractAccordion {
             ]
         );
 
-        $this->add_control(
-            'heading_languages',
-            [
-                'label' => __( 'Languages', 'tourware' ),
-                'type' => Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
-
-        $this->add_control(
-            'show_languages',
-            [
-                'label' => __('Show', 'elementor-pro'),
-                'type' => Controls_Manager::SWITCHER,
-                'label_on' => __('Show', 'elementor-pro'),
-                'label_off' => __('Hide', 'elementor-pro'),
-                'default' => 'yes',
-            ]
-        );
-
-        $tags_taxomomy = get_terms(['taxonomy' => 'post_tag', 'hide_empty' => false]);
+        $tags_taxomomy = get_terms(['taxonomy' => 'tytotags', 'hide_empty' => false]);
         $tags = wp_list_pluck( $tags_taxomomy, 'name', 'name' );
-
-        $repeater = new Repeater();
-        $repeater->add_control(
-            'lang_tags',
-            [
-                'label' => __( 'Tags', 'elementor' ),
-                'type' => Controls_Manager::SELECT2,
-                'label_block' => true,
-                'placeholder' => __( 'Tags', 'elementor' ),
-                'default' => __( '', 'elementor' ),
-                'multiple' => true,
-                'dynamic' => [
-                    'active' => true,
-                ],
-                'options' => $tags
-            ]
-        );
-
-        $repeater->add_control(
-            'lang_icon',
-            [
-                'label' => __( 'Icon', 'elementor' ),
-                'type' => Controls_Manager::ICONS,
-                'default' => [
-                    'value' => 'far fa-language',
-                    'library' => 'fa-regular',
-                ],
-                'fa4compatibility' => 'icon',
-            ]
-        );
-
-        $repeater->add_control(
-            'lang_tooltip',
-            [
-                'label' => __( 'Tooltip', 'elementor' ),
-                'type' => Controls_Manager::TEXTAREA,
-            ]
-        );
-
-        $this->add_control(
-            'languages',
-            [
-                'label' => __( 'Items', 'elementor' ),
-                'type' => Controls_Manager::REPEATER,
-                'fields' => $repeater->get_controls(),
-                'title_field' => '{{{ elementor.helpers.renderIcon( this, lang_icon, {}, "i", "panel" ) || \'<i class="{{ icon }}" aria-hidden="true"></i>\' }}} {{{ lang_tags }}}',
-                'condition' => ['show_languages' => 'yes']
-            ]
-        );
 
         $this->add_control(
             'heading_information',
             [
-                'label' => __( 'Information', 'tourware' ),
+                'label' => __( 'Additional Information', 'tourware' ),
                 'type' => Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -298,30 +229,17 @@ class Dates extends AbstractAccordion {
             }
             $tab_title .= '</div>';
 
-            $tab_title .= '<div class="languages">';
-            if ($settings['show_languages'] === 'yes' && !empty($date->tags)) {
-                foreach ($settings['languages'] as $language) {
-                    foreach ($date->tags as $tag) {
-                        if (array_search($tag->name, $language['lang_tags']) !== false) {
-                            ob_start();
-                            Icons_Manager::render_icon($language['lang_icon'], ['aria-hidden' => 'true']);
-                            $tab_title .= ob_get_clean();
-                            if ($language['lang_tooltip']) $tab_title .= '<span class="tooltip">'.$language['lang_tooltip'].'</span>';
-                        }
-                    }
-                }
-            }
-            $tab_title .= '</div>';
-
             $tab_title .= '<div class="info">';
-            if ($settings['show_info'] === 'yes' && !empty($date->tags)) {
+            if ($settings['show_information'] === 'yes' && !empty($date->tags)) {
                 foreach ($settings['info'] as $info) {
                     foreach ($date->tags as $tag) {
                         if (array_search($tag->name, $info['info_tags']) !== false) {
+                            $tab_title .= '<div class="info-wrapper">';
                             ob_start();
                             Icons_Manager::render_icon($info['info_icon'], ['aria-hidden' => 'true']);
                             $tab_title .= ob_get_clean();
                             if ($info['info_tooltip']) $tab_title .= '<span class="tooltip">'.$info['info_tooltip'].'</span>';
+                            $tab_title .= '</div>';
                         }
                     }
                 }

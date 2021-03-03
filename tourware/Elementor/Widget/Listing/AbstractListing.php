@@ -248,7 +248,7 @@ abstract class AbstractListing extends Widget
             ]
         );
 
-        $tags_taxomomy = get_terms(['taxonomy' => 'post_tag', 'hide_empty' => false]);
+        $tags_taxomomy = get_terms(['taxonomy' => 'tytotags', 'hide_empty' => false]);
         $tags = wp_list_pluck( $tags_taxomomy, 'name', 'slug' );
         $this->add_control( 'item_tags', array(
             'type'     => Controls_Manager::SELECT2,
@@ -968,7 +968,7 @@ abstract class AbstractListing extends Widget
 
     protected function optionsBadge()
     {
-        $tags_taxomomy = get_terms(['taxonomy' => 'post_tag', 'hide_empty' => false]);
+        $tags_taxomomy = get_terms(['taxonomy' => 'tytotags', 'hide_empty' => false]);
         $tags = wp_list_pluck( $tags_taxomomy, 'name', 'name' );
         $this->add_control(
             'heading_badge_options',
@@ -1136,7 +1136,7 @@ abstract class AbstractListing extends Widget
     }
 
     protected function optionsCategories() {
-        $tags_taxomomy = get_terms(['taxonomy' => 'post_tag', 'hide_empty' => false]);
+        $tags_taxomomy = get_terms(['taxonomy' => 'tytotags', 'hide_empty' => false]);
         $tags = wp_list_pluck( $tags_taxomomy, 'name', 'name' );
         $this->add_control(
             'heading_categories_options',
