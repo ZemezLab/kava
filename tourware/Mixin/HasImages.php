@@ -42,4 +42,29 @@ trait HasImages
         }
     }
 
+    /**
+     * Returns image by index.
+     *
+     * @param int $i
+     * @param array $options
+     * @return string
+     * @throws \Exception
+     */
+    public function getImageUri($i, array $options = array())
+    {
+        $data = $this->getRawData();
+
+        if (isset($data->images) && isset($data->images[$i])) {
+            $imageIdentifier = $data->images[$i]->image;
+
+            if (strpos($imageIdentifier, 'unsplash')) {
+                $parts = explode('?', $imageIdentifier);
+                return $parts[0] . '?fm=jpg&crop=focalpoint&fit=crop'. ($options['width'] ? '&w=' . $options['width'] : '').($options['height'] ? '&h=' . $options['height'] : '');
+            }
+
+            return \Cloudinary::cloudinary_url($imageIdentifier, $options);
+        }
+
+        return false;
+    }
 }
