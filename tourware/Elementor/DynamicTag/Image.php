@@ -61,7 +61,7 @@ class Image extends Data_Tag {
     public function get_categories() {
         return [
             \Elementor\Modules\DynamicTags\Module::IMAGE_CATEGORY,
-            \Elementor\Modules\DynamicTags\Module::GALLERY_CATEGORY,
+//            \Elementor\Modules\DynamicTags\Module::GALLERY_CATEGORY,
             \Elementor\Modules\DynamicTags\Module::MEDIA_CATEGORY
         ];
     }
