@@ -242,7 +242,7 @@ class Loader {
         $search_res = [];
         if ($search_str) {
             $search_res = $wpdb->get_results('SELECT * FROM '.$wpdb->prefix.'posts
-                         WHERE (post_type = "ht_dest" OR post_type = "tytodestinations")  
+                         WHERE (post_type = "tytodestinations")  
                          AND post_title LIKE "'.$search_str.'%"
                          AND post_status = "publish" 
                          ORDER BY post_title ASC');
