@@ -312,7 +312,7 @@ class Dates extends AbstractAccordion {
                     $class = 'low-qty';
                     $tooltip = $settings['places_low_tooltip'];
                 } elseif ($free_places > 0 && $free_places < 4) {
-                    $color = 'avg-qty';
+                    $class = 'avg-qty';
                     $tooltip = $settings['places_average_tooltip'];
                 }
 

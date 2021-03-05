@@ -65,6 +65,16 @@ class Itinerary extends AbstractAccordion {
                 'default' => 'yes'
             ]
         );
+        $this->add_control(
+            'accommodation_prefix',
+            [
+                'label' => __('Accommodation Prefix', 'tourware'),
+                'type' => Controls_Manager::TEXT,
+                'default' => 'Unterkunft: ',
+                'condition' => ['show_accommodation' => 'yes']
+            ]
+        );
+
         $this->end_controls_section();
 
         $this->addControlGroup([
@@ -119,6 +129,10 @@ class Itinerary extends AbstractAccordion {
                         if (!empty($item_accommodation->travel)) {
                             if (!empty($item_accommodation->accommodation->url)) {
                                 $link = $item_accommodation->accommodation->url;
+                                $parsed = parse_url($link);
+                                if (empty($parsed['scheme'])) {
+                                    $link = 'https://' . ltrim($link, '/');
+                                }
                             } else {
                                 $tytoid = $item_accommodation->accommodation->id;
                                 $accommodations = get_posts(array(
@@ -128,13 +142,14 @@ class Itinerary extends AbstractAccordion {
                                     'post_status' => 'publish',
                                     'posts_per_page' => 1
                                 ));
+
                                 if (count($accommodations)) {
                                     $accommodation_wp_post = array_shift($accommodations);
                                     $link = get_permalink($accommodation_wp_post->ID);
                                 }
                             }
                             if ($link) {
-                                $tab_content .= '<div class="accommodation">Unterkunft: <a href="'.$link.'">'.$item_accommodation->accommodation->title. '</a></div>';
+                                $tab_content .= '<div class="accommodation">'.$settings['accommodation_prefix'].'<a href="'.$link.'">'.$item_accommodation->accommodation->title. '</a></div>';
                             }
                         }
                     }
