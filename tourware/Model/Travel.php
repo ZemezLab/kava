@@ -70,9 +70,11 @@ class Travel extends Model implements Displayable, Imageable
     {
         $itinerary = $this->getRawProperty('itinerary');
 
-        usort($itinerary, function($a, $b) {
-            return $a->position <=> $b->position;
-        });
+        if (is_array($itinerary)) {
+            usort($itinerary, function($a, $b) {
+                return $a->position <=> $b->position;
+            });
+        }
 
         return $itinerary ? $itinerary : array();
     }
