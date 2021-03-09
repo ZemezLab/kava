@@ -84,7 +84,8 @@ class Details extends AbstractDetails {
         } elseif ($settings['type'] == 'dates') {
             $dates = $item_data->getDates();
             $date_format = 'd.m.Y';
-            if (count($dates) == 1) {
+            $today = date('Y-m-d');
+            if (count($dates) == 1 && date('Y-m-d', strtotime($dates[0]->start) >= $today)) {
                 $date_start = $dates[0]->start;
                 $date_end = $dates[0]->end;
             } else if (count($dates) > 1) {
@@ -98,8 +99,15 @@ class Details extends AbstractDetails {
                         }
                     }
                 }
-                if (empty($date_start)) $date_start = $dates[0]->start;
-                if (empty($date_end)) $date_end = $dates[0]->end;
+                if (empty($date_start)) {
+                    foreach ($dates as $date) {
+                        if (date('Y-m-d', strtotime($date->start)) >= $today) {
+                            $date_start = $date->start;
+                            $date_end = $date->end;
+                            break;
+                        }
+                    }
+                }
             }
             if (!empty($date_start) && !empty($date_end)) {
                 $dates_str = date_i18n($date_format, strtotime($date_start)).' - '.date_i18n($date_format, strtotime($date_end));

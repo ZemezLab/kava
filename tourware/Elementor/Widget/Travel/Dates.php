@@ -289,9 +289,11 @@ class Dates extends AbstractAccordion {
         $dates = $item_data->getDates();
 
         foreach ($dates as $date) {
-//            print_r($date);
             $date_format = 'D, d.m.Y';
             $start = date_create($date->start);
+            $today = date('Y-m-d');
+            if ($start->format('Y-m-d') < $today) continue;
+
             $end = date_create($date->end);
             $dates_value = $start->format('d.m.Y').'-'.$end->format('d.m.Y');
             $price_value = number_format($date->price, 0, ',', '.');
