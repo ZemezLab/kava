@@ -75,6 +75,28 @@ class Itinerary extends AbstractAccordion {
             ]
         );
 
+        $this->add_control(
+            'external_url',
+            [
+                'label' => __('External URL', 'tourware'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Yes', 'elementor-pro' ),
+                'label_off' => __( 'No', 'elementor-pro' ),
+                'default' => 'yes'
+            ]
+        );
+
+        $this->add_control(
+            'blank',
+            [
+                'label' => __('Open in a new page', 'tourware'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Yes', 'elementor-pro' ),
+                'label_off' => __( 'No', 'elementor-pro' ),
+                'default' => 'yes'
+            ]
+        );
+
         $this->end_controls_section();
 
         $this->addControlGroup([
@@ -127,7 +149,7 @@ class Itinerary extends AbstractAccordion {
                 if (!empty($item->accommodations)) {
                     foreach ($item->accommodations as $item_accommodation) {
                         if (!empty($item_accommodation->travel)) {
-                            if (!empty($item_accommodation->accommodation->url)) {
+                            if (!empty($item_accommodation->accommodation->url) && $settings['external_url'] === 'yes') {
                                 $link = $item_accommodation->accommodation->url;
                                 $parsed = parse_url($link);
                                 if (empty($parsed['scheme'])) {
@@ -149,7 +171,7 @@ class Itinerary extends AbstractAccordion {
                                 }
                             }
                             if ($link) {
-                                $tab_content .= '<div class="accommodation">'.$settings['accommodation_prefix'].'<a href="'.$link.'">'.$item_accommodation->accommodation->title. '</a></div>';
+                                $tab_content .= '<div class="accommodation">'.$settings['accommodation_prefix'].'<a href="'.$link.'"'.($settings['blank'] === 'yes' ? ' target="_blank"' : '' ).'>'.$item_accommodation->accommodation->title. '</a></div>';
                             }
                         }
                     }
