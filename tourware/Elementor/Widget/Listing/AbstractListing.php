@@ -1355,7 +1355,7 @@ abstract class AbstractListing extends Widget
         if (!empty($settings['item_tags']) || !empty($settings['destinations']) || !empty($settings['regions'])) {
 
             if (!empty($settings['item_tags'])) {
-                $args['tag'] = implode(',', $settings['item_tags']);
+                $args['tytotags'] = implode(',', $settings['item_tags']);
             }
 
             if (!empty($settings['destinations'])) {
