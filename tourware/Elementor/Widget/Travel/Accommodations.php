@@ -159,6 +159,30 @@ class Accommodations extends AbstractAccordion {
             ]
         );
 
+        $this->add_control(
+            'external_url',
+            [
+                'label' => __('External URL', 'tourware'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Yes', 'elementor-pro' ),
+                'label_off' => __( 'No', 'elementor-pro' ),
+                'default' => 'yes',
+                'condition' => [ 'show_read_more' => 'yes' ],
+            ]
+        );
+
+        $this->add_control(
+            'blank',
+            [
+                'label' => __('Open in a new page', 'tourware'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Yes', 'elementor-pro' ),
+                'label_off' => __( 'No', 'elementor-pro' ),
+                'default' => 'yes',
+                'condition' => [ 'show_read_more' => 'yes' ],
+            ]
+        );
+
         $this->end_controls_section();
 
         $this->addControlGroup(['id' => 'style_image', 'type' => 'image']);
@@ -226,8 +250,12 @@ class Accommodations extends AbstractAccordion {
 
             $tab_content .= '<div class="excerpt">'.$accommodation->accommodation->description.'</div>';
 
-            if (!empty($accommodation->accommodation->url)) {
+            if (!empty($accommodation->accommodation->url) && $settings['external_url'] === 'yes') {
                 $link = $accommodation->accommodation->url;
+                $parsed = parse_url($link);
+                if (empty($parsed['scheme'])) {
+                    $link = 'https://' . ltrim($link, '/');
+                }
             } else {
                 $tytoid = $accommodation->accommodation->id;
                 $wp_accommodations = get_posts(array(
@@ -243,7 +271,7 @@ class Accommodations extends AbstractAccordion {
                 }
             }
             if ($settings['show_read_more'] && $link) {
-                $tab_content .= '<a href="'.$link.'" class="elementor-button read-more">'.$settings['read_more_text'].'</a>';
+                $tab_content .= '<a href="'.$link.'"'.($settings['blank'] === 'yes' ? ' target="_blank"' : '' ).' class="elementor-button read-more">'.$settings['read_more_text'].'</a>';
             }
 
             $tab_content .= '</div>';
