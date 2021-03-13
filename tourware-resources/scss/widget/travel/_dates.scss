@@ -1,6 +1,21 @@
+.years-filter {
+  a {
+    display: inline-block;
+    padding: 10px;
+
+    &.active {
+      text-decoration: underline;
+      color: $color-text;
+    }
+  }
+}
 .bdt-accordion-container .bdt-accordion.dates-accordion {
-  .bdt-accordion-item .bdt-accordion-title {
-    overflow: visible !important;
+  .bdt-accordion-item {
+    width: 100%;
+
+    .bdt-accordion-title {
+      overflow: visible !important;
+    }
   }
 
   .col-auto {

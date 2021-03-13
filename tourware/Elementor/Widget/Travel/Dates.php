@@ -3,8 +3,10 @@ namespace Tourware\Elementor\Widget\Travel;
 
 use Elementor\Controls_Manager;
 use Elementor\Icons_Manager;
+use Elementor\Plugin;
 use Elementor\Repeater;
 use Tourware\Elementor\Widget\Accordion\AbstractAccordion;
+use Tourware\Path;
 
 class Dates extends AbstractAccordion {
     /**
@@ -47,12 +49,6 @@ class Dates extends AbstractAccordion {
         return 'dates';
     }
 
-    /**
-     * @return array
-     */
-    public function get_script_depends() {
-        return ['tourware-travel-dates'];
-    }
 
     protected function _register_controls()
     {
@@ -62,6 +58,25 @@ class Dates extends AbstractAccordion {
             'dates_options',
             [
                 'label' => __( 'Dates Options', 'elementor-pro' )
+            ]
+        );
+
+        $this->add_control(
+            'heading_year_filter',
+            [
+                'label' => __( 'Years Filter', 'tourware' ),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_control(
+            'show_years_filter',
+            [
+                'label' => __('Show', 'elementor-pro'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __('Show', 'elementor-pro'),
+                'label_off' => __('Hide', 'elementor-pro'),
             ]
         );
 
@@ -274,6 +289,72 @@ class Dates extends AbstractAccordion {
                 ],
             ]
         );
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            'years_filter',
+            [
+                'label' => __( 'Years Filter', 'tourware' ),
+                'tab' => Controls_Manager::TAB_STYLE,
+                'condition' => ['show_years_filter' => 'yes']
+            ]
+        );
+
+        $this->add_control(
+            'years_filter_spacing',
+            [
+                'label' => __( 'Item Spacing', 'elementor' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', 'em', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .years-filter a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'years_filter_align', array(
+            'type'           => Controls_Manager::CHOOSE,
+            'label'          => esc_html__( 'Alignment', 'elementor-pro' ),
+            'options'        => array(
+                'left'   => array(
+                    'title' => esc_html__( 'Left', 'elementor-pro' ),
+                    'icon'  => 'fa fa-align-left'
+                ),
+                'center' => array(
+                    'title' => esc_html__( 'Center', 'elementor-pro' ),
+                    'icon'  => 'fa fa-align-center'
+                ),
+                'right'  => array(
+                    'title' => esc_html__( 'Right', 'elementor-pro' ),
+                    'icon'  => 'fa fa-align-right'
+                ),
+            ),
+            'default'        => 'center',
+            'tablet_default' => 'center',
+            'mobile_default' => 'center',
+            'selectors'      => array(
+                '{{WRAPPER}} .years-filter' => 'text-align: {{VALUE}};'
+            ),
+        ) );
+
+        $this->add_control(
+            'color', array(
+            'type'      => Controls_Manager::COLOR,
+            'label'     => esc_html__( 'Color', 'elementor-pro' ),
+            'selectors' => array(
+                '{{WRAPPER}} .years-filter a' => 'color: {{VALUE}};',
+            ),
+        ) );
+
+        $this->add_control(
+            'active_color', array(
+            'type'      => Controls_Manager::COLOR,
+            'label'     => esc_html__( 'Active Item Color', 'tourvare' ),
+            'selectors' => array(
+                '{{WRAPPER}} .years-filter a.active' => 'color: {{VALUE}};',
+            ),
+        ) );
 
         $this->end_controls_section();
     }
@@ -287,6 +368,7 @@ class Dates extends AbstractAccordion {
         $repository = \Tourware\Repository\Travel::getInstance();
         $item_data = $repository->findOneByPostId($post);
         $dates = $item_data->getDates();
+        $years = [];
 
         foreach ($dates as $date) {
             $date_format = 'D, d.m.Y';
@@ -294,6 +376,7 @@ class Dates extends AbstractAccordion {
             $today = date('Y-m-d');
             if ($start->format('Y-m-d') < $today) continue;
 
+            if (!in_array($start->format('Y'), $years)) $years[] = $start->format('Y');
             $end = date_create($date->end);
             $dates_value = $start->format('d.m.Y').'-'.$end->format('d.m.Y');
             $price_value = number_format($date->price, 0, ',', '.');
@@ -356,12 +439,28 @@ class Dates extends AbstractAccordion {
             }
             if ($date->description) $tab_content .= '<div class="description">'.$date->description.'</div>';
 
+            $tab_data = [];
+            $tab_data[] = ['name' => 'year', 'value' => $start->format('Y') ];
+
             $result['accordion_data'][] = [
                 'tab_title' => $tab_title,
-                'tab_content' => $tab_content
+                'tab_content' => $tab_content,
+                'tab_data' => $tab_data
             ];
         }
 
+        if (!empty($years)) $result['years'] = $years;
+
         return $result;
+    }
+
+    protected function renderBefore($data)
+    {
+        $settings = $this->get_settings();
+        if ($settings['show_years_filter']) {
+            extract($data);
+            wp_enqueue_script('tourware-years-filter', Path::getResourcesUri(). 'js/widget/travel/years-filter.js', ['jquery'], PLUGIN_NAME_VERSION, true );
+            include Path::getResourcesFolder() . 'layouts/travel/dates/years-filter.php';
+        }
     }
 }

@@ -11,6 +11,7 @@ if (isset($accordion_data)) { ?>
 
         $tab_title_setting_key = $acc_id.'-tab_title-'.$index;
         $tab_content_setting_key = $acc_id.'-tab_content-'.$index;
+        $tab_title_data = $acc_id.'-tab_data-'.$index;
 
         $this->add_render_attribute($tab_title_setting_key, [
             'class' => ['bdt-accordion-title'],
@@ -30,13 +31,20 @@ if (isset($accordion_data)) { ?>
         $tab_title = $item['tab_title'];
         $tab_content = $item['tab_content'];
 
+        if (!empty($item['tab_data'])) {
+            foreach ($item['tab_data'] as $tab_data) {
+                $this->add_render_attribute($tab_title_data, [
+                    'data-'.$tab_data['name'] => $tab_data['value'],
+                ]);
+            }
+        }
+
         ?>
-        <div class="bdt-accordion-item">
+        <div class="bdt-accordion-item" <?php echo $this->get_render_attribute_string($tab_title_data); ?>>
             <<?php echo esc_attr($settings['title_html_tag']); ?>
             <?php echo $this->get_render_attribute_string($tab_title_setting_key); ?>
             id="<?php echo strtolower(preg_replace('#[ -]+#', '-', trim(preg_replace("![^a-z0-9]+!i", " ", esc_attr($acc_id))))) ?>"
-            data-accordion-index="<?php echo esc_attr($index); ?>"
-            data-title="<?php echo strtolower(preg_replace('#[ -]+#', '-', trim(preg_replace("![^a-z0-9]+!i", " ", esc_html($tab_title))))) ?>" >
+            data-accordion-index="<?php echo esc_attr($index); ?>">
 
             <?php if ( $settings['accordion_icon']['value'] ) : ?>
                 <span class="bdt-accordion-icon bdt-flex-align-<?php echo esc_attr($settings['icon_align']); ?>"

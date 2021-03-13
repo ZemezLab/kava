@@ -8,6 +8,7 @@ use Elementor\Icons_Manager;
 use Tourware\Elementor\Widget;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Typography;
+use Tourware\Path;
 
 class AbstractAccordion extends Widget {
 
@@ -65,6 +66,10 @@ class AbstractAccordion extends Widget {
     }
 
     protected function getTemplatePath() {
+        return false;
+    }
+
+    protected function renderBefore($data) {
         return false;
     }
 
@@ -776,7 +781,8 @@ class AbstractAccordion extends Widget {
         $data = $this->getTemplateData();
         extract($data);
 
-        // TODO refactor all accordions for one abstract template
+        $this->renderBefore($data);
+
         if ($template_path = $this->getTemplatePath()) {
             $post = $settings['post'] ? $settings['post'] : get_the_ID();
             include $template_path;
