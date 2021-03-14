@@ -2,6 +2,8 @@
 namespace Tourware\Elementor\Widget\Travel;
 
 use Elementor\Controls_Manager;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
+use Elementor\Group_Control_Typography;
 use Elementor\Icons_Manager;
 use Elementor\Plugin;
 use Elementor\Repeater;
@@ -337,6 +339,15 @@ class Dates extends AbstractAccordion {
                 '{{WRAPPER}} .years-filter' => 'text-align: {{VALUE}};'
             ),
         ) );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'years_filter_typography',
+                'label' => __( 'Typography', 'elementor' ),
+                'selector' => '{{WRAPPER}} .years-filter a',
+            ]
+        );
 
         $this->add_control(
             'color', array(
