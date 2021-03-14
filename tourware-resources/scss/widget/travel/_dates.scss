@@ -122,6 +122,21 @@
     .surcharge {
       margin-top: 15px;
     }
+
+    .date-content {
+      display: flex;
+
+      &.buttons-right {
+        flex-direction: row;
+        .date-buttons {
+          margin-left: auto;
+          display: flex;
+        }
+      }
+      &.buttons-bottom {
+        flex-direction: column;
+      }
+    }
   }
 
   @media screen and (max-width: 767px) {
