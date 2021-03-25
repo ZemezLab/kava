@@ -68,7 +68,7 @@ class Theme
         }, 99 );
 
         add_action( 'wp_enqueue_scripts', function () {
-            wp_enqueue_script('tourware-js', get_parent_theme_file_uri() . '/public/tourware.js', 'vue', null, true);
+            wp_register_script('tourware-js', get_parent_theme_file_uri() . '/public/tourware.js', 'vue', null, true);
             wp_enqueue_style('tourware', get_parent_theme_file_uri() . '/public/tourware.css', null, time());
         } );
 
@@ -94,6 +94,8 @@ class Theme
             Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Accommodation\Details() );
 
             Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Destination\Listing() );
+
+            Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Flightprice\Table() );
 
             Plugin::instance()->widgets_manager->register_widget_type( new \Tourware\Elementor\Widget\Search() );
         } );
