@@ -13,7 +13,9 @@ get_header();
 	while ( have_posts() ) : the_post();
 
 		?><article id="post-<?php the_ID(); ?>" <?php post_class(); ?>><?php
-			the_content();
+			if ( ! kava_theme()->do_location( 'single' ) ) {
+				the_content();
+			}
 			wp_link_pages( array(
 				'before'      => '<div class="page-links">' . esc_html__( 'Pages:', 'kava' ),
 				'after'       => '</div>',
