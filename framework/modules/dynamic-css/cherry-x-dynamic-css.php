@@ -2,7 +2,7 @@
 /**
  * Module allows to work with dynamically generated CSS.
  *
- * Version: 1.0.1
+ * Version: 1.0.2
  */
 
 // If this file is called directly, abort.
