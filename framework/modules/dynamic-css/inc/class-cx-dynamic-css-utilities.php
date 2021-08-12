@@ -712,7 +712,7 @@ if ( ! class_exists( 'CX_Dynamic_CSS_Utilities' ) ) {
 		 * @param  [double] $percent Font size in percent.
 		 * @return double Size.
 		 */
-		public function typography_size( $size, $operation = ' ', $func = 'round', $percent ) {
+		public function typography_size( $size, $operation = ' ', $func = 'round', $percent = 1 ) {
 
 			if ( ! $size ) {
 				return false;
