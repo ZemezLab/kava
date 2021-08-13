@@ -2,7 +2,7 @@
 /**
  * Module to build and show breadcrumbs
  *
- * Version: 1.0.0
+ * Version: 1.0.4
  *
  * @author     Cherry Team <support@cherryframework.com>, Justin Tadlock <justin@justintadlock.com>
  * @copyright  Copyright (c) 2008 - 2014, Justin Tadlock
@@ -456,7 +456,7 @@ if ( ! class_exists( 'CX_Breadcrumbs' ) ) {
 		 * @param string $url    Item URL.
 		 * @param string $class  Item CSS class.
 		 */
-		public function _add_item( $format = 'link_format', $label, $url = '', $class = '', $prepend = false ) {
+		public function _add_item( $format = 'link_format', $label = '', $url = '', $class = '', $prepend = false ) {
 
 			$title = esc_attr( wp_strip_all_tags( $label ) );
 			$css   = ( 'target_format' == $format ) ? 'target' : 'link';
@@ -889,9 +889,9 @@ if ( ! class_exists( 'CX_Breadcrumbs' ) ) {
 				$url = esc_url( get_term_link( $term, $term->taxonomy ) );
 				$this->_add_item( 'link_format', $label, $url );
 
+			} else {
+				$this->_add_item( 'target_format', $label );
 			}
-
-			$this->_add_item( 'target_format', $label );
 
 		}
 
@@ -911,20 +911,24 @@ if ( ! class_exists( 'CX_Breadcrumbs' ) ) {
 				if ( ! empty( $post_type_object->rewrite ) && $post_type_object->rewrite['with_front'] ) {
 					$this->add_rewrite_front_items();
 				}
+
+				/* Get parent pages by path if they exist. */
+				if ( isset( $post_type_object->rewrite['slug'] ) && $post_type_object->rewrite['slug'] ) {
+					$this->add_path_parents( $post_type_object->rewrite['slug'] );
+				}
 			}
+
+			$label = post_type_archive_title( '', false );
 
 			/* Add the post type [plural] name to the trail end. */
 			if ( is_paged() ) {
 
-				$url   = esc_url( get_post_type_archive_link( $post_type_object->name ) );
-				$label = post_type_archive_title( '', false );
-
+				$url = esc_url( get_post_type_archive_link( $post_type_object->name ) );
 				$this->_add_item( 'link_format', $label, $url );
 
+			} else {
+				$this->_add_item( 'target_format', $label );
 			}
-
-			$label = post_type_archive_title( '', false );
-			$this->_add_item( 'target_format', $label );
 
 		}
 
@@ -955,9 +959,9 @@ if ( ! class_exists( 'CX_Breadcrumbs' ) ) {
 				$url = esc_url( get_author_posts_url( $user_id ) );
 				$this->_add_item( 'link_format', $label, $url );
 
+			} else {
+				$this->_add_item( 'target_format', $label );
 			}
-
-			$this->_add_item( 'target_format', $label );
 
 		}
 
@@ -1067,9 +1071,9 @@ if ( ! class_exists( 'CX_Breadcrumbs' ) ) {
 					get_day_link( get_the_time( 'Y' ), get_the_time( 'm' ), get_the_time( 'd' ) )
 				);
 
+			} else {
+				$this->_add_item( 'target_format', $day );
 			}
-
-			$this->_add_item( 'target_format', $day );
 
 		}
 
@@ -1115,9 +1119,9 @@ if ( ! class_exists( 'CX_Breadcrumbs' ) ) {
 					)
 				);
 
+			} else {
+				$this->_add_item( 'target_format', $week );
 			}
-
-			$this->_add_item( 'target_format', $week );
 
 		}
 
@@ -1156,9 +1160,10 @@ if ( ! class_exists( 'CX_Breadcrumbs' ) ) {
 					get_month_link( get_the_time( 'Y' ), get_the_time( 'm' ) )
 				);
 
+			} else {
+				$this->_add_item( 'target_format', $month );
 			}
 
-			$this->_add_item( 'target_format', $month );
 		}
 
 		/**
@@ -1184,9 +1189,9 @@ if ( ! class_exists( 'CX_Breadcrumbs' ) ) {
 					$year,
 					get_year_link( get_the_time( 'Y' ) )
 				);
+			} else {
+				$this->_add_item( 'target_format', $year );
 			}
-
-			$this->_add_item( 'target_format', $year );
 
 		}
 
@@ -1307,6 +1312,11 @@ if ( ! class_exists( 'CX_Breadcrumbs' ) ) {
 				// Add post type specific items
 				if ( isset( $post_type_object->rewrite['with_front'] ) && $post_type_object->rewrite['with_front'] ) {
 					$this->add_rewrite_front_items();
+				}
+
+				/* Get parent pages by path if they exist. */
+				if ( isset( $post_type_object->rewrite['slug'] ) && $post_type_object->rewrite['slug'] ) {
+					$this->add_path_parents( $post_type_object->rewrite['slug'] );
 				}
 			}
 
