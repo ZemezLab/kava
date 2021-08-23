@@ -3,6 +3,9 @@ Kava Theme. Get the truly easy-to-use free theme with tons of functionality and 
 
 ## Changelog
 
+### 2.1.4
+- FIX: PHP 8 compatibility.
+
 ### 2.1.3
 - FIX: various minor fixes.
 
