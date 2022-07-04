@@ -196,6 +196,10 @@ function kava_set_default_single_post_template( $value, $post_id, $meta_key, $si
 		return $value;
 	}
 
+	if ( 'post' !== get_post_type( $post_id ) ) {
+		return $value;
+	}
+
 	if ( ! is_singular( 'post' ) ) {
 		return $value;
 	}
