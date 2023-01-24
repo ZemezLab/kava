@@ -72,6 +72,13 @@ if ( ! class_exists( 'Kava_Theme_Setup' ) ) {
 		public $dynamic_css = null;
 
 		/**
+		 * Layout configs.
+		 *
+		 * @since 1.0.0
+		 */
+		public $layout = array();
+
+		/**
 		 * Sets up needed actions/filters for the theme to initialize.
 		 *
 		 * @since 1.0.0
